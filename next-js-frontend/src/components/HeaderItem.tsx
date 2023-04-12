@@ -1,12 +1,12 @@
-import React from 'react'
+// import React from 'react'
 
-function HeaderItem({ title }) {
-  return (
-    <div>
+// function HeaderItem({ title }) {
+//   return (
+//     <div>
         
-        <p className='group-hover:animate-bounce'>{title}</p>
-    </div>
-  )
-}
+//         <p className='group-hover:animate-bounce'>{title}</p>
+//     </div>
+//   )
+// }
 
-export default HeaderItem
+// export default HeaderItem
