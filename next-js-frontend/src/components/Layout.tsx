@@ -7,9 +7,9 @@ export const Layout = ({ children }: any) => {
   return (
     <>
       <Meta />
-      <Header />
+      {/* <Header /> */}
       <main>{children}</main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
