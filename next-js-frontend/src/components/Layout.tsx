@@ -9,14 +9,15 @@ export const Layout = ({ children }: any) => {
   return (
     <>
       <Meta />
-      <Navbar/>
-      <Header />
+      {/* <Header /> */}
+      <Navbar />
+      {/* <Header /> */}
       <main>{children}</main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
 const font = Roboto({
   subsets: ["latin"],
-  weight: "300"
-})
+  weight: "300",
+});
