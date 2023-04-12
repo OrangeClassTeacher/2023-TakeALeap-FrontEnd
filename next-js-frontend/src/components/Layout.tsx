@@ -1,23 +1,20 @@
 import React from "react";
 import { Meta } from "./Meta";
-import { Footer } from "./Footer";
-import { Header } from "./Header";
-import { Navbar } from "./Navbar";
-import { Roboto } from "next/font/google";
+import  Footer  from "./Footer";
+import Header from "./Header";
+import { NavbarCustom } from "./NavbarCustom";
+
+
 
 export const Layout = ({ children }: any) => {
   return (
     <>
       <Meta />
-      {/* <Header /> */}
-      <Navbar />
-      {/* <Header /> */}
+   {   <Header />}
+  {    <NavbarCustom />}
       <main>{children}</main>
       {/* <Footer /> */}
     </>
   );
 };
-const font = Roboto({
-  subsets: ["latin"],
-  weight: "300",
-});
+;
