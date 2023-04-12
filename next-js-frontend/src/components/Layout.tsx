@@ -10,11 +10,11 @@ export const Layout = ({ children }: any) => {
   return (
     <>
       <Meta />
-      {/* <NavbarCustom /> */}
-      <Header />
+   {   <Header />}
+  {    <NavbarCustom />}
       <main>{children}</main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
-
+;
