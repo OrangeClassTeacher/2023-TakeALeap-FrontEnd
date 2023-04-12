@@ -70,7 +70,7 @@ export default function Register() {
         <div className="flex justify-around md:justify-start">
           <div className="border rounded-full w-[200px] md:w-[170px] lg:w-[170px] p-2 flex items-baseline justify-center">
             <FaGoogle />
-            <p className="pl-1">GOOGLE</p>
+            <p >GOOGLE</p>
           </div>
         </div>
       </div>
