@@ -1,28 +1,27 @@
-import axios from "axios";
-import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import img from "../img/RestaurantDetail.png";
-import IRestaurant from "../pages/restaurant/index";
+import React from "react";
 
-export const RestaurantInfo = ({ result }: { result: IRestaurant }) => {
+export const RestaurantInfo = () => {
   return (
-    <div className="flex  text-white p-10">
-      <div className=" basis-1 lg:basis-2/3">
-        <Image src={img} alt="png" className="w-full" />
-      </div>
-      <div className=" basis-1 lg:basis-1/3 flex justify-around">
-        <div className="font-3xl md:font-2xl lg:w-96 mt-44">
-          <h1 className="m-5">RESTAURANTs NAME GOES HERE </h1>
-          <p className="hidden lg:block text-start font-light text-sm">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad deleniti
-            atque velit asperiores amet eaque odio, minima impedit facere omnis
-            sit accusamus ipsum numquam beatae cum aspernatur aliquam nulla
-            repellat.
+    <div className="grid grid-cols-1 md:grid-cols-2 p-5 md:10">
+      <div>
+        <h1>CONTACT</h1>
+        <div>
+          <p>E-MAIL</p>
+          <p>emailhereeeee</p>
+        </div>
+        <div>
+          <p>PHONE</p>
+          <p>+2 013 454 87 81</p>
+        </div>
+        <div>
+          <p>ADDRESS</p>
+          <p>
+            Olympic Street 7/3, Centrum tower #102, Sukhbaatar district,
+            Ulaanbaatar, Mongolia
           </p>
-          <p>rate hereee</p>
         </div>
       </div>
+      <div></div>
     </div>
   );
 };
