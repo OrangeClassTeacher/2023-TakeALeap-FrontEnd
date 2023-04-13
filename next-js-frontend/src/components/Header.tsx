@@ -1,20 +1,16 @@
-import React from 'react'
-
-import { NavbarCustom } from './NavbarCustom'
+import React from "react";
+import { NavbarCustom } from "./NavbarCustom";
+import { NavSearch } from "./NavSearch";
+import { NavCateg } from "./NavCateg";
 
 function Header() {
   return (
-    <header className='sticky top-o w-full shadow-md z-[100] bg-black'>
-      <NavbarCustom/>
-      <div className='flex justify-between items-center w-full h-full px-4 2x1:px-16 py-1 text-5xl font-light'>
-        LYNX
-      </div>
-      <p className='px-6 2x1:px-16 py-0 text-xs underline'>Find, Eat, Rate</p>
-      <div>
-        
-      </div>
+    <header className="sticky top-o w-full shadow-md z-[100] bg-black text-white">
+      <NavbarCustom />
+      <NavSearch />
+      <NavCateg />
     </header>
-  )
+  );
 }
 
-export default Header
+export default Header;
