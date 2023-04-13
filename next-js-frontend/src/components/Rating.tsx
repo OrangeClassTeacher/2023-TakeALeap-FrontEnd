@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import Image from "next/image"
 
 export const Rating = (): JSX.Element => {
   const [number, setNumber] = useState<number>(0);
-  const [hoverStar, setHoverStar] = useState(undefined || number);
+  const [hoverStar, setHoverStar] = useState<number | undefined>(undefined);
 
   const handleText = (): string => {
     switch (number || hoverStar) {
       case 0:
         return "Evaluate";
       case 1:
-        return "Dissatifation";
+        return "Unsatisfied";
       case 2:
         return "Unsatisfied";
       case 3:
@@ -18,7 +19,7 @@ export const Rating = (): JSX.Element => {
       case 4:
         return "Satisfied";
       case 5:
-        return "Very Satisfied";
+        return "Satisfied";
       default:
         return "Evaluate";
     }
@@ -44,21 +45,23 @@ export const Rating = (): JSX.Element => {
     <div className="flex justify-center items-center h-screen">
       <div className="max-w-sm rounded-md shadow-md">
         <div className="p-4">
-          djdjdj
+          Title of Restaurant
           <div className="flex items-center">
-            <img
+            <Image
               className="w-14 h-14 rounded-md object-cover mr-2"
-              src="https://tanhungphatit.vn/images/detailed/93/iphone-13-blue-1-600x600.jpg"
+              src={require("../img/card3.jpg")}
               alt="name"
+              width={100}
+              height={100}
             />
-            <h1 className="text-lg font-medium">Iphone 13</h1>
+            <h1 className="text-lg font-medium">Name of the food</h1>
           </div>
           <div className="my-4 flex items-center">
             <h1 className="text-lg font-medium mr-2">{handleText()}</h1>
             {Array(5)
               .fill(null)
               .map((_, index) =>
-                number >= index + 1 || hoverStar >= index + 1 ? (
+                number >= index + 1 || hoverStar! >= index + 1 ? (
                   <AiFillStar
                     key={index}
                     onMouseOver={() =>

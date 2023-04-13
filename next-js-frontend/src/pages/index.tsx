@@ -36,9 +36,11 @@ const Home: NextPage = () => {
         </div>
         <Carousel items={imagesItems} />
         <h1>star</h1>
-        <Rating />
+        
       </main>
+      
     </div>
+    
   );
 };
 
