@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
-export default function App(): JSX.Element {
+export const Rating = (): JSX.Element => {
   const [number, setNumber] = useState<number>(0);
-  const [hoverStar, setHoverStar] = useState<number | undefined>(undefined);
+  const [hoverStar, setHoverStar] = useState(undefined || number);
 
   const handleText = (): string => {
     switch (number || hoverStar) {
@@ -42,8 +42,9 @@ export default function App(): JSX.Element {
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="max-w-sm rounded-md overflow-hidden shadow-md">
+      <div className="max-w-sm rounded-md shadow-md">
         <div className="p-4">
+          djdjdj
           <div className="flex items-center">
             <img
               className="w-14 h-14 rounded-md object-cover mr-2"
@@ -63,7 +64,7 @@ export default function App(): JSX.Element {
                     onMouseOver={() =>
                       !number && setHoverStar(index + 1)
                     }
-                    onMouseLeave={() => setHoverStar(undefined)}
+                    onMouseLeave={() => setHoverStar(number)}
                     className="text-orange-500 cursor-pointer"
                     onClick={() => setNumber(index + 1)}
                   />
@@ -73,7 +74,7 @@ export default function App(): JSX.Element {
                     onMouseOver={() =>
                       !number && setHoverStar(index + 1)
                     }
-                    onMouseLeave={() => setHoverStar(undefined)}
+                    onMouseLeave={() => setHoverStar(number)}
                     className="text-orange-500 cursor-pointer"
                     onClick={() => setNumber(index + 1)}
                   />

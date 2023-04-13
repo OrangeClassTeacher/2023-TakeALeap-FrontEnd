@@ -9,6 +9,7 @@ import card1 from '../img/card1.jpg';
 import card2 from '../img/card2.png';
 import card3 from '../img/card3.jpg';
 import card4 from '../img/card4.jpg';
+import {Rating} from '../components/Rating';
 
 const imagesItems = [
     <Image key={1} className="h-full w-full" src={card1} alt='testt' />,
@@ -34,6 +35,8 @@ const Home: NextPage = () => {
           </p> */}
         </div>
         <Carousel items={imagesItems} />
+        <h1>star</h1>
+        <Rating />
       </main>
     </div>
   );
