@@ -1,7 +1,15 @@
 import React from "react";
 import GoogleMapReact from "google-map-react";
+import Image from "next/image";
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+const AnyReactComponent = () => (
+  <Image
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Map_marker.svg/512px-Map_marker.svg.png"
+    width={12}
+    height={12}
+    alt="Markers"
+  />
+);
 
 export default function SimpleMap() {
   const defaultProps = {
@@ -13,14 +21,11 @@ export default function SimpleMap() {
   };
 
   return (
-    // Important! Always set the container height explicitly
     <div style={{ height: "100vh", width: "100%" }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: "AIzaSyCFxLxHovmdaNac-fLDg0guhBdSO4o8cIg" }}
         defaultCenter={defaultProps.center}
-        defaultZoom={defaultProps.zoom}>
-        <AnyReactComponent lat={59.955413} lng={30.337844} text="My Marker" />
-      </GoogleMapReact>
+        defaultZoom={defaultProps.zoom}></GoogleMapReact>
     </div>
   );
 }

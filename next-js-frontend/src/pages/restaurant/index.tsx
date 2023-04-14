@@ -7,6 +7,7 @@ import axios from "axios";
 import { Menu } from "@/components/Menu";
 import { RestaurantInfo } from "@/components/RestaurantInfo";
 import { useRouter } from "next/router";
+import Map from "@/components/Map";
 
 export default interface IRestaurant {
   restaurantName: string;
@@ -106,6 +107,7 @@ export default function Restaurant() {
         </div>
         <Menu />
         <RestaurantInfo />
+        <Map />
       </div>
       <Footer />
     </>
