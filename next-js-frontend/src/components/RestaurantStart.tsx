@@ -5,7 +5,11 @@ import Image from "next/image";
 import img from "../img/RestaurantDetail.png";
 import IRestaurant from "../pages/restaurant/index";
 
-export const RestaurantStart = ({ result }: { result: IRestaurant }) => {
+export const RestaurantStart = ({
+  restaurant,
+}: {
+  restaurant: IRestaurant;
+}) => {
   return (
     <div className="flex  text-white p-10">
       <div className=" basis-1 lg:basis-2/3">

@@ -5,9 +5,9 @@ export const Menu = () => {
   const food = [Data, Data, Data, Data, Data, Data, Data, Data, Data];
 
   return (
-    <div>
-      <div>
-        <h1>MENU</h1>
+    <div className="md:mx-20">
+      <div className="flex justify-center">
+        <h1 className="text-2xl">MENU</h1>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 p-5 gap-10 text-white">
         {food.map((item, ind) => {

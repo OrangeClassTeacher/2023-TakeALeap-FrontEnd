@@ -8,7 +8,7 @@ function Footer() {
         <div className="p-5 ">
           <ul>
             <p className=" font-normal text-3xl pb-6">
-              Stream<span className="text-blue-600">line</span>
+              TAKE A <span className="text-blue-600">LEAP</span>
             </p>
             <div className="flex gap-6 pb-5">
               <FaInstagram className="text-2xl cursor-pointer hover:text-yellow-600" />
@@ -78,10 +78,8 @@ function Footer() {
       </div>
       <div className="flex flex-col bg-black text-white justify-center items-center text-center  p-5  font-light">
         <h1>
-          © 2021-2022 All rights reserved | Build with ❤ by{" "}
-          <span className="hover:text-blue-600 cursor-pointer">
-            streamline{" "}
-          </span>
+          © 2023 All rights reserved | Build with ❤ by{" "}
+          <span className="hover:text-blue-600 cursor-pointer">lynx </span>
         </h1>
       </div>
     </>

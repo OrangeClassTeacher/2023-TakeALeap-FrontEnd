@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { RestaurantStart } from "@/components/RestaurantStart";
 import { PopularDish } from "@/components/PopularDish";
-import { GetServerSideProps } from "next";
 import axios from "axios";
 import { Menu } from "@/components/Menu";
 import { RestaurantInfo } from "@/components/RestaurantInfo";
+import { useRouter } from "next/router";
 
 export default interface IRestaurant {
   restaurantName: string;
@@ -28,8 +28,7 @@ export default interface IRestaurant {
       comment: string;
     }
   ];
-  cuisineType: string[]; // national
-  // foodType: string[]; //Ene hereg baina uu? Menu dotroo foodtype beverageType tai ym chin?
+  cuisineType: string[];
   contact: {
     phone: number;
     facebook: string;
@@ -44,7 +43,6 @@ export default interface IRestaurant {
     weekend: { open: number; close: number };
   };
 }
-
 interface IRestauran {
   restaurantName: string;
   address: {
@@ -65,8 +63,7 @@ interface IRestauran {
       comment: string;
     }
   ];
-  cuisineType: string[]; // national
-  // foodType: string[]; //Ene hereg baina uu? Menu dotroo foodtype beverageType tai ym chin?
+  cuisineType: string[];
   contact: {
     phone: number;
     facebook: string;
@@ -82,13 +79,28 @@ interface IRestauran {
   };
 }
 
-export default function Restaurant({ result }: { result: IRestauran }) {
+export default function Restaurant() {
+  const [restaurant, setRestaurant] = useState<IRestauran>({});
+  const route = useRouter();
+  const { id } = route.query;
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = () => {
+    axios
+      .get(`http://localhost:8080/api/restaurant?id=${id}`)
+      .then((res) => setRestaurant(res.data.result))
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
       <Header />
       <div className="bg-black text-white">
-        <RestaurantStart result={result} />
-        <PopularDish result={result} />
+        <RestaurantStart restaurant={restaurant} />
+        <PopularDish restaurant={restaurant} />
         <div className="text-center p-5">
           <button className="p-2 bg-sky-300 text-md">View 3D menu</button>
         </div>
@@ -100,11 +112,15 @@ export default function Restaurant({ result }: { result: IRestauran }) {
   );
 }
 
-// export const getServerSideProps: GetServerSideProps = async (param) => {
+// export const getServerSideProps: GetServerSideProps = async (
+//   param
+// ): Promise<any> => {
 //   const id = param.query;
-//   const res = await axios.get(``);
+//   const res = await axios.get(`http://localhost:8080/api/restaurant?id=${id}`);
+
+//   console.log(res.data.result);
 
 //   return {
-//     result: res.data.result,
+//     props: { result: res.data.result },
 //   };
 // };
