@@ -13,7 +13,6 @@
     /* @apply bg-black text-white; */
   }
 }
-<<<<<<< HEAD
 @layer components {
   .header-link-item {
     @apply cursor-pointer text-xs font-medium opacity-75 transition duration-300 hover:opacity-100;
@@ -50,5 +49,3 @@
     @apply absolute h-full w-full cursor-pointer overflow-hidden rounded-3xl drop-shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-700 ease-in-out;
   }
 }
-=======
->>>>>>> f44ea33e09d01c45ec2683776331082c46304199

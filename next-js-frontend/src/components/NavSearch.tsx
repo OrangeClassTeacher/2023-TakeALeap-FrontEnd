@@ -13,12 +13,13 @@ export const NavSearch = () => {
         <p className=" 2x1:px-16 py-0 text-xs underline">Find, Eat, Rate</p>
       </div>
       <div className="basis-3/6 flex gap-2 h-9">
-        <div className="bg-white text-black p-2 rounded text-center">All</div>
-        <div className="bg-white rounded flex w-full justify-between items-center p-2">
+        <div className="bg-slate-200 text-black p-2 rounded text-center">All</div>
+        <div className="bg-slate-200 rounded flex w-full justify-between items-center p-2">
           <input
             type="text w-full"
             placeholder="Search"
-            style={{ outline: "none", color: "black" }}
+            className="bg-slate-200"
+            style={{ outline: "none", color: "black"}}
           />
           <GrFormClose />
         </div>

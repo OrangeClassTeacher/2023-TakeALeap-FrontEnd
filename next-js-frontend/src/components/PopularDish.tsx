@@ -3,10 +3,10 @@ import IRestaurant from "../pages/restaurant/index";
 import Data from "./MockDataRes";
 import Image from "next/image";
 
-export const PopularDish = ({ result }: { result: IRestaurant }) => {
+export const PopularDish = ({ restaurant }: { restaurant: IRestaurant }) => {
   const populer = [Data, Data, Data, Data, Data, Data];
   return (
-    <div className="">
+    <div className="md:mx-20">
       <div className="grid grid-cols-2 sm:grid-cols-3 p-5 text-white">
         {populer.map((item, ind) => {
           return (

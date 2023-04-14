@@ -1,11 +1,13 @@
-import axios from "axios";
-import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
-import img from "../img/RestaurantDetail.png";
 import IRestaurant from "../pages/restaurant/index";
+import img from "../img/Rectangle.png";
 
-export const RestaurantStart = ({ result }: { result: IRestaurant }) => {
+export const RestaurantStart = ({
+  restaurant,
+}: {
+  restaurant: IRestaurant;
+}) => {
   return (
     <div className="flex  text-white p-10">
       <div className=" basis-1 lg:basis-2/3">
