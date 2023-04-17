@@ -7,7 +7,7 @@ import { GrFacebook, GrInstagram, GrYoutube, GrLinkedin } from "react-icons/Gr";
 export const NavbarCustom = () => {
   return (
     <div className="text-white">
-      <div className="flex justify-between items-center w-full h-full px-4 2x1:px-16">
+      <div className="flex justify-between items-center w-full h-full px-4 py-2 2x1:px-16">
         <Link href={"/"} className="flex align-middle">
           <Image
             src={require("../img/logo.jpg")}
@@ -18,13 +18,17 @@ export const NavbarCustom = () => {
           />
           <p className="p-3 text-xs font-thin">WELCOME TO LYNX</p>
         </Link>
-        <div className="flex p-5">
-          <TbPhoneCall className="mx-2 h-6" />
+        <div className=" p-5 hidden md:flex">
+          <TbPhoneCall className="mx-2 h-6 " />
           <p className="text-xs font-thin p-1">(976) 99112233</p>
-          <GrFacebook className="mx-2 h-6" />
-          <GrInstagram className="mx-2 h-6" />
-          <GrYoutube className="mx-2 h-6" />
-          <GrLinkedin className="mx-2 h-6" />
+          <GrFacebook className="mx-2 h-6 hover:text-sky-500" />
+          <GrInstagram className="mx-2 h-6 hover:text-sky-500" />
+          <GrYoutube className="mx-2 h-6 hover:text-sky-500" />
+          <GrLinkedin className="mx-2 h-6 hover:text-sky-500" />
+        </div>
+        <div className="flex md:hidden gap-5">
+          <p>SIGN IN</p>
+          <p>SIGN UP</p>
         </div>
       </div>
     </div>

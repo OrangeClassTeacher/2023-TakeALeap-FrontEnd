@@ -1,12 +1,12 @@
 import React from "react";
-import IRestaurant from "../pages/restaurant/index";
+import { IRestaurant } from "../pages/restaurant/index";
 import Data from "./MockDataRes";
 import Image from "next/image";
 
 export const PopularDish = ({ restaurant }: { restaurant: IRestaurant }) => {
   const populer = [Data, Data, Data, Data, Data, Data];
   return (
-    <div className="md:mx-20">
+    <div className="md:px-20 bg-black text-gray-900">
       <div className="grid grid-cols-2 sm:grid-cols-3 p-5 text-white">
         {populer.map((item, ind) => {
           return (

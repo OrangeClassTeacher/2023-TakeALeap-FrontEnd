@@ -5,7 +5,7 @@ import { NavCateg } from "./NavCateg";
 
 function Header() {
   return (
-    <header className="sticky top-o w-full shadow-md z-[100] bg-black text-white">
+    <header className="sticky top-o w-full shadow-md z-[100] bg-black text-gray-200">
       <NavbarCustom />
       <NavSearch />
       <NavCateg />

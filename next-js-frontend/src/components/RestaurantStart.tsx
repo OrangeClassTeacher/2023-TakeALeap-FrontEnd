@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import IRestaurant from "../pages/restaurant/index";
+import { IRestaurant } from "../pages/restaurant/index";
 import img from "../img/Rectangle.png";
 
 export const RestaurantStart = ({

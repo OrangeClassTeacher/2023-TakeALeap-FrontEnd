@@ -39,25 +39,25 @@ interface IRestauran {
   };
 }
 
-export default function Explore(props: { result: IRestauran }) {
+export default function Explore() {
   return (
     <div>
       <Header />
       <div className="bg-black text-white">
-        <div className="flex justify-around"></div>
+        <div className="flex justify-around">hi</div>
       </div>
       <Footer />
     </div>
   );
 }
 
-export async function getServerSideProps(pageSize: string) {
-  const res = await axios.get("http://localhost:8080/api/restaurants");
+// export async function getServerSideProps(pageSize: string) {
+//   const res = await axios.get("http://localhost:8080/api/restaurants");
 
-  return {
-    props: {
-      message: "Server side Props",
-      result: res.data.result,
-    },
-  };
-}
+//   return {
+//     props: {
+//       message: "Server side Props",
+//       result: res.data.result,
+//     },
+//   };
+// }
