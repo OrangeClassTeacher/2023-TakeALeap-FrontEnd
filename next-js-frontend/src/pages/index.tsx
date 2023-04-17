@@ -12,17 +12,32 @@ import card4 from "../img/card4.jpg";
 import { Rating } from "../components/Rating";
 
 const imagesItems = [
-  <Image key={1} className="h-full w-full" src={card1} alt="testt" />,
-  <Image key={2} className="h-full w-full" src={card2} alt="teste" />,
-  <Image key={3} className="h-full w-full" src={card3} alt="teste" />,
-  <Image key={4} className="h-full w-full" src={card4} alt="teste" />,
+  {
+    img: <Image key={1} className="h-full w-full" src={card1} alt="testt" />,
+    title: "hi1",
+  },
+  {
+    img: <Image key={2} className="h-full w-full" src={card2} alt="teste" />,
+    title: "hi2",
+  },
+  {
+    img: <Image key={3} className="h-full w-full" src={card3} alt="teste" />,
+    title: "hi3",
+  },
+  {
+    img: <Image key={4} className="h-full w-full" src={card4} alt="teste" />,
+    title: "hi4",
+  },
 ];
 
 const Home: NextPage = () => {
   return (
     <>
       <Header />
-      <Carousel items={imagesItems} />
+      <div className=" relative">
+        {" "}
+        <Carousel items={imagesItems} />
+      </div>
       <Footer />
     </>
   );
