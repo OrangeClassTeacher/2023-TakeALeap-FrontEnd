@@ -9,42 +9,7 @@ import { RestaurantInfo } from "@/components/RestaurantInfo";
 import { useRouter } from "next/router";
 import Map from "@/components/Map";
 
-export default interface IRestaurant {
-  restaurantName: string;
-  address: {
-    district: string;
-    street: string;
-    building: string;
-    address: string;
-    location: {
-      type: string;
-      coordinates: number[];
-    };
-  };
-  restaurantRate: [
-    {
-      rateType: string;
-      userId: string;
-      score: number;
-      comment: string;
-    }
-  ];
-  cuisineType: string[];
-  contact: {
-    phone: number;
-    facebook: string;
-    Instagram: string;
-    link: string;
-  };
-  email: string;
-  img: string[];
-  logoImg: string | null;
-  schedule: {
-    weekday: { open: number; close: number };
-    weekend: { open: number; close: number };
-  };
-}
-interface IRestauran {
+export interface IRestaurant {
   restaurantName: string;
   address: {
     district: string;
