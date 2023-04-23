@@ -1,10 +1,19 @@
 import React from "react";
 import { FaFacebookF } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
+import { BiArrowBack } from "react-icons/Bi";
+import Link from "next/link";
 
 export default function Register() {
   return (
-    <div className="text-center">
+    <div className="text-center pt-20">
+      <Link href={"/"}>
+        <div className="flex items-center ml-10 hover:text-sky-500">
+          {" "}
+          <BiArrowBack /> back
+        </div>
+      </Link>
+
       <div className="my-10 text-2xl">
         <h1 className="text-sm md:text-xl lg:text-2xl">
           CREATE YOUR ACCOUNT FOR FREE

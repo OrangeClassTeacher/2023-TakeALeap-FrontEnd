@@ -4,106 +4,61 @@ import coca from "../img/cocaCola.jpeg";
 import axios from "axios";
 import cat from "../img/cat.jpeg";
 
+interface Icomment {
+  _id: string;
+  restaurantId: {
+    _id: string;
+    restaurantName: string;
+  };
+  foodId: string;
+  userId: {
+    _id: string;
+    userName: string;
+  };
+  comment: string;
+  rate: number;
+}
+
+interface Iuser {
+  _id: {
+    username: string;
+    img: [string];
+  };
+  points: number;
+}
+
 export default function TopComments(): JSX.Element {
-  const [topComment, setTopComment] = useState();
+  const [lastComments, setLastComments] = useState<Icomment[]>([]);
+  const [topConterbuter, setTopConterbuter] = useState<Iuser[]>([]);
 
-  const MockData = [
-    {
-      _id: {
-        username: "Moogii23",
-        img: ["link here"],
-      },
-      points: 1000,
-    },
-    {
-      _id: {
-        username: "Daria",
-        img: ["link here"],
-      },
-      points: 500,
-    },
-    {
-      _id: {
-        username: "manlai",
-        img: ["link here"],
-      },
-      points: 10000,
-    },
-    {
-      _id: {
-        username: "Moogii23",
-        img: ["link here"],
-      },
-      points: 1000,
-    },
-    {
-      _id: {
-        username: "Daria",
-        img: ["link here"],
-      },
-      points: 500,
-    },
-    {
-      _id: {
-        username: "manlai",
-        img: ["link here"],
-      },
-      points: 10000,
-    },
-  ];
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/api/latestcomments")
+      .then((res) => {
+        setLastComments(res.data.result);
+        console.log(res.data.result);
+      })
+      .catch((err) => console.log(err));
 
-  const Comment = [
-    {
-      _id: "6438054e9e7aecc85edd49ee",
-      restaurantId: { restaurantName: "dsakk Shangri-La" },
-      userId: {
-        username: "Moogii23",
-        img: ["link here"],
-      },
-      comment: "not bad",
-      rate: 3,
-      createdAt: "2023-04-13T13:36:14.025Z",
-      updatedAt: "2023-04-13T13:36:14.025Z",
-      __v: 0,
-    },
-    {
-      _id: "6438052a6e01f136e49bcc98",
-      restaurantId: { restaurantName: "dsakk Shangri-La" },
-      userId: {
-        username: "Moogii23",
-        img: ["link here"],
-      },
-      comment: "not ",
-      rate: 3,
-      createdAt: "2023-04-13T13:35:38.603Z",
-      updatedAt: "2023-04-13T13:36:57.981Z",
-      __v: 0,
-    },
-    {
-      _id: "6438052a6e01f136e49bcc98",
-      restaurantId: { restaurantName: "dsakk Shangri-La" },
-      userId: {
-        username: "Moogii23",
-        img: ["link here"],
-      },
-      comment: "not ",
-      rate: 3,
-      createdAt: "2023-04-13T13:35:38.603Z",
-      updatedAt: "2023-04-13T13:36:57.981Z",
-      __v: 0,
-    },
-  ];
+    axios
+      .get("http://localhost:8080/api/users/topusers")
+      .then((res) => {
+        setTopConterbuter(res.data.result);
+        console.log(res.data.result);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
-    <div className="bg-black text-gray-100 p-5 mt-20">
+    <div className="bg-black text-gray-100 p-5">
       <div className="flex">
         <div className="hidden md:block basis-1/5 border border-gray-900 bg-gray-950 rounded p-5">
           <Image src={coca} width={300} height={300} alt="advert" />
         </div>
-        <div className="basis-1 md:basis-3/5">
+        <div className="basis-1 md:basis-3/5 ">
           <div className="text-center text-3xl">Recent Comments</div>
-          <div className="m-0 md:mx-20">
-            {Comment.map((item, ind) => {
+          <div className="m-0 md:mx-20 h-[600px] overflow-scroll">
+            {lastComments?.map((item, ind) => {
               return (
                 <div
                   key={ind}
@@ -120,8 +75,8 @@ export default function TopComments(): JSX.Element {
                   <div className=" flex items-center ">
                     <div>
                       <p>
-                        {item?.userId?.username} rated{" "}
-                        {item?.restaurantId.restaurantName}
+                        {item?.userId?.userName} rated{" "}
+                        {item?.restaurantId?.restaurantName}
                       </p>
                       <p>Comment : {item?.comment}</p>
                     </div>
@@ -131,12 +86,12 @@ export default function TopComments(): JSX.Element {
             })}
           </div>
         </div>
-        <div className="hidden md:block basis-1/5 border border-gray-900 bg-gray-950 rounded p-5">
+        <div className="hidden md:block basis-1/5 border border-gray-900 bg-gray-950 rounded p-5 h-full">
           <div>
             <h1 className="text-xl text-center">Top Contritors</h1>
           </div>
           <div>
-            {MockData.map((item, ind) => {
+            {topConterbuter?.map((item, ind) => {
               return (
                 <div key={ind} className="flex  items-center my-3">
                   <p className="basis-1/12">{ind + 1}.</p>
@@ -149,9 +104,9 @@ export default function TopComments(): JSX.Element {
                       className="rounded-full"
                     />
                   </div>
-                  <div className="basis-3/6">{item._id.username}</div>
+                  <div className="basis-3/6">{item?._id.username}</div>
                   <div className="basis-1/6">
-                    <p className=" bg-sky-700  rounded p-1">{item.points}</p>
+                    <p className=" bg-sky-700  rounded p-1">{item?.points}</p>
                   </div>
                 </div>
               );

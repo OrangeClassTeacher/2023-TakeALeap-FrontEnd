@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Dispatch } from "react";
 import { SetStateAction } from "react";
 import { GrClose } from "react-icons/Gr";
 import Image from "next/image";
 import cat from "../img/logo.jpg";
 import Link from "next/link";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 export default function SignIn({
   signIn,
@@ -13,6 +15,42 @@ export default function SignIn({
   signIn: boolean;
   setSignIn: Dispatch<SetStateAction<boolean>>;
 }) {
+  const route = useRouter();
+  const [email, setEmail] = useState<string>();
+  const [password, setPassword] = useState<string>();
+
+  interface Iuser {
+    name: string;
+    userName: string;
+    email: string;
+    phone: number;
+    password: string;
+    point: number[];
+    userType: string;
+    img: string[];
+  }
+
+  const tokensave = (data: {
+    status: boolean;
+    data: Iuser;
+    message: string;
+    token: string;
+  }) => {
+    const token = data.token;
+    route.push("/");
+  };
+
+  const signin = () => {
+    axios
+      .post("", { email: email, password: password })
+      .then((res) => {
+        res.data.status
+          ? tokensave(res.data)
+          : alert("email or password is wrong");
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div
       className="h-screen w-screen fixed inset-0 overflow-y-auto flex items-center justify-center bg-gray-400/50"
@@ -40,22 +78,28 @@ export default function SignIn({
           <div className="rounded border p-3 mb-6">
             <input
               type="text"
+              value={email}
               placeholder="E-Mail"
               style={{ outline: "none", width: "100%" }}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="rounded border p-3 mb-6">
             <input
               type="text"
+              value={password}
               placeholder="Password"
               style={{ outline: "none", width: "100%" }}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <div className="bg-black text-white p-3">Sign In</div>
+          <div className="bg-black text-white p-3" onClick={() => signin()}>
+            Sign In
+          </div>
           <div className="flex gap-2 pt-5">
             <p>Do not have an account?</p>{" "}
             <Link href="/register" className="text-sky-500">
-              <p> Sign In</p>
+              <p> Sign Up</p>
             </Link>
           </div>
         </div>
