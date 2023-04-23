@@ -1,17 +1,16 @@
 import React, { useState } from "react";
-
-import CarouselItem from "./CarouselItem";
-// import CarouselIndicator from "./CarouselIndicator";
-
 import { IoIosArrowBack } from "react-icons/io";
+import Image from "next/image";
 
-export interface CarouselProps {
-  width?: number;
-  height?: number;
-  items: { img: JSX.Element; title: string }[];
+interface myProps {
+  _id: {
+    restaurantName: string;
+    img: [string];
+  };
+  avg_score: number;
 }
 
-export default function Carousel({ width, height, items }: CarouselProps) {
+export default function Carousel({ items }: { items: [myProps] }) {
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
   function handleNextItemBtn() {
@@ -27,43 +26,44 @@ export default function Carousel({ width, height, items }: CarouselProps) {
   }
 
   return (
-    <div className="flex justify-around bg-black p-44">
-      <div className="carousel-container">
-        {activeIndex > 0 && (
-          <button
-            className="carousel-btn-switch-card-left carousel-btn-switch-card"
-            onClick={handlePrevItemBtn}
-          >
-            <IoIosArrowBack />
-          </button>
-        )}
-        {items?.map((item, index) => (
-          <CarouselItem key={index} index={index} activeIndex={activeIndex}>
-            {item?.img}
-          </CarouselItem>
-        ))}
-        {activeIndex < items.length - 1 && (
-          <button
-            className="carousel-btn-switch-card-right carousel-btn-switch-card"
-            onClick={handleNextItemBtn}
-          >
-            <IoIosArrowBack
-              style={{
-                transform: "rotate(180deg)",
-              }}
-            />
-          </button>
-        )}
-
-        {/* <CarouselIndicator
-          activeIndex={activeIndex}
-          length={items.length}
-          onSetActiveIndex={(activeIndex) => {
-            setActiveIndex(activeIndex);
-          }}
-        /> */}
+    <div className="flex justify-around bg-black  relative">
+      <div className="flex justify-around">
+        <div className="h-full relative  delay-75 ">
+          {activeIndex > 0 && (
+            <button
+              className="bg-white/50 z-10 left-0 absolute text-2xl rounded-full p-2 top-[50%]  m-5 "
+              onClick={handlePrevItemBtn}>
+              <IoIosArrowBack />
+            </button>
+          )}
+          <Image
+            src={items[activeIndex]?._id?.img[0]}
+            key={1}
+            width={1000}
+            height={700}
+            className="h-[700px] w-screen object-cover duration-500 transition-opacity  ease-linear"
+            alt="testt"
+          />
+          {activeIndex < items.length - 1 && (
+            <button
+              className="bg-white/50 z-10 right-0 absolute text-2xl rounded-full p-2 top-[50%] m-5 "
+              onClick={handleNextItemBtn}>
+              <IoIosArrowBack
+                style={{
+                  transform: "rotate(180deg)",
+                }}
+              />
+            </button>
+          )}
+        </div>
+        <div className="absolute  top-0 z-20 w-[75%]  h-full flex justify-around items-center">
+          <div className=" bg-black/75 w-[50%] rounded-lg h-[50%] p-5 ">
+            <div className="text-4xl flex justify-around text-white">
+              <h1>{items[activeIndex]._id.restaurantName}</h1>
+            </div>
+          </div>
+        </div>
       </div>
-      {/* <div className="basis-1/2"></div> */}
     </div>
   );
 }
