@@ -27,7 +27,8 @@ export const NavSearch = () => {
         </div> */}
             <div
               className="bg-slate-200 rounded flex w-full justify-between items-center p-2"
-              onClick={() => setSearch(!search)}>
+              onClick={() => setSearch(!search)}
+            >
               <input
                 type="text w-full"
                 placeholder="Search"
@@ -39,7 +40,8 @@ export const NavSearch = () => {
           </div>
           <div
             className="absolute bg-white top-12 w-[900px] h-[400px] rounded"
-            style={{ display: search ? "block" : "none" }}>
+            style={{ display: search ? "block" : "none" }}
+          >
             hi
           </div>
         </div>
@@ -61,7 +63,8 @@ export const NavSearch = () => {
               className="hover:text-sky-400 cursor-pointer"
               onClick={() => {
                 setSignIn(!signIn);
-              }}>
+              }}
+            >
               sign in
             </p>
             <Link href={"/register"}>
