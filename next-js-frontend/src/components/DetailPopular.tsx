@@ -30,7 +30,7 @@ export const DetailPopular = () => {
               }>
               <div>
                 <Image
-                  src={item?.img[0]}
+                  src={item?.img[0] || ""}
                   alt="img"
                   className="w-full h-[300px] object-cover "
                   width={200}

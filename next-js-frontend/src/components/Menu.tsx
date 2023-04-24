@@ -28,7 +28,7 @@ export const Menu = () => {
             <div key={ind}>
               <div>
                 <Image
-                  src={item?.img[0]}
+                  src={item?.img[0] || ""}
                   alt="img"
                   className="rounded-xl w-full h-[200px] object-cover"
                   width={1000}

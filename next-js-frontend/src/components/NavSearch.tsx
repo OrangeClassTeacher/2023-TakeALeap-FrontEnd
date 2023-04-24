@@ -1,4 +1,4 @@
-import React, { Dispatch, useState } from "react";
+import React, { Dispatch, useEffect, useState } from "react";
 import { GrFormClose } from "react-icons/Gr";
 import { TfiWorld } from "react-icons/Tfi";
 import { VscAccount } from "react-icons/Vsc";
@@ -6,10 +6,22 @@ import Link from "next/link";
 import { BiSearch } from "react-icons/Bi";
 import { FiMenu } from "react-icons/Fi";
 import SignIn from "./SignIn";
+import axios from "axios";
 
 export const NavSearch = () => {
   const [signIn, setSignIn] = useState<boolean>(false);
   const [search, setSearch] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .post(`http://localhost:8080/api/restaurant/search`, {
+        searchTxt: searchInput,
+      })
+      .then((res) => setData(res.data.result))
+      .catch((err) => console.log(err));
+  }, [searchInput]);
 
   return (
     <div>
@@ -22,27 +34,37 @@ export const NavSearch = () => {
         </div>
         <div className="basis-3/6 relative">
           <div className="flex gap-2 h-9 ">
-            {/* <div className="bg-slate-200 text-black p-2 rounded text-center">
-          All
-        </div> */}
             <div
               className="bg-slate-200 rounded flex w-full justify-between items-center p-2"
-              onClick={() => setSearch(!search)}
-            >
+              onClick={() => setSearch(!search)}>
               <input
                 type="text w-full"
                 placeholder="Search"
                 className="bg-slate-200"
                 style={{ outline: "none", color: "black", width: "100%" }}
+                onChange={(e) => setSearchInput(e.target.value)}
               />
               <GrFormClose />
             </div>
           </div>
           <div
             className="absolute bg-white top-12 w-[900px] h-[400px] rounded"
-            style={{ display: search ? "block" : "none" }}
-          >
-            hi
+            style={{ display: search ? "block" : "none" }}>
+            <div>
+              {/* <div>
+                <h1>Foods</h1>
+                <p>{data.food.rowCountOfFood}</p>
+              </div>
+
+              {data?.food?.map((item, ind) => {
+                return <div key={ind}>{}</div>;
+              })}
+            </div>
+            <div>
+              {data?.restaurant?.map((item, ind) => {
+                return <div key={ind}>{}</div>;
+              })} */}
+            </div>
           </div>
         </div>
 
@@ -63,8 +85,7 @@ export const NavSearch = () => {
               className="hover:text-sky-400 cursor-pointer"
               onClick={() => {
                 setSignIn(!signIn);
-              }}
-            >
+              }}>
               sign in
             </p>
             <Link href={"/register"}>
