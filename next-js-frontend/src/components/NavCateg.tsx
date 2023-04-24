@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { BsCaretDown } from "react-icons/Bs";
+import { useRouter } from "next/router";
 
 const list = [
-  { name: "find restaurants", path: "/find" },
+  { name: "home", path: "/" },
+  { name: "find restaurants", path: "/findrestaurants" },
   { name: "blog", path: "/blog" },
   { name: "recipe", path: "/category" },
   { name: "contact", path: "/category" },
@@ -11,6 +13,10 @@ const list = [
 ];
 
 export const NavCateg = () => {
+  const route = useRouter();
+  console.log(route.pathname);
+  const path = route.pathname;
+
   const [category, setCategory] = useState<boolean>(false);
 
   const cuisines = [
@@ -38,7 +44,7 @@ export const NavCateg = () => {
             className="  absolute bg-white w-[150px] h-[250px] text-black overflow-scroll top-10">
             {cuisines.map((item, ind) => {
               return (
-                <Link href={`/findrestaurant?type=${item}`} key={ind}>
+                <Link href={`/findrestaurants?type=${item}`} key={ind}>
                   <p className="m-2 hover:text-sky-500 text-lg">{item}</p>
                 </Link>
               );
@@ -47,7 +53,13 @@ export const NavCateg = () => {
         </div>
         {list.map((item, ind) => {
           return (
-            <div key={ind} className="uppercase hover:text-sky-500">
+            <div
+              key={ind}
+              className={
+                path == item.path
+                  ? "uppercase text-sky-500"
+                  : "uppercase hover:text-sky-500"
+              }>
               <Link href={`${item.path}`}>{item.name}</Link>
             </div>
           );

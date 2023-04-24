@@ -31,7 +31,7 @@ export const RestaurantStart = () => {
     <div className="flex  text-white p-10">
       <div className=" basis-1 lg:basis-2/3">
         <Image
-          src={restaurant?.img[0]}
+          src={restaurant?.img[0] || ""}
           alt="png"
           className="w-full"
           width={1000}
