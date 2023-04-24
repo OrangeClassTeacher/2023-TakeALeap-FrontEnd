@@ -7,9 +7,8 @@ const list = [
   { name: "home", path: "/" },
   { name: "find restaurants", path: "/findrestaurants" },
   { name: "blog", path: "/blog" },
-  { name: "recipe", path: "/category" },
-  { name: "contact", path: "/category" },
-  { name: "about us", path: "/category" },
+  { name: "recipe", path: "/recipe" },
+  { name: "about us", path: "/aboutus" },
 ];
 
 export const NavCateg = () => {

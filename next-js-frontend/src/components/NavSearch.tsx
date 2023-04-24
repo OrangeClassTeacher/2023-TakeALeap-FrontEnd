@@ -7,12 +7,15 @@ import { BiSearch } from "react-icons/Bi";
 import { FiMenu } from "react-icons/Fi";
 import SignIn from "./SignIn";
 import axios from "axios";
+import { search } from "./InterFace";
+import Image from "next/image";
+import { IoMdClose } from "react-icons/io";
 
 export const NavSearch = () => {
   const [signIn, setSignIn] = useState<boolean>(false);
   const [search, setSearch] = useState(false);
   const [searchInput, setSearchInput] = useState("");
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<search>();
 
   useEffect(() => {
     axios
@@ -34,36 +37,109 @@ export const NavSearch = () => {
         </div>
         <div className="basis-3/6 relative">
           <div className="flex gap-2 h-9 ">
-            <div
-              className="bg-slate-200 rounded flex w-full justify-between items-center p-2"
-              onClick={() => setSearch(!search)}>
+            <div className="bg-slate-200 rounded flex w-full justify-between items-center p-2">
               <input
                 type="text w-full"
                 placeholder="Search"
                 className="bg-slate-200"
+                value={searchInput}
                 style={{ outline: "none", color: "black", width: "100%" }}
                 onChange={(e) => setSearchInput(e.target.value)}
+                onClick={() => setSearch(true)}
               />
-              <GrFormClose />
+              <GrFormClose
+                onClick={() => {
+                  setSearch(false);
+                  setSearchInput("");
+                }}
+              />
             </div>
           </div>
           <div
-            className="absolute bg-white top-12 w-[900px] h-[400px] rounded"
+            className="absolute bg-white top-12 w-[900px] h-[400px] rounded text-black p-10 overflow-scroll"
             style={{ display: search ? "block" : "none" }}>
-            <div>
-              {/* <div>
-                <h1>Foods</h1>
-                <p>{data.food.rowCountOfFood}</p>
-              </div>
-
-              {data?.food?.map((item, ind) => {
-                return <div key={ind}>{}</div>;
-              })}
+            <div className="absolute right-5 top-5">
+              {" "}
+              <IoMdClose
+                className="text-2xl hover:text-sky-600"
+                onClick={() => setSearch(false)}
+              />
             </div>
             <div>
-              {data?.restaurant?.map((item, ind) => {
-                return <div key={ind}>{}</div>;
-              })} */}
+              <div className="flex justify-between border-b">
+                <h1>Foods</h1>
+                <p>
+                  Found :{" "}
+                  {data?.food.rowCountOfFood ? data?.food.rowCountOfFood : 0}
+                </p>
+              </div>
+              <div className="grid grid-cols-4 p-10">
+                {data?.food?.food.map((item, ind) => {
+                  if (ind < 8) {
+                    return (
+                      <Link href={`/food?id=${item._id}`} key={ind}>
+                        <div className="m-2 rounded bg-white ">
+                          <div className="m-3 w-[150px] h-[100px] object-cover">
+                            <Image
+                              src={item.img[0]}
+                              width={150}
+                              height={100}
+                              alt="img"
+                              className="rounded w-[150px] h-[100px]"
+                            />
+                          </div>
+                          <div className="text-center">
+                            <h1 className="text-sm font-semibold uppercase mt-1">
+                              {item.foodName}
+                            </h1>
+                            <p className="text-xs">Price : {item.price}</p>
+                          </div>
+                        </div>
+                      </Link>
+                    );
+                  }
+                })}
+              </div>
+            </div>
+            <div>
+              <div className="flex justify-between border-b">
+                <h1>Restaurants</h1>
+                <p>
+                  Found :{" "}
+                  {data?.restaurant.rowCountOfRes
+                    ? data?.restaurant.rowCountOfRes
+                    : 0}
+                </p>
+              </div>
+              <div className="grid grid-cols-4 p-10">
+                {data?.restaurant?.restaurant.map((item, ind) => {
+                  if (ind < 8) {
+                    return (
+                      <Link href={`/restaurant?id=${item._id}`} key={ind}>
+                        <div className="m-2 rounded bg-white ">
+                          <div className="m-3 w-[150px] h-[100px] object-cover">
+                            <Image
+                              src={item.img[0]}
+                              width={150}
+                              height={150}
+                              alt="img"
+                              className="rounded  w-[150px] h-[100px] "
+                            />
+                          </div>
+                          <div className="text-center">
+                            <h1 className="text-sm font-semibold uppercase mt-1">
+                              {item.restaurantName}
+                            </h1>
+                            <p className="text-xs">
+                              Cuisine Type : {item.cuisineType}
+                            </p>
+                          </div>
+                        </div>
+                      </Link>
+                    );
+                  }
+                })}
+              </div>
             </div>
           </div>
         </div>
