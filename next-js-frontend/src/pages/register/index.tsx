@@ -1,7 +1,7 @@
 import React from "react";
 import { FaFacebookF } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
-import { BiArrowBack } from "react-icons/Bi";
+import { BiArrowBack } from "react-icons/bi";
 import Link from "next/link";
 
 export default function Register() {

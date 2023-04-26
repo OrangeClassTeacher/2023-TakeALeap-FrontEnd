@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import { BsCaretDown } from "react-icons/Bs";
+import { BsCaretDown } from "react-icons/bs";
 import { useRouter } from "next/router";
 
 const list = [
   { name: "home", path: "/" },
   { name: "find restaurants", path: "/findrestaurants" },
-  { name: "blog", path: "/blog" },
-  { name: "recipe", path: "/recipe" },
+  { name: "find foods", path: "/findfoods" },
+  // { name: "blog", path: "/blog" },
+  // { name: "recipe", path: "/recipe" },
   { name: "about us", path: "/aboutus" },
 ];
 
