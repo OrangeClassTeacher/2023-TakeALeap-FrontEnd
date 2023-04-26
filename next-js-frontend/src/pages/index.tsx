@@ -23,16 +23,16 @@ export default function index(props: {
   return (
     <>
       <Header />
-      <Carousel items={props.topRestaurant} />
-      <RestaurantLilSlide data={props.allRestaurant} />
+      <Carousel items={props?.topRestaurant} />
+      <RestaurantLilSlide data={props?.allRestaurant} />
       <TopComments />
-      <PopularDish data={props.topFoods} />
+      <PopularDish data={props?.topFoods} />
       <Footer />
     </>
   );
 }
 
-export async function getServerSideProps(pageSize: string) {
+export async function getServerSideProps() {
   const TopRestaurant = await axios
     .get("http://localhost:8080/api/toprestaurants")
     .catch((err) => console.log(err));
