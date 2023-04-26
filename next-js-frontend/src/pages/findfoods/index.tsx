@@ -1,69 +1,46 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { NavCateg } from "@/components/NavCateg";
 import { NavbarCustom } from "@/components/NavbarCustom";
 import axios from "axios";
-import { useRouter } from "next/router";
-import Footer from "@/components/Footer";
+import { IFood } from "@/components/InterFace";
 import Link from "next/link";
 import Image from "next/image";
-import { IRestaurant } from "../../components/InterFace";
 
-const cuisines = [
-  "Chinese",
-  "Korean",
-  "Italian",
-  "Mongolian",
-  "Japanese",
-  "Mexican",
-  "Turkish",
-  "Russian",
-  "Spanish",
-  "Fast food",
+import Footer from "@/components/Footer";
+
+const meal = [
+  "Soup",
+  "Main Course",
+  "Dessert",
+  "SetFood",
+  "Traditional",
+  "FastFood",
+  "Other",
 ];
-
 interface IData {
   rowCount: [
     {
-      restaurant: number;
+      foods: number;
     }
   ];
   result: [
     {
       _id: string;
       avg_score: number;
-      restaurant: [IRestaurant];
+      foods: IFood;
     }
   ];
 }
-
 const Search = () => {
-  const route = useRouter();
-  const { type } = route.query;
-  console.log(type);
-
   const init = {
     text: "",
-    category: type ? type : "all",
     rate: "all",
-    location: "all",
+    price: "lowToHight",
+    meal: "all",
   };
 
   const [all, setAll] = useState(init);
   const [data, setData] = useState<IData>();
-
-  useEffect(() => {
-    console.log(type);
-
-    if (type) {
-      axios
-        .post(`http://localhost:8080/api/allsearch`, all)
-        .then((res) => {
-          console.log(res.data.result);
-          setData(res.data.result);
-        })
-        .catch((err) => console.log(err));
-    }
-  }, []);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -71,13 +48,9 @@ const Search = () => {
 
   const getData = () => {
     console.log(all);
-
     axios
-      .post(`http://localhost:8080/api/allsearch`, all)
-      .then((res) => {
-        setData(res.data.result);
-        console.log(res.data.result);
-      })
+      .post(`http://localhost:8080/api/allsearchfood`, all)
+      .then((res) => setData(res.data.result))
       .catch((err) => console.log(err));
   };
 
@@ -89,19 +62,17 @@ const Search = () => {
         <div className="basis-1/5">
           <div className="flex flex-col p-8   bg-gray-900 rounded ">
             <div className="flex flex-col">
-              <div className="font-semibold text-gray-200 my-2">
-                Cuisine Types:
-              </div>
+              <div className="font-semibold pt-5 text-gray-200 my-2">Meal:</div>
               <select
-                id="category"
-                value={all.category}
-                onChange={(e) => setAll({ ...all, category: e.target.value })}
+                id="meal"
+                value={all.meal}
+                onChange={(e) => setAll({ ...all, meal: e.target.value })}
                 className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-white text-black">
                 <option value="all">All</option>
-                {cuisines.map((cuis, ind) => {
+                {meal.map((item, ind) => {
                   return (
-                    <option value={cuis} key={ind}>
-                      {cuis}
+                    <option key={ind} value={item}>
+                      {item}
                     </option>
                   );
                 })}
@@ -119,28 +90,41 @@ const Search = () => {
                 className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-white text-black">
                 <option value="all">All</option>
                 <option value="one">over 1</option>
-                <option value="two">over 2</option>
+                <option value="two">over2</option>
                 <option value="three">over 3</option>
                 <option value="four">over 4</option>
               </select>
             </div>
-
             <div className="flex flex-col">
               <div className="font-semibold pt-3 text-gray-200 my-2">
-                Location:
+                Sort by price:
               </div>
-              <select
-                id="rating"
-                value={all.location}
-                onChange={(e) => setAll({ ...all, location: e.target.value })}
-                className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-white text-black">
-                <option value="all">All</option>
-                <option value="center">center</option>
-                <option value="east">east</option>
-                <option value="west">west</option>
-                <option value="north">north</option>
-                <option value="north">south</option>
-              </select>
+              <div className="text-white">
+                <label htmlFor="lowToHigh">
+                  <input
+                    type="radio"
+                    name="price"
+                    value="lowToHigh"
+                    checked={all.price === "lowToHigh"}
+                    onChange={(e) => setAll({ ...all, price: e.target.value })}
+                    className="mr-1"
+                  />
+                  Low to High
+                </label>
+              </div>
+            </div>
+            <div className="text-white">
+              <label htmlFor="highToLow">
+                <input
+                  type="radio"
+                  name="price"
+                  value="highToLow"
+                  checked={all.price === "highToLow"}
+                  onChange={(e) => setAll({ ...all, price: e.target.value })}
+                  className="mr-1 "
+                />
+                High to Low
+              </label>
             </div>
 
             <div className="flex justify-center py-3">
@@ -153,9 +137,9 @@ const Search = () => {
             </div>
           </div>
         </div>
-        <div className="basis-4/5 m-10">
-          <div className="flex justify-center ">
-            <div className="flex flex-col w-full ">
+        <div className="  basis-4/5">
+          <div className="flex justify-center">
+            <div className="flex flex-col w-3/4">
               <form onSubmit={handleSubmit} className="flex flex-col space-y-2">
                 <div className="flex space-x-2">
                   <input
@@ -163,7 +147,7 @@ const Search = () => {
                     placeholder="Search here"
                     value={all.text}
                     onChange={(e) => setAll({ ...all, text: e.target.value })}
-                    className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-gray-200 flex-grow w-3/4 text-black"
+                    className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none  flex-grow w-3/4 text-black"
                   />
                   <button
                     type="submit"
@@ -179,22 +163,22 @@ const Search = () => {
           <div className="grid grid-cols-3">
             {data?.result?.map((item, ind) => {
               return (
-                <Link href={`/restaurant?id=${item._id}`} key={ind}>
-                  <div className="m-2 rounded bg-white text-black">
-                    <Image
-                      src={item?.restaurant[0]?.img[0]}
-                      width={400}
-                      height={400}
-                      alt="img"
-                      className="rounded"
-                    />
+                <Link href={`/food?id=${item._id}`} key={ind}>
+                  <div className="m-5 rounded bg-white text-black">
+                    <div className="w-full h-[200px] overflow-hidden objec-cover">
+                      <Image
+                        src={item?.foods?.img[0]}
+                        width={400}
+                        height={400}
+                        alt="img"
+                        className="rounded object-cover"
+                      />
+                    </div>
                     <div className="text-center">
                       <h1 className=" text-md uppercase m-1">
-                        {item?.restaurant[0].restaurantName}
+                        {item?.foods.foodName}
                       </h1>
-                      <p className="pb-2">
-                        Cuisine Type : {item?.restaurant[0].cuisineType}
-                      </p>
+                      <p className="pb-2">Price : {item?.foods.price}</p>
                     </div>
                   </div>
                 </Link>

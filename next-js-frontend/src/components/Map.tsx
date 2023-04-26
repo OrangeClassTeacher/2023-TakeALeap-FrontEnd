@@ -18,14 +18,16 @@ export default function SimpleMap() {
       lng: 77.01502627,
     },
     zoom: 11,
+    extends: true,
   };
 
   return (
-    <div style={{ height: "100vh", width: "100%" }}>
+    <div style={{ height: "60vh", width: "100%" }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: "AIzaSyCFxLxHovmdaNac-fLDg0guhBdSO4o8cIg" }}
         defaultCenter={defaultProps.center}
-        defaultZoom={defaultProps.zoom}></GoogleMapReact>
+        defaultZoom={defaultProps.zoom}
+      />
     </div>
   );
 }
