@@ -144,3 +144,13 @@ export interface Icomment {
   comment: string;
   rate: number;
 }
+export interface Iuser {
+  name: string;
+  userName: string;
+  email: string;
+  phone: number;
+  password: string;
+  point: number[];
+  userType: string;
+  img: string[];
+}
