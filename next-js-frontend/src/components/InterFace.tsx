@@ -126,3 +126,21 @@ export interface search {
     ];
   };
 }
+
+export interface Icomment {
+  _id: string;
+  restaurantId: string;
+  foodId: string;
+  userId: {
+    _id: string;
+    name: string;
+    userName: string;
+    email: string;
+    phone: number;
+    point: [number];
+    userType: string;
+    img: [string];
+  };
+  comment: string;
+  rate: number;
+}

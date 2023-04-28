@@ -11,11 +11,11 @@ export default function Register() {
     name: "",
     userName: "",
     email: "",
-    phone: "",
+    phone: 0,
     password: "",
     point: [0],
     userType: "User",
-    img: ["link here"],
+    img: [],
   };
 
   const [addUser, setAddUser] = useState(init);
@@ -25,34 +25,38 @@ export default function Register() {
   const register = () => {
     console.log(addUser);
 
-    if (
-      addUser.name &&
-      addUser.userName &&
-      addUser.email &&
-      addUser.phone &&
-      addUser.password
-    ) {
-      setLoading(true);
-      axios
-        .post("http://localhost:8080/api/register", addUser)
-        .then((res) => {
-          setLoading(false);
-          if (!res.data.status) {
-            if (res.data.message == "Email and Phone  duplicated") {
-              alert("Email and Phone number are already registered");
-            } else if (res.data.message == "Hadgalahad aldaa garlaa") {
-              alert("Something went wrong, Please try again");
-              setAddUser(init);
-            }
-          } else {
-            alert("Register succeed, Please sign in ");
+    addUser.userName.length < 2 && addUser.name.length < 2
+      ? alert("User Name and Name must be longer than 2 character")
+      : !addUser.email.includes("@gmail.com")
+      ? alert("Please fill correct email")
+      : addUser.password.length <= 8
+      ? alert("password must be longer than 8 character")
+      : addUser.phone <= 9999999
+      ? alert("please fill corrent phone number")
+      : send();
+  };
+
+  const send = () => {
+    setLoading(true);
+    axios
+      .post("http://localhost:8080/api/register", addUser)
+      .then((res) => {
+        setLoading(false);
+        if (!res.data.status) {
+          if (res.data.message == "Email and Phone  duplicated") {
+            alert("Email and Phone number are already registered");
+          } else if (res.data.message == "Hadgalahad aldaa garlaa") {
+            alert("Something went wrong, Please try again");
+            setAddUser(init);
+            setConfirm("");
           }
-        })
-        .catch((err) => console.log(err));
-    } else {
-      alert("Fill all form");
-    }
-    console.log(addUser);
+        } else {
+          setAddUser(init);
+          setConfirm("");
+          alert("Register succeed, Please sign in ");
+        }
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -71,80 +75,126 @@ export default function Register() {
       </div>
       <div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-10 mx-10 md:mx-5 lg:mx-0 my-5 lg:my-8">
-          <div className="flex justify-end">
-            <div className="border rounded w-full md:w-2/3 lg:w-1/2  p-2 text-start">
-              <input
-                value={addUser.name}
-                className="w-full outline-0"
-                placeholder="Name"
-                onChange={(e) =>
-                  setAddUser({ ...addUser, name: e.target.value })
-                }
-              />
+          <div>
+            <div className="flex justify-end">
+              <h1 className="w-full md:w-2/3 lg:w-1/2  px-2 text-start">
+                Name
+              </h1>
+            </div>
+            <div className="flex justify-end">
+              <div className="border rounded w-full md:w-2/3 lg:w-1/2  p-2 text-start">
+                <input
+                  value={addUser.name}
+                  className="w-full outline-0"
+                  placeholder="Name"
+                  onChange={(e) =>
+                    setAddUser({ ...addUser, name: e.target.value })
+                  }
+                />
+              </div>
             </div>
           </div>
-          <div className="flex justify-start">
-            <div className="border rounded w-full md:w-2/3 lg:w-1/2  p-2 text-start">
-              <input
-                className="w-full outline-0"
-                placeholder="User Name"
-                value={addUser.userName}
-                onChange={(e) =>
-                  setAddUser({ ...addUser, userName: e.target.value })
-                }
-              />
+          <div>
+            <div className="flex justify-start">
+              <h1 className="w-full md:w-2/3 lg:w-1/2  px-2 text-start">
+                User Name
+              </h1>
+            </div>
+            <div className="flex justify-start">
+              <div className="border rounded w-full md:w-2/3 lg:w-1/2  p-2 text-start">
+                <input
+                  className="w-full outline-0"
+                  placeholder="User Name"
+                  value={addUser.userName}
+                  onChange={(e) =>
+                    setAddUser({ ...addUser, userName: e.target.value })
+                  }
+                />
+              </div>
             </div>
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-10 mx-10 md:mx-5 lg:mx-0 my-5 lg:my-8">
-          <div className="flex justify-end">
-            <div className="border rounded w-full md:w-2/3 lg:w-1/2  p-2 text-start">
-              <input
-                className="w-full outline-0"
-                placeholder="E-Mail"
-                value={addUser.email}
-                onChange={(e) =>
-                  setAddUser({ ...addUser, email: e.target.value })
-                }
-              />
+          <div>
+            <div className="flex justify-end">
+              <h1 className="w-full md:w-2/3 lg:w-1/2  px-2 text-start">
+                E-Mail
+              </h1>
+            </div>
+            <div>
+              <div className="flex justify-end">
+                <div className="border rounded w-full md:w-2/3 lg:w-1/2  p-2 text-start">
+                  <input
+                    className="w-full outline-0"
+                    placeholder="E-Mail"
+                    value={addUser.email}
+                    onChange={(e) =>
+                      setAddUser({ ...addUser, email: e.target.value })
+                    }
+                  />
+                </div>
+              </div>
             </div>
           </div>
-          <div className="flex justify-start">
-            <div className="border rounded w-full md:w-2/3 lg:w-1/2  p-2 text-start">
-              <input
-                className="w-full outline-0"
-                placeholder="Phone"
-                value={addUser.phone}
-                onChange={(e) =>
-                  setAddUser({ ...addUser, phone: e.target.value })
-                }
-              />
+          <div>
+            <div className="flex justify-start">
+              <h1 className="w-full md:w-2/3 lg:w-1/2  px-2 text-start">
+                Phone
+              </h1>
+            </div>
+            <div className="flex justify-start">
+              <div className="border rounded w-full md:w-2/3 lg:w-1/2  p-2 text-start">
+                <input
+                  className="w-full outline-0"
+                  type="number"
+                  placeholder="Phone"
+                  min={1}
+                  value={addUser.phone}
+                  onChange={(e) =>
+                    setAddUser({ ...addUser, phone: Number(e.target.value) })
+                  }
+                />
+              </div>
             </div>
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-10 mx-10 md:mx-5 lg:mx-0 ">
-          <div className="flex justify-end">
-            <div className="border rounded w-full md:w-2/3 lg:w-1/2  p-2 text-start">
-              <input
-                type="password"
-                className="w-full outline-0"
-                placeholder="Password"
-                value={addUser.password}
-                onChange={(e) =>
-                  setAddUser({ ...addUser, password: e.target.value })
-                }
-              />
+          <div>
+            <div className="flex justify-end">
+              <h1 className="w-full md:w-2/3 lg:w-1/2  px-2 text-start">
+                Password
+              </h1>
+            </div>
+            <div className="flex justify-end">
+              <div className="border rounded w-full md:w-2/3 lg:w-1/2  p-2 text-start">
+                <input
+                  type="password"
+                  className="w-full outline-0"
+                  placeholder="Password"
+                  value={addUser.password}
+                  onChange={(e) =>
+                    setAddUser({ ...addUser, password: e.target.value })
+                  }
+                />
+              </div>
             </div>
           </div>
-          <div className="flex justify-start">
-            <div className="border rounded w-full md:w-2/3 lg:w-1/2  p-2 text-start">
-              <input
-                type="password"
-                value={confirm}
-                className="w-full outline-0"
-                placeholder="Confirm Password"
-                onChange={(e) => setConfirm(e.target.value)}
-              />
+          <div>
+            <div className="flex justify-start">
+              <h1 className="w-full md:w-2/3 lg:w-1/2  px-2 text-start">
+                Confirm password
+              </h1>
+            </div>
+            <div className="flex justify-start">
+              <div className="border rounded w-full md:w-2/3 lg:w-1/2  p-2 text-start">
+                <input
+                  type="password"
+                  value={confirm}
+                  className="w-full outline-0"
+                  placeholder="Confirm Password"
+                  onChange={(e) => setConfirm(e.target.value)}
+                />
+              </div>
             </div>
           </div>
         </div>

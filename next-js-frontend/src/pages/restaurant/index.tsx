@@ -5,6 +5,7 @@ import { RestaurantStart } from "@/components/RestaurantStart";
 import { Menu } from "@/components/Menu";
 import { RestaurantInfo } from "@/components/RestaurantInfo";
 import { DetailPopular } from "@/components/DetailPopular";
+import Comment from "@/components/Comment";
 
 export default function Restaurant() {
   return (
@@ -17,6 +18,7 @@ export default function Restaurant() {
           <button className="p-2 bg-sky-300 text-md">View 3D menu</button>
         </div>
         <Menu />
+        <Comment />
         <RestaurantInfo />
       </div>
       <Footer />
