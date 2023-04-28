@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { TbPhoneCall } from "react-icons/Tb";
-import { GrFacebook, GrInstagram, GrYoutube, GrLinkedin } from "react-icons/Gr";
+import { TbPhoneCall } from "react-icons/tb";
+import { GrFacebook, GrInstagram, GrYoutube, GrLinkedin } from "react-icons/gr";
 
 export const NavbarCustom = () => {
   return (

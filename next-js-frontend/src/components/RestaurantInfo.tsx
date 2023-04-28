@@ -1,5 +1,5 @@
 import React from "react";
-
+import Map from "./Map";
 export const RestaurantInfo = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 p-5 md:10 ml-0 md:ml-20">
@@ -21,7 +21,9 @@ export const RestaurantInfo = () => {
           </p>
         </div>
       </div>
-      <div></div>
+      <div className="border">
+        <Map />
+      </div>
     </div>
   );
 };

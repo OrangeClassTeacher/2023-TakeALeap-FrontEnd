@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { GrFormClose } from "react-icons/Gr";
+import React, { Dispatch, useEffect, useState } from "react";
+import { GrFormClose } from "react-icons/gr";
 import { TfiWorld } from "react-icons/tfi";
 import { VscAccount } from "react-icons/vsc";
 import Link from "next/link";

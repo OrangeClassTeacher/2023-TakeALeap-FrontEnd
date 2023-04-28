@@ -2,14 +2,9 @@ import React, { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { RestaurantStart } from "@/components/RestaurantStart";
-import axios from "axios";
 import { Menu } from "@/components/Menu";
 import { RestaurantInfo } from "@/components/RestaurantInfo";
-import { useRouter } from "next/router";
-import Map from "@/components/Map";
-import { IRestaurant } from "@/components/InterFace";
 import { DetailPopular } from "@/components/DetailPopular";
-import { IFood } from "@/components/InterFace";
 
 export default function Restaurant() {
   return (
@@ -23,7 +18,6 @@ export default function Restaurant() {
         </div>
         <Menu />
         <RestaurantInfo />
-        <Map />
       </div>
       <Footer />
     </>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Dispatch } from "react";
 import { SetStateAction } from "react";
-import { GrClose } from "react-icons/Gr";
+import { GrClose } from "react-icons/gr";
 import Image from "next/image";
 import cat from "../img/logo.jpg";
 import Link from "next/link";
