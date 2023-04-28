@@ -7,6 +7,8 @@ import cat from "../img/logo.jpg";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { toast } from "react-hot-toast";
+import { Iuser } from "./InterFace";
 
 export default function SignIn({
   signIn,
@@ -15,49 +17,40 @@ export default function SignIn({
   signIn: boolean;
   setSignIn: Dispatch<SetStateAction<boolean>>;
 }) {
-  const route = useRouter();
-  const [email, setEmail] = useState<string>();
-  const [password, setPassword] = useState<string>();
-
-  interface Iuser {
-    name: string;
-    userName: string;
-    email: string;
-    phone: number;
-    password: string;
-    point: number[];
-    userType: string;
-    img: string[];
-  }
-
-  const tokensave = (data: {
-    status: boolean;
-    data: Iuser;
-    message: string;
-    token: string;
-  }) => {
-    const token = data.token;
-    route.push("/");
+  const init = {
+    email: "",
+    password: "",
   };
+
+  const route = useRouter();
+  const [login, setLogin] = useState(init);
 
   const signin = () => {
     axios
-      .post("", { email: email, password: password })
+      .post("http://localhost:8080/api/login", login)
       .then((res) => {
-        res.data.status
-          ? tokensave(res.data)
-          : alert("email or password is wrong");
+        // route.push("/");
+        if (res.data.status) {
+          localStorage.setItem("name", res.data.data.name);
+          localStorage.setItem("id", res.data.data._id);
+          localStorage.setItem("token", res.data.token);
+          setSignIn(!signIn);
+        } else {
+          alert("error");
+        }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log("", err));
   };
 
   return (
     <div
       className="h-screen w-screen fixed inset-0 overflow-y-auto flex items-center justify-center bg-gray-400/50"
-      onClick={() => setSignIn(!signIn)}>
+      onClick={() => setSignIn(!signIn)}
+    >
       <div
         className="w-[400px] h-[500px] p-4 text-center bg-white rounded text-black p-8"
-        onClick={(e) => e.stopPropagation()}>
+        onClick={(e) => e.stopPropagation()}
+      >
         <div>
           <div className="flex justify-end">
             {" "}
@@ -78,22 +71,22 @@ export default function SignIn({
           <div className="rounded border p-3 mb-6">
             <input
               type="text"
-              value={email}
+              value={login.email}
               placeholder="E-Mail"
               style={{ outline: "none", width: "100%" }}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setLogin({ ...login, email: e.target.value })}
             />
           </div>
           <div className="rounded border p-3 mb-6">
             <input
               type="text"
-              value={password}
+              value={login.password}
               placeholder="Password"
               style={{ outline: "none", width: "100%" }}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setLogin({ ...login, password: e.target.value })}
             />
           </div>
-          <div className="bg-black text-white p-3" onClick={() => signin()}>
+          <div className="bg-black text-white p-3" onClick={signin}>
             Sign In
           </div>
           <div className="flex gap-2 pt-5">
