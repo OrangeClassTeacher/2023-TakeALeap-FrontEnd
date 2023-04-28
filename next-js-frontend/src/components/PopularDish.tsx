@@ -5,8 +5,6 @@ import { FaStar } from "react-icons/fa";
 import Link from "next/link";
 
 export const PopularDish = ({ data }: { data: [Ifoods] }) => {
-  console.log(data);
-
   return (
     <div className="md:px-20 bg-black text-gray-900">
       <h1 className="text-3xl uppercase text-center text-white">

@@ -32,7 +32,7 @@ export default function index(props: {
   );
 }
 
-export async function getServerSideProps(pageSize: string) {
+export async function getServerSideProps() {
   const TopRestaurant = await axios
     .get("http://localhost:8080/api/toprestaurants")
     .catch((err) => console.log(err));

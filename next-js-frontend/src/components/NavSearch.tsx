@@ -32,7 +32,9 @@ export const NavSearch = () => {
       .post(`http://localhost:8080/api/restaurant/search`, {
         searchTxt: searchInput,
       })
-      .then((res) => setData(res.data.result))
+      .then((res) => {
+        setData(res.data.result);
+      })
       .catch((err) => console.log(err));
   }, [searchInput]);
 
