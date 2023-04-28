@@ -23,10 +23,10 @@ export default function index(props: {
   return (
     <>
       <Header />
-      <Carousel items={props.topRestaurant} />
-      <RestaurantLilSlide data={props.allRestaurant} />
+      <Carousel items={props?.topRestaurant} />
+      <RestaurantLilSlide data={props?.allRestaurant} />
       <TopComments />
-      <PopularDish data={props.topFoods} />
+      <PopularDish data={props?.topFoods} />
       <Footer />
     </>
   );

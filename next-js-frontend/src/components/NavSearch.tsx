@@ -10,12 +10,22 @@ import axios from "axios";
 import { search } from "./InterFace";
 import Image from "next/image";
 import { IoMdClose } from "react-icons/io";
+import { useRouter } from "next/router";
 
 export const NavSearch = () => {
   const [signIn, setSignIn] = useState<boolean>(false);
   const [search, setSearch] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [data, setData] = useState<search>();
+  const [localToken, setLocalToken] = useState<String>("");
+  const route = useRouter();
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const value = localStorage.getItem("token") || "";
+      setLocalToken(value);
+    }
+  }, [signIn]);
 
   useEffect(() => {
     axios
@@ -28,7 +38,7 @@ export const NavSearch = () => {
 
   return (
     <div>
-      <div className="flex px-4 justify-between items-center hidden md:flex">
+      <div className=" px-4 justify-between items-center hidden md:flex">
         <div className="basis-1/6">
           <h1 className="flex justify-between items-center text-4xl font-light">
             <Link href={"/"}> LYNX</Link>
@@ -57,7 +67,8 @@ export const NavSearch = () => {
           </div>
           <div
             className="absolute bg-white top-12 w-[900px] h-[400px] rounded text-black p-10 overflow-scroll"
-            style={{ display: search ? "block" : "none" }}>
+            style={{ display: search ? "block" : "none" }}
+          >
             <div className="absolute right-5 top-5">
               {" "}
               <IoMdClose
@@ -152,23 +163,47 @@ export const NavSearch = () => {
             <p className="hover:text-sky-400">EXPLORE</p>
           </Link>
         </div>
-        <div className="basis-1/6 flex items-center gap-2 mx-2 justify-end font-light text-sm">
+
+        <div className="basis-1/6 flex items-center gap-2 mx-2 justify-end font-light text-sm ">
           <p className="text-4xl">
             <VscAccount />
           </p>
-          <div className="uppercase">
-            <p
-              className="hover:text-sky-400 cursor-pointer"
-              onClick={() => {
-                setSignIn(!signIn);
-              }}>
-              sign in
-            </p>
-            <Link href={"/register"}>
-              {" "}
-              <p className="hover:text-sky-400">create account</p>
-            </Link>
-          </div>
+          {localToken?.length > 1 ? (
+            <div className="mr-10">
+              <p
+                className="hover:text-sky-400 cursor-pointer"
+                onClick={() => route.push("/userprofile")}
+              >
+                {localStorage.getItem("name")}
+              </p>
+              <p
+                className="cursor-pointer hover:text-sky-500"
+                onClick={() => {
+                  if (confirm("Log out")) {
+                    localStorage.clear();
+                    setLocalToken("");
+                  }
+                }}
+              >
+                Log Out
+              </p>
+            </div>
+          ) : (
+            <div className="uppercase">
+              <p
+                className="hover:text-sky-400 cursor-pointer"
+                onClick={() => {
+                  setSignIn(!signIn);
+                }}
+              >
+                sign in
+              </p>
+              <Link href={"/register"}>
+                {" "}
+                <p className="hover:text-sky-400">create account</p>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
 
