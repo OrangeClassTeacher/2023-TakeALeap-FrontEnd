@@ -41,37 +41,7 @@ export const DetailPopular = () => {
                   {item?.foodName}
                 </h1>
                 <div className="flex justify-between font-thin">
-                  {/* <div className="text-yellow-400">
-                    {item.avg == 1 ? (
-                      <FaStar />
-                    ) : item.avg == 2 ? (
-                      <p className="flex">
-                        <FaStar />
-                        <FaStar />
-                      </p>
-                    ) : item.avg == 3 ? (
-                      <p className="flex">
-                        <FaStar />
-                        <FaStar />
-                        <FaStar />
-                      </p>
-                    ) : item.avg == 4 ? (
-                      <p className="flex">
-                        <FaStar />
-                        <FaStar />
-                        <FaStar />
-                        <FaStar />
-                      </p>
-                    ) : (
-                      <p className="flex">
-                        <FaStar />
-                        <FaStar />
-                        <FaStar />
-                        <FaStar />
-                        <FaStar />
-                      </p>
-                    )}
-                  </div> */}
+                 
                   <p>/</p>
                   <p>Type: {item?.foodType}</p>
                 </div>

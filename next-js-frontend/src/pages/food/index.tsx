@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Image from "next/image";
 import { originFood } from "@/components/InterFace";
+import Comment from "@/components/Comment";
 
 export default function Food() {
   const route = useRouter();
@@ -24,7 +25,7 @@ export default function Food() {
     <div>
       <Header />
       <div className="grid grid-cols-2 bg-black">
-        <div className="text-white m-10">
+        <div className="text-white p-10">
           <h1 className="text-4xl uppercase">{food?.foodName}</h1>
           <p>Price : {food?.price}</p>
           <p>Meal type : {food?.foodType}</p>
@@ -38,6 +39,9 @@ export default function Food() {
             alt="img"
           />
         </div>
+      </div>
+      <div className="bg-black">
+        <Comment />
       </div>
       <Footer />
     </div>

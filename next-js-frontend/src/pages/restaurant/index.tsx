@@ -13,7 +13,7 @@ export default function Restaurant() {
       <Header />
       <div className="bg-black text-white">
         <RestaurantStart />
-        <DetailPopular />
+        {/* <DetailPopular /> */}
         <div className="text-center p-5">
           <button className="p-2 bg-sky-300 text-md">View 3D menu</button>
         </div>

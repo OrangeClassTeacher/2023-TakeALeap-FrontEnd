@@ -63,7 +63,7 @@ export default function TopComments(): JSX.Element {
                 <div
                   key={ind}
                   className="border border-gray-900 bg-gray-950 rounded flex my-5 h-32 md:h-44 ">
-                  <div className="flex items-center mx-5 ">
+                  <div className="flex items-center mx-5 basis-1/5 ">
                     <Image
                       src={cat}
                       width={100}
@@ -72,7 +72,7 @@ export default function TopComments(): JSX.Element {
                       className="rounded-full w-[100px] h-[100px]"
                     />
                   </div>
-                  <div className=" flex items-center ">
+                  <div className=" flex items-center basis-4/5">
                     <div>
                       <p>
                         {item?.userId?.userName} rated{" "}

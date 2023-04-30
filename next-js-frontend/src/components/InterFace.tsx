@@ -143,6 +143,7 @@ export interface Icomment {
   };
   comment: string;
   rate: number;
+  createdAt: string;
 }
 export interface Iuser {
   name: string;
