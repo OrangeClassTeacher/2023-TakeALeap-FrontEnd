@@ -3,23 +3,21 @@ import Image from "next/image";
 import coca from "../img/cocaCola.jpeg";
 import axios from "axios";
 import cat from "../img/cat.jpeg";
-
+import { IRestaurant } from "./InterFace";
+import { Iuser } from "./InterFace";
+import Starts from "./Starts";
+import Link from "next/link";
+import { IFood } from "./InterFace";
 interface Icomment {
   _id: string;
-  restaurantId: {
-    _id: string;
-    restaurantName: string;
-  };
-  foodId: string;
-  userId: {
-    _id: string;
-    userName: string;
-  };
+  restaurantId: IRestaurant;
+  foodId: IFood;
+  userId: Iuser;
   comment: string;
   rate: number;
 }
 
-interface Iuser {
+interface IUser {
   _id: {
     username: string;
     img: [string];
@@ -29,7 +27,7 @@ interface Iuser {
 
 export default function TopComments(): JSX.Element {
   const [lastComments, setLastComments] = useState<Icomment[]>([]);
-  const [topConterbuter, setTopConterbuter] = useState<Iuser[]>([]);
+  const [topConterbuter, setTopConterbuter] = useState<IUser[]>([]);
 
   useEffect(() => {
     axios
@@ -62,24 +60,67 @@ export default function TopComments(): JSX.Element {
               return (
                 <div
                   key={ind}
-                  className="border border-gray-900 bg-gray-950 rounded flex my-5 h-32 md:h-44 ">
-                  <div className="flex items-center mx-5 basis-1/5 ">
+                  className="flex p-4  m-4 items-center border-b border-slate-500 ">
+                  <div className="basis-1/12 mx-3">
                     <Image
                       src={cat}
-                      width={100}
-                      height={100}
-                      alt="profile"
-                      className="rounded-full w-[100px] h-[100px]"
+                      alt="img"
+                      width={40}
+                      height={40}
+                      className="rounded-full"
                     />
                   </div>
-                  <div className=" flex items-center basis-4/5">
-                    <div>
-                      <p>
-                        {item?.userId?.userName} rated{" "}
-                        {item?.restaurantId?.restaurantName}
-                      </p>
-                      <p>Comment : {item?.comment}</p>
+                  <div className="basis-11/12">
+                    <div className="flex justify-between  items-center">
+                      <div className="flex items-center">
+                        <p className="font-semibold">{item.userId.userName}</p>
+                        <span className="font-thin text-sm mx-2">
+                          {item.userId.createdAt.slice(0, 10)}
+                        </span>
+                        <span
+                          className={
+                            item?.restaurantId
+                              ? "font-thin text-sm mx-2"
+                              : "hidden"
+                          }>
+                          rated
+                        </span>
+                        <Link
+                          href={
+                            item?.restaurantId
+                              ? `/restaurant?id=${item?.restaurantId?._id}`
+                              : `/`
+                          }>
+                          <span className="hover:text-[#9395d3]">
+                            {" "}
+                            {item?.restaurantId?.restaurantName}
+                          </span>
+                        </Link>
+                        <span
+                          className={
+                            item?.restaurantId
+                              ? "font-thin text-sm mx-2"
+                              : "hidden"
+                          }>
+                          food
+                        </span>
+                        <Link
+                          href={
+                            item?.foodId ? `/food?id=${item?.foodId?._id}` : `/`
+                          }>
+                          <span className="hover:text-[#9395d3]">
+                            {" "}
+                            {item?.foodId?.foodName}
+                          </span>
+                        </Link>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-end mx-1">
+                          <Starts stars={item.rate ? item.rate : 0} />
+                        </p>
+                      </div>
                     </div>
+                    <span className="font-light my-1">{item.comment}</span>
                   </div>
                 </div>
               );

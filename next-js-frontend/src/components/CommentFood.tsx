@@ -11,18 +11,22 @@ import Starts from "./Starts";
 import SignIn from "./SignIn";
 import { FaStar } from "react-icons/fa";
 
-export default function Comment() {
+export default function CommentFood() {
   const route = useRouter();
   const { id } = route.query;
   const userId =
     typeof window !== "undefined" ? localStorage.getItem("id") : "";
 
+  const token =
+    typeof window !== "undefined" ? localStorage.getItem("token") : "";
+
   const init = {
-    restaurantId: id,
-    foodId: null,
+    restaurantId: null,
+    foodId: id,
     userId: userId,
     comment: "",
     rate: 0,
+    token: token,
   };
 
   const [commentSend, setComment] = useState(init);
@@ -33,10 +37,13 @@ export default function Comment() {
 
   const getData = () => {
     axios
-      .get(`http://localhost:8080/api/byrestaurantid?id=${id}`)
+      .get(`http://localhost:8080/api/commentbyfoodid?id=${id}`)
       .then((res) => {
         setAll(res.data.result);
-        console.log(res.data.result);
+        setComment({
+          ...commentSend,
+          restaurantId: res.data.result[0].restaurantId,
+        });
       })
       .catch((err) => console.log(err));
   };
@@ -59,8 +66,9 @@ export default function Comment() {
       .post("http://localhost:8080/api/comment", commentSend)
       .then((res) => (res.data.status ? getData() : ""))
       .catch((err) => console.log(err));
-    setComment(init);
+
     setRate(0);
+    setComment(init);
   };
 
   const rateHandle = (rate: number) => {
@@ -69,7 +77,7 @@ export default function Comment() {
   };
 
   return (
-    <div className="border-t md:px-20 py-10">
+    <div className="border-t md:px-20 py-10 text-white">
       <SignIn signIn={signIn} setSignIn={SetSignIn} />
       <div className="grid grid-cols-1 md:grid-cols-2">
         <div>
@@ -85,55 +93,15 @@ export default function Comment() {
                 {showAllCom ? <BsChevronUp /> : <BsChevronDown />}
               </div>
             </div>
-            <div className={showAllCom ? "h-[700px] overflow-scroll" : ""}>
-              {all?.map((item, ind) => {
-                if (showAllCom) {
-                  return (
-                    <div
-                      key={ind}
-                      className="flex p-4  m-4 items-center border-b border-slate-500 ">
-                      <div className="basis-1/12 mx-3">
-                        <Image
-                          src={img}
-                          alt="img"
-                          width={40}
-                          height={40}
-                          className="rounded-full"
-                        />
-                      </div>
-                      <div className="basis-11/12">
-                        <div className="flex justify-between  items-center">
-                          <div className="flex items-center">
-                            <p className="font-semibold">
-                              {item.userId.userName}
-                            </p>
-                            <span className="font-thin text-sm mx-2">
-                              {item.createdAt.slice(0, 10)}
-                            </span>
-                          </div>
-                          <div className="text-center">
-                            <p className="text-end mx-1">
-                              <Starts stars={item.rate ? item.rate : 0} />
-                            </p>
-                          </div>
-                        </div>
-                        <span className="font-light my-1">{item.comment}</span>
-                        {/* <div className="flex items-center">
-                          <p className="font-semibold">Rate : </p>
-                          <p className="text-end mx-1">
-                            <Starts stars={item.rate ? item.rate : 0} />
-                          </p>
-                        </div> */}
-                      </div>
-                    </div>
-                  );
-                } else {
-                  if (ind < 3) {
+            <div className={showAllCom ? "h-[500px] overflow-scroll" : ""}>
+              {all.length > 0 ? (
+                all?.map((item, ind) => {
+                  if (showAllCom) {
                     return (
                       <div
                         key={ind}
-                        className="flex p-4 m-4 items-center border-b border-slate-500">
-                        <div className="mx-3 basis-1/12">
+                        className="flex p-4  m-4 items-center border-b border-slate-500 ">
+                        <div className="basis-1/12 mx-3">
                           <Image
                             src={img}
                             alt="img"
@@ -143,7 +111,7 @@ export default function Comment() {
                           />
                         </div>
                         <div className="basis-11/12">
-                          <div className="flex justify-between items-center">
+                          <div className="flex justify-between  items-center">
                             <div className="flex items-center">
                               <p className="font-semibold">
                                 {item.userId.userName}
@@ -161,12 +129,58 @@ export default function Comment() {
                           <span className="font-light my-1">
                             {item.comment}
                           </span>
+                          {/* <div className="flex items-center">
+                          <p className="font-semibold">Rate : </p>
+                          <p className="text-end mx-1">
+                            <Starts stars={item.rate ? item.rate : 0} />
+                          </p>
+                        </div> */}
                         </div>
                       </div>
                     );
+                  } else {
+                    if (ind < 3) {
+                      return (
+                        <div
+                          key={ind}
+                          className="flex p-4 m-4 items-center border-b border-slate-500">
+                          <div className="mx-3 basis-1/12">
+                            <Image
+                              src={img}
+                              alt="img"
+                              width={40}
+                              height={40}
+                              className="rounded-full"
+                            />
+                          </div>
+                          <div className="basis-11/12">
+                            <div className="flex justify-between items-center">
+                              <div className="flex items-center">
+                                <p className="font-semibold">
+                                  {item.userId.userName}
+                                </p>
+                                <span className="font-thin text-sm mx-2">
+                                  {item.createdAt.slice(0, 10)}
+                                </span>
+                              </div>
+                              <div className="text-center">
+                                <p className="text-end mx-1">
+                                  <Starts stars={item.rate ? item.rate : 0} />
+                                </p>
+                              </div>
+                            </div>
+                            <span className="font-light my-1">
+                              {item.comment}
+                            </span>
+                          </div>
+                        </div>
+                      );
+                    }
                   }
-                }
-              })}
+                })
+              ) : (
+                <div>No comment yet</div>
+              )}
             </div>
           </div>
         </div>
@@ -210,6 +224,7 @@ export default function Comment() {
                 <input
                   type="text"
                   value={commentSend.comment}
+                  placeholder="Review..."
                   onChange={(e) =>
                     setComment({ ...commentSend, comment: e.target.value })
                   }
@@ -219,7 +234,11 @@ export default function Comment() {
                   <AiOutlineSend />
                 </div>
               </div>
-              <div onClick={() => sendComment()} className="bg-gray-700 rounded p-5 text-white/50 hover:text-white">Submit review</div>
+              <div
+                onClick={() => sendComment()}
+                className="bg-gray-700 rounded p-5 text-white/50 hover:text-white">
+                Submit review
+              </div>
             </div>
           </div>
         </div>

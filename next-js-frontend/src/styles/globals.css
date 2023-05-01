@@ -13,3 +13,20 @@
     /* @apply bg-black text-white; */
   }
 }
+
+@keyframes myAnim {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    animation: opac 0.8s;
+  }
+}
+
+#carso {
+  animation: myAnim 1s ease 0s 1 normal forwards;
+}

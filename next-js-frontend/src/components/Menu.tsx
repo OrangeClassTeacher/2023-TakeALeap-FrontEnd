@@ -4,6 +4,7 @@ import axios from "axios";
 import { IFood } from "./InterFace";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import Link from "next/link";
 
 export const Menu = () => {
   const route = useRouter();
@@ -25,7 +26,7 @@ export const Menu = () => {
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 p-5 gap-10 text-white">
         {food?.map((item, ind) => {
           return (
-            <div key={ind}>
+            <Link href={`/food?id=${item._id}`} key={ind}>
               <div>
                 <Image
                   src={item?.img[0] || ""}
@@ -43,7 +44,7 @@ export const Menu = () => {
                 </div>
                 <div>rate here</div>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>

@@ -21,6 +21,18 @@ const cuisines = [
   "Fast food",
 ];
 
+const location = [
+  "Багануур",
+  "Багахангай",
+  "Баянгол",
+  "Баянзүрх",
+  "Налайх",
+  "Сонгинохайрхан",
+  "Сүхбаатар",
+  "Хан-Уул",
+  "Чингэлтэй",
+];
+
 interface IData {
   rowCount: [
     {
@@ -37,13 +49,9 @@ interface IData {
 }
 
 const Search = () => {
-  const route = useRouter();
-  const { type } = route.query;
-  console.log(type);
-
   const init = {
     text: "",
-    category: type ? type : "all",
+    category: "all",
     rate: "all",
     location: "all",
   };
@@ -52,17 +60,12 @@ const Search = () => {
   const [data, setData] = useState<IData>();
 
   useEffect(() => {
-    console.log(type);
-
-    if (type) {
-      axios
-        .post(`http://localhost:8080/api/allsearch`, all)
-        .then((res) => {
-          console.log(res.data.result);
-          setData(res.data.result);
-        })
-        .catch((err) => console.log(err));
-    }
+    axios
+      .post(`http://localhost:8080/api/allsearch`, all)
+      .then((res) => {
+        setData(res.data.result);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -70,8 +73,6 @@ const Search = () => {
   };
 
   const getData = () => {
-    console.log(all);
-
     axios
       .post(`http://localhost:8080/api/allsearch`, all)
       .then((res) => {
@@ -87,7 +88,7 @@ const Search = () => {
       <NavCateg />
       <div className="flex p-10">
         <div className="basis-1/5">
-          <div className="flex flex-col p-8   bg-gray-900 rounded ">
+          <div className="flex flex-col p-8 bg-[#1e1f23] rounded border border-white/20 ">
             <div className="flex flex-col">
               <div className="font-semibold text-gray-200 my-2">
                 Cuisine Types:
@@ -135,11 +136,13 @@ const Search = () => {
                 onChange={(e) => setAll({ ...all, location: e.target.value })}
                 className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-white text-black">
                 <option value="all">All</option>
-                <option value="center">center</option>
-                <option value="east">east</option>
-                <option value="west">west</option>
-                <option value="north">north</option>
-                <option value="north">south</option>
+                {location.map((item, ind) => {
+                  return (
+                    <option key={ind} value={item}>
+                      {item}
+                    </option>
+                  );
+                })}
               </select>
             </div>
 
@@ -153,7 +156,7 @@ const Search = () => {
             </div>
           </div>
         </div>
-        <div className="basis-4/5 m-10">
+        <div className="basis-4/5 mx-10">
           <div className="flex justify-center ">
             <div className="flex flex-col w-full ">
               <form onSubmit={handleSubmit} className="flex flex-col space-y-2">
@@ -176,11 +179,14 @@ const Search = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-3">
+          <div className="m-2 text-2xl">
+            All Restaurant : {data?.result.length}
+          </div>
+          <div className="grid grid-cols-2 gap-5 md:grid-cols-3">
             {data?.result?.map((item, ind) => {
               return (
                 <Link href={`/restaurant?id=${item._id}`} key={ind}>
-                  <div className="m-2 rounded bg-white text-black">
+                  <div className="m-2 rounded bg-[#1e1f23] text-white h-[340px] border border-white/20">
                     <Image
                       src={item?.restaurant[0]?.img[0]}
                       width={400}
@@ -188,13 +194,21 @@ const Search = () => {
                       alt="img"
                       className="rounded"
                     />
-                    <div className="text-center">
-                      <h1 className=" text-md uppercase m-1">
+                    <div className="m-3">
+                      <h1 className="text-md uppercase mt-1 whitespace-wrap">
                         {item?.restaurant[0].restaurantName}
                       </h1>
-                      <p className="pb-2">
-                        Cuisine Type : {item?.restaurant[0].cuisineType}
+                      <p className="text-sm whitespace-nowrap py-2 font-light">
+                        {item.restaurant[0].address.address}
                       </p>
+                      <div className="flex text-sm font-light">
+                        Mon-Fri: {item.restaurant[0].schedule.weekday.open}~
+                        {item.restaurant[0].schedule.weekday.close} clock
+                      </div>
+                      <div className="flex text-sm font-light">
+                        Weekend: {item.restaurant[0].schedule.weekday.open}~
+                        {item.restaurant[0].schedule.weekday.close} clock
+                      </div>
                     </div>
                   </div>
                 </Link>

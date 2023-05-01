@@ -6,11 +6,12 @@ import Link from "next/link";
 
 export const PopularDish = ({ data }: { data: [Ifoods] }) => {
   return (
-    <div className="md:px-20 bg-black text-gray-900">
-      <h1 className="text-3xl uppercase text-center text-white">
-        Most popular{" "}
-      </h1>
-      <div className="grid grid-cols-2 sm:grid-cols-3 p-5 text-white">
+    <div className="md:px-20 bg-black text-gray-900 text-white">
+      <h1 className="text-3xl uppercase text-center">Most popular </h1>
+      <Link href={`/findfoods`}>
+        <p className="text-end hover:text-[#9395d3]">See all</p>
+      </Link>
+      <div className="grid grid-cols-2 sm:grid-cols-3 p-5 ">
         {data.map((item, ind) => {
           return (
             <Link key={ind} href={`/food?id=${item.food._id}`}>

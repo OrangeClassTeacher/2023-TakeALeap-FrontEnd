@@ -9,9 +9,10 @@ import RestaurantLilSlide from "@/components/RestaurantLilSlide";
 import { IRestaurant } from "../components/InterFace";
 interface Irestaurant {
   _id: {
-    restaurantName: string;
-    img: [string];
+    restaurantId: string;
   };
+  count: number;
+  restaurant: [IRestaurant];
   avg_score: number;
 }
 
