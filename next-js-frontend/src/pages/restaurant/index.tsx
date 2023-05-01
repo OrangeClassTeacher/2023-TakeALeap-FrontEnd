@@ -5,7 +5,7 @@ import { RestaurantStart } from "@/components/RestaurantStart";
 import { Menu } from "@/components/Menu";
 import { RestaurantInfo } from "@/components/RestaurantInfo";
 import { DetailPopular } from "@/components/DetailPopular";
-import Comment from "@/components/Comment";
+import Comment from "@/components/CommentRes";
 
 export default function Restaurant() {
   return (

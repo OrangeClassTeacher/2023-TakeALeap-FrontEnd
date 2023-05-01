@@ -90,7 +90,7 @@ export interface search {
     rowCountOfRes: 1;
     restaurant: [
       {
-        address: {};
+        address: { district?: string };
         contact: {
           phone: number;
           facebook: string;
@@ -154,4 +154,5 @@ export interface Iuser {
   point: number[];
   userType: string;
   img: string[];
+  createdAt: string;
 }

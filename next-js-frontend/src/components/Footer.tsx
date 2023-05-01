@@ -67,12 +67,6 @@ function Footer() {
             <li className="text-md pb-2  hover:text-blue-600 cursor-pointer">
               List Of Charges
             </li>
-            <li className="text-md pb-2  hover:text-blue-600 cursor-pointer">
-              Downloads & Resources
-            </li>
-            <li className="text-md pb-2  hover:text-blue-600 cursor-pointer">
-              Videos
-            </li>
           </ul>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React, { Dispatch, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GrFormClose } from "react-icons/gr";
 import { TfiWorld } from "react-icons/tfi";
 import { VscAccount } from "react-icons/vsc";
@@ -47,7 +47,7 @@ export const NavSearch = () => {
           </h1>
           <p className=" 2x1:px-16 py-0 text-xs underline">Find, Eat, Rate</p>
         </div>
-        <div className="basis-3/6 relative">
+        <div className="basis-4/6 relative">
           <div className="flex gap-2 h-9 ">
             <div className="bg-slate-200 rounded flex w-full justify-between items-center p-2">
               <input
@@ -68,9 +68,8 @@ export const NavSearch = () => {
             </div>
           </div>
           <div
-            className="absolute bg-white top-12 w-[900px] h-[400px] rounded text-black p-10 overflow-scroll"
-            style={{ display: search ? "block" : "none" }}
-          >
+            className="absolute bg-slate-200 top-12 w-[950px] h-[500px] rounded text-black p-10 overflow-scroll z-50"
+            style={{ display: search ? "block" : "none" }}>
             <div className="absolute right-5 top-5">
               {" "}
               <IoMdClose
@@ -79,33 +78,36 @@ export const NavSearch = () => {
               />
             </div>
             <div>
-              <div className="flex justify-between border-b">
+              <div className="flex justify-between border-b border-black">
                 <h1>Foods</h1>
                 <p>
-                  Found :{" "}
+                  All :{" "}
                   {data?.food.rowCountOfFood ? data?.food.rowCountOfFood : 0}
                 </p>
               </div>
-              <div className="grid grid-cols-4 p-10">
+              <div className="grid grid-cols-2 md:grid-cols-4 p-10 gap-5">
                 {data?.food?.food.map((item, ind) => {
                   if (ind < 8) {
                     return (
                       <Link href={`/food?id=${item._id}`} key={ind}>
-                        <div className="m-2 rounded bg-white ">
-                          <div className="m-3 w-[150px] h-[100px] object-cover">
+                        <div className="rounded border border-black/20 w-[180px] h-[210px] overflow-hidden">
+                          <div className="flex justify-between">
                             <Image
                               src={item.img[0]}
                               width={150}
-                              height={100}
+                              height={140}
                               alt="img"
-                              className="rounded w-[150px] h-[100px]"
+                              className="rounded w-[180px] h-[140px] object-cover"
                             />
                           </div>
-                          <div className="text-center">
-                            <h1 className="text-sm font-semibold uppercase mt-1">
+                          <div className="m-2">
+                            <h1 className="text-xs font-semibold uppercase mt-1 whitespace-nowrap">
                               {item.foodName}
                             </h1>
-                            <p className="text-xs">Price : {item.price}</p>
+                            <p className="text-xs">{item.foodType}</p>
+                            <p className="text-xs font-semibold">
+                              {item.price} ₮
+                            </p>
                           </div>
                         </div>
                       </Link>
@@ -115,36 +117,37 @@ export const NavSearch = () => {
               </div>
             </div>
             <div>
-              <div className="flex justify-between border-b">
+              <div className="flex justify-between border-b border-black">
                 <h1>Restaurants</h1>
                 <p>
-                  Found :{" "}
+                  All :{" "}
                   {data?.restaurant.rowCountOfRes
                     ? data?.restaurant.rowCountOfRes
                     : 0}
                 </p>
               </div>
-              <div className="grid grid-cols-4 p-10">
+              <div className="grid grid-cols-2 md:grid-cols-4 p-10 gap-5">
                 {data?.restaurant?.restaurant.map((item, ind) => {
                   if (ind < 8) {
                     return (
                       <Link href={`/restaurant?id=${item._id}`} key={ind}>
-                        <div className="m-2 rounded bg-white ">
-                          <div className="m-3 w-[150px] h-[100px] object-cover">
+                        <div className="rounded border border-black/20 w-[180px] h-[210px] overflow-hidden ">
+                          <div className="flex justify-between">
                             <Image
                               src={item.img[0]}
                               width={150}
-                              height={150}
+                              height={140}
                               alt="img"
-                              className="rounded  w-[150px] h-[100px] "
+                              className="rounded w-[180px] h-[140px] object-cover"
                             />
                           </div>
-                          <div className="text-center">
-                            <h1 className="text-sm font-semibold uppercase mt-1">
+                          <div className="m-2">
+                            <h1 className="text-xs font-semibold uppercase mt-1 whitespace-nowrap">
                               {item.restaurantName}
                             </h1>
-                            <p className="text-xs">
-                              Cuisine Type : {item.cuisineType}
+                            <p className="text-xs">{item.cuisineType}</p>
+                            <p className="text-xs whitespace-nowrap">
+                              {item.address.district}
                             </p>
                           </div>
                         </div>
@@ -157,15 +160,6 @@ export const NavSearch = () => {
           </div>
         </div>
 
-        <div className="basis-1/6 flex items-center gap-2 mx-2 justify-end font-light text-sm">
-          <p className="text-4xl">
-            <TfiWorld />
-          </p>
-          <Link href={"/explore"}>
-            <p className="hover:text-sky-400">EXPLORE</p>
-          </Link>
-        </div>
-
         <div className="basis-1/6 flex items-center gap-2 mx-2 justify-end font-light text-sm ">
           <p className="text-4xl">
             <VscAccount />
@@ -173,36 +167,33 @@ export const NavSearch = () => {
           {localToken?.length > 1 ? (
             <div className="mr-10">
               <p
-                className="hover:text-sky-400 cursor-pointer"
-                onClick={() => route.push("/userprofile")}
-              >
+                className="hover:text-[#9395d3] cursor-pointer"
+                onClick={() => route.push("/userprofile")}>
                 {localStorage.getItem("name")}
               </p>
               <p
-                className="cursor-pointer hover:text-sky-500"
+                className="cursor-pointer hover:text-[#9395d3]"
                 onClick={() => {
                   if (confirm("Log out")) {
                     localStorage.clear();
                     setLocalToken("");
                   }
-                }}
-              >
+                }}>
                 Log Out
               </p>
             </div>
           ) : (
             <div className="uppercase">
               <p
-                className="hover:text-sky-400 cursor-pointer"
+                className="hover:text-[#9395d3] cursor-pointer"
                 onClick={() => {
                   setSignIn(!signIn);
-                }}
-              >
+                }}>
                 sign in
               </p>
               <Link href={"/register"}>
                 {" "}
-                <p className="hover:text-sky-400">create account</p>
+                <p className="hover:text-[#9395d3]">create account</p>
               </Link>
             </div>
           )}

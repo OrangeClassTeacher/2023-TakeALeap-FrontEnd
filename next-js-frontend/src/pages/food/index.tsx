@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Image from "next/image";
 import { originFood } from "@/components/InterFace";
-import Comment from "@/components/Comment";
+import CommentFood from "@/components/CommentFood";
 
 export default function Food() {
   const route = useRouter();
@@ -41,7 +41,7 @@ export default function Food() {
         </div>
       </div>
       <div className="bg-black">
-        <Comment />
+        <CommentFood />
       </div>
       <Footer />
     </div>

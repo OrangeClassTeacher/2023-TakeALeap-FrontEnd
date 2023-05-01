@@ -1,11 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavCateg } from "@/components/NavCateg";
 import { NavbarCustom } from "@/components/NavbarCustom";
 import axios from "axios";
 import { IFood } from "@/components/InterFace";
 import Link from "next/link";
 import Image from "next/image";
-
 import Footer from "@/components/Footer";
 
 const meal = [
@@ -31,20 +30,28 @@ interface IData {
     }
   ];
 }
-const Search = () => {
-  const init = {
-    text: "",
-    rate: "all",
-    price: "lowToHight",
-    meal: "all",
-  };
 
+const init = {
+  text: "",
+  rate: "all",
+  price: "lowToHight",
+  meal: "all",
+};
+
+const Search = () => {
   const [all, setAll] = useState(init);
   const [data, setData] = useState<IData>();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
+
+  useEffect(() => {
+    axios
+      .post("http://localhost:8080/api/allsearchfood", all)
+      .then((res) => setData(res.data.result))
+      .catch((err) => console.log(err));
+  }, []);
 
   const getData = () => {
     console.log(all);
@@ -137,9 +144,9 @@ const Search = () => {
             </div>
           </div>
         </div>
-        <div className="  basis-4/5">
+        <div className="basis-4/5 mx-10">
           <div className="flex justify-center">
-            <div className="flex flex-col w-3/4">
+            <div className="flex flex-col w-full">
               <form onSubmit={handleSubmit} className="flex flex-col space-y-2">
                 <div className="flex space-x-2">
                   <input
@@ -160,11 +167,13 @@ const Search = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-3">
+          <div className="m-2 text-2xl">All Foods : {data?.result.length}</div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3">
             {data?.result?.map((item, ind) => {
               return (
                 <Link href={`/food?id=${item._id}`} key={ind}>
-                  <div className="m-5 rounded bg-white text-black">
+                  <div className="m-2 rounded bg-white text-black">
                     <div className="w-full h-[200px] overflow-hidden objec-cover">
                       <Image
                         src={item?.foods?.img[0]}
