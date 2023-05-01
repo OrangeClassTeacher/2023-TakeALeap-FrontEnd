@@ -12,6 +12,8 @@ import Image from "next/image";
 import { IoMdClose } from "react-icons/io";
 import { useRouter } from "next/router";
 import Footer from "@/components/Footer";
+// import Useredit from "../../pages/userprofile/Useredit";
+import Layout from "../../pages/userprofile/Layout";
 
 export default function Userprofile() {
   const [signIn, setSignIn] = useState<boolean>(false);
@@ -224,7 +226,9 @@ export default function Userprofile() {
       <div style={{ display: signIn ? "block" : "none" }}>
         <SignIn signIn={signIn} setSignIn={setSignIn} />
       </div>
-      <div className="bg-black text-white flex justify-around">User</div>
+      <div className="bg-black text-white flex justify-around">
+        <Layout />
+      </div>
       <Footer />
     </div>
   );
