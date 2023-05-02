@@ -22,7 +22,7 @@ interface MenuItem {
 const menuItems = [
   { id: 1, label: "Home", icon: HomeIcon, link: "/" },
   { id: 2, label: "Manage Posts", icon: ArticleIcon, link: "/blog" },
-  { id: 3, label: "Manage User", icon: UsersIcon, link: "/user" },
+  { id: 3, label: "Manage User", icon: UsersIcon, link: "/userprofile/user" },
   { id: 4, label: "Manage Point", icon: VideosIcon, link: "/" },
 ];
 
@@ -131,7 +131,18 @@ const Useredit: React.FC = () => {
         </div>
         {!toggleCollapse && (
           <span className={classNames("text-md font-medium text-text-light")}>
-            Logout
+            <Link href={"/"}>
+              <p
+                className="cursor-pointer hover:text-sky-500"
+                onClick={() => {
+                  if (confirm("Log out")) {
+                    localStorage.clear();
+                  }
+                }}
+              >
+                Log Out
+              </p>
+            </Link>
           </span>
         )}
       </div>
