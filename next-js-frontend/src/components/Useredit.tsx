@@ -85,7 +85,7 @@ const Useredit: React.FC = () => {
                 hidden: toggleCollapse,
               })}
             >
-              Logo
+              User Table
             </span>
           </div>
           {isCollapsible && (

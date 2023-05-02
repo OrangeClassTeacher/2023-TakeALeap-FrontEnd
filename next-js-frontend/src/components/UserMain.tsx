@@ -76,8 +76,8 @@ const UserProfile = () => {
           disabled={!isEditing}
           className={
             isEditing
-              ? "w-full border-2 border-gray-400 p-2 rounded-lg text-black"
-              : "w-full border-2 border-gray-400 p-2 rounded-lg"
+              ? "w-2/4 border-2 border-gray-400 p-2 rounded-lg text-black"
+              : "w-2/4 border-2 border-gray-400 p-2 rounded-lg"
           }
         />
       </div>
@@ -93,8 +93,8 @@ const UserProfile = () => {
           disabled={!isEditing}
           className={
             isEditing
-              ? "w-full border-2 border-gray-400 p-2 rounded-lg text-black"
-              : "w-full border-2 border-gray-400 p-2 rounded-lg"
+              ? "w-2/4 border-2 border-gray-400 p-2 rounded-lg text-black"
+              : "w-2/4 border-2 border-gray-400 p-2 rounded-lg"
           }
         />
       </div>
@@ -110,8 +110,8 @@ const UserProfile = () => {
           disabled={!isEditing}
           className={
             isEditing
-              ? "w-full border-2 border-gray-400 p-2 rounded-lg text-black"
-              : "w-full border-2 border-gray-400 p-2 rounded-lg"
+              ? "w-2/4 border-2 border-gray-400 p-2 rounded-lg text-black"
+              : "w-2/4 border-2 border-gray-400 p-2 rounded-lg"
           }
         />
       </div>
@@ -127,8 +127,8 @@ const UserProfile = () => {
           disabled={!isEditing}
           className={
             isEditing
-              ? "w-full border-2 border-gray-400 p-2 rounded-lg text-black"
-              : "w-full border-2 border-gray-400 p-2 rounded-lg"
+              ? "w-2/4 border-2 border-gray-400 p-2 rounded-lg text-black"
+              : "w-2/4 border-2 border-gray-400 p-2 rounded-lg"
           }
         />
       </div>
@@ -144,8 +144,8 @@ const UserProfile = () => {
           disabled={!isEditing}
           className={
             isEditing
-              ? "w-full border-2 border-gray-400 p-2 rounded-lg text-black"
-              : "w-full border-2 border-gray-400 p-2 rounded-lg"
+              ? "w-2/4 border-2 border-gray-400 p-2 rounded-lg text-black"
+              : "w-2/4 border-2 border-gray-400 p-2 rounded-lg"
           }
         />
       </div>
@@ -166,8 +166,8 @@ const UserProfile = () => {
           disabled={!isEditing}
           className={
             isEditing
-              ? "w-full border-2 border-gray-400 p-2 rounded-lg text-black"
-              : "w-full border-2 border-gray-400 p-2 rounded-lg"
+              ? "w-2/4 border-2 border-gray-400 p-2 rounded-lg text-black"
+              : "w-2/4 border-2 border-gray-400 p-2 rounded-lg"
           }
         />
       </div>
@@ -181,7 +181,7 @@ const UserProfile = () => {
               key={i}
               src={url}
               alt="User avatar"
-              className="w-16 h-16 object-cover rounded-full mr-2 mb-2"
+              className="w-16 h-16 object-cover rounded-2/4 mr-2 mb-2"
             />
           ))} */}
         </div>
@@ -192,7 +192,7 @@ const UserProfile = () => {
         </label>
         <span>{data.createdAt}</span>
       </div>
-      <div className="flex justify-end">
+      <div className="flex justify-center">
         {isEditing ? (
           <>
             <button
@@ -200,7 +200,7 @@ const UserProfile = () => {
                 setData(dataConst);
                 setIsEditing(false);
               }}
-              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2"
+              className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2"
             >
               Cancel
             </button>
@@ -214,7 +214,7 @@ const UserProfile = () => {
         ) : (
           <button
             onClick={handleEdit}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
           >
             Edit
           </button>
