@@ -69,7 +69,8 @@ export const NavSearch = () => {
           </div>
           <div
             className="absolute bg-slate-200 top-12 w-[950px] h-[500px] rounded text-black p-10 overflow-scroll z-50"
-            style={{ display: search ? "block" : "none" }}>
+            style={{ display: search ? "block" : "none" }}
+          >
             <div className="absolute right-5 top-5">
               {" "}
               <IoMdClose
@@ -168,19 +169,23 @@ export const NavSearch = () => {
             <div className="mr-10">
               <p
                 className="hover:text-[#9395d3] cursor-pointer"
-                onClick={() => route.push("/userprofile")}>
+                onClick={() => route.push("/userprofile")}
+              >
                 {localStorage.getItem("name")}
               </p>
-              <p
-                className="cursor-pointer hover:text-[#9395d3]"
-                onClick={() => {
-                  if (confirm("Log out")) {
-                    localStorage.clear();
-                    setLocalToken("");
-                  }
-                }}>
-                Log Out
-              </p>
+              <Link href={"/"}>
+                <p
+                  className="cursor-pointer hover:text-[#9395d3]"
+                  onClick={() => {
+                    if (confirm("Log out")) {
+                      localStorage.clear();
+                      setLocalToken("");
+                    }
+                  }}
+                >
+                  Log Out
+                </p>
+              </Link>
             </div>
           ) : (
             <div className="uppercase">
@@ -188,7 +193,8 @@ export const NavSearch = () => {
                 className="hover:text-[#9395d3] cursor-pointer"
                 onClick={() => {
                   setSignIn(!signIn);
-                }}>
+                }}
+              >
                 sign in
               </p>
               <Link href={"/register"}>

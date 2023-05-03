@@ -156,3 +156,6 @@ export interface Iuser {
   img: string[];
   createdAt: string;
 }
+export interface Props {
+  user: Iuser;
+}

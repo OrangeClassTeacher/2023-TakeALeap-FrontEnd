@@ -30,7 +30,7 @@ export default function SignIn({
       .then((res) => {
         // route.push("/");
         if (res.data.status) {
-          localStorage.setItem("name", res.data.data.name);
+          localStorage.setItem("name", res.data.data.userName);
           localStorage.setItem("id", res.data.data._id);
           localStorage.setItem("token", res.data.token);
           setSignIn(!signIn);
@@ -45,10 +45,12 @@ export default function SignIn({
     <div
       className="h-screen w-screen fixed inset-0 overflow-y-auto flex items-center justify-center bg-gray-400/50 z-50"
       onClick={() => setSignIn(!signIn)}
-      style={{ display: signIn ? "flex" : "none" }}>
+      style={{ display: signIn ? "flex" : "none" }}
+    >
       <div
         className="w-[400px] h-[500px] p-4 text-center bg-white rounded text-black p-8"
-        onClick={(e) => e.stopPropagation()}>
+        onClick={(e) => e.stopPropagation()}
+      >
         <div>
           <div className="flex justify-end">
             {" "}

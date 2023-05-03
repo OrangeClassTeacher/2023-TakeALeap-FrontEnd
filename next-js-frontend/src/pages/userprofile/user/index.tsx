@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
-import Footer from "@/components/Footer";
+import React from "react";
 import { NavSearch } from "@/components/NavSearch";
 import Useredit from "@/components/Useredit";
-import UserMain from "@/components/UserMain";
+import Footer from "@/pages/food";
 
-export default function Userprofile() {
+export default function Index() {
   return (
     <div className="bg-black text-white">
       <NavSearch />
@@ -13,9 +12,7 @@ export default function Userprofile() {
           {" "}
           <Useredit />
         </div>
-        <div className="basis-5/6 bg-primary flex-1 p-4 text-white">
-          <UserMain />
-        </div>
+        <div className="basis-5/6 bg-primary flex-1 p-4 text-white">here</div>
       </div>
       <Footer />
     </div>
