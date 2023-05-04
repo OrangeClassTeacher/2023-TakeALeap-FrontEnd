@@ -74,8 +74,7 @@ const Useredit: React.FC = () => {
       className={wrapperClasses}
       onMouseEnter={onMouseOver}
       onMouseLeave={onMouseOver}
-      style={{ transition: "width 300ms cubic-bezier(0.2, 0, 0, 1) 0s" }}
-    >
+      style={{ transition: "width 300ms cubic-bezier(0.2, 0, 0, 1) 0s" }}>
       <div className="flex flex-col">
         <div className="flex items-center justify-between relative">
           <div className="flex items-center pl-1 gap-4">
@@ -83,16 +82,14 @@ const Useredit: React.FC = () => {
             <span
               className={classNames("mt-2 text-lg font-medium text-text", {
                 hidden: toggleCollapse,
-              })}
-            >
+              })}>
               User Table
             </span>
           </div>
           {isCollapsible && (
             <button
               className={collapseIconClasses}
-              onClick={handleSidebarToggle}
-            >
+              onClick={handleSidebarToggle}>
               <CollapsIcon />
             </button>
           )}
@@ -112,8 +109,7 @@ const Useredit: React.FC = () => {
                       <span
                         className={classNames(
                           "text-md font-medium text-text-light"
-                        )}
-                      >
+                        )}>
                         {menu.label}
                       </span>
                     )}
@@ -138,8 +134,7 @@ const Useredit: React.FC = () => {
                   if (confirm("Log out")) {
                     localStorage.clear();
                   }
-                }}
-              >
+                }}>
                 Log Out
               </p>
             </Link>
