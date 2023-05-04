@@ -94,7 +94,7 @@ export default function CommentFood() {
               </div>
             </div>
             <div className={showAllCom ? "h-[500px] overflow-scroll" : ""}>
-              {all.length > 0 ? (
+              {all?.length > 0 ? (
                 all?.map((item, ind) => {
                   if (showAllCom) {
                     return (

@@ -159,3 +159,22 @@ export interface Iuser {
 export interface Props {
   user: Iuser;
 }
+
+export interface IExplore {
+  restaurant: [
+    {
+      _id: string;
+      avg: number;
+      count: number;
+      restaurantDetail: IRestaurant[];
+    }
+  ];
+  food: [
+    {
+      _id: string;
+      avg: number;
+      count: number;
+      foodDetail: IFood[];
+    }
+  ];
+}
