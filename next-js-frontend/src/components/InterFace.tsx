@@ -23,7 +23,7 @@ export interface IRestaurant {
   contact: {
     phone: number;
     facebook: string;
-    Instagram: string;
+    instagram: string;
     link: string;
   };
   email: string;
@@ -33,9 +33,50 @@ export interface IRestaurant {
     weekday: { open: number; close: number };
     weekend: { open: number; close: number };
   };
+  description: string;
+}
+export interface IFood {
+  _id: string;
+  foodName: string;
+  restaurantId: string;
+  price: number;
+  foodType: string;
+  img: string[];
+  ingredients: string[];
+  description: string;
+}
+export interface IComment {
+  _id: string;
+  restaurantId: string;
+  foodId: string;
+  userId: {
+    _id: string;
+    name: string;
+    userName: string;
+    email: string;
+    phone: number;
+    point: [number];
+    userType: string;
+    img: [string];
+  };
+  comment: string;
+  rate: number;
+  createdAt: string;
 }
 
-export interface Ifoods {
+export interface IUser {
+  name: string;
+  userName: string;
+  email: string;
+  phone: number;
+  password: string;
+  point: number[];
+  userType: string;
+  img: string[];
+  createdAt: string;
+}
+
+export interface ITopFoods {
   foodId: string;
   food: {
     _id: string;
@@ -51,27 +92,7 @@ export interface Ifoods {
   count: number;
 }
 
-export interface IFood {
-  _id: string;
-  foodName: string;
-  restaurantId: string;
-  price: number;
-  foodType: string;
-  img: string[];
-  ingredients: string[];
-}
-
-export interface originFood {
-  _id: string;
-  foodName: string;
-  restaurantId: string;
-  price: number;
-  foodType: string;
-  img: [string];
-  ingredients: [string];
-}
-
-export interface search {
+export interface ISearch {
   food: {
     rowCountOfFood: number;
     food: [
@@ -127,37 +148,8 @@ export interface search {
   };
 }
 
-export interface Icomment {
-  _id: string;
-  restaurantId: string;
-  foodId: string;
-  userId: {
-    _id: string;
-    name: string;
-    userName: string;
-    email: string;
-    phone: number;
-    point: [number];
-    userType: string;
-    img: [string];
-  };
-  comment: string;
-  rate: number;
-  createdAt: string;
-}
-export interface Iuser {
-  name: string;
-  userName: string;
-  email: string;
-  phone: number;
-  password: string;
-  point: number[];
-  userType: string;
-  img: string[];
-  createdAt: string;
-}
 export interface Props {
-  user: Iuser;
+  user: IUser;
 }
 
 export interface IExplore {
@@ -175,6 +167,44 @@ export interface IExplore {
       avg: number;
       count: number;
       foodDetail: IFood[];
+    }
+  ];
+}
+
+export interface ITopRestaurant {
+  _id: {
+    restaurantId: string;
+  };
+  count: number;
+  restaurant: [IRestaurant];
+  avg_score: number;
+}
+export interface IAllSearchFood {
+  rowCount: [
+    {
+      foods: number;
+    }
+  ];
+  result: [
+    {
+      _id: string;
+      avg_score: number;
+      foods: IFood;
+    }
+  ];
+}
+
+export interface IAllSearchRestaurant {
+  rowCount: [
+    {
+      restaurant: number;
+    }
+  ];
+  result: [
+    {
+      _id: string;
+      avg_score: number;
+      restaurant: [IRestaurant];
     }
   ];
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { IoIosArrowBack } from "react-icons/io";
 import Image from "next/image";
 import { IRestaurant } from "./InterFace";
-import Starts from "./Starts";
+import Starts from "./Stars";
 
 interface myProps {
   _id: {
@@ -66,8 +66,11 @@ export default function Carousel({ items }: { items: [myProps] }) {
             <div className="text-4xl flex justify-around">
               <h1>{items[activeIndex].restaurant[0].restaurantName}</h1>
             </div>
-            <Starts stars={items[activeIndex].avg_score} />
-            <p> Reviewers: {items[activeIndex].count}</p>
+            <div className="flex items-center gap-5 justify-center">
+              <Starts stars={items[activeIndex].avg_score} />
+              <p>/</p>
+              <p> Reviewers: {items[activeIndex].count}</p>
+            </div>
             <p>
               Mon-Fri : {items[activeIndex].restaurant[0].schedule.weekday.open}
               ~ {items[activeIndex].restaurant[0].schedule.weekday.close}

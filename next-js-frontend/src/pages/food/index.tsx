@@ -4,19 +4,18 @@ import axios from "axios";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Image from "next/image";
-import { originFood } from "@/components/InterFace";
+import { IFood } from "@/components/InterFace";
 import CommentFood from "@/components/CommentFood";
+import Utils from "@/utils/helper";
 
 export default function Food() {
   const route = useRouter();
   const { id } = route.query;
-  console.log();
-
-  const [food, setFood] = useState<originFood>();
+  const [food, setFood] = useState<IFood>();
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/api/food?id=${id}`)
+      .get(`${Utils.API_URL}/food?id=${id}`)
       .then((res) => setFood(res.data.result))
       .catch((err) => console.log(err));
   }, []);

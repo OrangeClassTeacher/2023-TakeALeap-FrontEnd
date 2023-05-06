@@ -4,20 +4,21 @@ import coca from "../img/cocaCola.jpeg";
 import axios from "axios";
 import cat from "../img/cat.jpeg";
 import { IRestaurant } from "./InterFace";
-import { Iuser } from "./InterFace";
-import Starts from "./Starts";
+import { IUser } from "./InterFace";
+import Starts from "./Stars";
 import Link from "next/link";
 import { IFood } from "./InterFace";
+import Utils from "@/utils/helper";
 interface Icomment {
   _id: string;
   restaurantId: IRestaurant;
   foodId: IFood;
-  userId: Iuser;
+  userId: IUser;
   comment: string;
   rate: number;
 }
 
-interface IUser {
+interface IUserPoint {
   _id: {
     username: string;
     img: [string];
@@ -27,22 +28,20 @@ interface IUser {
 
 export default function TopComments(): JSX.Element {
   const [lastComments, setLastComments] = useState<Icomment[]>([]);
-  const [topConterbuter, setTopConterbuter] = useState<IUser[]>([]);
+  const [topConterbuter, setTopConterbuter] = useState<IUserPoint[]>([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/latestcomments")
+      .get(`${Utils.API_URL}/latestcomments`)
       .then((res) => {
         setLastComments(res.data.result);
-        console.log(res.data.result);
       })
       .catch((err) => console.log(err));
 
     axios
-      .get("http://localhost:8080/api/users/topusers")
+      .get(`${Utils.API_URL}/users/topusers`)
       .then((res) => {
         setTopConterbuter(res.data.result);
-        console.log(res.data.result);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -142,7 +141,7 @@ export default function TopComments(): JSX.Element {
                       width={40}
                       height={40}
                       alt="profile"
-                      className="rounded-full"
+                      className="rounded-full object-cover"
                     />
                   </div>
                   <div className="basis-3/6">{item?._id.username}</div>

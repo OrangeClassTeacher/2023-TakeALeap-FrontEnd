@@ -7,16 +7,16 @@ import { BiSearch } from "react-icons/bi";
 import { FiMenu } from "react-icons/fi";
 import SignIn from "./SignIn";
 import axios from "axios";
-import { search } from "./InterFace";
-import Image from "next/image";
-import { IoMdClose } from "react-icons/io";
+import { ISearch } from "./InterFace";
 import { useRouter } from "next/router";
+import Utils from "@/utils/helper";
+import { SearchModal } from "./SearchModal";
 
 export const NavSearch = () => {
   const [signIn, setSignIn] = useState<boolean>(false);
   const [search, setSearch] = useState(false);
   const [searchInput, setSearchInput] = useState("");
-  const [data, setData] = useState<search>();
+  const [data, setData] = useState<ISearch>();
   const [localToken, setLocalToken] = useState<String>("");
   const route = useRouter();
 
@@ -29,7 +29,7 @@ export const NavSearch = () => {
 
   useEffect(() => {
     axios
-      .post(`http://localhost:8080/api/restaurant/search`, {
+      .post(`${Utils.API_URL}/restaurant/search`, {
         searchTxt: searchInput,
       })
       .then((res) => {
@@ -67,98 +67,7 @@ export const NavSearch = () => {
               />
             </div>
           </div>
-          <div
-            className="absolute bg-slate-200 top-12 w-[950px] h-[500px] rounded text-black p-10 overflow-scroll z-50"
-            style={{ display: search ? "block" : "none" }}
-          >
-            <div className="absolute right-5 top-5">
-              {" "}
-              <IoMdClose
-                className="text-2xl hover:text-sky-600"
-                onClick={() => setSearch(false)}
-              />
-            </div>
-            <div>
-              <div className="flex justify-between border-b border-black">
-                <h1>Foods</h1>
-                <p>
-                  All :{" "}
-                  {data?.food.rowCountOfFood ? data?.food.rowCountOfFood : 0}
-                </p>
-              </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 p-10 gap-5">
-                {data?.food?.food.map((item, ind) => {
-                  if (ind < 8) {
-                    return (
-                      <Link href={`/food?id=${item._id}`} key={ind}>
-                        <div className="rounded border border-black/20 w-[180px] h-[210px] overflow-hidden">
-                          <div className="flex justify-between">
-                            <Image
-                              src={item.img[0]}
-                              width={150}
-                              height={140}
-                              alt="img"
-                              className="rounded w-[180px] h-[140px] object-cover"
-                            />
-                          </div>
-                          <div className="m-2">
-                            <h1 className="text-xs font-semibold uppercase mt-1 whitespace-nowrap">
-                              {item.foodName}
-                            </h1>
-                            <p className="text-xs">{item.foodType}</p>
-                            <p className="text-xs font-semibold">
-                              {item.price} ₮
-                            </p>
-                          </div>
-                        </div>
-                      </Link>
-                    );
-                  }
-                })}
-              </div>
-            </div>
-            <div>
-              <div className="flex justify-between border-b border-black">
-                <h1>Restaurants</h1>
-                <p>
-                  All :{" "}
-                  {data?.restaurant.rowCountOfRes
-                    ? data?.restaurant.rowCountOfRes
-                    : 0}
-                </p>
-              </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 p-10 gap-5">
-                {data?.restaurant?.restaurant.map((item, ind) => {
-                  if (ind < 8) {
-                    return (
-                      <Link href={`/restaurant?id=${item._id}`} key={ind}>
-                        <div className="rounded border border-black/20 w-[180px] h-[210px] overflow-hidden ">
-                          <div className="flex justify-between">
-                            <Image
-                              src={item.img[0]}
-                              width={150}
-                              height={140}
-                              alt="img"
-                              className="rounded w-[180px] h-[140px] object-cover"
-                            />
-                          </div>
-                          <div className="m-2">
-                            <h1 className="text-xs font-semibold uppercase mt-1 whitespace-nowrap">
-                              {item.restaurantName}
-                            </h1>
-                            <p className="text-xs">{item.cuisineType}</p>
-                            <p className="text-xs whitespace-nowrap">
-                              {item.address.district}
-                            </p>
-                          </div>
-                        </div>
-                      </Link>
-                    );
-                  }
-                })}
-              </div>
-            </div>
-          </div>
+          <SearchModal search={search} setSearch={setSearch} data={data} />
         </div>
 
         <div className="basis-1/6 flex items-center gap-2 mx-2 justify-end font-light text-sm ">
@@ -169,8 +78,7 @@ export const NavSearch = () => {
             <div className="mr-10">
               <p
                 className="hover:text-[#9395d3] cursor-pointer"
-                onClick={() => route.push("/userprofile")}
-              >
+                onClick={() => route.push("/userprofile")}>
                 {localStorage.getItem("name")}
               </p>
               <Link href={"/"}>
@@ -181,8 +89,7 @@ export const NavSearch = () => {
                       localStorage.clear();
                       setLocalToken("");
                     }
-                  }}
-                >
+                  }}>
                   Log Out
                 </p>
               </Link>
@@ -193,8 +100,7 @@ export const NavSearch = () => {
                 className="hover:text-[#9395d3] cursor-pointer"
                 onClick={() => {
                   setSignIn(!signIn);
-                }}
-              >
+                }}>
                 sign in
               </p>
               <Link href={"/register"}>

@@ -2,34 +2,12 @@ import { useEffect, useState } from "react";
 import { NavCateg } from "@/components/NavCateg";
 import { NavbarCustom } from "@/components/NavbarCustom";
 import axios from "axios";
-import { IFood } from "@/components/InterFace";
 import Link from "next/link";
 import Image from "next/image";
 import Footer from "@/components/Footer";
-
-const meal = [
-  "Soup",
-  "Main Course",
-  "Dessert",
-  "SetFood",
-  "Traditional",
-  "FastFood",
-  "Other",
-];
-interface IData {
-  rowCount: [
-    {
-      foods: number;
-    }
-  ];
-  result: [
-    {
-      _id: string;
-      avg_score: number;
-      foods: IFood;
-    }
-  ];
-}
+import { IAllSearchFood } from "@/components/InterFace";
+import Utils from "@/utils/helper";
+import { meal } from "@/components/enumValues";
 
 const init = {
   text: "",
@@ -40,26 +18,22 @@ const init = {
 
 const Search = () => {
   const [all, setAll] = useState(init);
-  const [data, setData] = useState<IData>();
+  const [data, setData] = useState<IAllSearchFood>();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
 
-  useEffect(() => {
-    axios
-      .post("http://localhost:8080/api/allsearchfood", all)
-      .then((res) => setData(res.data.result))
-      .catch((err) => console.log(err));
-  }, []);
-
   const getData = () => {
-    console.log(all);
     axios
-      .post(`http://localhost:8080/api/allsearchfood`, all)
+      .post(`${Utils.API_URL}/allsearchfood`, all)
       .then((res) => setData(res.data.result))
       .catch((err) => console.log(err));
   };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <div className="bg-black text-white">

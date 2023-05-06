@@ -4,13 +4,15 @@ import Image from "next/image";
 import { IExplore } from "./InterFace";
 import { FaStar } from "react-icons/fa";
 import Link from "next/link";
+import Utils from "@/utils/helper";
+
 export const Explore = (): JSX.Element => {
   const [data, setData] = useState<IExplore>();
   const [mixed, setMixed] = useState();
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/comments")
+      .get(`${Utils.API_URL}/comments`)
       .then((res) => setData(res.data))
       .catch((err) => console.log(err));
   }, []);

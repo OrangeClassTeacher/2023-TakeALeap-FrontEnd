@@ -3,6 +3,7 @@ import { IRestaurant } from "./InterFace";
 import { IoIosArrowBack } from "react-icons/io";
 import Image from "next/image";
 import Link from "next/link";
+import img from "../img/cat.jpeg";
 
 export default function RestaurantLilSlide({ data }: { data: [IRestaurant] }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -47,11 +48,11 @@ export default function RestaurantLilSlide({ data }: { data: [IRestaurant] }) {
                 <Link href={`/restaurant?id=${item._id}`} key={ind}>
                   <div className="m-2 rounded bg-[#1e1f23] text-white h-[340px] border border-white/20">
                     <Image
-                      src={item?.img[0]}
+                      src={item?.img[0] ? item?.img[0] : img}
                       width={400}
-                      height={400}
+                      height={200}
                       alt="img"
-                      className="rounded"
+                      className="rounded w-[400px] h-[200px] object-cover"
                     />
                     <div className="m-3">
                       <h1 className="text-md uppercase mt-1 whitespace-wrap">

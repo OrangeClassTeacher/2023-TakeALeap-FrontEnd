@@ -4,21 +4,15 @@ import Footer from "@/components/Footer";
 import TopComments from "@/components/TopComments";
 import { PopularDish } from "@/components/PopularDish";
 import axios from "axios";
-import { Ifoods } from "@/components/InterFace";
+import { ITopFoods } from "@/components/InterFace";
 import RestaurantLilSlide from "@/components/RestaurantLilSlide";
 import { IRestaurant } from "../components/InterFace";
-interface Irestaurant {
-  _id: {
-    restaurantId: string;
-  };
-  count: number;
-  restaurant: [IRestaurant];
-  avg_score: number;
-}
+import { ITopRestaurant } from "@/components/InterFace";
+import Utils from "@/utils/helper";
 
 export default function index(props: {
-  topRestaurant: [Irestaurant];
-  topFoods: [Ifoods];
+  topRestaurant: [ITopRestaurant];
+  topFoods: [ITopFoods];
   allRestaurant: [IRestaurant];
 }) {
   return (
@@ -26,8 +20,8 @@ export default function index(props: {
       <Header />
       <Carousel items={props?.topRestaurant} />
       <RestaurantLilSlide data={props?.allRestaurant} />
-      <TopComments />
       <PopularDish data={props?.topFoods} />
+      <TopComments />
       <Footer />
     </>
   );
@@ -35,15 +29,15 @@ export default function index(props: {
 
 export async function getServerSideProps() {
   const TopRestaurant = await axios
-    .get("http://localhost:8080/api/toprestaurants")
+    .get(`${Utils.API_URL}/toprestaurants`)
     .catch((err) => console.log(err));
 
   const TopFood = await axios
-    .get("http://localhost:8080/api/gettopfoods")
+    .get(`${Utils.API_URL}/gettopfoods`)
     .catch((err) => console.log(err));
 
   const AllRestaurant = await axios
-    .get("http://localhost:8080/api/restaurants")
+    .get(`${Utils.API_URL}/restaurants`)
     .catch((err) => console.log(err));
 
   return {
