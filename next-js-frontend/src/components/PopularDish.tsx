@@ -19,59 +19,59 @@ export const PopularDish = ({ data }: { data: [Ifoods] }) => {
                 key={ind}
                 className={
                   ind == 1 || ind == 4 ? "m-2 mt-16 hidden sm:block " : "m-2"
-                }>
-                <div>
-                  <Image
-                    src={item?.food?.img[0]}
-                    alt="img"
-                    className="w-full h-[300px] object-cover "
-                    width={200}
-                    height={200}
-                  />
-                </div>
-                <div className="text-center m-5">
-                  <h1 className="text-xl font-light uppercase m-1">
-                    {item?.food?.foodName}
-                  </h1>
-                  {/* <p className="text-xl font-light">Restaurant name</p> */}
-                  <div className="flex justify-between font-thin">
-                    <div className="text-yellow-400">
-                      {item?.avg_rate == 1 ? (
-                        <FaStar />
-                      ) : item?.avg_rate == 2 ? (
-                        <p className="flex">
-                          <FaStar />
-                          <FaStar />
-                        </p>
-                      ) : item?.avg_rate == 3 ? (
-                        <p className="flex">
-                          <FaStar />
-                          <FaStar />
-                          <FaStar />
-                        </p>
-                      ) : item.avg_rate == 4 ? (
-                        <p className="flex">
-                          <FaStar />
-                          <FaStar />
-                          <FaStar />
-                          <FaStar />
-                        </p>
-                      ) : (
-                        <p className="flex">
-                          <FaStar />
-                          <FaStar />
-                          <FaStar />
-                          <FaStar />
-                          <FaStar />
-                        </p>
-                      )}
-                    </div>
-                    <p>/</p>
-                    <p>Rate : {Math.floor(item.avg_rate * 100) / 100}</p>
-                    <p>/</p>
-                    <p>Review : {item?.count}</p>
+                }
+              >
+                <div className="vox">
+                  <div className="vox-img">
+                    <Image
+                      src={item?.food?.img[0]}
+                      alt="img"
+                      className="w-full h-[300px] object-cover "
+                      width={200}
+                      height={200}
+                    />
                   </div>
-                  <p>Price: {item?.food?.price}</p>
+                  <div className="montent">
+                    <p>{item?.food?.foodName}</p>
+                    <div className="flex justify-between font-thin">
+                      <div>
+                        <p>Review: {item?.count}</p>
+                        <p>Rate: {Math.floor(item.avg_rate * 100) / 100}</p>
+                        <div className="text-yellow-400">
+                          {item?.avg_rate == 1 ? (
+                            <FaStar />
+                          ) : item?.avg_rate == 2 ? (
+                            <p className="flex">
+                              <FaStar />
+                              <FaStar />
+                            </p>
+                          ) : item?.avg_rate == 3 ? (
+                            <p className="flex">
+                              <FaStar />
+                              <FaStar />
+                              <FaStar />
+                            </p>
+                          ) : item.avg_rate == 4 ? (
+                            <p className="flex">
+                              <FaStar />
+                              <FaStar />
+                              <FaStar />
+                              <FaStar />
+                            </p>
+                          ) : (
+                            <p className="flex">
+                              <FaStar />
+                              <FaStar />
+                              <FaStar />
+                              <FaStar />
+                              <FaStar />
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                    <p>Price: {item?.food?.price}</p>
+                  </div>
                 </div>
               </div>
             </Link>

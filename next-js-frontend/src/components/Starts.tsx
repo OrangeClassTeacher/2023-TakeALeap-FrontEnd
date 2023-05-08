@@ -3,7 +3,7 @@ import { FaStar } from "react-icons/fa";
 
 export default function Starts({ stars }: any): JSX.Element {
   return (
-    <div>
+    <div className="flex justify-center mt-10 mb-5">
       {stars && stars !== 0 ? (
         <div className="text-yellow-400">
           {stars == 1 ? (

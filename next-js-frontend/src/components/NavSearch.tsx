@@ -43,7 +43,12 @@ export const NavSearch = () => {
       <div className=" px-4 justify-between items-center hidden md:flex">
         <div className="basis-1/6">
           <h1 className="flex justify-between items-center text-4xl font-light">
-            <Link href={"/"}> LYNX</Link>
+            <div className="lynx">
+              <span>
+                {" "}
+                <Link href={"/"}>LYNX</Link>
+              </span>
+            </div>
           </h1>
           <p className=" 2x1:px-16 py-0 text-xs underline">Find, Eat, Rate</p>
         </div>

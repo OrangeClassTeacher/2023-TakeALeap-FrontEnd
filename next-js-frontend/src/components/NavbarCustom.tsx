@@ -18,6 +18,17 @@ export const NavbarCustom = () => {
           />
           <p className="p-3 text-xs font-thin">WELCOME TO LYNX</p>
         </Link>
+        <div className="con">
+          <div className="cloud"></div>
+          <div className="rain">
+            {[
+              11, 12, 14, 18, 16, 19, 20, 19, 10, 16, 14, 18, 11, 13, 15, 12,
+              17, 13, 15, 12,
+            ].map((i) => (
+              <span key={i} style={{ "--i": i }}></span>
+            ))}
+          </div>
+        </div>
         <div className=" p-5 hidden md:flex">
           <TbPhoneCall className="mx-2 h-6 " />
           <p className="text-xs font-thin p-1">(976) 99112233</p>
