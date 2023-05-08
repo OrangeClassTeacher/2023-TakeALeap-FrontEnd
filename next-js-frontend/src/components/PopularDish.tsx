@@ -19,7 +19,8 @@ export const PopularDish = ({ data }: { data: [ITopFoods] }) => {
                 key={ind}
                 className={
                   ind == 1 || ind == 4 ? "m-2 mt-16 hidden sm:block " : "m-2"
-                }>
+                }
+              >
                 <div>
                   <Image
                     src={item?.food?.img[0]}
@@ -41,7 +42,6 @@ export const PopularDish = ({ data }: { data: [ITopFoods] }) => {
                     <p>/</p>
                     <p>Review : {item?.count}</p>
                   </div>
-                  <p>Price: {item?.food?.price}</p>
                 </div>
               </div>
             </Link>

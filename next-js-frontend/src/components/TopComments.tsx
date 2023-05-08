@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import coca from "../img/cocaCola.jpeg";
+import coca from "../img/can-pepsi-zero-sugar.png";
 import axios from "axios";
 import cat from "../img/cat.jpeg";
 import { IRestaurant } from "./InterFace";
@@ -8,6 +8,7 @@ import { IUser } from "./InterFace";
 import Starts from "./Stars";
 import Link from "next/link";
 import { IFood } from "./InterFace";
+import pep2 from "../img/pep2.png";
 import Utils from "@/utils/helper";
 interface Icomment {
   _id: string;
@@ -50,7 +51,32 @@ export default function TopComments(): JSX.Element {
     <div className="bg-black text-gray-100 p-5">
       <div className="flex">
         <div className="hidden md:block basis-1/5 border border-gray-900 bg-gray-950 rounded p-5">
-          <Image src={coca} width={300} height={300} alt="advert" />
+          <div className="coke">
+            <div className="card2">
+              <div className="circle"></div>
+              <div className="content">
+                <h2>Pepsi</h2>
+                <p>Amnii tsangaag 10han second</p>
+                <Link className="atag" href="/">
+                  Buy now
+                </Link>
+              </div>
+              <Image src={coca} width={100} height={30} alt="advert" />
+            </div>
+          </div>
+          <div className="coke mt-20">
+            <div className="card2">
+              <div className="circle"></div>
+              <div className="content">
+                <h2>Pepsi</h2>
+                <p>Amnii tsangaag 5han second</p>
+                <Link className="atag" href="/">
+                  Buy now
+                </Link>
+              </div>
+              <Image src={pep2} width={100} height={30} alt="advert" />
+            </div>
+          </div>
         </div>
         <div className="basis-1 md:basis-3/5 ">
           <div className="text-center text-3xl">Recent Comments</div>
@@ -59,7 +85,8 @@ export default function TopComments(): JSX.Element {
               return (
                 <div
                   key={ind}
-                  className="flex p-4  m-4 items-center border-b border-slate-500 ">
+                  className="flex p-4  m-4 items-center border-b border-slate-500 "
+                >
                   <div className="basis-1/12 mx-3">
                     <Image
                       src={cat}
@@ -81,7 +108,8 @@ export default function TopComments(): JSX.Element {
                             item?.restaurantId
                               ? "font-thin text-sm mx-2"
                               : "hidden"
-                          }>
+                          }
+                        >
                           rated
                         </span>
                         <Link
@@ -89,7 +117,8 @@ export default function TopComments(): JSX.Element {
                             item?.restaurantId
                               ? `/restaurant?id=${item?.restaurantId?._id}`
                               : `/`
-                          }>
+                          }
+                        >
                           <span className="hover:text-[#9395d3]">
                             {" "}
                             {item?.restaurantId?.restaurantName}
@@ -100,13 +129,15 @@ export default function TopComments(): JSX.Element {
                             item?.restaurantId
                               ? "font-thin text-sm mx-2"
                               : "hidden"
-                          }>
+                          }
+                        >
                           food
                         </span>
                         <Link
                           href={
                             item?.foodId ? `/food?id=${item?.foodId?._id}` : `/`
-                          }>
+                          }
+                        >
                           <span className="hover:text-[#9395d3]">
                             {" "}
                             {item?.foodId?.foodName}

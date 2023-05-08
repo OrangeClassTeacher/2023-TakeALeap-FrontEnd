@@ -25,7 +25,8 @@ export const NavCateg = () => {
                   path == item.path
                     ? "uppercase text-[#9395d3]"
                     : "uppercase hover:text-[#9395d3]"
-                }>
+                }
+              >
                 {item.name}
               </div>
             </Link>
