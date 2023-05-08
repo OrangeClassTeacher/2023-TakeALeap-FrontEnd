@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { IFood } from "./InterFace";
 import Image from "next/image";
 import axios from "axios";
-import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Utils from "@/utils/helper";
 
 export const DetailPopular = () => {
   const [foods, setFoods] = useState<[IFood]>();
@@ -12,7 +12,7 @@ export const DetailPopular = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/api/restaurantfoods?id=${id}`)
+      .get(`${Utils.API_URL}/restaurantfoods?id=${id}`)
       .then((res) => setFoods(res.data.result))
       .catch((err) => console.log(err));
   });
@@ -41,7 +41,6 @@ export const DetailPopular = () => {
                   {item?.foodName}
                 </h1>
                 <div className="flex justify-between font-thin">
-                 
                   <p>/</p>
                   <p>Type: {item?.foodType}</p>
                 </div>

@@ -5,6 +5,7 @@ import { IFood } from "./InterFace";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
+import Utils from "@/utils/helper";
 
 export const Menu = () => {
   const route = useRouter();
@@ -13,17 +14,17 @@ export const Menu = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/api/restaurantfoods?id=${id}`)
+      .get(`${Utils.API_URL}/restaurantfoods?id=${id}`)
       .then((res) => setFood(res.data.result))
       .catch((err) => console.log(err));
   });
 
   return (
-    <div className="md:mx-20">
+    <div>
       <div className="flex justify-center">
-        <h1 className="text-2xl">MENU</h1>
+        <h1 className="text-2xl m-5">MENU</h1>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 p-5 gap-10 text-white">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10">
         {food?.map((item, ind) => {
           return (
             <Link href={`/food?id=${item._id}`} key={ind}>

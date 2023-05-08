@@ -1,22 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import { IRestaurant } from "../components/InterFace";
-import { FaStar } from "react-icons/fa";
-import axios from "axios";
-import { useRouter } from "next/router";
+import Stars from "./Stars";
 
-export const RestaurantStart = () => {
-  const [restaurant, setRestaurant] = useState<IRestaurant>();
-  const route = useRouter();
-  const { id } = route.query;
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:8080/api/restaurant?id=${id}`)
-      .then((res) => setRestaurant(res.data.result))
-      .catch((err) => console.log(err));
-  });
-
+export const RestaurantStart = ({
+  restaurant,
+}: {
+  restaurant?: IRestaurant;
+}) => {
   let sum = 0;
   let rate = 0;
   let reviewer = 0;
@@ -28,12 +19,12 @@ export const RestaurantStart = () => {
   });
 
   return (
-    <div className="flex  text-white p-10">
+    <div className="flex">
       <div className=" basis-1 lg:basis-2/3">
         <Image
           src={restaurant?.img[0] || ""}
           alt="png"
-          className="w-full"
+          className="w-full max-h-[600px] object-cover"
           width={1000}
           height={1000}
         />
@@ -44,45 +35,23 @@ export const RestaurantStart = () => {
             {restaurant?.restaurantName}{" "}
           </h1>
           <p className="hidden lg:block text-start font-light text-sm">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad deleniti
-            atque velit asperiores amet eaque odio, minima impedit facere omnis
-            sit accusamus ipsum numquam beatae cum aspernatur aliquam nulla
-            repellat.
+            {restaurant?.description}
           </p>
           <div className="flex gap-3 my-3 items-center">
-            <div className="text-yellow-400">
-              {rate == 1 ? (
-                <FaStar />
-              ) : rate == 2 ? (
-                <p className="flex">
-                  <FaStar />
-                  <FaStar />
-                </p>
-              ) : rate == 3 ? (
-                <p className="flex">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                </p>
-              ) : rate == 4 ? (
-                <p className="flex">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                </p>
-              ) : (
-                <p className="flex">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                </p>
-              )}
-            </div>
+            <Stars stars={rate} />
             <p>/</p>
             <p>Reviewer : {reviewer}</p>
+          </div>
+          <div>
+            <p>Schedule</p>
+            <div className="flex text-sm font-light">
+              Mon-Fri: {restaurant?.schedule?.weekday?.open}~
+              {restaurant?.schedule?.weekday?.close} clock
+            </div>
+            <div className="flex text-sm font-light">
+              Weekend: {restaurant?.schedule?.weekday?.open}~
+              {restaurant?.schedule?.weekday?.close} clock
+            </div>
           </div>
         </div>
       </div>

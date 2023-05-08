@@ -2,51 +2,13 @@ import { useEffect, useState } from "react";
 import { NavCateg } from "@/components/NavCateg";
 import { NavbarCustom } from "@/components/NavbarCustom";
 import axios from "axios";
-import { useRouter } from "next/router";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import Image from "next/image";
-import { IRestaurant } from "../../components/InterFace";
-
-const cuisines = [
-  "Chinese",
-  "Korean",
-  "Italian",
-  "Mongolian",
-  "Japanese",
-  "Mexican",
-  "Turkish",
-  "Russian",
-  "Spanish",
-  "Fast food",
-];
-
-const location = [
-  "Багануур",
-  "Багахангай",
-  "Баянгол",
-  "Баянзүрх",
-  "Налайх",
-  "Сонгинохайрхан",
-  "Сүхбаатар",
-  "Хан-Уул",
-  "Чингэлтэй",
-];
-
-interface IData {
-  rowCount: [
-    {
-      restaurant: number;
-    }
-  ];
-  result: [
-    {
-      _id: string;
-      avg_score: number;
-      restaurant: [IRestaurant];
-    }
-  ];
-}
+import { IAllSearchRestaurant } from "../../components/InterFace";
+import Utils from "@/utils/helper";
+import { cuisines } from "@/components/enumValues";
+import { location } from "@/components/enumValues";
 
 const Search = () => {
   const init = {
@@ -57,29 +19,23 @@ const Search = () => {
   };
 
   const [all, setAll] = useState(init);
-  const [data, setData] = useState<IData>();
+  const [data, setData] = useState<IAllSearchRestaurant>();
 
-  useEffect(() => {
+  const getData = () => {
     axios
-      .post(`http://localhost:8080/api/allsearch`, all)
+      .post(`${Utils.API_URL}/allsearch`, all)
       .then((res) => {
         setData(res.data.result);
       })
       .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    getData();
   }, []);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-  };
-
-  const getData = () => {
-    axios
-      .post(`http://localhost:8080/api/allsearch`, all)
-      .then((res) => {
-        setData(res.data.result);
-        console.log(res.data.result);
-      })
-      .catch((err) => console.log(err));
   };
 
   return (

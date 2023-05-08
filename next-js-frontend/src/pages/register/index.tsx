@@ -5,6 +5,7 @@ import { BiArrowBack } from "react-icons/bi";
 import Link from "next/link";
 import axios from "axios";
 import { BiLoader } from "react-icons/bi";
+import Utils from "@/utils/helper";
 
 export default function Register() {
   const init = {
@@ -23,8 +24,6 @@ export default function Register() {
   const [loading, setLoading] = useState(false);
 
   const register = () => {
-    console.log(addUser);
-
     addUser.userName.length < 2 && addUser.name.length < 2
       ? alert("User Name and Name must be longer than 2 character")
       : !addUser.email.includes("@gmail.com")
@@ -39,7 +38,7 @@ export default function Register() {
   const send = () => {
     setLoading(true);
     axios
-      .post("http://localhost:8080/api/register", addUser)
+      .post(`${Utils.API_URL}/register`, addUser)
       .then((res) => {
         setLoading(false);
         if (!res.data.status) {
@@ -224,28 +223,6 @@ export default function Register() {
           CREATE AN ACCOUNT
         </button>
       </div>
-      <div className="flex justify-around my-5 lg:my-8">
-        <div></div>
-        <div className="text-xs md:text-sm lg:text-base font-thin text-slate-400">
-          OR LOGIN WITH
-        </div>
-        <div></div>
-      </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-10 mx-10 md:mx-5 lg:mx-0 my-5 lg:my-8">
-        <div className="flex justify-around md:justify-end">
-          <div className="border rounded-full w-[200px] md:w-[170px] lg:w-[170px] p-2 flex items-baseline justify-center">
-            <FaFacebookF />
-            <p className="pl-1">FACEBOOK</p>
-          </div>
-        </div>
-        <div className="flex justify-around md:justify-start">
-          <div className="border rounded-full w-[200px] md:w-[170px] lg:w-[170px] p-2 flex items-baseline justify-center">
-            <FaGoogle />
-            <p className="pl-1">GOOGLE</p>
-          </div>
-        </div>
-      </div>
-
       <div
         className={
           loading

@@ -1,7 +1,7 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
 
-export default function Starts({ stars }: any): JSX.Element {
+export default function Stars({ stars }: any): JSX.Element {
   return (
     <div className="flex justify-center mt-10 mb-5">
       {stars && stars !== 0 ? (
