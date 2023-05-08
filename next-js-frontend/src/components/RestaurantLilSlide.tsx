@@ -3,6 +3,7 @@ import { IRestaurant } from "./InterFace";
 import { IoIosArrowBack } from "react-icons/io";
 import Image from "next/image";
 import Link from "next/link";
+import VanillaTilt from "vanilla-tilt";
 
 export default function RestaurantLilSlide({ data }: { data: [IRestaurant] }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -55,28 +56,34 @@ export default function RestaurantLilSlide({ data }: { data: [IRestaurant] }) {
             ) {
               return (
                 <Link href={`/restaurant?id=${item._id}`} key={ind}>
-                  <div className="m-2 rounded bg-[#1e1f23] text-white h-[340px] border border-white/20">
-                    <Image
-                      src={item?.img[0]}
-                      width={400}
-                      height={400}
-                      alt="img"
-                      className="rounded"
-                    />
-                    <div className="m-3">
-                      <h1 className="text-md uppercase mt-1 whitespace-wrap">
-                        {item?.restaurantName}
-                      </h1>
-                      <p className="text-sm whitespace-nowrap py-2 font-light">
-                        {item.address.address}
-                      </p>
-                      <div className="flex text-sm font-light">
-                        Mon-Fri: {item?.schedule?.weekday?.open}~
-                        {item?.schedule?.weekday?.close} clock
-                      </div>
-                      <div className="flex text-sm font-light">
-                        Weekend: {item?.schedule?.weekday?.open}~
-                        {item?.schedule?.weekday?.close} clock
+                  <div
+                    className="container andlal card rgb"
+                    ref={cardRef}
+                    style={{ marginBottom: "30px" }}
+                  >
+                    <div className="card-image">
+                      <Image
+                        src={item?.img[0]}
+                        width={400}
+                        height={400}
+                        alt="img"
+                        className="rounded card-image"
+                      />
+                      <div className="card-text">
+                        <h1 className="">{item?.restaurantName}</h1>
+                        <p className="text-sm whitespace-nowrap py-2 font-light">
+                          {item.address.address}
+                        </p>
+
+                        <p>
+                          Mon-Fri: {item?.schedule?.weekday?.open}~
+                          {item?.schedule?.weekday?.close} clock
+                        </p>
+
+                        <p>
+                          Weekend: {item?.schedule?.weekday?.open}~
+                          {item?.schedule?.weekday?.close} clock
+                        </p>
                       </div>
                     </div>
                   </div>
