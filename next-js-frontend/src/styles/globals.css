@@ -481,10 +481,11 @@
   margin: 0 25px;
 }
 
+/* Useredit button hover */
 .sda {
   background: black;
-  width: 200px;
-  height: 50px;
+  width: 100px;
+  height: 40px;
   position: relative;
   border: 1px solid gray;
   font-weight: bold;
@@ -493,6 +494,7 @@
   letter-spacing: 2px;
   color: white;
 }
+
 .sda:before {
   content: "";
   width: 30px;
@@ -529,7 +531,7 @@
   transform: translate(-50%, -50%);
   display: flex;
   color: white;
-  font-size: 2em;
+  font-size: 25px;
 }
 .spam:nth-child(even) {
   letter-spacing: -1em;
