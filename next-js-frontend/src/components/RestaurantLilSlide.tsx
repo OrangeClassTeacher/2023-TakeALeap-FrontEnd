@@ -3,6 +3,7 @@ import { IRestaurant } from "./InterFace";
 import { IoIosArrowBack } from "react-icons/io";
 import Image from "next/image";
 import Link from "next/link";
+import VanillaTilt from "vanilla-tilt";
 
 export default function RestaurantLilSlide({ data }: { data: [IRestaurant] }) {
   const [activeIndex, setActiveIndex] = useState(0);
