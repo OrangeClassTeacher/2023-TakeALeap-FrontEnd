@@ -8,6 +8,7 @@ import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Utils from "@/utils/helper";
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 
 export default function SignIn({
   signIn,
@@ -23,6 +24,7 @@ export default function SignIn({
 
   const route = useRouter();
   const [login, setLogin] = useState(init);
+  const [passwordType, setPasswordType] = useState("password");
 
   const signin = () => {
     axios
@@ -40,14 +42,26 @@ export default function SignIn({
       .catch((err) => console.log("", err));
   };
 
+  const togglePassword = (e: any) => {
+    e.preventDefault();
+
+    if (passwordType === "password") {
+      setPasswordType("text");
+      return;
+    }
+    setPasswordType("password");
+  };
+
   return (
     <div
       className="h-screen w-screen fixed inset-0 overflow-y-auto flex items-center justify-center bg-gray-400/50 z-50"
       onClick={() => setSignIn(!signIn)}
-      style={{ display: signIn ? "flex" : "none" }}>
+      style={{ display: signIn ? "flex" : "none" }}
+    >
       <div
         className="w-[400px] h-[500px] p-4 text-center bg-white rounded text-black p-8"
-        onClick={(e) => e.stopPropagation()}>
+        onClick={(e) => e.stopPropagation()}
+      >
         <div>
           <div className="flex justify-end">
             {" "}
@@ -74,14 +88,21 @@ export default function SignIn({
               onChange={(e) => setLogin({ ...login, email: e.target.value })}
             />
           </div>
-          <div className="rounded border p-3 mb-6">
+          <div className="rounded border p-3 mb-6 flex">
             <input
-              type="text"
+              type={passwordType}
               value={login.password}
               placeholder="Password"
               style={{ outline: "none", width: "100%" }}
               onChange={(e) => setLogin({ ...login, password: e.target.value })}
             />
+            <button onClick={togglePassword}>
+              {passwordType === "password" ? (
+                <AiFillEyeInvisible />
+              ) : (
+                <AiFillEye />
+              )}
+            </button>
           </div>
           <div className="bg-black text-white p-3" onClick={signin}>
             Sign In
