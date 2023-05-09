@@ -539,3 +539,103 @@
 .yma:hover .spam:nth-child(even) {
   letter-spacing: 0;
 }
+
+/* Find restaurants page card */
+
+.jontainer {
+  display: flex;
+}
+.jard {
+  height: 300px;
+  width: 350px;
+  margin: 50px;
+  box-shadow: 5px 5px 20px black;
+  overflow: hidden;
+}
+.doggo {
+  /* height: 400px; */
+  width: 400px;
+  border-radius: 3px;
+  transition: 0.5s;
+}
+.intro {
+  height: 70px;
+  /* width: 400px; */
+  padding: 6px;
+  box-sizing: border-box;
+  position: relative;
+  background: rgb(27, 27, 27, 0.5);
+  color: white;
+  bottom: 230px;
+  transition: 0.5s;
+  overflow: hidden;
+}
+.rest {
+  margin: 10px;
+  font-size: 40px;
+}
+.cheetah {
+  font-size: 20px;
+  margin: 20px;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.chef {
+  font-weight: bold;
+}
+.jard:hover {
+  cursor: pointer;
+}
+.jard:hover .intro {
+  height: 300px;
+  bottom: 200px;
+  background: black;
+}
+.jard:hover p {
+  opacity: 1;
+  visibility: visible;
+}
+.jard:hover .doggo {
+  transform: scale(1.1) rotate(-3deg);
+}
+
+/* Filter button hover */
+.mf {
+  width: 100px;
+  height: 40px;
+  position: relative;
+  border: 1px solid gray;
+  font-weight: bold;
+  display: grid;
+  place-items: center;
+  letter-spacing: 2px;
+  color: white;
+}
+.mf:before {
+  content: "";
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  border-top: 2px solid gray;
+  border-left: 2px solid gray;
+  transition: 1s;
+}
+.mf:after {
+  content: "";
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  border-bottom: 2px solid gray;
+  border-right: 2px solid gray;
+  transition: 1s;
+}
+.mf:hover:before,
+.mf:hover:after {
+  width: calc(100% + 30px);
+  height: calc(100% + 30px);
+}
