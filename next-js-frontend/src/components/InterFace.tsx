@@ -146,6 +146,21 @@ export interface ISearch {
       }
     ];
   };
+  beverage: {
+    rowCountOfBev: number;
+    beverage: [
+      {
+        _id: string | null;
+        beverageName: string;
+        restaurantId: string;
+        price: number;
+        beverageType: string;
+        img: string[];
+        ingredients: string | null;
+        description: string | null;
+      }
+    ];
+  };
 }
 
 export interface Props {
