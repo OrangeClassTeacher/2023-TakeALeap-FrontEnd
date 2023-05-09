@@ -147,7 +147,7 @@ const Search = () => {
               return (
                 <Link href={`/restaurant?id=${item._id}`} key={ind}>
                   <div className="jard">
-                    <div className=" m-2 rounded bg-[#1e1f23] text-white h-[340px] border border-white/20">
+                    <div className="  rounded bg-[#1e1f23] text-white h-[340px] border border-white/20">
                       <Image
                         src={item?.restaurant[0]?.img[0]}
                         width={400}
