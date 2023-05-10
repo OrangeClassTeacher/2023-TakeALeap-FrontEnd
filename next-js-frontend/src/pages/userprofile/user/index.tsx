@@ -3,6 +3,7 @@ import { NavSearch } from "@/components/NavSearch";
 import Footer from "@/pages/food";
 import axios from "axios";
 import Image from "next/image";
+import Utils from "@/utils/helper";
 
 export default function Index() {
   const id = typeof window !== "undefined" ? localStorage.getItem("id") : "";
@@ -25,9 +26,13 @@ export default function Index() {
   const [dataConst, setDataConst] = useState(init);
 
   useEffect(() => {
+    const id = typeof window !== "undefined" ? localStorage.getItem("id") : "";
+    const token =
+      typeof window !== "undefined" ? localStorage.getItem("token") : "";
+
     if (id && token) {
       axios
-        .post(`http://localhost:8080/api/user?id=${id}`, {
+        .post(`${Utils.API_URL}/user?id=${id}`, {
           token: token,
         })
         .then((res) => {
