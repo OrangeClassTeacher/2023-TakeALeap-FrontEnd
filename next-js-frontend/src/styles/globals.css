@@ -550,12 +550,15 @@
 .jard {
   height: 300px;
   width: 350px;
-  margin: 50px;
+  margin: 30px;
   box-shadow: 5px 5px 20px black;
   overflow: hidden;
 }
+.jard img {
+  height: 300px;
+}
 .doggo {
-  /* height: 400px; */
+  height: 300px;
   width: 400px;
   border-radius: 3px;
   transition: 0.5s;
@@ -563,12 +566,12 @@
 .intro {
   height: 70px;
   /* width: 400px; */
-  padding: 6px;
+  padding: 1px;
   box-sizing: border-box;
   position: relative;
   background: rgb(27, 27, 27, 0.5);
   color: white;
-  bottom: 230px;
+  bottom: 300px;
   transition: 0.5s;
   overflow: hidden;
 }
@@ -591,7 +594,7 @@
 }
 .jard:hover .intro {
   height: 300px;
-  bottom: 200px;
+  bottom: 260px;
   background: black;
 }
 .jard:hover p {
@@ -640,4 +643,371 @@
 .mf:hover:after {
   width: calc(100% + 30px);
   height: calc(100% + 30px);
+}
+/* Recent comments */
+.blk {
+  position: relative;
+  margin: 5% auto 0;
+  width: 95%;
+  height: 18%;
+  /* height: 400px; */
+  background: linear-gradient(0deg, black, rgb(44, 43, 43));
+}
+.glow::before,
+.glow::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  background: linear-gradient(
+    45deg,
+    #e6fb04,
+    #ff6600,
+    #00ff66,
+    #00ffff,
+    #ff00ff,
+    #ff0099,
+    #6e0dd0,
+    #ff3300,
+    #099fff
+  );
+  background-size: 400%;
+  width: calc(100% + 5px);
+  height: calc(100% + 5px);
+  z-index: -1;
+  animation: animate 20s linear infinite;
+}
+@keyframes animate {
+  0% {
+    background-position: 0, 0;
+  }
+  50% {
+    background-position: 400%, 0;
+  }
+  100% {
+    background-position: 0, 0;
+  }
+}
+.glow::after {
+  filter: blur(40px);
+}
+
+/* Find foods card hover */
+.jontainer {
+  display: flex;
+}
+.pard {
+  height: 300px;
+  width: 300px;
+  margin: 30px;
+  box-shadow: 5px 5px 20px black;
+  overflow: hidden;
+}
+.poggo {
+  /* height: 400px; */
+  width: 400px;
+  border-radius: 3px;
+  transition: 0.5s;
+}
+.pntro {
+  height: 70px;
+  /* width: 400px; */
+  padding: 6px;
+  box-sizing: border-box;
+  position: relative;
+  background: rgb(27, 27, 27, 0.5);
+  color: white;
+  bottom: 230px;
+  transition: 0.5s;
+  overflow: hidden;
+}
+.pest {
+  margin: 10px;
+  font-size: 40px;
+}
+.pheetah {
+  font-size: 20px;
+  margin: 20px;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.phef {
+  font-weight: bold;
+}
+.pard:hover {
+  cursor: pointer;
+}
+.pard:hover .pntro {
+  height: 300px;
+  bottom: 300px;
+  background: black;
+}
+.pard:hover p {
+  opacity: 1;
+  visibility: visible;
+}
+.pard:hover .poggo {
+  transform: scale(1.1) rotate(-3deg);
+}
+.pard img {
+  height: 300px;
+}
+
+/*  Neon take a leap */
+
+.zox {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.zox h2 {
+  color: #fff;
+  font-size: 2em;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 10px #00b3ff, 0 0 20px #00b3ff, 0 0 40px #00b3ff,
+    0 0 80px #00b3ff, 0 0 120px #00b3ff;
+}
+.lightbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 100%;
+  border-radius: 10px;
+  background: #fff;
+  z-index: 2;
+  box-shadow: 0 0 10px #00b3ff, 0 0 20px #00b3ff, 0 0 40px #00b3ff,
+    0 0 80px #00b3ff, 0 0 120px #00b3ff;
+  animation: animatelightbar 5s linear infinite;
+}
+@keyframes animatelightbar {
+  0%,
+  5% {
+    transform: scaleY(0) translateX(0);
+  }
+  10% {
+    transform: scaleY(1) translateX(0);
+  }
+  90% {
+    transform: scaleY(0) translateX(calc(300px - 10px));
+  }
+  95%,
+  100% {
+    transform: scaleY(0) translateX(calc(600px - 10px));
+  }
+}
+.topLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  animation: animatetopLayer 10s linear infinite;
+}
+@keyframes animatetopLayer {
+  0%,
+  2.5% {
+    transform: translateX(0);
+  }
+  5% {
+    transform: translateX(0);
+  }
+  45% {
+    transform: translateX(100%);
+  }
+  47.5%,
+  50% {
+    transform: translateX(100%);
+  }
+  50.001%,
+  52.5% {
+    transform: translateX(-100%);
+  }
+  55% {
+    transform: translateX(-100%);
+  }
+  95% {
+    transform: translateX(0%);
+  }
+  97.5%,
+  100% {
+    transform: translateX(0%);
+  }
+}
+/* Pages was dissapearing cuz of take a leap */
+.gg {
+  z-index: 1;
+}
+
+/*  top contributers rocket*/
+.scene {
+  position: relative;
+  width: 100%;
+  height: 8vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.scene .rocket {
+  position: relative;
+  animation: animate 0.2s ease infinite;
+}
+@keyframes animate {
+  0% {
+    transform: translateY(-2px);
+  }
+  50% {
+    transform: translateY(2px);
+  }
+}
+.scene .rocket::before {
+  content: "";
+  position: absolute;
+  bottom: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 200px;
+  background: linear-gradient(#00d0ff, transparent);
+}
+.scene .rocket::after {
+  content: "";
+  position: absolute;
+  bottom: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 200px;
+  background: linear-gradient(#00d0ff, transparent);
+  filter: blur(20px);
+}
+
+/* Navbar find eat rate */
+
+.nox {
+  position: relative;
+  width: 300px;
+  height: 30px;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+}
+.nox p {
+  color: #fff;
+  /* font-size: 2em; */
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 5px #00b3ff, 0 0 10px #00b3ff, 0 0 30px #00b3ff,
+    0 0 80px #00b3ff, 0 0 120px #00b3ff;
+}
+.nightbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  border-radius: 10px;
+  background: #fff;
+  z-index: 2;
+  box-shadow: 0 0 10px #00b3ff, 0 0 20px #00b3ff, 0 0 40px #00b3ff,
+    0 0 80px #00b3ff, 0 0 120px #00b3ff;
+  animation: animatenightbar 5s linear infinite;
+}
+@keyframes animatenightbar {
+  0%,
+  5% {
+    transform: scaleY(0) translateX(0);
+  }
+  10% {
+    transform: scaleY(1) translateX(0);
+  }
+  90% {
+    transform: scaleY(0) translateX(calc(300px - 10px));
+  }
+  95%,
+  100% {
+    transform: scaleY(0) translateX(calc(600px - 10px));
+  }
+}
+.nopLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  animation: animatenopLayer 10s linear infinite;
+}
+@keyframes animatenopLayer {
+  0%,
+  2.5% {
+    transform: translateX(0);
+  }
+  5% {
+    transform: translateX(0);
+  }
+  45% {
+    transform: translateX(100%);
+  }
+  47.5%,
+  50% {
+    transform: translateX(100%);
+  }
+  50.001%,
+  52.5% {
+    transform: translateX(-100%);
+  }
+  55% {
+    transform: translateX(-100%);
+  }
+  95% {
+    transform: translateX(0%);
+  }
+  97.5%,
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+/* Navbar bar welcome word */
+
+.animated {
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  background: linear-gradient(to right, #ccc 50%, #ff5858 50%, #cc2e5d);
+  background-size: 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: 0.5s ease-out;
+}
+
+.animated:hover {
+  background-position: -100%;
+}
+
+/* Phone Number */
+
+.janimated {
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  background: linear-gradient(to right, #ccc 50%, #ff5858 50%, #cc2e5d);
+  background-size: 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: 0.5s ease-out;
+}
+
+.janimated:hover {
+  background-position: -100%;
 }

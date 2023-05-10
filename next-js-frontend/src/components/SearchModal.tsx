@@ -16,7 +16,8 @@ export const SearchModal = ({
   return (
     <div
       className="absolute bg-slate-200 top-12 w-[950px] h-[500px] rounded text-black p-10 overflow-scroll z-50"
-      style={{ display: search ? "block" : "none" }}>
+      style={{ display: search ? "block" : "none" }}
+    >
       <div className="absolute right-5 top-5">
         {" "}
         <IoMdClose
@@ -36,7 +37,7 @@ export const SearchModal = ({
             if (ind < 8) {
               return (
                 <Link href={`/food?id=${item._id}`} key={ind}>
-                  <div className="rounded border border-black/20 w-[180px] h-[210px] overflow-hidden">
+                  <div className="rounded border border-black/20 w-[180px] h-[210px] overflow-hidden transition duration-500 hover:scale-110">
                     <div className="flex justify-between">
                       <Image
                         src={item.img[0]}
@@ -61,7 +62,7 @@ export const SearchModal = ({
         </div>
       </div>
       <div>
-        <div className="flex justify-between border-b border-black">
+        <div className="flex justify-between border-b border-black ">
           <h1>Restaurants</h1>
           <p>
             All :{" "}
@@ -75,7 +76,7 @@ export const SearchModal = ({
             if (ind < 8) {
               return (
                 <Link href={`/restaurant?id=${item._id}`} key={ind}>
-                  <div className="rounded border border-black/20 w-[180px] h-[210px] overflow-hidden ">
+                  <div className="rounded border border-black/20 w-[180px] h-[210px] overflow-hidden transition duration-500 hover:scale-110 ">
                     <div className="flex justify-between">
                       <Image
                         src={item.img[0]}
@@ -114,7 +115,7 @@ export const SearchModal = ({
             if (ind < 8) {
               return (
                 <Link href={`/restaurant?id=${item._id}`} key={ind}>
-                  <div className="rounded border border-black/20 w-[180px] h-[210px] overflow-hidden ">
+                  <div className="rounded border border-black/20 w-[180px] h-[210px] overflow-hidden transition duration-500 hover:scale-110 ">
                     <div className="flex justify-between">
                       <Image
                         src={item.img[0]}

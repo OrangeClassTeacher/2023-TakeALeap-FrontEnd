@@ -62,7 +62,7 @@ export default function SignIn({
       style={{ display: signIn ? "flex" : "none" }}
     >
       <div
-        className="w-[400px] h-[500px] p-4 text-center bg-white rounded text-black p-8"
+        className="w-[400px] h-[500px] p-4 text-center bg-white rounded text-black"
         onClick={(e) => e.stopPropagation()}
       >
         <div>

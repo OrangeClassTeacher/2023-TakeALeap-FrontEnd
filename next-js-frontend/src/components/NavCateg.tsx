@@ -16,7 +16,7 @@ export const NavCateg = () => {
 
   return (
     <div>
-      <div className="flex justify-evenly font-thin text-sm  p-5 hidden md:flex">
+      <div className="flex justify-evenly font-thin text-sm  p-5 md:flex">
         {list.map((item, ind) => {
           return (
             <Link key={ind} href={`${item.path}`}>

@@ -48,7 +48,8 @@ const Search = () => {
                 id="meal"
                 value={all.meal}
                 onChange={(e) => setAll({ ...all, meal: e.target.value })}
-                className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-white text-black">
+                className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-white text-black"
+              >
                 <option value="all">All</option>
                 {meal.map((item, ind) => {
                   return (
@@ -68,7 +69,8 @@ const Search = () => {
                 id="rating"
                 value={all.rate}
                 onChange={(e) => setAll({ ...all, rate: e.target.value })}
-                className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-white text-black">
+                className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-white text-black"
+              >
                 <option value="all">All</option>
                 <option value="one">over 1</option>
                 <option value="two">over2</option>
@@ -111,8 +113,9 @@ const Search = () => {
             <div className="flex justify-center py-3">
               <button
                 type="submit"
-                className="bg-gray-400 hover:bg-gray-600 py-2 px-10 rounded-md text-black focus:outline-none mt-4 "
-                onClick={() => getData()}>
+                className="bg-gray-400 hover:bg-gray-600  rounded-md text-black focus:outline-none mt-4 mf"
+                onClick={() => getData()}
+              >
                 Filter
               </button>
             </div>
@@ -133,7 +136,8 @@ const Search = () => {
                   <button
                     type="submit"
                     className="bg-gray-400 hover:bg-gray-600 py-2 px-5 rounded-md text-black focus:outline-none"
-                    onClick={() => getData()}>
+                    onClick={() => getData()}
+                  >
                     Search
                   </button>
                 </div>
@@ -147,21 +151,21 @@ const Search = () => {
             {data?.result?.map((item, ind) => {
               return (
                 <Link href={`/food?id=${item._id}`} key={ind}>
-                  <div className="m-2 rounded bg-white text-black">
-                    <div className="w-full h-[200px] overflow-hidden objec-cover">
+                  <div className="m-2 rounded bg-white text-black pard">
+                    <div className="w-full h-[460px] overflow-hidden object-cover">
                       <Image
                         src={item?.foods?.img[0]}
                         width={400}
                         height={400}
                         alt="img"
-                        className="rounded object-cover"
+                        className="rounded object-cover poggo"
                       />
                     </div>
-                    <div className="text-center">
-                      <h1 className=" text-md uppercase m-1">
+                    <div className="text-center pntro">
+                      <h1 className=" text-md uppercase m-1 chef">
                         {item?.foods.foodName}
                       </h1>
-                      <p className="pb-2">Price : {item?.foods.price}</p>
+                      <p className="pb-2 chef">Price : {item?.foods.price}</p>
                     </div>
                   </div>
                 </Link>

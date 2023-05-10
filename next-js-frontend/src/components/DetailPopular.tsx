@@ -18,7 +18,7 @@ export const DetailPopular = () => {
   });
 
   return (
-    <div className="md:px-20 text-gray-900">
+    <div className="md:px-20 text-gray-900 ">
       <div className="grid grid-cols-2 sm:grid-cols-3 p-5 text-white">
         {foods?.map((item, ind) => {
           return (
@@ -26,12 +26,13 @@ export const DetailPopular = () => {
               key={ind}
               className={
                 ind == 1 || ind == 4 ? "m-2 mt-16 hidden sm:block " : "m-2"
-              }>
-              <div>
+              }
+            >
+              <div className="">
                 <Image
                   src={item?.img[0] || ""}
                   alt="img"
-                  className="w-full h-[300px] object-cover "
+                  className="w-full h-[300px] object-cover"
                   width={200}
                   height={200}
                 />

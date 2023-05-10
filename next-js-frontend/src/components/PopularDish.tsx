@@ -6,7 +6,7 @@ import Stars from "./Stars";
 
 export const PopularDish = ({ data }: { data: [ITopFoods] }) => {
   return (
-    <div className="md:px-20 bg-black text-gray-900 text-white">
+    <div className="md:px-20 bg-black text-white">
       <h1 className="text-3xl uppercase text-center">Most popular </h1>
       <Link href={`/findfoods`}>
         <p className="text-end hover:text-[#9395d3]">See all</p>

@@ -16,7 +16,7 @@ export const NavbarCustom = () => {
             height={80}
             className="w-10 h-10 rounded-full object-cover"
           />
-          <p className="p-3 text-xs font-thin">WELCOME TO LYNX</p>
+          <p className="p-3 text-xs font-thin animated">WELCOME TO LYNX</p>
         </Link>
         {/* <div className="con">
           <div className="cloud"></div>
@@ -31,11 +31,11 @@ export const NavbarCustom = () => {
         </div> */}
         <div className=" p-5 hidden md:flex">
           <TbPhoneCall className="mx-2 h-6 " />
-          <p className="text-xs font-thin p-1">(976) 99112233</p>
+          <p className="text-xs font-thin p-1 janimated mr-5">(976) 99112233</p>
           <GrFacebook className="mx-2 h-6 hover:text-sky-500" />
-          <GrInstagram className="mx-2 h-6 hover:text-sky-500" />
-          <GrYoutube className="mx-2 h-6 hover:text-sky-500" />
-          <GrLinkedin className="mx-2 h-6 hover:text-sky-500" />
+          <GrInstagram className="mx-2 h-6 hover:text-yellow-600" />
+          <GrYoutube className="mx-2 h-6 hover:text-red-600" />
+          <GrLinkedin className="mx-2 h-6 hover:text-sky-600" />
         </div>
         <div className="flex md:hidden gap-5">
           <p>SIGN IN</p>
