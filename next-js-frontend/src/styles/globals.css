@@ -483,11 +483,11 @@
 
 .sda {
   background: black;
-  width: 200px;
-  height: 50px;
+  width: 100px;
+  height: 40px;
   position: relative;
   border: 1px solid gray;
-  font-weight: bold;
+  font-weight: semibold;
   display: grid;
   place-items: center;
   letter-spacing: 2px;

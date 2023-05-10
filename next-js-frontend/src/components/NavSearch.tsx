@@ -11,6 +11,9 @@ import { ISearch } from "./InterFace";
 import { useRouter } from "next/router";
 import Utils from "@/utils/helper";
 import { SearchModal } from "./SearchModal";
+import Image from "next/image";
+import { IUser } from "./InterFace";
+import cat from "../img/cat.jpeg";
 
 export const NavSearch = () => {
   const [signIn, setSignIn] = useState<boolean>(false);
@@ -18,6 +21,7 @@ export const NavSearch = () => {
   const [searchInput, setSearchInput] = useState("");
   const [data, setData] = useState<ISearch>();
   const [localToken, setLocalToken] = useState<String>("");
+  const [user, setUser] = useState<IUser>();
   const route = useRouter();
 
   useEffect(() => {
@@ -40,15 +44,14 @@ export const NavSearch = () => {
 
   return (
     <div>
-      <div className=" px-4 justify-between items-center hidden md:flex">
+      <div className="py-2 px-4 justify-between items-center hidden md:flex">
         <div className="basis-1/6">
           <h1 className="flex justify-between items-center text-4xl font-light">
-            <div className="lynx">
-              <span>
-                {" "}
-                <Link href={"/"}>LYNX</Link>
-              </span>
-            </div>
+            <Link href={"/"}>
+              <div className="lynx">
+                <span>LYNX</span>
+              </div>
+            </Link>
           </h1>
           <p className=" 2x1:px-16 py-0 text-xs underline">Find, Eat, Rate</p>
         </div>
@@ -76,42 +79,53 @@ export const NavSearch = () => {
         </div>
 
         <div className="basis-1/6 flex items-center gap-2 mx-2 justify-end font-light text-sm ">
-          <p className="text-4xl">
-            <VscAccount />
-          </p>
           {localToken?.length > 1 ? (
-            <div className="mr-10">
-              <p
-                className="hover:text-[#9395d3] cursor-pointer"
-                onClick={() => route.push("/userprofile")}>
-                {localStorage.getItem("name")}
-              </p>
-              <Link href={"/"}>
+            <div className="flex items-center gap-3">
+              <Image
+                src={user?.img[0] ? user?.img[0] : cat}
+                alt="profile"
+                width={50}
+                height={50}
+                className="w-[50px] h-[50px] rounded-full object-cover"
+              />
+              <div className="mr-10">
                 <p
-                  className="cursor-pointer hover:text-[#9395d3]"
-                  onClick={() => {
-                    if (confirm("Log out")) {
-                      localStorage.clear();
-                      setLocalToken("");
-                    }
-                  }}>
-                  Log Out
+                  className="hover:text-[#9395d3] cursor-pointer uppercase"
+                  onClick={() => route.push("/userprofile")}>
+                  {localStorage.getItem("name")}
                 </p>
-              </Link>
+                <Link href={"/"}>
+                  <p
+                    className="cursor-pointer hover:text-[#9395d3]"
+                    onClick={() => {
+                      if (confirm("Log out")) {
+                        localStorage.clear();
+                        setLocalToken("");
+                      }
+                    }}>
+                    LOG OUT
+                  </p>
+                </Link>
+              </div>
             </div>
           ) : (
-            <div className="uppercase">
-              <p
-                className="hover:text-[#9395d3] cursor-pointer"
-                onClick={() => {
-                  setSignIn(!signIn);
-                }}>
-                sign in
+            <div className="flex items-center gap-3">
+              <p className="text-4xl">
+                <VscAccount />
               </p>
-              <Link href={"/register"}>
-                {" "}
-                <p className="hover:text-[#9395d3]">create account</p>
-              </Link>
+              <div className="uppercase">
+                <p
+                  className="hover:text-[#9395d3] cursor-pointer"
+                  onClick={() => {
+                    setSignIn(!signIn);
+                  }}>
+                  sign in
+                </p>
+                <Link href={"/register"}>
+                  {" "}
+                  <p className="hover:text-[#9395d3]">create account</p>
+                </Link>
+              </div>
             </div>
           )}
         </div>
@@ -129,7 +143,7 @@ export const NavSearch = () => {
         </div>
       </div>
       <div style={{ display: signIn ? "block" : "none" }}>
-        <SignIn signIn={signIn} setSignIn={setSignIn} />
+        <SignIn signIn={signIn} setSignIn={setSignIn} setUser={setUser} />
       </div>
     </div>
   );

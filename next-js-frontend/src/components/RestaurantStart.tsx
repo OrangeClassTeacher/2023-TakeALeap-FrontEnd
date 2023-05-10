@@ -12,12 +12,6 @@ export const RestaurantStart = ({
   let rate = 0;
   let reviewer = 0;
 
-  restaurant?.restaurantRate?.map((item, ind) => {
-    sum += item.score;
-    rate = Math.floor(sum / (ind + 1));
-    reviewer = ind + 1;
-  });
-
   return (
     <div className="flex">
       <div className=" basis-1 lg:basis-2/3">
@@ -31,6 +25,17 @@ export const RestaurantStart = ({
       </div>
       <div className=" basis-1 lg:basis-1/3 flex justify-around">
         <div className="font-3xl md:font-2xl lg:w-96 mt-44">
+          <div className="con">
+            <div className="cloud"></div>
+            <div className="rain">
+              {[
+                11, 12, 14, 18, 16, 19, 20, 19, 10, 16, 14, 18, 11, 13, 15, 12,
+                17, 13, 15, 12,
+              ].map((i) => (
+                <span key={i} style={{ "--i": i }}></span>
+              ))}
+            </div>
+          </div>
           <h1 className="m-5 text-3xl uppercase">
             {restaurant?.restaurantName}{" "}
           </h1>
@@ -38,7 +43,7 @@ export const RestaurantStart = ({
             {restaurant?.description}
           </p>
           <div className="flex gap-3 my-3 items-center">
-            <Stars stars={rate} />
+            {/* <Stars stars={rate} /> */}
             <p>/</p>
             <p>Reviewer : {reviewer}</p>
           </div>
