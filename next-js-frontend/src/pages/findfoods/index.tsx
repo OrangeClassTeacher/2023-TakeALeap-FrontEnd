@@ -113,7 +113,7 @@ const Search = () => {
             <div className="flex justify-center py-3">
               <button
                 type="submit"
-                className="bg-gray-400 hover:bg-gray-600 py-2 px-10 rounded-md text-black focus:outline-none mt-4 "
+                className="bg-gray-400 hover:bg-gray-600  rounded-md text-black focus:outline-none mt-4 mf"
                 onClick={() => getData()}
               >
                 Filter

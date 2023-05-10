@@ -10,6 +10,7 @@ import Link from "next/link";
 import { IFood } from "./InterFace";
 import pep2 from "../img/pep2.png";
 import Utils from "@/utils/helper";
+import rocket from "../img/rocket.png";
 interface Icomment {
   _id: string;
   restaurantId: IRestaurant;
@@ -160,6 +161,17 @@ export default function TopComments(): JSX.Element {
         <div className="hidden md:block basis-1/5 border border-gray-900 bg-gray-950 rounded p-5 h-full">
           <div>
             <h1 className="text-xl text-center">Top Contritors</h1>
+            <div className="scene">
+              <div className="rocket">
+                <Image
+                  src={rocket}
+                  alt="rocket"
+                  className="w-full h-[30px] object-cover"
+                  width={20}
+                  height={20}
+                />
+              </div>
+            </div>
           </div>
           <div>
             {topConterbuter?.map((item, ind) => {
