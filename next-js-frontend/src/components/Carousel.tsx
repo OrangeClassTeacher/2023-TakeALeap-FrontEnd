@@ -46,7 +46,7 @@ export default function Carousel({ items }: { items: [ITopRestaurant] }) {
             </button>
           )}
           <Image
-            src={items[activeIndex]?.restaurant[0].img[0]}
+            src={items[activeIndex]?.restaurant[0]?.img[0]}
             key={1}
             width={1000}
             height={700}
@@ -70,24 +70,26 @@ export default function Carousel({ items }: { items: [ITopRestaurant] }) {
         <div className="absolute  top-0 z-20 w-[75%]  h-full flex justify-around items-center text-white">
           <div className=" bg-black/75 w-[50%] rounded-lg h-[50%] p-5 text-center ">
             <div className="text-4xl flex justify-around">
-              <h1>{items[activeIndex].restaurant[0].restaurantName}</h1>
+              <h1>{items[activeIndex]?.restaurant[0]?.restaurantName}</h1>
             </div>
             <div className="flex items-center gap-5 justify-center">
-              <Starts stars={items[activeIndex].avg} />
+              <Starts stars={items[activeIndex]?.avg} />
               <p>/</p>
               <p> Reviewers: {items[activeIndex].count}</p>
             </div>
             <p>
-              Mon-Fri : {items[activeIndex].restaurant[0].schedule.weekday.open}
-              ~ {items[activeIndex].restaurant[0].schedule.weekday.close}
+              Mon-Fri :{" "}
+              {items[activeIndex]?.restaurant[0]?.schedule.weekday.open}~{" "}
+              {items[activeIndex]?.restaurant[0]?.schedule.weekday.close}
             </p>
             <p>
-              Weekend : {items[activeIndex].restaurant[0].schedule.weekend.open}
-              ~ {items[activeIndex].restaurant[0].schedule.weekend.close}
+              Weekend :{" "}
+              {items[activeIndex]?.restaurant[0]?.schedule.weekend.open}~{" "}
+              {items[activeIndex]?.restaurant[0]?.schedule.weekend.close}
             </p>
-            <p>{items[activeIndex].restaurant[0].address.address}</p>
-            <p>{items[activeIndex].restaurant[0].cuisineType}</p>
-            <p>{items[activeIndex].restaurant[0].contact.phone}</p>
+            <p>{items[activeIndex]?.restaurant[0]?.address.address}</p>
+            <p>{items[activeIndex]?.restaurant[0]?.cuisineType}</p>
+            <p>{items[activeIndex]?.restaurant[0]?.contact.phone}</p>
           </div>
         </div>
       </div>
