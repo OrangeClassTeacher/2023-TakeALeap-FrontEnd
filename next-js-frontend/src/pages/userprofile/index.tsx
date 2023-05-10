@@ -34,6 +34,10 @@ export default function Userprofile() {
   const [active, setActive] = useState(1);
 
   useEffect(() => {
+    const id = typeof window !== "undefined" ? localStorage.getItem("id") : "";
+    const token =
+      typeof window !== "undefined" ? localStorage.getItem("token") : "";
+
     if (id && token) {
       axios
         .post(`http://localhost:8080/api/user?id=${id}`, {

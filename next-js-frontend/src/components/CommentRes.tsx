@@ -33,6 +33,7 @@ const CommentRes = () => {
   const [showAllCom, setShowAllCom] = useState<boolean>(false);
   const [signIn, SetSignIn] = useState<boolean>(false);
   const [rate, setRate] = useState<number>(0);
+  const [user, setUser] = useState();
 
   const getData = () => {
     axios
@@ -72,7 +73,7 @@ const CommentRes = () => {
 
   return (
     <div className="border-t mt-5">
-      <SignIn signIn={signIn} setSignIn={SetSignIn} />
+      <SignIn signIn={signIn} setSignIn={SetSignIn} setUser={setUser} />
       <div className="grid grid-cols-1 md:grid-cols-2 m-5">
         <div>
           <div>
