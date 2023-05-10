@@ -641,3 +641,112 @@
   width: calc(100% + 30px);
   height: calc(100% + 30px);
 }
+/* Recent comments */
+.blk {
+  position: relative;
+  margin: 5% auto 0;
+  width: 95%;
+  height: 18%;
+  /* height: 400px; */
+  background: linear-gradient(0deg, black, rgb(44, 43, 43));
+}
+.glow::before,
+.glow::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  background: linear-gradient(
+    45deg,
+    #e6fb04,
+    #ff6600,
+    #00ff66,
+    #00ffff,
+    #ff00ff,
+    #ff0099,
+    #6e0dd0,
+    #ff3300,
+    #099fff
+  );
+  background-size: 400%;
+  width: calc(100% + 5px);
+  height: calc(100% + 5px);
+  z-index: -1;
+  animation: animate 20s linear infinite;
+}
+@keyframes animate {
+  0% {
+    background-position: 0, 0;
+  }
+  50% {
+    background-position: 400%, 0;
+  }
+  100% {
+    background-position: 0, 0;
+  }
+}
+.glow::after {
+  filter: blur(40px);
+}
+
+/* Find foods card hover */
+.jontainer {
+  display: flex;
+}
+.pard {
+  height: 300px;
+  width: 300px;
+  margin: 30px;
+  box-shadow: 5px 5px 20px black;
+  overflow: hidden;
+}
+.poggo {
+  /* height: 400px; */
+  width: 400px;
+  border-radius: 3px;
+  transition: 0.5s;
+}
+.pntro {
+  height: 70px;
+  /* width: 400px; */
+  padding: 6px;
+  box-sizing: border-box;
+  position: relative;
+  background: rgb(27, 27, 27, 0.5);
+  color: white;
+  bottom: 230px;
+  transition: 0.5s;
+  overflow: hidden;
+}
+.pest {
+  margin: 10px;
+  font-size: 40px;
+}
+.pheetah {
+  font-size: 20px;
+  margin: 20px;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.phef {
+  font-weight: bold;
+}
+.pard:hover {
+  cursor: pointer;
+}
+.pard:hover .pntro {
+  height: 300px;
+  bottom: 300px;
+  background: black;
+}
+.pard:hover p {
+  opacity: 1;
+  visibility: visible;
+}
+.pard:hover .poggo {
+  transform: scale(1.1) rotate(-3deg);
+}
+.pard img {
+  height: 300px;
+}

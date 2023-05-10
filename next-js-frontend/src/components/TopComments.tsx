@@ -78,14 +78,14 @@ export default function TopComments(): JSX.Element {
             </div>
           </div>
         </div>
-        <div className="basis-1 md:basis-3/5 ">
+        <div className="basis-1 md:basis-3/5">
           <div className="text-center text-3xl">Recent Comments</div>
           <div className="m-0 md:mx-20 h-[600px] overflow-scroll">
             {lastComments?.map((item, ind) => {
               return (
                 <div
                   key={ind}
-                  className="flex p-4  m-4 items-center border-b border-slate-500 "
+                  className="flex p-4 m-4 items-center border-b border-slate-500 blk glow "
                 >
                   <div className="basis-1/12 mx-3">
                     <Image
