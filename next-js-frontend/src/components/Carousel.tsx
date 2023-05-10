@@ -1,19 +1,10 @@
 import React, { useState } from "react";
 import { IoIosArrowBack } from "react-icons/io";
 import Image from "next/image";
-import { IRestaurant } from "./InterFace";
+import { ITopRestaurant } from "./InterFace";
 import Starts from "./Stars";
 
-interface myProps {
-  _id: {
-    restaurantId: string;
-  };
-  count: number;
-  restaurant: [IRestaurant];
-  avg_score: number;
-}
-
-export default function Carousel({ items }: { items: [myProps] }) {
+export default function Carousel({ items }: { items: [ITopRestaurant] }) {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
 
@@ -44,20 +35,18 @@ export default function Carousel({ items }: { items: [myProps] }) {
   return (
     <div
       className="flex justify-around bg-black relative w3-animate-right"
-      id="carso"
-    >
+      id="carso">
       <div className="flex justify-around">
         <div className="h-full relative  delay-75 ">
           {activeIndex > 0 && (
             <button
               className="bg-white z-10 left-0 absolute text-2xl rounded-full p-2 top-[50%]  m-5 "
-              onClick={handlePrevItemBtn}
-            >
+              onClick={handlePrevItemBtn}>
               <IoIosArrowBack />
             </button>
           )}
           <Image
-            src={items[activeIndex]?.restaurant[0].img[0]}
+            src={items[activeIndex]?.restaurant[0]?.img[0]}
             key={1}
             width={1000}
             height={700}
@@ -69,8 +58,7 @@ export default function Carousel({ items }: { items: [myProps] }) {
           {activeIndex < items.length - 1 && (
             <button
               className="bg-white z-10 right-0 absolute text-2xl rounded-full p-2 top-[50%] m-5 "
-              onClick={handleNextItemBtn}
-            >
+              onClick={handleNextItemBtn}>
               <IoIosArrowBack
                 style={{
                   transform: "rotate(180deg)",
@@ -82,24 +70,26 @@ export default function Carousel({ items }: { items: [myProps] }) {
         <div className="absolute  top-0 z-20 w-[75%]  h-full flex justify-around items-center text-white">
           <div className=" bg-black/75 w-[50%] rounded-lg h-[50%] p-5 text-center ">
             <div className="text-4xl flex justify-around">
-              <h1>{items[activeIndex].restaurant[0].restaurantName}</h1>
+              <h1>{items[activeIndex]?.restaurant[0]?.restaurantName}</h1>
             </div>
             <div className="flex items-center gap-5 justify-center">
-              <Starts stars={items[activeIndex].avg_score} />
+              <Starts stars={items[activeIndex]?.avg} />
               <p>/</p>
               <p> Reviewers: {items[activeIndex].count}</p>
             </div>
             <p>
-              Mon-Fri : {items[activeIndex].restaurant[0].schedule.weekday.open}
-              ~ {items[activeIndex].restaurant[0].schedule.weekday.close}
+              Mon-Fri :{" "}
+              {items[activeIndex]?.restaurant[0]?.schedule.weekday.open}~{" "}
+              {items[activeIndex]?.restaurant[0]?.schedule.weekday.close}
             </p>
             <p>
-              Weekend : {items[activeIndex].restaurant[0].schedule.weekend.open}
-              ~ {items[activeIndex].restaurant[0].schedule.weekend.close}
+              Weekend :{" "}
+              {items[activeIndex]?.restaurant[0]?.schedule.weekend.open}~{" "}
+              {items[activeIndex]?.restaurant[0]?.schedule.weekend.close}
             </p>
-            <p>{items[activeIndex].restaurant[0].address.address}</p>
-            <p>{items[activeIndex].restaurant[0].cuisineType}</p>
-            <p>{items[activeIndex].restaurant[0].contact.phone}</p>
+            <p>{items[activeIndex]?.restaurant[0]?.address.address}</p>
+            <p>{items[activeIndex]?.restaurant[0]?.cuisineType}</p>
+            <p>{items[activeIndex]?.restaurant[0]?.contact.phone}</p>
           </div>
         </div>
       </div>

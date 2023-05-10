@@ -28,7 +28,6 @@ export default function Restaurant() {
       <Header />
       <div className="bg-black text-white">
         <RestaurantStart restaurant={restaurant} />
-        {/* <DetailPopular /> */}
         <div className="px-32 py-10">
           <Menu />
           <RestaurantInfo restaurant={restaurant} />

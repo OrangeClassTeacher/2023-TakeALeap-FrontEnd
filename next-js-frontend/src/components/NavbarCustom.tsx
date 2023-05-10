@@ -7,7 +7,7 @@ import { GrFacebook, GrInstagram, GrYoutube, GrLinkedin } from "react-icons/gr";
 export const NavbarCustom = () => {
   return (
     <div className="text-white">
-      <div className="flex justify-between items-center w-full h-full px-4 py-2 2x1:px-16">
+      <div className="flex justify-between items-center w-full h-full px-4  2x1:px-16">
         <Link href={"/"} className="flex align-middle">
           <Image
             src={require("../img/logo.jpg")}
@@ -18,7 +18,7 @@ export const NavbarCustom = () => {
           />
           <p className="p-3 text-xs font-thin">WELCOME TO LYNX</p>
         </Link>
-        <div className="con">
+        {/* <div className="con">
           <div className="cloud"></div>
           <div className="rain">
             {[
@@ -28,7 +28,7 @@ export const NavbarCustom = () => {
               <span key={i} style={{ "--i": i }}></span>
             ))}
           </div>
-        </div>
+        </div> */}
         <div className=" p-5 hidden md:flex">
           <TbPhoneCall className="mx-2 h-6 " />
           <p className="text-xs font-thin p-1">(976) 99112233</p>

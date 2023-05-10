@@ -149,7 +149,7 @@ const Search = () => {
                   <div className="jard">
                     <div className="  rounded bg-[#1e1f23] text-white h-[340px] border border-white/20">
                       <Image
-                        src={item?.restaurant[0]?.img[0]}
+                        src={item?.restaurant?.img[0]}
                         width={400}
                         height={400}
                         alt="img"
@@ -158,25 +158,23 @@ const Search = () => {
                       <div className="intro">
                         <div className="m-3 ">
                           <h1 className="rest">
-                            {item?.restaurant[0].restaurantName}
+                            {item?.restaurant?.restaurantName}
                           </h1>
                           <p className="cheetah">
                             <span className="chef">
-                              {item.restaurant[0].address.address}
+                              {item.restaurant?.address.address}
                             </span>
                           </p>
                           <div className="flex text-sm font-light">
                             <span className="chef">
-                              Mon-Fri:{" "}
-                              {item.restaurant[0].schedule.weekday.open}~
-                              {item.restaurant[0].schedule.weekday.close} clock
+                              Mon-Fri: {item.restaurant?.schedule.weekday.open}~
+                              {item.restaurant?.schedule.weekday.close} clock
                             </span>
                           </div>
                           <div className="flex text-sm font-light">
                             <span className="chef">
-                              Weekend:{" "}
-                              {item.restaurant[0].schedule.weekday.open}~
-                              {item.restaurant[0].schedule.weekday.close} clock
+                              Weekend: {item.restaurant?.schedule.weekday.open}~
+                              {item.restaurant?.schedule.weekday.close} clock
                             </span>
                           </div>
                         </div>

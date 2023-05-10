@@ -29,7 +29,7 @@ export default function index(props: {
 
 export async function getServerSideProps() {
   const TopRestaurant = await axios
-    .get(`${Utils.API_URL}/toprestaurants`)
+    .get(`${Utils.API_URL}/toprestaurant`)
     .catch((err) => console.log(err));
 
   const TopFood = await axios

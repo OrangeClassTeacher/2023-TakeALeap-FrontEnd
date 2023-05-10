@@ -11,14 +11,6 @@ export interface IRestaurant {
       coordinates: number[];
     };
   };
-  restaurantRate: [
-    {
-      rateType: string;
-      userId: string;
-      score: number;
-      comment: string;
-    }
-  ];
   cuisineType: string[];
   contact: {
     phone: number;
@@ -74,6 +66,7 @@ export interface IUser {
   userType: string;
   img: string[];
   createdAt: string;
+  token?: string | null;
 }
 
 export interface ITopFoods {
@@ -130,19 +123,25 @@ export interface ISearch {
         };
         _id: string;
         restaurantName: string;
-        restaurantRate: [
-          {
-            rateType: string;
-            userId: string;
-            score: number;
-            comment: string;
-            _id: string;
-          }
-        ];
         cuisineType: [string];
         email: string;
         img: [string];
         logoImg: string;
+      }
+    ];
+  };
+  beverage: {
+    rowCountOfBev: number;
+    beverage: [
+      {
+        _id: string | null;
+        beverageName: string;
+        restaurantId: string;
+        price: number;
+        beverageType: string;
+        img: string[];
+        ingredients: string | null;
+        description: string | null;
       }
     ];
   };
@@ -172,12 +171,10 @@ export interface IExplore {
 }
 
 export interface ITopRestaurant {
-  _id: {
-    restaurantId: string;
-  };
+  _id: string;
+  avg: number;
   count: number;
   restaurant: [IRestaurant];
-  avg_score: number;
 }
 export interface IAllSearchFood {
   rowCount: [
@@ -195,16 +192,17 @@ export interface IAllSearchFood {
 }
 
 export interface IAllSearchRestaurant {
-  rowCount: [
-    {
-      restaurant: number;
-    }
-  ];
   result: [
     {
       _id: string;
+      count: number;
       avg_score: number;
-      restaurant: [IRestaurant];
+      restaurant: IRestaurant;
+    }
+  ];
+  rowCount: [
+    {
+      restaurant: number;
     }
   ];
 }

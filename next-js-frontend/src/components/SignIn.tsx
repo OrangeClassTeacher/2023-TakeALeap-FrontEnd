@@ -13,9 +13,11 @@ import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 export default function SignIn({
   signIn,
   setSignIn,
+  setUser,
 }: {
   signIn: boolean;
   setSignIn: Dispatch<SetStateAction<boolean>>;
+  setUser: any;
 }) {
   const init = {
     email: "",
@@ -34,6 +36,7 @@ export default function SignIn({
           localStorage.setItem("name", res.data.data.userName);
           localStorage.setItem("id", res.data.data._id);
           localStorage.setItem("token", res.data.token);
+          setUser(res.data.data);
           setSignIn(!signIn);
         } else {
           alert("error");
