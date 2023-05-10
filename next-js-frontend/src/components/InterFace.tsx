@@ -197,7 +197,7 @@ export interface IAllSearchRestaurant {
       _id: string;
       count: number;
       avg_score: number;
-      restaurant: IRestaurant;
+      restaurant: IRestaurant[];
     }
   ];
   rowCount: [
