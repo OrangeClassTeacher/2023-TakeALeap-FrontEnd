@@ -101,6 +101,43 @@ export const SearchModal = ({
           })}
         </div>
       </div>
+      <div>
+        <div className="flex justify-between border-b border-black">
+          <h1>Beverages</h1>
+          <p>
+            All :{" "}
+            {data?.beverage.rowCountOfBev ? data?.beverage.rowCountOfBev : 0}
+          </p>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 p-10 gap-5">
+          {data?.beverage?.beverage.map((item, ind) => {
+            if (ind < 8) {
+              return (
+                <Link href={`/restaurant?id=${item._id}`} key={ind}>
+                  <div className="rounded border border-black/20 w-[180px] h-[210px] overflow-hidden ">
+                    <div className="flex justify-between">
+                      <Image
+                        src={item.img[0]}
+                        width={150}
+                        height={140}
+                        alt="img"
+                        className="rounded w-[180px] h-[140px] object-cover"
+                      />
+                    </div>
+                    <div className="m-2">
+                      <h1 className="text-xs font-semibold uppercase mt-1 whitespace-nowrap">
+                        {item.beverageName}
+                      </h1>
+                      <p className="text-xs">{item.beverageType}</p>
+                      <p className="text-xs font-semibold">{item.price} ₮</p>
+                    </div>
+                  </div>
+                </Link>
+              );
+            }
+          })}
+        </div>
+      </div>
     </div>
   );
 };
