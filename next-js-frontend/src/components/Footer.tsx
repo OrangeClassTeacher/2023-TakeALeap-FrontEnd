@@ -13,7 +13,7 @@ function Footer() {
     <>
       <div className="bg-black text-gray-200 h-1/2 w-full flex md:flex-row flex-col justify-around items-start px-20 py-5">
         <div className="p-5 ">
-          <ul>
+          <ul className="">
             <div className="zox">
               <div className="lightbar"></div>
               <div className="topLayer"></div>
@@ -27,27 +27,18 @@ function Footer() {
             </div>
           </ul>
         </div>
-        <div className="p-5 gg">
+        <div className="p-5 z-10">
           <ul className="font-light">
             <p className=" font-normal text-2xl pb-4">Pages</p>
             {cate.map((item, ind) => {
               return (
                 <li
                   key={ind}
-                  className="text-md pb-2  hover:text-[#9395d3] cursor-pointer"
-                >
+                  className="text-md pb-2  hover:text-[#9395d3] cursor-pointer">
                   <Link href={item.path}>{item.name}</Link>
                 </li>
               );
             })}
-          </ul>
-        </div>
-        <div className="p-5">
-          <ul className="font-light">
-            <p className=" font-normal text-2xl pb-4">Company</p>
-            <li className=" text-md pb-2  hover:text-blue-600 cursor-pointer">
-              About
-            </li>
           </ul>
         </div>
         <div className="p-5">

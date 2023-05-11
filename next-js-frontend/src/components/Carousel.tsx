@@ -4,7 +4,7 @@ import Image from "next/image";
 import { ITopRestaurant } from "./InterFace";
 import Starts from "./Stars";
 
-export default function Carousel({ items }: { items: [ITopRestaurant] }) {
+export default function Carousel({ items }: { items: ITopRestaurant[] }) {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
 
