@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import VanillaTilt from "vanilla-tilt";
 
-export default function RestaurantLilSlide({ data }: { data: [IRestaurant] }) {
+export default function RestaurantLilSlide({ data }: { data: IRestaurant[] }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const cardRef = useRef<HTMLDivElement>(null);
 

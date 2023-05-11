@@ -2,6 +2,9 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { Layout } from "@/components/Layout";
 import { Roboto } from "next/font/google";
+import { UserContext } from "@/context/ContextConfig";
+import { useState } from "react";
+import { IUser } from "@/components/InterFace";
 
 const roboto = Roboto({
   weight: ["100", "300", "500", "400", "700", "900"],
@@ -11,10 +14,14 @@ const roboto = Roboto({
 });
 
 export default function App({ Component, pageProps }: AppProps) {
+  const [userSign, setUserSign] = useState<IUser>();
+
   return (
     <>
       <Layout className="font-sans">
-        <Component {...pageProps} />
+        <UserContext.Provider value={{ userSign, setUserSign }}>
+          <Component {...pageProps} />
+        </UserContext.Provider>
       </Layout>
     </>
   );

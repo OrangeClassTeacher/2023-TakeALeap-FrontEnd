@@ -11,9 +11,9 @@ import { ITopRestaurant } from "@/components/InterFace";
 import Utils from "@/utils/helper";
 
 export default function index(props: {
-  topRestaurant: [ITopRestaurant];
-  topFoods: [ITopFoods];
-  allRestaurant: [IRestaurant];
+  topRestaurant: ITopRestaurant[];
+  topFoods: ITopFoods[];
+  allRestaurant: IRestaurant[];
 }) {
   return (
     <>

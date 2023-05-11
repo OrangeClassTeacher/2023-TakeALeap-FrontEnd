@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Footer from "@/components/Footer";
 import { NavSearch } from "@/components/NavSearch";
-import UserMain from "@/components/UserMain";
 import { NavbarCustom } from "@/components/NavbarCustom";
 import axios from "axios";
 import Image from "next/image";
-import cat from "../../img/cat.jpeg";
 import { MyComments } from "@/components/MyComments";
 import { Profile } from "@/components/Profile";
 import { MdTableRows } from "react-icons/md";
