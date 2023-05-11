@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import VanillaTilt from "vanilla-tilt";
 
-export default function RestaurantLilSlide({ data }: { data: [IRestaurant] }) {
+export default function RestaurantLilSlide({ data }: { data: IRestaurant[] }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -42,7 +42,8 @@ export default function RestaurantLilSlide({ data }: { data: [IRestaurant] }) {
         <button
           className="bg-white/50 z-10 left-0 absolute text-2xl rounded-full p-2 top-[50%]  m-5 "
           onClick={handlePrevItemBtn}
-          style={{ display: activeIndex === 0 ? "none" : "block" }}>
+          style={{ display: activeIndex === 0 ? "none" : "block" }}
+        >
           <IoIosArrowBack />
         </button>
         <div className="container">
@@ -58,7 +59,8 @@ export default function RestaurantLilSlide({ data }: { data: [IRestaurant] }) {
                   <div
                     className="container andlal card rgb"
                     ref={cardRef}
-                    style={{ marginBottom: "30px" }}>
+                    style={{ marginBottom: "30px" }}
+                  >
                     <div className="card-image">
                       <Image
                         src={item?.img[0]}
@@ -95,7 +97,8 @@ export default function RestaurantLilSlide({ data }: { data: [IRestaurant] }) {
           onClick={handleNextItemBtn}
           style={{
             display: activeIndex === data.length - 4 ? "none" : "block",
-          }}>
+          }}
+        >
           <IoIosArrowBack
             style={{
               transform: "rotate(180deg)",

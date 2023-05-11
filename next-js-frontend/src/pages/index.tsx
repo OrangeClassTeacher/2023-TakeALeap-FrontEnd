@@ -9,12 +9,24 @@ import RestaurantLilSlide from "@/components/RestaurantLilSlide";
 import { IRestaurant } from "../components/InterFace";
 import { ITopRestaurant } from "@/components/InterFace";
 import Utils from "@/utils/helper";
+import { useState } from "react";
 
-export default function index(props: {
-  topRestaurant: [ITopRestaurant];
-  topFoods: [ITopFoods];
-  allRestaurant: [IRestaurant];
+export default function Index(props: {
+  topRestaurant: ITopRestaurant[];
+  topFoods: ITopFoods[];
+  allRestaurant: IRestaurant[];
 }) {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const renderContent = () => {
+    if (isLoading) {
+      return (
+        <div className="loader">
+          <h2>Loading...</h2>
+        </div>
+      );
+    }
+  };
   return (
     <>
       <Header />
@@ -28,23 +40,34 @@ export default function index(props: {
 }
 
 export async function getServerSideProps() {
-  const TopRestaurant = await axios
-    .get(`${Utils.API_URL}/toprestaurant`)
-    .catch((err) => console.log(err));
+  try {
+    // setIsLoading(true);
+    const TopRestaurant = await axios
+      .get(`${Utils.API_URL}/toprestaurant`)
+      .catch((err) => console.log(err));
 
-  const TopFood = await axios
-    .get(`${Utils.API_URL}/gettopfoods`)
-    .catch((err) => console.log(err));
+    const TopFood = await axios
+      .get(`${Utils.API_URL}/gettopfoods`)
+      .catch((err) => console.log(err));
 
-  const AllRestaurant = await axios
-    .get(`${Utils.API_URL}/restaurants`)
-    .catch((err) => console.log(err));
+    const AllRestaurant = await axios
+      .get(`${Utils.API_URL}/restaurants`)
+      .catch((err) => console.log(err));
 
-  return {
-    props: {
-      topRestaurant: TopRestaurant?.data.result,
-      topFoods: TopFood?.data.result,
-      allRestaurant: AllRestaurant?.data.result,
-    },
-  };
+    // setIsLoading(false);
+
+    return {
+      props: {
+        topRestaurant: TopRestaurant?.data.result,
+        topFoods: TopFood?.data.result,
+        allRestaurant: AllRestaurant?.data.result,
+      },
+    };
+  } catch (error) {
+    // setIsLoading(false);
+    console.error(error);
+    return {
+      props: {},
+    };
+  }
 }

@@ -4,7 +4,7 @@ import { ITopFoods } from "./InterFace";
 import Link from "next/link";
 import Stars from "./Stars";
 
-export const PopularDish = ({ data }: { data: [ITopFoods] }) => {
+export const PopularDish = ({ data }: { data: ITopFoods[] }) => {
   return (
     <div className="md:px-20 bg-black text-white">
       <h1 className="text-3xl uppercase text-center">Most popular </h1>
