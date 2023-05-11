@@ -4,7 +4,6 @@ import Footer from "@/components/Footer";
 import { RestaurantStart } from "@/components/RestaurantStart";
 import { Menu } from "@/components/Menu";
 import { RestaurantInfo } from "@/components/RestaurantInfo";
-import { DetailPopular } from "@/components/DetailPopular";
 import Comment from "@/components/CommentRes";
 import { useRouter } from "next/router";
 import { IRestaurant } from "@/components/InterFace";

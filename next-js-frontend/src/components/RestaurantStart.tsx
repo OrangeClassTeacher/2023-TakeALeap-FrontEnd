@@ -11,6 +11,10 @@ export const RestaurantStart = ({
   let sum = 0;
   let rate = 0;
   let reviewer = 0;
+  const tsas: number[]= [
+    11, 12, 14, 18, 16, 19, 20, 19, 10, 16, 14, 18, 11, 13, 15, 12, 17, 13, 15,
+    12,
+  ];
 
   return (
     <div className="flex">
@@ -28,11 +32,8 @@ export const RestaurantStart = ({
           <div className="con">
             <div className="cloud"></div>
             <div className="rain">
-              {[
-                11, 12, 14, 18, 16, 19, 20, 19, 10, 16, 14, 18, 11, 13, 15, 12,
-                17, 13, 15, 12,
-              ].map((i) => (
-                <span key={i} style={{ "--i": i }}></span>
+              {tsas?.map((i, ind) => (
+                <span key={ind} style={{ "--i": i }}></span>
               ))}
             </div>
           </div>

@@ -37,6 +37,17 @@ export interface IFood {
   ingredients: string[];
   description: string;
 }
+
+export interface IBeverage {
+  _id: string;
+  beverageName: string;
+  restaurantId: string;
+  price: number;
+  beverageType: string;
+  img: string[];
+  ingredients: string;
+  description: string;
+}
 export interface IComment {
   _id: string;
   restaurantId: string;

@@ -57,7 +57,7 @@ export const RestaurantInfo = ({
         </div>
       </div>
       <div className="border">
-        <Map />
+        <Map restaurant={restaurant} />
       </div>
     </div>
   );

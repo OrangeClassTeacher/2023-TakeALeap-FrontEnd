@@ -8,15 +8,15 @@ import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Utils from "@/utils/helper";
+import { UserContext } from "@/context/ContextConfig";
+import { useContext } from "react";
 
 export default function SignIn({
   signIn,
   setSignIn,
-  setUser,
 }: {
   signIn: boolean;
   setSignIn: Dispatch<SetStateAction<boolean>>;
-  setUser: any;
 }) {
   const init = {
     email: "",
@@ -25,6 +25,7 @@ export default function SignIn({
 
   const route = useRouter();
   const [login, setLogin] = useState(init);
+  const { userSign, setUserSign }: any = useContext(UserContext);
 
   const signin = () => {
     axios
@@ -34,7 +35,7 @@ export default function SignIn({
           localStorage.setItem("name", res.data.data.userName);
           localStorage.setItem("id", res.data.data._id);
           localStorage.setItem("token", res.data.token);
-          setUser(res.data.data);
+          setUserSign(res.data.data);
           setSignIn(!signIn);
         } else {
           alert("error");

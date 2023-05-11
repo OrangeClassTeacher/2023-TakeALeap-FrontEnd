@@ -37,12 +37,14 @@ export default function Stars({ stars }: any): JSX.Element {
           )}
         </div>
       ) : (
-        <div className="flex">
-          <FaStar />
-          <FaStar />
-          <FaStar />
-          <FaStar />
-          <FaStar />
+        <div>
+          <p className="flex">
+            <FaStar />
+            <FaStar />
+            <FaStar />
+            <FaStar />
+            <FaStar />
+          </p>
         </div>
       )}
     </div>

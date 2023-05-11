@@ -32,7 +32,6 @@ export default function CommentFood() {
   const [showAllCom, setShowAllCom] = useState<boolean>(false);
   const [signIn, SetSignIn] = useState<boolean>(false);
   const [rate, setRate] = useState<number>(0);
-  const [user, setUser] = useState();
 
   const getData = () => {
     axios
@@ -77,7 +76,7 @@ export default function CommentFood() {
 
   return (
     <div className="border-t md:px-20 py-10 text-white">
-      <SignIn setUser={setUser} signIn={signIn} setSignIn={SetSignIn} />
+      <SignIn signIn={signIn} setSignIn={SetSignIn} />
       <div className="grid grid-cols-1 md:grid-cols-2">
         <div>
           <div>
