@@ -3,6 +3,8 @@ import { IoIosArrowBack } from "react-icons/io";
 import Image from "next/image";
 import { ITopRestaurant } from "./InterFace";
 import Starts from "./Stars";
+import { MdLocationPin } from "react-icons/md";
+import { AiTwotonePhone } from "react-icons/ai";
 
 export default function Carousel({ items }: { items: ITopRestaurant[] }) {
   const [activeIndex, setActiveIndex] = useState<number>(0);
@@ -68,7 +70,7 @@ export default function Carousel({ items }: { items: ITopRestaurant[] }) {
           )}
         </div>
         <div className="absolute  top-0 z-20 w-[75%]  h-full flex justify-around items-center text-white">
-          <div className=" bg-black/75 w-[50%] rounded-lg h-[50%] p-5 text-center ">
+          <div className="flex flex-col gap-2 bg-black/75 w-[50%] rounded-lg h-[50%] p-5 text-center ">
             <div className="text-4xl flex justify-around">
               <h1>{items[activeIndex]?.restaurant[0]?.restaurantName}</h1>
             </div>
@@ -77,19 +79,30 @@ export default function Carousel({ items }: { items: ITopRestaurant[] }) {
               <p>/</p>
               <p> Reviewers: {items[activeIndex].count}</p>
             </div>
-            <p>
-              Mon-Fri :{" "}
-              {items[activeIndex]?.restaurant[0]?.schedule.weekday.open}~{" "}
-              {items[activeIndex]?.restaurant[0]?.schedule.weekday.close}
+            <div>
+              {" "}
+              <p>
+                Mon-Fri :{" "}
+                {items[activeIndex]?.restaurant[0]?.schedule.weekday.open}~{" "}
+                {items[activeIndex]?.restaurant[0]?.schedule.weekday.close}
+              </p>
+              <p>
+                Weekend :{" "}
+                {items[activeIndex]?.restaurant[0]?.schedule.weekend.open}~{" "}
+                {items[activeIndex]?.restaurant[0]?.schedule.weekend.close}
+              </p>
+            </div>
+            <p className="flex items-center justify-center gap-2">
+              <MdLocationPin />{" "}
+              {items[activeIndex]?.restaurant[0]?.address.address}
             </p>
-            <p>
-              Weekend :{" "}
-              {items[activeIndex]?.restaurant[0]?.schedule.weekend.open}~{" "}
-              {items[activeIndex]?.restaurant[0]?.schedule.weekend.close}
+            <p className="flex items-center justify-center gap-2">
+              {items[activeIndex]?.restaurant[0]?.cuisineType}
             </p>
-            <p>{items[activeIndex]?.restaurant[0]?.address.address}</p>
-            <p>{items[activeIndex]?.restaurant[0]?.cuisineType}</p>
-            <p>{items[activeIndex]?.restaurant[0]?.contact.phone}</p>
+            <p className="flex items-center justify-center gap-2">
+              <AiTwotonePhone />
+              {items[activeIndex]?.restaurant[0]?.contact.phone}
+            </p>
           </div>
         </div>
       </div>
