@@ -23,12 +23,18 @@ export default function Food() {
   return (
     <div>
       <Header />
-      <div className="grid grid-cols-2 bg-black">
-        <div className="text-white p-10">
-          <h1 className="text-4xl uppercase">{food?.foodName}</h1>
-          <p>Price : {food?.price}</p>
-          <p>Meal type : {food?.foodType}</p>
-          <p>Ingredients : {food?.ingredients}</p>
+      <div className="grid grid-cols-2 bg-black ">
+        <div className="text-white p-10 blk glow">
+          <h1 className="text-4xl uppercase justify-center flex">
+            {food?.foodName}
+          </h1>
+          <div className="">
+            <p className="flex justify-center mt-20">Price : {food?.price}</p>
+            <p className="flex justify-center">Meal type : {food?.foodType}</p>
+            <p className="flex justify-center">
+              Ingredients : {food?.ingredients}
+            </p>
+          </div>
         </div>
         <div>
           <Image
@@ -36,6 +42,7 @@ export default function Food() {
             width={1000}
             height={1000}
             alt="img"
+            className=""
           />
         </div>
       </div>

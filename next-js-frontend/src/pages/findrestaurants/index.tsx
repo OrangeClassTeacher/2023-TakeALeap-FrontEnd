@@ -53,7 +53,8 @@ const Search = () => {
                 id="category"
                 value={all.category}
                 onChange={(e) => setAll({ ...all, category: e.target.value })}
-                className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-white text-black">
+                className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-white text-black"
+              >
                 <option value="all">All</option>
                 {cuisines.map((cuis, ind) => {
                   return (
@@ -73,7 +74,8 @@ const Search = () => {
                 id="rating"
                 value={all.rate}
                 onChange={(e) => setAll({ ...all, rate: e.target.value })}
-                className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-white text-black">
+                className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-white text-black"
+              >
                 <option value="all">All</option>
                 <option value="one">over 1</option>
                 <option value="two">over 2</option>
@@ -90,7 +92,8 @@ const Search = () => {
                 id="rating"
                 value={all.location}
                 onChange={(e) => setAll({ ...all, location: e.target.value })}
-                className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-white text-black">
+                className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-white text-black"
+              >
                 <option value="all">All</option>
                 {location.map((item, ind) => {
                   return (
@@ -101,12 +104,12 @@ const Search = () => {
                 })}
               </select>
             </div>
-
             <div className="flex justify-center py-3">
               <button
                 type="submit"
-                className="bg-gray-400 hover:bg-gray-600 py-2 px-10 rounded-md text-black focus:outline-none mt-4 "
-                onClick={() => getData()}>
+                className="bg-gray-400 hover:bg-gray-600 rounded-md text-black focus:outline-none mt-4 mf "
+                onClick={() => getData()}
+              >
                 Filter
               </button>
             </div>
@@ -127,7 +130,8 @@ const Search = () => {
                   <button
                     type="submit"
                     className="bg-gray-400 hover:bg-gray-600 py-2 px-5 rounded-md text-black focus:outline-none"
-                    onClick={() => getData()}>
+                    onClick={() => getData()}
+                  >
                     Search
                   </button>
                 </div>
@@ -142,28 +146,38 @@ const Search = () => {
             {data?.result?.map((item, ind) => {
               return (
                 <Link href={`/restaurant?id=${item._id}`} key={ind}>
-                  <div className="m-2 rounded bg-[#1e1f23] text-white h-[340px] border border-white/20">
-                    <Image
-                      src={item?.restaurant?.img[0]}
-                      width={400}
-                      height={400}
-                      alt="img"
-                      className="rounded"
-                    />
-                    <div className="m-3">
-                      <h1 className="text-md uppercase mt-1 whitespace-wrap">
-                        {item?.restaurant?.restaurantName}
-                      </h1>
-                      <p className="text-sm whitespace-nowrap py-2 font-light">
-                        {item?.restaurant?.address.address}
-                      </p>
-                      <div className="flex text-sm font-light">
-                        Mon-Fri: {item?.restaurant?.schedule?.weekday?.open}~
-                        {item?.restaurant?.schedule?.weekday?.close} clock
-                      </div>
-                      <div className="flex text-sm font-light">
-                        Weekend: {item?.restaurant?.schedule?.weekday?.open}~
-                        {item?.restaurant?.schedule?.weekday?.close} clock
+                  <div className="jard">
+                    <div className="  rounded bg-[#1e1f23] text-white h-[340px] border border-white/20">
+                      <Image
+                        src={item?.restaurant?.img[0]}
+                        width={400}
+                        height={400}
+                        alt="img"
+                        className="rounded doggo"
+                      />
+                      <div className="intro">
+                        <div className="m-3 ">
+                          <h1 className="rest">
+                            {item?.restaurant.restaurantName}
+                          </h1>
+                          <p className="cheetah">
+                            <span className="chef">
+                              {item.restaurant.address.address}
+                            </span>
+                          </p>
+                          <div className="flex text-sm font-light">
+                            <span className="chef">
+                              Mon-Fri: {item.restaurant.schedule.weekday.open}~
+                              {item.restaurant.schedule.weekday.close} clock
+                            </span>
+                          </div>
+                          <div className="flex text-sm font-light">
+                            <span className="chef">
+                              Weekend: {item.restaurant.schedule.weekday.open}~
+                              {item.restaurant.schedule.weekday.close} clock
+                            </span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>

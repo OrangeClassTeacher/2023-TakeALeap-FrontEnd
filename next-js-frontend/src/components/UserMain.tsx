@@ -218,8 +218,8 @@ const UserProfile = () => {
             onClick={handleEdit}
             className="sda hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded">
             <div className="yma">
-              <span className="spam">E</span>
-              <span className="spam">dit</span>
+              <span className="spam">Edit</span>
+              {/* <span className="spam">dit</span> */}
             </div>
           </button>
         )}
