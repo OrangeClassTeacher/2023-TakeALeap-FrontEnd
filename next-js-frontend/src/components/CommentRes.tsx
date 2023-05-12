@@ -9,6 +9,7 @@ import SignIn from "./SignIn";
 import { RateStar } from "./RateStar";
 import { ShowComment } from "./ShowComment";
 import Utils from "@/utils/helper";
+import Loading from "./Loading";
 
 const CommentRes = () => {
   const route = useRouter();
@@ -34,12 +35,14 @@ const CommentRes = () => {
   const [signIn, SetSignIn] = useState<boolean>(false);
   const [rate, setRate] = useState<number>(0);
   const [user, setUser] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   const getData = () => {
     axios
       .get(`${Utils.API_URL}/byrestaurantid?id=${id}`)
       .then((res) => {
         setAll(res.data.result);
+        setIsLoading(false);
       })
       .catch((err) => console.log(err));
   };
@@ -64,6 +67,7 @@ const CommentRes = () => {
       .catch((err) => console.log(err));
     setComment(init);
     setRate(0);
+    setIsLoading(false);
   };
 
   const rateHandle = (rate: number) => {
@@ -81,7 +85,8 @@ const CommentRes = () => {
               {" "}
               <h1
                 onClick={() => setShowAllCom(!showAllCom)}
-                className="text-3xl ">
+                className="text-3xl "
+              >
                 All comments
               </h1>
               <div className="">
@@ -98,7 +103,8 @@ const CommentRes = () => {
             <div className="flex items-center gap-2 ms-5">
               <div
                 className="flex w-2/3 rounded bg-gray-700 p-1 h-[200px] items-center "
-                onClick={() => checkLogin()}>
+                onClick={() => checkLogin()}
+              >
                 <input
                   type="text"
                   value={commentSend.comment}
@@ -114,7 +120,8 @@ const CommentRes = () => {
               </div>
               <div
                 onClick={() => sendComment()}
-                className="bg-gray-700 rounded p-5 text-white/50 hover:text-white">
+                className="bg-gray-700 rounded p-5 text-white/50 hover:text-white"
+              >
                 Submit review
               </div>
             </div>

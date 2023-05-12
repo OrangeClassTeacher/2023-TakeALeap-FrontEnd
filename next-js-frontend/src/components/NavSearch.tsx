@@ -23,6 +23,7 @@ export const NavSearch = () => {
   const [localToken, setLocalToken] = useState<String>("");
   const [user, setUser] = useState<IUser>();
   const route = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -38,6 +39,7 @@ export const NavSearch = () => {
       })
       .then((res) => {
         setData(res.data.result);
+        setIsLoading(false);
       })
       .catch((err) => console.log(err));
   }, [searchInput]);

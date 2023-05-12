@@ -11,12 +11,14 @@ export const Menu = () => {
   const route = useRouter();
   const { id } = route.query;
   const [food, setFood] = useState<[IFood]>();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios
       .get(`${Utils.API_URL}/restaurantfoods?id=${id}`)
       .then((res) => setFood(res.data.result))
       .catch((err) => console.log(err));
+    // setIsLoading(false);
   });
 
   return (

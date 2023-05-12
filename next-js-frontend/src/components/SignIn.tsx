@@ -9,6 +9,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import Utils from "@/utils/helper";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
+import Loading from "./Loading";
 
 export default function SignIn({
   signIn,
@@ -27,6 +28,7 @@ export default function SignIn({
   const route = useRouter();
   const [login, setLogin] = useState(init);
   const [passwordType, setPasswordType] = useState("password");
+  const [isLoading, setIsLoading] = useState(true);
 
   const signin = () => {
     axios
@@ -38,6 +40,7 @@ export default function SignIn({
           localStorage.setItem("token", res.data.token);
           setUser(res.data.data);
           setSignIn(!signIn);
+          setIsLoading(false);
         } else {
           alert("error");
         }

@@ -11,6 +11,7 @@ import { IFood } from "./InterFace";
 import pep2 from "../img/pep2.png";
 import Utils from "@/utils/helper";
 import rocket from "../img/rocket.png";
+import Loading from "./Loading";
 interface Icomment {
   _id: string;
   restaurantId: IRestaurant;
@@ -31,12 +32,14 @@ interface IUserPoint {
 export default function TopComments(): JSX.Element {
   const [lastComments, setLastComments] = useState<Icomment[]>([]);
   const [topConterbuter, setTopConterbuter] = useState<IUserPoint[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios
       .get(`${Utils.API_URL}/latestcomments`)
       .then((res) => {
         setLastComments(res.data.result);
+        setIsLoading(false);
       })
       .catch((err) => console.log(err));
 
@@ -44,6 +47,7 @@ export default function TopComments(): JSX.Element {
       .get(`${Utils.API_URL}/users/topusers`)
       .then((res) => {
         setTopConterbuter(res.data.result);
+        setIsLoading(false);
       })
       .catch((err) => console.log(err));
   }, []);

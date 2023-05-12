@@ -33,6 +33,7 @@ export default function CommentFood() {
   const [signIn, SetSignIn] = useState<boolean>(false);
   const [rate, setRate] = useState<number>(0);
   const [user, setUser] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   const getData = () => {
     axios
@@ -65,6 +66,7 @@ export default function CommentFood() {
       .post(`${Utils.API_URL}/comment`, commentSend)
       .then((res) => (res.data.status ? getData() : ""))
       .catch((err) => console.log(err));
+    setIsLoading(false);
 
     setRate(0);
     setComment(init);
@@ -85,7 +87,8 @@ export default function CommentFood() {
               {" "}
               <h1
                 onClick={() => setShowAllCom(!showAllCom)}
-                className="text-3xl ">
+                className="text-3xl "
+              >
                 All comments
               </h1>
               <div className="">
@@ -103,7 +106,8 @@ export default function CommentFood() {
             <div className="flex items-center gap-2 ms-5">
               <div
                 className="flex w-2/3 rounded bg-gray-700 p-1 h-[200px] items-center "
-                onClick={() => checkLogin()}>
+                onClick={() => checkLogin()}
+              >
                 <input
                   type="text"
                   value={commentSend.comment}
@@ -119,7 +123,8 @@ export default function CommentFood() {
               </div>
               <div
                 onClick={() => sendComment()}
-                className="bg-gray-700 rounded p-5 text-white/50 hover:text-white">
+                className="bg-gray-700 rounded p-5 text-white/50 hover:text-white"
+              >
                 Submit review
               </div>
             </div>

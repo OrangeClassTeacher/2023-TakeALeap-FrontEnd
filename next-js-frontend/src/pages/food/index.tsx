@@ -7,17 +7,19 @@ import Image from "next/image";
 import { IFood } from "@/components/InterFace";
 import CommentFood from "@/components/CommentFood";
 import Utils from "@/utils/helper";
-
+import Loading from "@/components/Loading";
 export default function Food() {
   const route = useRouter();
   const { id } = route.query;
   const [food, setFood] = useState<IFood>();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios
       .get(`${Utils.API_URL}/food?id=${id}`)
       .then((res) => setFood(res.data.result))
       .catch((err) => console.log(err));
+    setIsLoading(false);
   }, []);
 
   return (

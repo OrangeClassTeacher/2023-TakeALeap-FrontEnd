@@ -4,6 +4,7 @@ import Footer from "@/pages/food";
 import axios from "axios";
 import Image from "next/image";
 import Utils from "@/utils/helper";
+import Loading from "@/components/Loading";
 
 export default function Index() {
   const id = typeof window !== "undefined" ? localStorage.getItem("id") : "";
@@ -24,6 +25,7 @@ export default function Index() {
   };
   const [data, setData] = useState(init);
   const [dataConst, setDataConst] = useState(init);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const id = typeof window !== "undefined" ? localStorage.getItem("id") : "";
@@ -38,6 +40,7 @@ export default function Index() {
         .then((res) => {
           setData(res.data.result);
           setDataConst(res.data.result);
+          setIsLoading(false);
         })
         .catch((err) => console.log(err));
     }

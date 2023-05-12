@@ -21,6 +21,7 @@ const UserProfile = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [data, setData] = useState(init);
   const [dataConst, setDataConst] = useState(init);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const id = typeof window !== "undefined" ? localStorage.getItem("id") : "";
@@ -35,6 +36,7 @@ const UserProfile = () => {
         .then((res) => {
           setData(res.data.result);
           setDataConst(res.data.result);
+          setIsLoading(false);
           console.log(res.data.result);
         })
         .catch((err) => console.log(err));
@@ -59,6 +61,7 @@ const UserProfile = () => {
       })
       .then((res) => {
         setDataConst(res.data.result);
+        setIsLoading(false);
       })
       .catch((err) => console.log(err));
 
@@ -204,19 +207,22 @@ const UserProfile = () => {
                 setData(dataConst);
                 setIsEditing(false);
               }}
-              className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2">
+              className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2"
+            >
               Cancel
             </button>
             <button
               onClick={() => handleSaveChanges()}
-              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+            >
               Save Changes
             </button>
           </>
         ) : (
           <button
             onClick={handleEdit}
-            className="sda hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded">
+            className="sda hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded"
+          >
             <div className="yma">
               <span className="spam">Edit</span>
               {/* <span className="spam">dit</span> */}

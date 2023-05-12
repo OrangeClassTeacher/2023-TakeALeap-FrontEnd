@@ -9,6 +9,7 @@ import { IAllSearchRestaurant } from "../../components/InterFace";
 import Utils from "@/utils/helper";
 import { cuisines } from "@/components/enumValues";
 import { location } from "@/components/enumValues";
+import Loading from "@/components/Loading";
 
 const Search = () => {
   const init = {
@@ -20,12 +21,14 @@ const Search = () => {
 
   const [all, setAll] = useState(init);
   const [data, setData] = useState<IAllSearchRestaurant>();
+  const [isLoading, setIsLoading] = useState(true);
 
   const getData = () => {
     axios
       .post(`${Utils.API_URL}/allsearch`, all)
       .then((res) => {
         setData(res.data.result);
+        setIsLoading(false);
       })
       .catch((err) => console.log(err));
   };

@@ -4,11 +4,13 @@ import Image from "next/image";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Utils from "@/utils/helper";
+import Loading from "./Loading";
 
 export const DetailPopular = () => {
   const [foods, setFoods] = useState<[IFood]>();
   const route = useRouter();
   const { id } = route.query;
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios

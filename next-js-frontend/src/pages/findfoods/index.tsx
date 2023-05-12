@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import { IAllSearchFood } from "@/components/InterFace";
 import Utils from "@/utils/helper";
 import { meal } from "@/components/enumValues";
+import Loading from "@/components/Loading";
 
 const init = {
   text: "",
@@ -19,6 +20,7 @@ const init = {
 const Search = () => {
   const [all, setAll] = useState(init);
   const [data, setData] = useState<IAllSearchFood>();
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -29,6 +31,7 @@ const Search = () => {
       .post(`${Utils.API_URL}/allsearchfood`, all)
       .then((res) => setData(res.data.result))
       .catch((err) => console.log(err));
+    setIsLoading(false);
   };
 
   useEffect(() => {

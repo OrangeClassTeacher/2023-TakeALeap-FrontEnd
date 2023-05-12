@@ -3,6 +3,7 @@ import { IUser } from "./InterFace";
 import Image from "next/image";
 import axios from "axios";
 import { ImgChangeModal } from "./ImgChangeModal";
+import Loading from "./Loading";
 
 export const Profile = ({
   data,
@@ -18,6 +19,7 @@ export const Profile = ({
   const [isEdit, setIsEdit] = useState(false);
   const [modal, setModal] = useState(false);
   const [laoding, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const id = typeof window !== "undefined" ? localStorage.getItem("id") : "";
   const token =
     typeof window !== "undefined" ? localStorage.getItem("token") : "";
@@ -36,6 +38,7 @@ export const Profile = ({
       })
       .then((res) => {
         setConstData(res.data.result);
+        setIsLoading(false);
       })
       .catch((err) => console.log(err));
 
@@ -61,7 +64,8 @@ export const Profile = ({
         </div>
         <p
           className="basis-4/6 text-blue-500/50 hover:text-blue-500"
-          onClick={() => setModal(true)}>
+          onClick={() => setModal(true)}
+        >
           Change profile photo
         </p>
       </div>
@@ -160,14 +164,16 @@ export const Profile = ({
                 setData(constData);
                 setIsEdit(false);
               }}
-              className="sda hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded">
+              className="sda hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded"
+            >
               <div className="yma">
                 <span className="spam text-sm text-red-300">Cancel</span>
               </div>
             </button>
             <button
               onClick={() => editUser()}
-              className="sda hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded">
+              className="sda hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded"
+            >
               <div className="yma">
                 <span className="spam text-sm text-green-300">Save</span>
               </div>
@@ -176,7 +182,8 @@ export const Profile = ({
         ) : (
           <button
             onClick={() => setIsEdit(!isEdit)}
-            className="sda hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded">
+            className="sda hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded"
+          >
             <div className="yma">
               <span className="spam">E</span>
               <span className="spam">dit</span>

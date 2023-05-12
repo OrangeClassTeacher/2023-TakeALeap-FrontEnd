@@ -5,16 +5,19 @@ import { IExplore } from "./InterFace";
 import { FaStar } from "react-icons/fa";
 import Link from "next/link";
 import Utils from "@/utils/helper";
+import Loading from "./Loading";
 
 export const Explore = (): JSX.Element => {
   const [data, setData] = useState<IExplore>();
   const [mixed, setMixed] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios
       .get(`${Utils.API_URL}/comments`)
       .then((res) => setData(res.data))
       .catch((err) => console.log(err));
+    setIsLoading(false);
   }, []);
 
   //   const mix = () => {
