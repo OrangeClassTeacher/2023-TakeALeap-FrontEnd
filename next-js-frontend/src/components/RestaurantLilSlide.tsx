@@ -35,10 +35,10 @@ export default function RestaurantLilSlide({ data }: { data: IRestaurant[] }) {
 
   return (
     <div className="bg-black">
-      <div className="text-white text-center pt-5 uppercase text-3xl">
+      <div className="text-white text-center py-10  uppercase text-3xl">
         Restaurants
       </div>
-      <div className="relative container">
+      <div className="relative">
         <button
           className="bg-white/50 z-10 left-0 absolute text-2xl rounded-full p-2 top-[50%]  m-5 "
           onClick={handlePrevItemBtn}
@@ -46,7 +46,7 @@ export default function RestaurantLilSlide({ data }: { data: IRestaurant[] }) {
         >
           <IoIosArrowBack />
         </button>
-        <div className="container">
+        <div className="w-full flex justify-evenly">
           {data.map((item, ind) => {
             if (
               activeIndex === ind ||
@@ -57,17 +57,17 @@ export default function RestaurantLilSlide({ data }: { data: IRestaurant[] }) {
               return (
                 <Link href={`/restaurant?id=${item._id}`} key={ind}>
                   <div
-                    className="container andlal card rgb"
+                    className="andlal card rgb"
                     ref={cardRef}
                     style={{ marginBottom: "30px" }}
                   >
-                    <div className="card-image">
+                    <div className="h-[300px] md:h-[400px]">
                       <Image
                         src={item?.img[0]}
                         width={400}
                         height={400}
                         alt="img"
-                        className="rounded card-image"
+                        className="card-image object-cover w-[100%] h-[50%]"
                       />
                       <div className="card-text">
                         <h1 className="">{item?.restaurantName}</h1>
@@ -93,7 +93,7 @@ export default function RestaurantLilSlide({ data }: { data: IRestaurant[] }) {
           })}
         </div>
         <button
-          className="bg-white/50 z-10 right-0 absolute text-2xl rounded-full p-2 top-[50%] m-5 "
+          className="bg-white/50 z-10 right-0 absolute text-2xl rounded-full p-2 top-[50%] m-5"
           onClick={handleNextItemBtn}
           style={{
             display: activeIndex === data.length - 4 ? "none" : "block",

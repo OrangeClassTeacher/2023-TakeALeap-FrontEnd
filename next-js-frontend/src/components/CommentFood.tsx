@@ -79,7 +79,7 @@ export default function CommentFood() {
 
   return (
     <div className="border-t md:px-20 py-10 text-white">
-      <SignIn setUser={setUser} signIn={signIn} setSignIn={SetSignIn} />
+      <SignIn signIn={signIn} setSignIn={SetSignIn} />
       <div className="grid grid-cols-1 md:grid-cols-2">
         <div>
           <div>

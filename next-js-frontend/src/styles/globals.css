@@ -41,7 +41,6 @@
   border-radius: 18px;
   background: white;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
-  font-family: roboto;
   text-align: center;
   transform-style: preserve-3d;
   transform: perspective(1000px);
@@ -50,9 +49,6 @@
   color: white;
   /* text-align: justify; */
   transition: transform 0.3s ease-in-out;
-}
-.card-text p {
-  font-size: 14px;
 }
 .card-image {
   grid-area: image;
@@ -114,10 +110,7 @@
   margin: 30px;
   display: block;
 }
-.container {
-  width: 100%;
-  display: flex;
-}
+
 .js-tilt-glare {
   border-radius: 18px;
 }
@@ -281,7 +274,7 @@
 }
 
 /* Arai2 enenii tsx yu bailaa martaash */
-
+/* 
 .org {
   position: absolute;
   top: 50%;
@@ -340,7 +333,7 @@
 .org .lnk .shift:hover:after {
   transform: scaleX(1);
   transform-origin: right;
-}
+} */
 
 /* Lynx hover light on top */
 
@@ -363,7 +356,7 @@
 .lynx:hover span {
   color: #fff;
   text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff, 0 0 80px #fff,
-    0 0 120px #fff, 0 0 160px #fff;
+    0 0 100px #fff, 0 0 100px #fff;
 }
 
 /* Rain effect on top */
@@ -458,6 +451,7 @@
 .vox .montent {
   color: white;
   background: rgba(0, 0, 0, 0.8);
+  z-index: -1;
   top: 0;
   left: 0;
   width: 100%;
@@ -475,53 +469,14 @@
   transform: rotateY(0);
 }
 .vox .montent p {
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
+  /* border-top: 1px solid white;
+  border-bottom: 1px solid white; */
   padding: 20px 0;
   margin: 0 25px;
 }
 
 /* Useredit button hover */
-.sda {
-  background: black;
-  width: 100px;
-  height: 40px;
-  position: relative;
-  border: 1px solid gray;
-  font-weight: semibold;
-  display: grid;
-  place-items: center;
-  letter-spacing: 2px;
-  color: white;
-}
 
-.sda:before {
-  content: "";
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  top: -10px;
-  left: -10px;
-  border-top: 2px solid gray;
-  border-left: 2px solid gray;
-  transition: 1s;
-}
-.sda:after {
-  content: "";
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  bottom: -10px;
-  right: -10px;
-  border-bottom: 2px solid gray;
-  border-right: 2px solid gray;
-  transition: 1s;
-}
-.sda:hover:before,
-.sda:hover:after {
-  width: calc(100% + 30px);
-  height: calc(100% + 30px);
-}
 .yma {
   display: flex;
   justify-content: center;
@@ -533,15 +488,6 @@
   color: white;
   font-size: 25px;
 }
-.spam:nth-child(even) {
-  letter-spacing: -1em;
-  overflow: hidden;
-  transition: 1s;
-}
-.yma:hover .spam:nth-child(even) {
-  letter-spacing: 0;
-}
-
 /* Find restaurants page card */
 
 .jontainer {
@@ -611,7 +557,7 @@
   height: 40px;
   position: relative;
   border: 1px solid gray;
-  font-weight: bold;
+  font-weight: semibold;
   display: grid;
   place-items: center;
   letter-spacing: 2px;
@@ -644,39 +590,7 @@
   width: calc(100% + 30px);
   height: calc(100% + 30px);
 }
-/* Recent comments */
-.blk {
-  position: relative;
-  margin: 5% auto 0;
-  width: 95%;
-  height: 18%;
-  /* height: 400px; */
-  background: linear-gradient(0deg, black, rgb(44, 43, 43));
-}
-.glow::before,
-.glow::after {
-  content: "";
-  position: absolute;
-  left: -2px;
-  top: -2px;
-  background: linear-gradient(
-    45deg,
-    #e6fb04,
-    #ff6600,
-    #00ff66,
-    #00ffff,
-    #ff00ff,
-    #ff0099,
-    #6e0dd0,
-    #ff3300,
-    #099fff
-  );
-  background-size: 400%;
-  width: calc(100% + 5px);
-  height: calc(100% + 5px);
-  z-index: -1;
-  animation: animate 20s linear infinite;
-}
+
 @keyframes animate {
   0% {
     background-position: 0, 0;
@@ -687,9 +601,6 @@
   100% {
     background-position: 0, 0;
   }
-}
-.glow::after {
-  filter: blur(40px);
 }
 
 /* Find foods card hover */
@@ -840,10 +751,6 @@
     transform: translateX(0%);
   }
 }
-/* Pages was dissapearing cuz of take a leap */
-.gg {
-  z-index: 1;
-}
 
 /*  top contributers rocket*/
 .scene {
@@ -982,7 +889,7 @@
   font-size: 15px;
   font-weight: 600;
   text-decoration: none;
-  background: linear-gradient(to right, #ccc 50%, #ff5858 50%, #cc2e5d);
+  background: linear-gradient(to right, #ccc 50%, #9395d3 50%, #7579d1);
   background-size: 200%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -992,81 +899,4 @@
 
 .animated:hover {
   background-position: -100%;
-}
-
-/* Phone Number */
-
-.janimated {
-  font-size: 16px;
-  font-weight: 600;
-  text-decoration: none;
-  background: linear-gradient(to right, #ccc 50%, #ff5858 50%, #cc2e5d);
-  background-size: 200%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  transition: 0.5s ease-out;
-}
-
-.janimated:hover {
-  background-position: -100%;
-}
-
-/* Loading ... */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: black;
-}
-.loader {
-  position: relative;
-  -webkit-box-reflect: below -28px linear-gradient(transparent, #0002);
-}
-.loader::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 2px;
-  height: 100%;
-  background: #03e9f4;
-  animation: blinkCursor 0.8s steps(3) infinite;
-}
-@keyframes blinkCursor {
-  0%,
-  75% {
-    opacity: 1;
-  }
-  76%,
-  100% {
-    opacity: 0;
-  }
-}
-.loader h2 {
-  position: relative;
-  color: #03e9f4;
-  letter-spacing: 5px;
-  font-size: 4em;
-  text-transform: uppercase;
-  animation: typing 8s steps(10) infinite;
-  overflow: hidden;
-}
-@keyframes typing {
-  0%,
-  90%,
-  100% {
-    width: 0;
-  }
-  30%,
-  60% {
-    width: 401.88px;
-  }
 }

@@ -12,16 +12,17 @@ import { useRouter } from "next/router";
 import Utils from "@/utils/helper";
 import { SearchModal } from "./SearchModal";
 import Image from "next/image";
-import { IUser } from "./InterFace";
 import cat from "../img/cat.jpeg";
+import { useContext } from "react";
+import { UserContext } from "@/context/ContextConfig";
 
 export const NavSearch = () => {
+  const { userSign, setUserSign }: any = useContext(UserContext);
   const [signIn, setSignIn] = useState<boolean>(false);
   const [search, setSearch] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [data, setData] = useState<ISearch>();
   const [localToken, setLocalToken] = useState<String>("");
-  const [user, setUser] = useState<IUser>();
   const route = useRouter();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -30,7 +31,7 @@ export const NavSearch = () => {
       const value = localStorage.getItem("token") || "";
       setLocalToken(value);
     }
-  }, [signIn]);
+  }, [userSign]);
 
   useEffect(() => {
     axios
@@ -88,7 +89,7 @@ export const NavSearch = () => {
           {localToken?.length > 1 ? (
             <div className="flex items-center gap-3">
               <Image
-                src={user?.img[0] ? user?.img[0] : cat}
+                src={userSign?.img[0] ? userSign?.img[0] : cat}
                 alt="profile"
                 width={50}
                 height={50}
@@ -108,6 +109,7 @@ export const NavSearch = () => {
                       if (confirm("Log out")) {
                         localStorage.clear();
                         setLocalToken("");
+                        setUserSign();
                       }
                     }}
                   >
@@ -152,7 +154,7 @@ export const NavSearch = () => {
         </div>
       </div>
       <div style={{ display: signIn ? "block" : "none" }}>
-        <SignIn signIn={signIn} setSignIn={setSignIn} setUser={setUser} />
+        <SignIn signIn={signIn} setSignIn={setSignIn} />
       </div>
     </div>
   );

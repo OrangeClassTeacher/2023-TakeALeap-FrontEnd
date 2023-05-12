@@ -5,9 +5,11 @@ import Link from "next/link";
 import Stars from "./Stars";
 
 export const PopularDish = ({ data }: { data: ITopFoods[] }) => {
+  console.log(data);
+
   return (
     <div className="md:px-20 bg-black text-white">
-      <h1 className="text-3xl uppercase text-center">Most popular </h1>
+      <h1 className="text-3xl py-5 uppercase text-center">Most popular </h1>
       <Link href={`/findfoods`}>
         <p className="text-end hover:text-[#9395d3]">See all</p>
       </Link>
@@ -26,22 +28,28 @@ export const PopularDish = ({ data }: { data: ITopFoods[] }) => {
                     <Image
                       src={item?.food?.img[0]}
                       alt="img"
-                      className="w-full h-[300px] object-cover "
+                      className="w-full h-[300px] object-cover -z-3"
                       width={200}
                       height={200}
                     />
                   </div>
 
-                  <div className=" montent">
-                    <h1 className="text-xl font-light uppercase m-1">
+                  <div className="montent border-b border-white">
+                    <h1 className="text-xl font-light uppercase m-1 p-3 border-b">
                       {item?.food?.foodName}
                     </h1>
-                    {/* <p className="text-xl font-light">Restaurant name</p> */}
-                    <div className="flex justify-between font-thin">
-                      <div className="montent mt-10">
+                    <div className="justify-around font-thin montent mt-14">
+                      <div className="flex justify-around">
+                        <div className=" basis-1/2 flex items-center justify-around">
+                          <p>{item.food.price}₮</p>
+                          <p>/</p>
+                          <p>{item.food.foodType}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center">
                         <p>Review : {item?.count}</p>
-                        <p>Rate : {Math.floor(item.avg_rate * 100) / 100}</p>
                         <Stars stars={item.avg_rate} />
+                        <p>Rate : {Math.floor(item.avg_rate * 100) / 100}</p>
                       </div>
                     </div>
                   </div>

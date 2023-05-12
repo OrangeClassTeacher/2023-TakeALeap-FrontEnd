@@ -88,10 +88,7 @@ export default function TopComments(): JSX.Element {
           <div className="m-0 md:mx-20 h-[600px] overflow-scroll">
             {lastComments?.map((item, ind) => {
               return (
-                <div
-                  key={ind}
-                  className="flex p-4 m-4 items-center border-b border-slate-500 blk glow "
-                >
+                <div key={ind} className="flex p-4 items-center">
                   <div className="basis-1/12 mx-3">
                     <Image
                       src={cat}
@@ -102,60 +99,55 @@ export default function TopComments(): JSX.Element {
                     />
                   </div>
                   <div className="basis-11/12">
-                    <div className="flex justify-between  items-center">
-                      <div className="flex items-center">
+                    <div className=" bg-gray-900 rounded-lg p-3">
+                      <div className="flex items-center gap-3">
                         <p className="font-semibold">{item.userId.userName}</p>
-                        <span className="font-thin text-sm mx-2">
-                          {item.userId.createdAt.slice(0, 10)}
-                        </span>
-                        <span
-                          className={
-                            item?.restaurantId
-                              ? "font-thin text-sm mx-2"
-                              : "hidden"
-                          }
-                        >
-                          rated
-                        </span>
+                        <div className="text-end">
+                          <Starts stars={item.rate ? item.rate : 0} />
+                        </div>
+                      </div>
+                      <span className="font-light my-1">{item.comment}</span>
+                    </div>
+
+                    <span className="flex items-center gap-2">
+                      <span className="font-thin text-sm mx-2">
+                        {item.userId.createdAt.slice(0, 10)}
+                      </span>
+                      <p
+                        className={
+                          item?.restaurantId ? "font-thin text-sm" : "hidden"
+                        }>
+                        rated
+                      </p>
+                      <div className="hover:text-[#9395d3]">
                         <Link
                           href={
                             item?.restaurantId
                               ? `/restaurant?id=${item?.restaurantId?._id}`
                               : `/`
-                          }
-                        >
-                          <span className="hover:text-[#9395d3]">
-                            {" "}
-                            {item?.restaurantId?.restaurantName}
-                          </span>
+                          }>
+                          {" "}
+                          {item?.restaurantId?.restaurantName}
                         </Link>
-                        <span
-                          className={
-                            item?.restaurantId
-                              ? "font-thin text-sm mx-2"
-                              : "hidden"
-                          }
-                        >
-                          food
+                      </div>
+                      <span
+                        className={
+                          item?.restaurantId
+                            ? "font-thin text-sm mx-2"
+                            : "hidden"
+                        }>
+                        food
+                      </span>
+                      <Link
+                        href={
+                          item?.foodId ? `/food?id=${item?.foodId?._id}` : `/`
+                        }>
+                        <span className="hover:text-[#9395d3]">
+                          {" "}
+                          {item?.foodId?.foodName}
                         </span>
-                        <Link
-                          href={
-                            item?.foodId ? `/food?id=${item?.foodId?._id}` : `/`
-                          }
-                        >
-                          <span className="hover:text-[#9395d3]">
-                            {" "}
-                            {item?.foodId?.foodName}
-                          </span>
-                        </Link>
-                      </div>
-                      <div className="text-center">
-                        <p className="text-end mx-1">
-                          <Starts stars={item.rate ? item.rate : 0} />
-                        </p>
-                      </div>
-                    </div>
-                    <span className="font-light my-1">{item.comment}</span>
+                      </Link>
+                    </span>
                   </div>
                 </div>
               );
