@@ -1,6 +1,6 @@
 import React from "react";
 import GoogleMapReact from "google-map-react";
-import { IRestaurant } from "./InterFace";
+import { IRestaurant } from "../InterfaceEnumsMeta/InterFace";
 import { MdLocationPin } from "react-icons/md";
 
 export default function SimpleMap({

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { IRestaurant } from "./InterFace";
+import { IRestaurant } from "../InterfaceEnumsMeta/InterFace";
 import { IoIosArrowBack } from "react-icons/io";
 import Image from "next/image";
 import Link from "next/link";

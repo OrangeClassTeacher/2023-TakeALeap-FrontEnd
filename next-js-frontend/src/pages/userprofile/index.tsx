@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import Footer from "@/components/Footer";
-import { NavSearch } from "@/components/NavSearch";
-import { NavbarCustom } from "@/components/NavbarCustom";
+import Footer from "@/components/HeaderNavFooter/Footer";
+import { NavSearch } from "@/components/HeaderNavFooter/NavSearch";
+import { NavbarCustom } from "@/components/HeaderNavFooter/NavbarCustom";
 import axios from "axios";
 import Image from "next/image";
-import { MyComments } from "@/components/MyComments";
+import { MyComments } from "@/components/commentsRates/MyComments";
 import { Profile } from "@/components/Profile";
 import { MdTableRows } from "react-icons/md";
 import { FaRegComment } from "react-icons/fa";
-import { IUser } from "@/components/InterFace";
+import { IUser } from "@/components/InterfaceEnumsMeta/InterFace";
 
 export default function Userprofile() {
   const id = typeof window !== "undefined" ? localStorage.getItem("id") : "";

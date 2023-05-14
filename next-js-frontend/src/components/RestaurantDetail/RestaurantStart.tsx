@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import { IDetailRest } from "../components/InterFace";
-import Stars from "./Stars";
+import { IDetailRest } from "../InterfaceEnumsMeta/InterFace";
+import Stars from "../commentsRates/Stars";
 import { AiFillClockCircle } from "react-icons/ai";
 
 export const RestaurantStart = ({
@@ -13,13 +13,14 @@ export const RestaurantStart = ({
     11, 12, 14, 18, 16, 19, 20, 19, 10, 16, 14, 18, 11, 13, 15, 12, 17, 13, 15,
     12,
   ];
-  console.log(restaurant);
+  const { img, restaurantName, description, schedule }: any =
+    restaurant?.restaurant[0];
 
   return (
     <div className=" block md:flex">
       <div className="md:basis-2/3">
         <Image
-          src={restaurant?.restaurant[0]?.img[0] || ""}
+          src={img[0] || ""}
           alt="png"
           className="w-full max-h-[600px] min-h-[300px] object-cover"
           width={600}
@@ -36,11 +37,9 @@ export const RestaurantStart = ({
               ))}
             </div>
           </div> */}
-          <h1 className="m-5 text-3xl uppercase">
-            {restaurant?.restaurant[0]?.restaurantName}{" "}
-          </h1>
+          <h1 className="m-5 text-3xl uppercase">{restaurantName} </h1>
           <p className="hidden md:block text-start font-light text-sm">
-            {restaurant?.restaurant[0]?.description}
+            {description}
           </p>
           <div className="flex gap-3 my-3 items-center">
             <Stars stars={restaurant?.avg} />
@@ -53,12 +52,12 @@ export const RestaurantStart = ({
             </p>
             <div>
               <div className="flex text-sm font-light">
-                Mon-Fri: {restaurant?.restaurant[0]?.schedule?.weekday?.open}~
-                {restaurant?.restaurant[0]?.schedule?.weekday?.close} clock
+                Mon-Fri: {schedule?.weekday?.open}~{schedule?.weekday?.close}{" "}
+                clock
               </div>
               <div className="flex text-sm font-light">
-                Weekend: {restaurant?.restaurant[0]?.schedule?.weekday?.open}~
-                {restaurant?.restaurant[0]?.schedule?.weekday?.close} clock
+                Weekend: {schedule?.weekday?.open}~{schedule?.weekday?.close}{" "}
+                clock
               </div>
             </div>
           </div>

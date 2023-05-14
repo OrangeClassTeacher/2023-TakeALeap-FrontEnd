@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { IoMdClose } from "react-icons/io";
 import Link from "next/link";
-import { ISearch } from "./InterFace";
+import { ISearch } from "./InterfaceEnumsMeta/InterFace";
 
 export const SearchModal = ({
   search,
@@ -16,8 +16,7 @@ export const SearchModal = ({
   return (
     <div
       className="absolute bg-slate-200 top-12 w-[950px] h-[500px] rounded text-black p-10 overflow-scroll z-50"
-      style={{ display: search ? "block" : "none" }}
-    >
+      style={{ display: search ? "block" : "none" }}>
       <div className="absolute right-5 top-5">
         {" "}
         <IoMdClose

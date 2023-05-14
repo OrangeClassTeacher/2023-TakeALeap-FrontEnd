@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { IoIosArrowBack } from "react-icons/io";
 import Image from "next/image";
-import { ITopRestaurant } from "./InterFace";
-import Starts from "./Stars";
+import { ITopRestaurant } from "../InterfaceEnumsMeta/InterFace";
+import Starts from "../commentsRates/Stars";
 import { MdLocationPin } from "react-icons/md";
 import { AiTwotonePhone } from "react-icons/ai";
 

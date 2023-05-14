@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { NavCateg } from "@/components/NavCateg";
-import { NavbarCustom } from "@/components/NavbarCustom";
+import { NavCateg } from "@/components/HeaderNavFooter/NavCateg";
+import { NavbarCustom } from "@/components/HeaderNavFooter/NavbarCustom";
 import axios from "axios";
-import Footer from "@/components/Footer";
+import Footer from "@/components/HeaderNavFooter/Footer";
 import Link from "next/link";
 import Image from "next/image";
-import { IAllSearchRestaurant } from "../../components/InterFace";
+import { IAllSearchRestaurant } from "../../components/InterfaceEnumsMeta/InterFace";
 import Utils from "@/utils/helper";
-import { cuisines } from "@/components/enumValues";
-import { location } from "@/components/enumValues";
+import { cuisines } from "@/components/InterfaceEnumsMeta/enumValues";
+import { location } from "@/components/InterfaceEnumsMeta/enumValues";
 
 const Search = () => {
   const init = {
@@ -23,7 +23,7 @@ const Search = () => {
 
   const getData = () => {
     axios
-      .post(`${Utils.API_URL}/allsearch`, all)
+      .post(`${Utils.API_URL}/restaurantallsearch`, all)
       .then((res) => {
         setData(res.data.result);
       })
@@ -53,8 +53,7 @@ const Search = () => {
                 id="category"
                 value={all.category}
                 onChange={(e) => setAll({ ...all, category: e.target.value })}
-                className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-white text-black"
-              >
+                className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-white text-black">
                 <option value="all">All</option>
                 {cuisines.map((cuis, ind) => {
                   return (
@@ -74,8 +73,7 @@ const Search = () => {
                 id="rating"
                 value={all.rate}
                 onChange={(e) => setAll({ ...all, rate: e.target.value })}
-                className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-white text-black"
-              >
+                className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-white text-black">
                 <option value="all">All</option>
                 <option value="one">over 1</option>
                 <option value="two">over 2</option>
@@ -92,8 +90,7 @@ const Search = () => {
                 id="rating"
                 value={all.location}
                 onChange={(e) => setAll({ ...all, location: e.target.value })}
-                className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-white text-black"
-              >
+                className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-white text-black">
                 <option value="all">All</option>
                 {location.map((item, ind) => {
                   return (
@@ -108,8 +105,7 @@ const Search = () => {
               <button
                 type="submit"
                 className="bg-gray-400 hover:bg-gray-600 rounded-md text-black focus:outline-none mt-4 mf "
-                onClick={() => getData()}
-              >
+                onClick={() => getData()}>
                 Filter
               </button>
             </div>
@@ -130,8 +126,7 @@ const Search = () => {
                   <button
                     type="submit"
                     className="bg-gray-400 hover:bg-gray-600 py-2 px-5 rounded-md text-black focus:outline-none"
-                    onClick={() => getData()}
-                  >
+                    onClick={() => getData()}>
                     Search
                   </button>
                 </div>

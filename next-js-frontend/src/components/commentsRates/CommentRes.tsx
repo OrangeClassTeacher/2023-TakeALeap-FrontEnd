@@ -4,8 +4,8 @@ import { BsChevronDown } from "react-icons/bs";
 import { BsChevronUp } from "react-icons/bs";
 import { useRouter } from "next/router";
 import axios from "axios";
-import { IComment } from "./InterFace";
-import SignIn from "./SignIn";
+import { IComment } from "../InterfaceEnumsMeta/InterFace";
+import SignIn from "../SignIn";
 import { RateStar } from "./RateStar";
 import { ShowComment } from "./ShowComment";
 import Utils from "@/utils/helper";
@@ -33,7 +33,6 @@ const CommentRes = () => {
   const [showAllCom, setShowAllCom] = useState<boolean>(false);
   const [signIn, SetSignIn] = useState<boolean>(false);
   const [rate, setRate] = useState<number>(0);
-  const [user, setUser] = useState();
 
   const getData = () => {
     axios
@@ -73,7 +72,7 @@ const CommentRes = () => {
 
   return (
     <div className="border-t mt-5">
-      <SignIn signIn={signIn} setSignIn={SetSignIn} setUser={setUser} />
+      <SignIn signIn={signIn} setSignIn={SetSignIn} />
       <div className="grid grid-cols-1 md:grid-cols-2 m-5">
         <div>
           <div>

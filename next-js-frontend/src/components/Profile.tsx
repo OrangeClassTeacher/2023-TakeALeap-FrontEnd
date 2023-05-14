@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IUser } from "./InterFace";
+import { IUser } from "./InterfaceEnumsMeta/InterFace";
 import Image from "next/image";
 import axios from "axios";
 import { ImgChangeModal } from "./ImgChangeModal";

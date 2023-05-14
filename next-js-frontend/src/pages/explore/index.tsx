@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "@/components/HeaderNavFooter/Header";
+import Footer from "@/components/HeaderNavFooter/Footer";
 import { Explore } from "@/components/Explore";
 
 export default function ExploreMain() {

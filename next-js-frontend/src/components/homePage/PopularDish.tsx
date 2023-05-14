@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import { ITopFoods } from "./InterFace";
+import { ITopFoods } from "../InterfaceEnumsMeta/InterFace";
 import Link from "next/link";
-import Stars from "./Stars";
+import Stars from "../commentsRates/Stars";
 
 export const PopularDish = ({ data }: { data: ITopFoods[] }) => {
   console.log(data);

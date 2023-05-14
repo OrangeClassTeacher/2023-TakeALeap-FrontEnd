@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
-import { IFood, IBeverage } from "./InterFace";
+import { IFood, IBeverage } from "../InterfaceEnumsMeta/InterFace";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 import Utils from "@/utils/helper";
 import { FoodCard } from "./FoodCard";
-import { meal } from "./enumValues";
+import { meal } from "../InterfaceEnumsMeta/enumValues";
 import { GiCookingPot } from "react-icons/gi";
 
 export const Menu = () => {

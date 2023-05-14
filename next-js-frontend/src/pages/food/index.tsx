@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "@/components/HeaderNavFooter/Header";
+import Footer from "@/components/HeaderNavFooter/Footer";
 import Image from "next/image";
-import { IDetailFood } from "@/components/InterFace";
-import CommentFood from "@/components/CommentFood";
+import { IDetailFood } from "@/components/InterfaceEnumsMeta/InterFace";
+import CommentFood from "@/components/commentsRates/CommentFood";
 import Utils from "@/utils/helper";
 import Link from "next/link";
 import { IoMdRestaurant } from "react-icons/io";

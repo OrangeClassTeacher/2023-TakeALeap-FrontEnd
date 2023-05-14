@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { RestaurantStart } from "@/components/RestaurantStart";
-import { Menu } from "@/components/Menu";
-import { RestaurantInfo } from "@/components/RestaurantInfo";
-import Comment from "@/components/CommentRes";
+import Header from "@/components/HeaderNavFooter/Header";
+import Footer from "@/components/HeaderNavFooter/Footer";
+import { RestaurantStart } from "@/components/RestaurantDetail/RestaurantStart";
+import { Menu } from "@/components/RestaurantDetail/Menu";
+import { RestaurantInfo } from "@/components/RestaurantDetail/RestaurantInfo";
+import Comment from "@/components/commentsRates/CommentRes";
 import { useRouter } from "next/router";
-import { IDetailRest } from "@/components/InterFace";
+import { IDetailRest } from "@/components/InterfaceEnumsMeta/InterFace";
 import axios from "axios";
 import Utils from "@/utils/helper";
 

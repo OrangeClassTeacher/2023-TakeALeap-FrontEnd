@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { GiCookingPot } from "react-icons/gi";
-import { IFood } from "./InterFace";
+import { IFood } from "../InterfaceEnumsMeta/InterFace";
 
 export const FoodCard = ({ food, name }: { food: IFood[]; name: string }) => {
   let type: string[] = [];

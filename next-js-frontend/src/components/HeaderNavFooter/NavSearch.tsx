@@ -5,12 +5,12 @@ import { VscAccount } from "react-icons/vsc";
 import Link from "next/link";
 import { BiSearch } from "react-icons/bi";
 import { FiMenu } from "react-icons/fi";
-import SignIn from "./SignIn";
+import SignIn from "../SignIn";
 import axios from "axios";
-import { ISearch } from "./InterFace";
+import { ISearch } from "../InterfaceEnumsMeta/InterFace";
 import { useRouter } from "next/router";
 import Utils from "@/utils/helper";
-import { SearchModal } from "./SearchModal";
+import { SearchModal } from "../SearchModal";
 import Image from "next/image";
 import cat from "../img/cat.jpeg";
 import { useContext } from "react";
@@ -96,8 +96,7 @@ export const NavSearch = () => {
               <div className="mr-10">
                 <p
                   className="hover:text-[#9395d3] cursor-pointer uppercase"
-                  onClick={() => route.push("/userprofile")}
-                >
+                  onClick={() => route.push("/userprofile")}>
                   {localStorage.getItem("name")}
                 </p>
                 <Link href={"/"}>
@@ -109,8 +108,7 @@ export const NavSearch = () => {
                         setLocalToken("");
                         setUserSign();
                       }
-                    }}
-                  >
+                    }}>
                     LOG OUT
                   </p>
                 </Link>
@@ -126,8 +124,7 @@ export const NavSearch = () => {
                   className="hover:text-[#9395d3] cursor-pointer"
                   onClick={() => {
                     setSignIn(!signIn);
-                  }}
-                >
+                  }}>
                   sign in
                 </p>
                 <Link href={"/register"}>

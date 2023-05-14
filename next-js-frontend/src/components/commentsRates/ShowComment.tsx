@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Stars from "./Stars";
-import { IComment } from "./InterFace";
+import { IComment } from "../InterfaceEnumsMeta/InterFace";
 import img from "../img/cat.jpeg";
 
 export const ShowComment = ({

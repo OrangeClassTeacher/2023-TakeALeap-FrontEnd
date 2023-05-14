@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { IExplore } from "./InterFace";
+import { IExplore } from "./InterfaceEnumsMeta/InterFace";
 import { FaStar } from "react-icons/fa";
 import Link from "next/link";
 import Utils from "@/utils/helper";
