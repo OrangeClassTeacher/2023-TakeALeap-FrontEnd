@@ -10,6 +10,7 @@ import Utils from "@/utils/helper";
 import Link from "next/link";
 import { IoMdRestaurant } from "react-icons/io";
 import { TbSoup } from "react-icons/tb";
+import giphy from "../../img/giphy.gif";
 
 export default function Food() {
   const route = useRouter();
@@ -58,6 +59,15 @@ export default function Food() {
                 </div>
               </div>
               <p className="flex justify-center">{food?.description}</p>
+              <div className="gif">
+                <Image
+                  src={giphy}
+                  width={1000}
+                  height={100}
+                  alt="img"
+                  className="giphy"
+                />
+              </div>
             </div>
             <div>
               <Image

@@ -39,30 +39,46 @@ export default function Carousel({ items }: { items: ITopRestaurant[] }) {
   return (
     <div
       className="flex justify-around bg-black relative w3-animate-right"
-      id="carso">
+      id="carso"
+    >
       <div className="flex justify-around">
         <div className="h-full relative  delay-75 ">
           {activeIndex > 0 && (
             <button
               className="bg-white z-10 left-0 absolute text-2xl rounded-full p-2 top-[50%]  m-5 "
-              onClick={handlePrevItemBtn}>
+              onClick={handlePrevItemBtn}
+            >
               <IoIosArrowBack />
             </button>
           )}
-          <Image
-            src={img[0]}
-            key={1}
-            width={1000}
-            height={700}
-            className={`h-[700px] w-screen object-cover duration-500 ${
-              isTransitioning ? "opacity-0" : "opacity-100"
-            }`}
-            alt="testt"
-          />
+
+          <div className="slider">
+            <div className="rotator">
+              {[...Array(9)].map((_, index) => {
+                const itemIndex = (activeIndex + index) % items.length;
+                return (
+                  <div
+                    className={`items ${index === 3 ? "active" : ""}`}
+                    key={index}
+                  >
+                    <Image
+                      src={items[itemIndex].restaurant[0].img[0]}
+                      width={1000}
+                      height={700}
+                      className={`h-[700px] w-screen object-cover transition-opacity duration-500`}
+                      alt="testt"
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
           {activeIndex < items.length - 1 && (
             <button
               className="bg-white z-10 right-0 absolute text-2xl rounded-full p-2 top-[50%] m-5 "
-              onClick={handleNextItemBtn}>
+              onClick={handleNextItemBtn}
+            >
               <IoIosArrowBack
                 style={{
                   transform: "rotate(180deg)",
@@ -84,21 +100,26 @@ export default function Carousel({ items }: { items: ITopRestaurant[] }) {
             <div>
               {" "}
               <p>
-                Mon-Fri : {schedule.weekday.open}~ {schedule.weekday.close}
+                Mon-Fri :{" "}
+                {items[activeIndex].restaurant[0].schedule.weekday.open}~{" "}
+                {items[activeIndex].restaurant[0].schedule.weekday.close}
               </p>
               <p>
-                Weekend : {schedule.weekend.open}~ {schedule.weekend.close}
+                Weekend :{" "}
+                {items[activeIndex].restaurant[0].schedule.weekend.open}~{" "}
+                {items[activeIndex].restaurant[0].schedule.weekend.close}
               </p>
             </div>
             <p className="flex items-center justify-center gap-2">
-              <MdLocationPin /> {address.address}
+              <MdLocationPin />{" "}
+              {items[activeIndex].restaurant[0].address.address}
             </p>
             <p className="flex items-center justify-center gap-2">
-              {cuisineType}
+              {items[activeIndex].restaurant[0].cuisineType}
             </p>
             <p className="flex items-center justify-center gap-2">
               <AiTwotonePhone />
-              {contact.phone}
+              {items[activeIndex].restaurant[0].contact.phone}
             </p>
           </div>
         </div>

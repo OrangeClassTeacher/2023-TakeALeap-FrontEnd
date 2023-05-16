@@ -22,6 +22,7 @@ export default function index(props: {
       <RestaurantLilSlide data={props?.allRestaurant} />
       <PopularDish data={props?.topFoods} />
       <TopComments />
+
       <Footer />
     </>
   );
