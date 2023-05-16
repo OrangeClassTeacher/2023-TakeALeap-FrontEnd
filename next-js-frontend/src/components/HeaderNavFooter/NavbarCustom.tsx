@@ -10,7 +10,7 @@ export const NavbarCustom = () => {
       <div className="flex justify-between items-center w-full h-full px-4  2x1:px-16">
         <Link href={"/"} className="flex align-middle">
           <Image
-            src={require("../img/logo.jpg")}
+            src={require("../../img/logo.jpg")}
             alt="logo"
             width={80}
             height={80}

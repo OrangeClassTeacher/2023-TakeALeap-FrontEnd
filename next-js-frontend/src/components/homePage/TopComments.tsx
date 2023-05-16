@@ -1,35 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import coca from "../img/can-pepsi-zero-sugar.png";
+import coca from "../../img/can-pepsi-zero-sugar.png";
 import axios from "axios";
-import cat from "../img/cat.jpeg";
-import { IRestaurant } from "./InterFace";
-import { IUser } from "./InterFace";
-import Starts from "./Stars";
+import cat from "../../img/cat.jpeg";
+import Starts from "../commentsRates/Stars";
 import Link from "next/link";
-import { IFood } from "./InterFace";
-import pep2 from "../img/pep2.png";
+import pep2 from "../../img/pep2.png";
 import Utils from "@/utils/helper";
-import rocket from "../img/rocket.png";
-interface Icomment {
-  _id: string;
-  restaurantId: IRestaurant;
-  foodId: IFood;
-  userId: IUser;
-  comment: string;
-  rate: number;
-}
-
-interface IUserPoint {
-  _id: {
-    username: string;
-    img: [string];
-  };
-  points: number;
-}
+import rocket from "../../img/rocket.png";
+import { ITopComment } from "../InterfaceEnumsMeta/InterFace";
+import { IUserPoint } from "../InterfaceEnumsMeta/InterFace";
 
 export default function TopComments(): JSX.Element {
-  const [lastComments, setLastComments] = useState<Icomment[]>([]);
+  const [lastComments, setLastComments] = useState<ITopComment[]>([]);
   const [topConterbuter, setTopConterbuter] = useState<IUserPoint[]>([]);
 
   useEffect(() => {

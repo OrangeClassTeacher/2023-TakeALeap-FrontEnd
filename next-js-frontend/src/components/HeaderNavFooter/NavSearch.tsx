@@ -5,14 +5,14 @@ import { VscAccount } from "react-icons/vsc";
 import Link from "next/link";
 import { BiSearch } from "react-icons/bi";
 import { FiMenu } from "react-icons/fi";
-import SignIn from "./SignIn";
+import SignIn from "../SignIn";
 import axios from "axios";
-import { ISearch } from "./InterFace";
+import { ISearch } from "../InterfaceEnumsMeta/InterFace";
 import { useRouter } from "next/router";
 import Utils from "@/utils/helper";
-import { SearchModal } from "./SearchModal";
+import { SearchModal } from "../SearchModal";
 import Image from "next/image";
-import cat from "../img/cat.jpeg";
+import cat from "../../img/cat.jpeg";
 import { useContext } from "react";
 import { UserContext } from "@/context/ContextConfig";
 
@@ -22,7 +22,7 @@ export const NavSearch = () => {
   const [search, setSearch] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [data, setData] = useState<ISearch>();
-  const [localToken, setLocalToken] = useState<String>("");
+  const [localToken, setLocalToken] = useState<string>("");
   const route = useRouter();
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export const NavSearch = () => {
 
   useEffect(() => {
     axios
-      .post(`${Utils.API_URL}/restaurant/search`, {
+      .post(`${Utils.API_URL}/restaurantsearch`, {
         searchTxt: searchInput,
       })
       .then((res) => {
@@ -85,19 +85,20 @@ export const NavSearch = () => {
 
         <div className="basis-1/6 flex items-center gap-2 mx-2 justify-end font-light text-sm ">
           {localToken?.length > 1 ? (
-            <div className="flex items-center gap-3">
-              <Image
-                src={userSign?.img[0] ? userSign?.img[0] : cat}
-                alt="profile"
-                width={50}
-                height={50}
-                className="w-[50px] h-[50px] rounded-full object-cover"
-              />
+            <div className="flex items-center gap-3 ">
+              <div className="w-[50px] h-[50px]">
+                <Image
+                  src={userSign?.img[0] ? userSign?.img[0] : cat}
+                  alt="profile"
+                  width={50}
+                  height={50}
+                  className="w-[50px] h-[50px] rounded-full object-cover"
+                />
+              </div>
               <div className="mr-10">
                 <p
                   className="hover:text-[#9395d3] cursor-pointer uppercase"
-                  onClick={() => route.push("/userprofile")}
-                >
+                  onClick={() => route.push("/userprofile")}>
                   {localStorage.getItem("name")}
                 </p>
                 <Link href={"/"}>
@@ -109,8 +110,7 @@ export const NavSearch = () => {
                         setLocalToken("");
                         setUserSign();
                       }
-                    }}
-                  >
+                    }}>
                     LOG OUT
                   </p>
                 </Link>
@@ -126,8 +126,7 @@ export const NavSearch = () => {
                   className="hover:text-[#9395d3] cursor-pointer"
                   onClick={() => {
                     setSignIn(!signIn);
-                  }}
-                >
+                  }}>
                   sign in
                 </p>
                 <Link href={"/register"}>

@@ -234,3 +234,19 @@ export interface IDetailRest {
   avg: number;
   restaurant: IRestaurant[];
 }
+export interface ITopComment {
+  _id: string;
+  restaurantId: IRestaurant;
+  foodId: IFood;
+  userId: IUser;
+  comment: string;
+  rate: number;
+}
+
+export interface IUserPoint {
+  _id: {
+    username: string;
+    img: [string];
+  };
+  points: number;
+}

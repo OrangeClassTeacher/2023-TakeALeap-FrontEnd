@@ -4,23 +4,24 @@ import { BsChevronDown } from "react-icons/bs";
 import { BsChevronUp } from "react-icons/bs";
 import { useRouter } from "next/router";
 import axios from "axios";
-import { IComment } from "./InterFace";
-import SignIn from "./SignIn";
-import Utils from "@/utils/helper";
+import { IComment } from "../InterfaceEnumsMeta/InterFace";
+import SignIn from "../SignIn";
 import { RateStar } from "./RateStar";
 import { ShowComment } from "./ShowComment";
+import Utils from "@/utils/helper";
 
-export default function CommentFood() {
+const CommentRes = () => {
   const route = useRouter();
   const { id } = route.query;
   const userId =
     typeof window !== "undefined" ? localStorage.getItem("id") : "";
+
   const token =
     typeof window !== "undefined" ? localStorage.getItem("token") : "";
 
   const init = {
-    restaurantId: null,
-    foodId: id,
+    restaurantId: id,
+    foodId: null,
     userId: userId,
     comment: "",
     rate: 0,
@@ -35,13 +36,9 @@ export default function CommentFood() {
 
   const getData = () => {
     axios
-      .get(`${Utils.API_URL}/commentbyfoodid?id=${id}`)
+      .get(`${Utils.API_URL}/byrestaurantid?id=${id}`)
       .then((res) => {
         setAll(res.data.result);
-        setComment({
-          ...commentSend,
-          restaurantId: res.data.result[0].restaurantId,
-        });
       })
       .catch((err) => console.log(err));
   };
@@ -64,9 +61,8 @@ export default function CommentFood() {
       .post(`${Utils.API_URL}/comment`, commentSend)
       .then((res) => (res.data.status ? getData() : ""))
       .catch((err) => console.log(err));
-
-    setRate(0);
     setComment(init);
+    setRate(0);
   };
 
   const rateHandle = (rate: number) => {
@@ -75,12 +71,12 @@ export default function CommentFood() {
   };
 
   return (
-    <div className="border-t md:px-20 py-10 text-white">
+    <div className="border-t mt-5">
       <SignIn signIn={signIn} setSignIn={SetSignIn} />
-      <div className="grid grid-cols-1 md:grid-cols-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 m-5">
         <div>
           <div>
-            <div className="flex items-center gap-2 m-4 hover:text-sky-500 cursor-pointer">
+            <div className="flex items-center gap-2  hover:text-sky-500 cursor-pointer">
               {" "}
               <h1
                 onClick={() => setShowAllCom(!showAllCom)}
@@ -94,7 +90,6 @@ export default function CommentFood() {
             <ShowComment showAllCom={showAllCom} all={all} />
           </div>
         </div>
-
         <div>
           <h1 className="text-3xl m-4">Write a review</h1>
           <div className="m-4">
@@ -127,4 +122,6 @@ export default function CommentFood() {
       </div>
     </div>
   );
-}
+};
+
+export default CommentRes;

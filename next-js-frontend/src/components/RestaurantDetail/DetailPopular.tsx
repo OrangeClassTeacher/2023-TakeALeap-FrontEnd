@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { IFood } from "./InterFace";
+import { IFood } from "../InterfaceEnumsMeta/InterFace";
 import Image from "next/image";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -26,8 +26,7 @@ export const DetailPopular = () => {
               key={ind}
               className={
                 ind == 1 || ind == 4 ? "m-2 mt-16 hidden sm:block " : "m-2"
-              }
-            >
+              }>
               <div className="">
                 <Image
                   src={item?.img[0] || ""}

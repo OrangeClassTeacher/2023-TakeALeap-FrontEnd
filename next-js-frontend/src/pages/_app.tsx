@@ -1,28 +1,38 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { Layout } from "@/components/Layout";
-import { Roboto } from "next/font/google";
+import { Layout } from "@/components/Layout/Layout";
 import { UserContext } from "@/context/ContextConfig";
-import { useState } from "react";
-import { IUser } from "@/components/InterFace";
-
-const roboto = Roboto({
-  weight: ["100", "300", "500", "400", "700", "900"],
-  style: ["italic", "normal"],
-  variable: "--font-roboto",
-  subsets: ["latin"],
-});
+import { useEffect, useState } from "react";
+import { IUser } from "@/components/InterfaceEnumsMeta/InterFace";
+import axios from "axios";
+import Utils from "@/utils/helper";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [userSign, setUserSign] = useState<IUser>();
+  useEffect(() => {
+    const id = typeof window !== "undefined" ? localStorage.getItem("id") : "";
+    const token =
+      typeof window !== "undefined" ? localStorage.getItem("token") : "";
+
+    if (id && token) {
+      axios
+        .post(`${Utils.API_URL}/getbyuserid?id=${id}`, { token: token })
+        .then((res) => {
+          setUserSign(res.data.result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, []);
 
   return (
     <>
-      <Layout className="font-sans">
-        <UserContext.Provider value={{ userSign, setUserSign }}>
+      <UserContext.Provider value={{ userSign, setUserSign }}>
+        <Layout className="font-sans">
           <Component {...pageProps} />
-        </UserContext.Provider>
-      </Layout>
+        </Layout>
+      </UserContext.Provider>
     </>
   );
 }

@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { FaFacebookF } from "react-icons/fa";
-import { FaGoogle } from "react-icons/fa";
 import { BiArrowBack } from "react-icons/bi";
 import Link from "next/link";
 import axios from "axios";

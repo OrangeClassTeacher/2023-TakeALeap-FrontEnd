@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { IUser } from "./InterFace";
+import { IUser } from "./InterfaceEnumsMeta/InterFace";
 import Image from "next/image";
 import axios from "axios";
 import { ImgChangeModal } from "./ImgChangeModal";
+import Utils from "@/utils/helper";
 
 export const Profile = ({
   data,
@@ -24,7 +25,7 @@ export const Profile = ({
 
   const editUser = async () => {
     await axios
-      .put(`http://localhost:8080/api/user?id=${id}`, data)
+      .put(`${Utils.API_URL}/user?id=${id}`, data)
       .then((res) => (res.data.status ? alert("amjilttai") : alert("aldaatai")))
       .catch((err) => console.log(err));
 

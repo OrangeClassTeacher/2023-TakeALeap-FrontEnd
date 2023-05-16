@@ -1,13 +1,13 @@
-import Carousel from "../components/Carousel";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import TopComments from "@/components/TopComments";
-import { PopularDish } from "@/components/PopularDish";
+import Carousel from "../components/homePage/Carousel";
+import Header from "@/components/HeaderNavFooter/Header";
+import Footer from "@/components/HeaderNavFooter/Footer";
+import TopComments from "@/components/homePage/TopComments";
+import { PopularDish } from "@/components/homePage/PopularDish";
 import axios from "axios";
-import { ITopFoods } from "@/components/InterFace";
-import RestaurantLilSlide from "@/components/RestaurantLilSlide";
-import { IRestaurant } from "../components/InterFace";
-import { ITopRestaurant } from "@/components/InterFace";
+import { ITopFoods } from "@/components/InterfaceEnumsMeta/InterFace";
+import RestaurantLilSlide from "@/components/homePage/RestaurantLilSlide";
+import { IRestaurant } from "../components/InterfaceEnumsMeta/InterFace";
+import { ITopRestaurant } from "@/components/InterfaceEnumsMeta/InterFace";
 import Utils from "@/utils/helper";
 
 export default function index(props: {
