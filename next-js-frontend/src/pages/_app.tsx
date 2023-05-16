@@ -6,9 +6,12 @@ import { useEffect, useState } from "react";
 import { IUser } from "@/components/InterfaceEnumsMeta/InterFace";
 import axios from "axios";
 import Utils from "@/utils/helper";
+import { LoadingContext } from "@/context/ContextConfig";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [userSign, setUserSign] = useState<IUser>();
+  const [loading, setLoading] = useState<boolean>(false);
+
   useEffect(() => {
     const id = typeof window !== "undefined" ? localStorage.getItem("id") : "";
     const token =
@@ -29,9 +32,11 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <UserContext.Provider value={{ userSign, setUserSign }}>
-        <Layout className="font-sans">
-          <Component {...pageProps} />
-        </Layout>
+        <LoadingContext.Provider value={{ loading, setLoading }}>
+          <Layout className="font-sans">
+            <Component {...pageProps} />
+          </Layout>
+        </LoadingContext.Provider>
       </UserContext.Provider>
     </>
   );

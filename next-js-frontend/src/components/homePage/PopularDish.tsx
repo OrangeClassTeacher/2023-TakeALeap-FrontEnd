@@ -5,8 +5,6 @@ import Link from "next/link";
 import Stars from "../commentsRates/Stars";
 
 export const PopularDish = ({ data }: { data: ITopFoods[] }) => {
-  console.log(data);
-
   return (
     <div className="md:px-20 bg-black text-white">
       <h1 className="text-3xl py-5 uppercase text-center">Most popular </h1>
