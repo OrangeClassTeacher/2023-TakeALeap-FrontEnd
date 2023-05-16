@@ -27,11 +27,6 @@ export const RestaurantStart = ({
         <div className="font-3xl md:font-2xl lg:w-96 ">
           <div className="con">
             <div className="cloud"></div>
-            {/* <div className="rain">
-                {tsas?.map((i, ind) => (
-                  <span key={ind} style={{ "--i": i }}></span>
-                ))}
-              </div> */}
           </div>
           <h1 className="m-5 text-3xl uppercase">{restaurantName} </h1>
           <p className="hidden md:block text-start font-light text-sm">
@@ -61,6 +56,4 @@ export const RestaurantStart = ({
       </div>
     </div>
   );
-
-  //return <div>sa</div>;
 };

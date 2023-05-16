@@ -23,7 +23,7 @@ export const ShowComment = ({
               >
                 <div className="basis-1/12 mx-3">
                   <Image
-                    src={item?.userId?.img[0]}
+                    src={item?.userId?.img[0] ? item?.userId?.img[0] : img}
                     alt="img"
                     width={40}
                     height={40}
@@ -40,11 +40,11 @@ export const ShowComment = ({
                     </div>
                     <div className="text-center">
                       <div className="text-end mx-1">
-                        <Stars stars={item?.rate ? item?.rate : 0} />
+                        <Stars stars={item.rate ? item.rate : 0} />
                       </div>
                     </div>
                   </div>
-                  <span className="font-light my-1">{item?.comment}</span>
+                  <span className="font-light my-1">{item.comment}</span>
                 </div>
               </div>
             );
@@ -57,7 +57,7 @@ export const ShowComment = ({
                 >
                   <div className="mx-3 basis-1/12">
                     <Image
-                      src={item?.userId?.img[0]}
+                      src={item?.userId?.img[0] ? item?.userId?.img[0] : img}
                       alt="img"
                       width={40}
                       height={40}
@@ -76,11 +76,11 @@ export const ShowComment = ({
                       </div>
                       <div className="text-center">
                         <div className="text-end mx-1">
-                          <Stars stars={item.rate ? item.rate : 0} />
+                          <Stars stars={item.rate ? item?.rate : 0} />
                         </div>
                       </div>
                     </div>
-                    <span className="font-light my-1">{item.comment}</span>
+                    <span className="font-light my-1">{item?.comment}</span>
                   </div>
                 </div>
               );

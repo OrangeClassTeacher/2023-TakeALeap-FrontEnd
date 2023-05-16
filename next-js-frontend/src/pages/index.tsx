@@ -4,48 +4,57 @@ import Footer from "@/components/HeaderNavFooter/Footer";
 import TopComments from "@/components/homePage/TopComments";
 import { PopularDish } from "@/components/homePage/PopularDish";
 import axios from "axios";
-import { ITopFoods } from "@/components/InterfaceEnumsMeta/InterFace";
 import RestaurantLilSlide from "@/components/homePage/RestaurantLilSlide";
-import { IRestaurant } from "../components/InterfaceEnumsMeta/InterFace";
-import { ITopRestaurant } from "@/components/InterfaceEnumsMeta/InterFace";
+import {
+  IRestaurant,
+  ITopRestaurant,
+  ITopFoods,
+} from "../components/InterfaceEnumsMeta/InterFace";
 import Utils from "@/utils/helper";
+import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { Loading } from "@/components/Loading";
+import { LoadingContext } from "@/context/ContextConfig";
 
-export default function index(props: {
-  topRestaurant: ITopRestaurant[];
-  topFoods: ITopFoods[];
-  allRestaurant: IRestaurant[];
-}) {
-  return (
-    <>
-      <Header />
-      <Carousel items={props?.topRestaurant} />
-      <RestaurantLilSlide data={props?.allRestaurant} />
-      <PopularDish data={props?.topFoods} />
-      <TopComments />
+export default function Index() {
+  const [restaurants, setRestaurant] = useState<IRestaurant[]>([]);
+  const [topFood, setTopFood] = useState<ITopFoods[]>([]);
+  const [topRestaurant, setTopRestaurant] = useState<ITopRestaurant[]>([]);
+  const { loading, setLoading }: any = useContext(LoadingContext);
 
-      <Footer />
-    </>
-  );
-}
+  useEffect(() => {
+    // setLoading(true);
+    axios
+      .get(`${Utils.API_URL}/toprestaurant`)
+      .then((res) => setTopRestaurant(res.data.result))
+      .catch((err) => console.log(err));
 
-export async function getServerSideProps() {
-  const TopRestaurant = await axios
-    .get(`${Utils.API_URL}/toprestaurant`)
-    .catch((err) => console.log(err));
+    axios
+      .get(`${Utils.API_URL}/gettopfoods`)
+      .then((res) => setTopFood(res.data.result))
+      .catch((err) => console.log(err));
 
-  const TopFood = await axios
-    .get(`${Utils.API_URL}/gettopfoods`)
-    .catch((err) => console.log(err));
+    axios
+      .get(`${Utils.API_URL}/restaurants`)
+      .then((res) => {
+        setRestaurant(res.data.result);
+        // setLoading(false);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
-  const AllRestaurant = await axios
-    .get(`${Utils.API_URL}/restaurants`)
-    .catch((err) => console.log(err));
-
-  return {
-    props: {
-      topRestaurant: TopRestaurant?.data.result,
-      topFoods: TopFood?.data.result,
-      allRestaurant: AllRestaurant?.data.result,
-    },
-  };
+  if (loading) {
+    return <Loading />;
+  } else {
+    return (
+      <>
+        <Header />
+        <Carousel items={topRestaurant} />
+        <RestaurantLilSlide data={restaurants} />
+        <PopularDish data={topFood} />
+        <TopComments />
+        <Footer />
+      </>
+    );
+  }
 }
