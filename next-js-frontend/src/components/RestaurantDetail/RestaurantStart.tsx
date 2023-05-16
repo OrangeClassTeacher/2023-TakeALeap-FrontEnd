@@ -9,11 +9,7 @@ export const RestaurantStart = ({
 }: {
   restaurant?: IDetailRest;
 }) => {
-  const tsas: number[] = [
-    11, 12, 14, 18, 16, 19, 20, 19, 10, 16, 14, 18, 11, 13, 15, 12, 17, 13, 15,
-    12,
-  ];
-  const { img, restaurantName, description, schedule }: any =
+  const { restaurantName, description, schedule, img }: any =
     restaurant?.restaurant[0];
 
   return (
@@ -29,14 +25,14 @@ export const RestaurantStart = ({
       </div>
       <div className="md:basis-1/3 flex justify-around items-center">
         <div className="font-3xl md:font-2xl lg:w-96 ">
-          {/* <div className="con">
+          <div className="con">
             <div className="cloud"></div>
-            <div className="rain">
-              {tsas?.map((i, ind) => (
-                <span key={ind} style={{ "--i": i }}></span>
-              ))}
-            </div>
-          </div> */}
+            {/* <div className="rain">
+                {tsas?.map((i, ind) => (
+                  <span key={ind} style={{ "--i": i }}></span>
+                ))}
+              </div> */}
+          </div>
           <h1 className="m-5 text-3xl uppercase">{restaurantName} </h1>
           <p className="hidden md:block text-start font-light text-sm">
             {description}
@@ -65,4 +61,6 @@ export const RestaurantStart = ({
       </div>
     </div>
   );
+
+  //return <div>sa</div>;
 };

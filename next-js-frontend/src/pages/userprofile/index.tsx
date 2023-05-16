@@ -9,9 +9,9 @@ import { Profile } from "@/components/Profile";
 import { MdTableRows } from "react-icons/md";
 import { FaRegComment } from "react-icons/fa";
 import { IUser } from "@/components/InterfaceEnumsMeta/InterFace";
+import Utils from "@/utils/helper";
 
 export default function Userprofile() {
-  const id = typeof window !== "undefined" ? localStorage.getItem("id") : "";
   const token =
     typeof window !== "undefined" ? localStorage.getItem("token") : "";
 
@@ -30,6 +30,7 @@ export default function Userprofile() {
   const [data, setData] = useState(init);
   const [constData, setConstData] = useState(init);
   const [active, setActive] = useState(1);
+  const [comment, setComment] = useState();
 
   useEffect(() => {
     const id = typeof window !== "undefined" ? localStorage.getItem("id") : "";
@@ -38,12 +39,19 @@ export default function Userprofile() {
 
     if (id && token) {
       axios
-        .post(`http://localhost:8080/api/user?id=${id}`, {
+        .post(`${Utils.API_URL}/getbyuserid?id=${id}`, {
           token: token,
         })
         .then((res) => {
           setData({ ...res.data.result, token: token });
           setConstData({ ...res.data.result, token: token });
+        })
+        .catch((err) => console.log(err));
+
+      axios
+        .get(`${Utils.API_URL}/commentbyuserid?id=${id}`)
+        .then((res) => {
+          setComment(res.data.result);
         })
         .catch((err) => console.log(err));
     }
@@ -58,7 +66,6 @@ export default function Userprofile() {
           <div className="flex items-center py-5">
             <div className="basis-1/3">
               <Image
-                // src={cat}
                 src={data.img[0]}
                 alt="img"
                 width={120}
@@ -88,7 +95,6 @@ export default function Userprofile() {
                     : "flex items-center gap-2 text-white/50"
                 }
                 onClick={() => setActive(1)}>
-                {" "}
                 <MdTableRows />
                 Profile
               </p>
@@ -99,7 +105,6 @@ export default function Userprofile() {
                     : "flex items-center gap-2 text-white/50"
                 }
                 onClick={() => setActive(2)}>
-                {" "}
                 <FaRegComment />
                 My Comments
               </p>
@@ -112,7 +117,7 @@ export default function Userprofile() {
                 setConstData={setConstData}
               />
             ) : (
-              <MyComments />
+              <MyComments comment={comment} setComment={setComment} />
             )}
           </div>
         </div>

@@ -9,42 +9,42 @@ export default function Stars({ stars }: any): JSX.Element {
           {stars == 1 ? (
             <FaStar />
           ) : stars == 2 ? (
-            <p className="flex">
+            <div className="flex">
               <FaStar />
               <FaStar />
-            </p>
+            </div>
           ) : stars == 3 ? (
-            <p className="flex">
+            <div className="flex">
               <FaStar />
               <FaStar />
               <FaStar />
-            </p>
+            </div>
           ) : stars == 4 ? (
-            <p className="flex">
+            <div className="flex">
               <FaStar />
               <FaStar />
               <FaStar />
               <FaStar />
-            </p>
+            </div>
           ) : (
-            <p className="flex">
+            <div className="flex">
               <FaStar />
               <FaStar />
               <FaStar />
               <FaStar />
               <FaStar />
-            </p>
+            </div>
           )}
         </div>
       ) : (
         <div>
-          <p className="flex">
+          <div className="flex">
             <FaStar />
             <FaStar />
             <FaStar />
             <FaStar />
             <FaStar />
-          </p>
+          </div>
         </div>
       )}
     </div>

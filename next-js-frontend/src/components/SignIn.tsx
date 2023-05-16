@@ -6,12 +6,12 @@ import Image from "next/image";
 import cat from "../img/logo.jpg";
 import Link from "next/link";
 import axios from "axios";
-import { useRouter } from "next/router";
-import Utils from "@/utils/helper";
 import { UserContext } from "@/context/ContextConfig";
 import { useContext } from "react";
 import { AiFillEyeInvisible } from "react-icons/ai";
 import { AiFillEye } from "react-icons/ai";
+import Utils from "@/utils/helper";
+
 export default function SignIn({
   signIn,
   setSignIn,
@@ -24,7 +24,6 @@ export default function SignIn({
     password: "",
   };
 
-  const route = useRouter();
   const [login, setLogin] = useState(init);
   const { userSign, setUserSign }: any = useContext(UserContext);
   const [passwordType, setPasswordType] = useState("password");

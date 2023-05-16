@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Stars from "./Stars";
 import { IComment } from "../InterfaceEnumsMeta/InterFace";
-import img from "../img/cat.jpeg";
+import img from "../../img/cat.jpeg";
 
 export const ShowComment = ({
   showAllCom,
@@ -21,7 +21,7 @@ export const ShowComment = ({
               className="flex p-4  m-4 items-center border-b border-slate-500 ">
               <div className="basis-1/12 mx-3">
                 <Image
-                  src={img}
+                  src={item.userId.img[0]}
                   alt="img"
                   width={40}
                   height={40}
@@ -37,9 +37,9 @@ export const ShowComment = ({
                     </span>
                   </div>
                   <div className="text-center">
-                    <p className="text-end mx-1">
+                    <div className="text-end mx-1">
                       <Stars stars={item.rate ? item.rate : 0} />
-                    </p>
+                    </div>
                   </div>
                 </div>
                 <span className="font-light my-1">{item.comment}</span>
@@ -54,11 +54,11 @@ export const ShowComment = ({
                 className="flex p-4 m-4 items-center border-b border-slate-500">
                 <div className="mx-3 basis-1/12">
                   <Image
-                    src={img}
+                    src={item.userId.img[0]}
                     alt="img"
                     width={40}
                     height={40}
-                    className="rounded-full"
+                    className="rounded-full w-[50px] h-[50px] object-cover"
                   />
                 </div>
                 <div className="basis-11/12">
@@ -70,9 +70,9 @@ export const ShowComment = ({
                       </span>
                     </div>
                     <div className="text-center">
-                      <p className="text-end mx-1">
+                      <div className="text-end mx-1">
                         <Stars stars={item.rate ? item.rate : 0} />
-                      </p>
+                      </div>
                     </div>
                   </div>
                   <span className="font-light my-1">{item.comment}</span>

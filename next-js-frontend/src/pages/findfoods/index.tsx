@@ -20,10 +20,6 @@ const Search = () => {
   const [all, setAll] = useState(init);
   const [data, setData] = useState<IAllSearchFood>();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-  };
-
   const getData = () => {
     axios
       .post(`${Utils.API_URL}/foodallsearch`, all)
@@ -121,7 +117,7 @@ const Search = () => {
         <div className="basis-4/5 mx-10">
           <div className="flex justify-center">
             <div className="flex flex-col w-full">
-              <form onSubmit={handleSubmit} className="flex flex-col space-y-2">
+              <form className="flex flex-col space-y-2">
                 <div className="flex space-x-2">
                   <input
                     type="text"

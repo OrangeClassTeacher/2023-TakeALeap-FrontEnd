@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import coca from "../img/can-pepsi-zero-sugar.png";
+import coca from "../../img/can-pepsi-zero-sugar.png";
 import axios from "axios";
-import cat from "../img/cat.jpeg";
-import { IRestaurant } from "../InterfaceEnumsMeta/InterFace";
-import { IUser } from "../InterfaceEnumsMeta/InterFace";
+import cat from "../../img/cat.jpeg";
 import Starts from "../commentsRates/Stars";
 import Link from "next/link";
-import { IFood } from "../InterfaceEnumsMeta/InterFace";
-import pep2 from "../img/pep2.png";
+import pep2 from "../../img/pep2.png";
 import Utils from "@/utils/helper";
-import rocket from "../img/rocket.png";
+import rocket from "../../img/rocket.png";
 import { ITopComment } from "../InterfaceEnumsMeta/InterFace";
 import { IUserPoint } from "../InterfaceEnumsMeta/InterFace";
 
