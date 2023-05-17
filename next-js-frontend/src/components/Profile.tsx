@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { IUser } from "./InterfaceEnumsMeta/InterFace";
 import Image from "next/image";
 import axios from "axios";
 import { ImgChangeModal } from "./ImgChangeModal";
 import Utils from "@/utils/helper";
+import { Loading } from "./Loading";
+import { LoadingContext } from "@/context/ContextConfig";
 
 export const Profile = ({
   data,
@@ -18,12 +20,13 @@ export const Profile = ({
 }) => {
   const [isEdit, setIsEdit] = useState(false);
   const [modal, setModal] = useState(false);
-  const [laoding, setLoading] = useState(false);
+  const { loading, setLoading }: any = useContext(LoadingContext);
   const id = typeof window !== "undefined" ? localStorage.getItem("id") : "";
   const token =
     typeof window !== "undefined" ? localStorage.getItem("token") : "";
 
   const editUser = async () => {
+    // setLoading(true);
     await axios
       .put(`${Utils.API_URL}/user?id=${id}`, data)
       .then((res) => (res.data.status ? alert("amjilttai") : alert("aldaatai")))
@@ -37,17 +40,19 @@ export const Profile = ({
       })
       .then((res) => {
         setConstData(res.data.result);
+        // setLoading(false);
       })
       .catch((err) => console.log(err));
 
     setIsEdit(false);
   };
+
   return (
     <div className="flex flex-col gap-8">
       <ImgChangeModal
         modal={modal}
         setModal={setModal}
-        loading={laoding}
+        loading={loading}
         setLoading={setLoading}
       />
       <div className="flex gap-5 items-center">

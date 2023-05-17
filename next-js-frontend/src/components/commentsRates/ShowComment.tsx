@@ -27,7 +27,7 @@ export const ShowComment = ({
                     alt="img"
                     width={40}
                     height={40}
-                    className="rounded-full"
+                    className="rounded-full w-[50px] h-[50px] object-cover"
                   />
                 </div>
                 <div className="basis-11/12">

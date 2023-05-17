@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { NavCateg } from "@/components/HeaderNavFooter/NavCateg";
 // import { NavbarCustom } from "@/components/HeaderNavFooter/NavbarCustom";
 import axios from "axios";
@@ -9,6 +9,8 @@ import { IAllSearchRestaurant } from "../../components/InterfaceEnumsMeta/InterF
 import Utils from "@/utils/helper";
 import { cuisines } from "@/components/InterfaceEnumsMeta/enumValues";
 import { location } from "@/components/InterfaceEnumsMeta/enumValues";
+import { Loading } from "@/components/Loading";
+import { LoadingContext } from "@/context/ContextConfig";
 
 const Search = () => {
   const init = {
@@ -20,14 +22,17 @@ const Search = () => {
 
   const [all, setAll] = useState(init);
   const [data, setData] = useState<IAllSearchRestaurant>();
+  const { loading, setLoading }: any = useContext(LoadingContext);
 
   const getData = () => {
+    setLoading(true);
     axios
       .post(`${Utils.API_URL}/restaurantallsearch`, all)
       .then((res) => {
         setData(res.data.result);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
   };
 
   useEffect(() => {
@@ -37,6 +42,9 @@ const Search = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div className="bg-black text-white">

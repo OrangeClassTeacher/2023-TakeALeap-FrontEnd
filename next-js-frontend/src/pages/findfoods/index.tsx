@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { NavCateg } from "@/components/HeaderNavFooter/NavCateg";
 // import { NavbarCustom } from "@/components/HeaderNavFooter/NavbarCustom";
 import axios from "axios";
@@ -8,6 +8,8 @@ import Footer from "@/components/HeaderNavFooter/Footer";
 import { IAllSearchFood } from "@/components/InterfaceEnumsMeta/InterFace";
 import Utils from "@/utils/helper";
 import { meal } from "@/components/InterfaceEnumsMeta/enumValues";
+import { Loading } from "@/components/Loading";
+import { LoadingContext } from "@/context/ContextConfig";
 
 const init = {
   text: "",
@@ -19,24 +21,33 @@ const init = {
 const Search = () => {
   const [all, setAll] = useState(init);
   const [data, setData] = useState<IAllSearchFood>();
+  const { loading, setLoading }: any = useContext(LoadingContext);
 
   const getData = () => {
+    setLoading(true);
     axios
       .post(`${Utils.API_URL}/foodallsearch`, all)
-      .then((res) => setData(res.data.result))
-      .catch((err) => console.log(err));
+      .then((res) => {
+        setData(res.data.result);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
   };
 
   useEffect(() => {
     getData();
   }, []);
 
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <div className="bg-black text-white">
       {/* <NavbarCustom /> */}
       <NavCateg />
-      <div className="flex p-10">
-        <div className="basis-1/5">
+      <div className="flex flex-col md:flex-row  p-10">
+        <div className="md:basis-1/5">
           <div className="flex flex-col p-8   bg-gray-900 rounded ">
             <div className="flex flex-col">
               <div className="font-semibold pt-5 text-gray-200 my-2">Meal:</div>
@@ -117,7 +128,7 @@ const Search = () => {
             </div>
           </div>
         </div>
-        <div className="basis-4/5 mx-10">
+        <div className="md:basis-4/5 mx-10 ">
           <div className="flex justify-center">
             <div className="flex flex-col w-full">
               <form className="flex flex-col space-y-2">
@@ -141,32 +152,36 @@ const Search = () => {
             </div>
           </div>
 
-          <div className="m-2 text-2xl">All Foods : {data?.result.length}</div>
+          <div>
+            <div className="m-2 text-2xl">
+              All Foods : {data?.result.length}
+            </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3">
-            {data?.result?.map((item, ind) => {
-              return (
-                <Link href={`/food?id=${item._id}`} key={ind}>
-                  <div className="m-2 rounded bg-white text-black pard">
-                    <div className="w-full h-[460px] overflow-hidden object-cover">
-                      <Image
-                        src={item?.foods?.img[0]}
-                        width={400}
-                        height={400}
-                        alt="img"
-                        className="rounded object-cover poggo"
-                      />
+            <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3">
+              {data?.result?.map((item, ind) => {
+                return (
+                  <Link href={`/food?id=${item._id}`} key={ind}>
+                    <div className="m-2 rounded bg-white text-black pard">
+                      <div className="w-full h-[460px] overflow-hidden object-cover">
+                        <Image
+                          src={item?.foods?.img[0]}
+                          width={400}
+                          height={400}
+                          alt="img"
+                          className="rounded object-cover poggo"
+                        />
+                      </div>
+                      <div className="text-center pntro">
+                        <h1 className=" text-md uppercase m-1 chef">
+                          {item?.foods.foodName}
+                        </h1>
+                        <p className="pb-2 chef">Price : {item?.foods.price}</p>
+                      </div>
                     </div>
-                    <div className="text-center pntro">
-                      <h1 className=" text-md uppercase m-1 chef">
-                        {item?.foods.foodName}
-                      </h1>
-                      <p className="pb-2 chef">Price : {item?.foods.price}</p>
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

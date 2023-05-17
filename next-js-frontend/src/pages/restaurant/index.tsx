@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Header from "@/components/HeaderNavFooter/Header";
 import Footer from "@/components/HeaderNavFooter/Footer";
 import { RestaurantStart } from "@/components/RestaurantDetail/RestaurantStart";
@@ -9,10 +9,12 @@ import { useRouter } from "next/router";
 import { IDetailRest } from "@/components/InterfaceEnumsMeta/InterFace";
 import axios from "axios";
 import Utils from "@/utils/helper";
+import { LoadingContext } from "@/context/ContextConfig";
+import { Loading } from "@/components/Loading";
 
 export default function Restaurant() {
   const [restaurant, setRestaurant] = useState<IDetailRest>();
-  const [loading, setLoading] = useState<boolean>(false);
+  const { loading, setLoading }: any = useContext(LoadingContext);
   const route = useRouter();
   const { id } = route.query;
 
@@ -21,17 +23,20 @@ export default function Restaurant() {
   }, [id]);
 
   const getData = () => {
-    setLoading(true);
     if (id) {
+      setLoading(true);
       axios
         .get(`${Utils.API_URL}/restaurant?id=${id}`)
         .then((res) => {
           setRestaurant(res.data.result[0]);
-          setLoading(false);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err))
+        .finally(() => setLoading(false));
     }
   };
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <>

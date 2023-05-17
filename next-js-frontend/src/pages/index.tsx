@@ -9,6 +9,8 @@ import {
   IRestaurant,
   ITopRestaurant,
   ITopFoods,
+  IUserPoint,
+  ITopComment,
 } from "../components/InterfaceEnumsMeta/InterFace";
 import Utils from "@/utils/helper";
 import { useEffect, useState } from "react";
@@ -20,41 +22,83 @@ export default function Index() {
   const [restaurants, setRestaurant] = useState<IRestaurant[]>([]);
   const [topFood, setTopFood] = useState<ITopFoods[]>([]);
   const [topRestaurant, setTopRestaurant] = useState<ITopRestaurant[]>([]);
+  const [lastComments, setLastComments] = useState<ITopComment[]>([]);
+  const [topConterbuter, setTopConterbuter] = useState<IUserPoint[]>([]);
   const { loading, setLoading }: any = useContext(LoadingContext);
 
-  useEffect(() => {
-    // setLoading(true);
-    axios
+  const getData = async () => {
+    setLoading(true);
+    await axios
       .get(`${Utils.API_URL}/toprestaurant`)
-      .then((res) => setTopRestaurant(res.data.result))
+      .then((res) => {
+        setTopRestaurant(res.data.result);
+      })
       .catch((err) => console.log(err));
 
-    axios
+    await axios
       .get(`${Utils.API_URL}/gettopfoods`)
-      .then((res) => setTopFood(res.data.result))
+      .then((res) => {
+        setTopFood(res.data.result);
+      })
       .catch((err) => console.log(err));
 
-    axios
+    await axios
       .get(`${Utils.API_URL}/restaurants`)
       .then((res) => {
         setRestaurant(res.data.result);
-        // setLoading(false);
       })
       .catch((err) => console.log(err));
+
+    axios
+      .get(`${Utils.API_URL}/latestcomments`)
+      .then((res) => {
+        setLastComments(res.data.result);
+      })
+      .catch((err) => console.log(err));
+
+    axios
+      .get(`${Utils.API_URL}/users/topusers`)
+      .then((res) => {
+        setTopConterbuter(res.data.result);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
+  };
+
+  useEffect(() => {
+    getData();
   }, []);
 
   if (loading) {
     return <Loading />;
-  } else {
-    return (
-      <>
-        <Header />
-        <Carousel items={topRestaurant} />
-        <RestaurantLilSlide data={restaurants} />
-        <PopularDish data={topFood} />
-        <TopComments />
-        <Footer />
-      </>
-    );
   }
+  return (
+    <>
+      <div className="sav bg-black text-white">
+        <section className="overflow-hidden">
+          <Header />
+          {topRestaurant.length > 0 ? <Carousel items={topRestaurant} /> : ""}
+        </section>
+        <section className="flex items-center justify-evenly">
+          {restaurants.length > 0 ? (
+            <RestaurantLilSlide data={restaurants} />
+          ) : (
+            ""
+          )}
+        </section>
+        <section>
+          {topFood.length > 0 ? <PopularDish data={topFood} /> : ""}
+        </section>
+        <section>
+          {lastComments.length > 0 && topConterbuter.length > 0 && (
+            <TopComments
+              lastComments={lastComments}
+              topConterbuter={topConterbuter}
+            />
+          )}
+        </section>
+      </div>
+      <Footer />
+    </>
+  );
 }

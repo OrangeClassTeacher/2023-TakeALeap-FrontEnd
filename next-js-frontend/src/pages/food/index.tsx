@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Header from "@/components/HeaderNavFooter/Header";
@@ -11,22 +11,31 @@ import Link from "next/link";
 import { IoMdRestaurant } from "react-icons/io";
 import { TbSoup } from "react-icons/tb";
 import gip from "../../img/gip.gif";
+import { Loading } from "@/components/Loading";
+import { LoadingContext } from "@/context/ContextConfig";
 
 export default function Food() {
   const route = useRouter();
   const { id } = route.query;
   const [food, setFood] = useState<IDetailFood>();
+  const { loading, setLoading }: any = useContext(LoadingContext);
 
   useEffect(() => {
     if (id) {
+      setLoading(true);
       axios
         .get(`${Utils.API_URL}/food?id=${id}`)
         .then((res) => {
           setFood(res.data.result);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err))
+        .finally(() => setLoading(false));
     }
   }, [id]);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div>

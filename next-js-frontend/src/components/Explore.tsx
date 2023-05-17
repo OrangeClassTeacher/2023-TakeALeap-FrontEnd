@@ -1,19 +1,26 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Image from "next/image";
 import { IExplore } from "./InterfaceEnumsMeta/InterFace";
 import { FaStar } from "react-icons/fa";
 import Link from "next/link";
 import Utils from "@/utils/helper";
+import { Loading } from "./Loading";
+import { LoadingContext } from "@/context/ContextConfig";
 
 export const Explore = (): JSX.Element => {
   const [data, setData] = useState<IExplore>();
   const [mixed, setMixed] = useState();
+  const { loading, setLoading }: any = useContext(LoadingContext);
 
   useEffect(() => {
+    // setLoading(true);
     axios
       .get(`${Utils.API_URL}/comments`)
-      .then((res) => setData(res.data))
+      .then((res) => {
+        setData(res.data);
+        // setLoading(false);
+      })
       .catch((err) => console.log(err));
   }, []);
 

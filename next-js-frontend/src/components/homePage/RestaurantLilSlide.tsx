@@ -34,10 +34,8 @@ export default function RestaurantLilSlide({ data }: { data: IRestaurant[] }) {
   }
 
   return (
-    <div className="bg-black">
-      <div className="text-white text-center py-10  uppercase text-3xl">
-        Restaurants
-      </div>
+    <div>
+      <div className="text-center uppercase text-3xl pb-10">Restaurants</div>
       <div className="relative">
         <button
           className="bg-white/50 z-10 left-0 absolute text-2xl rounded-full p-2 top-[50%]  m-5 "
@@ -45,7 +43,7 @@ export default function RestaurantLilSlide({ data }: { data: IRestaurant[] }) {
           style={{ display: activeIndex === 0 ? "none" : "block" }}>
           <IoIosArrowBack />
         </button>
-        <div className="w-full flex justify-evenly">
+        <div className="flex items-center justify-evenly mx-12 gap-10">
           {data.map((item, ind) => {
             if (
               activeIndex === ind ||
@@ -55,21 +53,18 @@ export default function RestaurantLilSlide({ data }: { data: IRestaurant[] }) {
             ) {
               return (
                 <Link href={`/restaurant?id=${item._id}`} key={ind}>
-                  <div
-                    className="andlal card rgb"
-                    ref={cardRef}
-                    style={{ marginBottom: "30px" }}>
-                    <div className="h-[300px] md:h-[400px]">
+                  <div className="card rgb w-[300px]" ref={cardRef}>
+                    <div className="h-[300px] md:h-[450px]">
                       <Image
                         src={item?.img[0]}
-                        width={400}
-                        height={400}
+                        width={200}
+                        height={200}
                         alt="img"
                         className="card-image object-cover w-[100%] h-[50%]"
                       />
-                      <div className="card-text">
+                      <div className="card-text overflow-hidden">
                         <h1 className="">{item?.restaurantName}</h1>
-                        <p className="text-sm whitespace-nowrap py-2 font-light">
+                        <p className="text-sm whitespace-wrap py-2 font-light">
                           {item.address.address}
                         </p>
 
