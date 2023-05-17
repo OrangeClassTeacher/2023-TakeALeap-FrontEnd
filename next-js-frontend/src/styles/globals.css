@@ -770,6 +770,14 @@
   background-position: -100%;
 }
 
+/* Food detail gif */
+.giphy {
+  width: 100rem;
+  height: 31.6rem;
+  z-index: -1;
+}
+.gipsl {
+  margin-top: -31rem;
 /*section*/
 
 .sav {

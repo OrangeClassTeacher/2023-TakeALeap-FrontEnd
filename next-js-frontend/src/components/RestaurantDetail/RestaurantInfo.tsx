@@ -33,7 +33,8 @@ export const RestaurantInfo = ({
               contact?.facebook
                 ? "flex items-center gap-2 hover:text-[#9395d3]"
                 : "hidden"
-            }>
+            }
+          >
             <FaFacebookSquare />
             <a href={contact.facebook}>Facebook</a>
           </div>
@@ -42,7 +43,8 @@ export const RestaurantInfo = ({
               contact?.instagram
                 ? "flex items-center gap-2 hover:text-[#9395d3]"
                 : "hidden"
-            }>
+            }
+          >
             <FaFacebookSquare />
             <a href={contact.instagram}>Instagram</a>
           </div>
@@ -51,7 +53,8 @@ export const RestaurantInfo = ({
               contact?.link
                 ? "flex items-center gap-2 hover:text-[#9395d3]"
                 : "hidden"
-            }>
+            }
+          >
             <GiEarthAmerica />
             <a href={contact.link}>Link</a>
           </div>

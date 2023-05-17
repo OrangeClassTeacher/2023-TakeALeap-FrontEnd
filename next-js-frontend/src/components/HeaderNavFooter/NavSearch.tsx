@@ -54,11 +54,11 @@ export const NavSearch = () => {
               </div>
             </Link>
           </h1>
-          <div className="nox">
+          {/* <div className="nox">
             <div className="nightbar"></div>
             <div className="nopLayer"></div>
             <p className=" 2x1:px-16 py-0 text-xs underline">Find, Eat, Rate</p>
-          </div>
+          </div> */}
         </div>
         <div className="basis-4/6 relative">
           <div className="flex gap-2 h-9 ">
@@ -98,7 +98,8 @@ export const NavSearch = () => {
               <div className="mr-10">
                 <p
                   className="hover:text-[#9395d3] cursor-pointer uppercase"
-                  onClick={() => route.push("/userprofile")}>
+                  onClick={() => route.push("/userprofile")}
+                >
                   {localStorage.getItem("name")}
                 </p>
                 <Link href={"/"}>
@@ -110,7 +111,8 @@ export const NavSearch = () => {
                         setLocalToken("");
                         setUserSign();
                       }
-                    }}>
+                    }}
+                  >
                     LOG OUT
                   </p>
                 </Link>
@@ -126,7 +128,8 @@ export const NavSearch = () => {
                   className="hover:text-[#9395d3] cursor-pointer"
                   onClick={() => {
                     setSignIn(!signIn);
-                  }}>
+                  }}
+                >
                   sign in
                 </p>
                 <Link href={"/register"}>

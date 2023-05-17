@@ -19,7 +19,8 @@ export const ShowComment = ({
             return (
               <div
                 key={ind}
-                className="flex p-4  m-4 items-center border-b border-slate-500 ">
+                className="flex p-4  m-4 items-center border-b border-slate-500 "
+              >
                 <div className="basis-1/12 mx-3">
                   <Image
                     src={item?.userId?.img[0] ? item?.userId?.img[0] : img}
@@ -52,7 +53,8 @@ export const ShowComment = ({
               return (
                 <div
                   key={ind}
-                  className="flex p-4 m-4 items-center border-b border-slate-500">
+                  className="flex p-4 m-4 items-center border-b border-slate-500"
+                >
                   <div className="mx-3 basis-1/12">
                     <Image
                       src={item?.userId?.img[0] ? item?.userId?.img[0] : img}
