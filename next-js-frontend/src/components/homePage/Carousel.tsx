@@ -37,9 +37,7 @@ export default function Carousel({ items }: { items: ITopRestaurant[] }) {
   }
 
   return (
-    <div
-      className="flex justify-around bg-black relative w3-animate-right"
-      id="carso">
+    <div className="flex justify-around relative w3-animate-right" id="carso">
       <div className="flex justify-around">
         <div className="h-full relative  delay-75 ">
           {activeIndex > 0 && (

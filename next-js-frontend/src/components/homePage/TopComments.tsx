@@ -1,39 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Image from "next/image";
 import coca from "../../img/can-pepsi-zero-sugar.png";
-import axios from "axios";
 import cat from "../../img/cat.jpeg";
 import Starts from "../commentsRates/Stars";
 import Link from "next/link";
 import pep2 from "../../img/pep2.png";
-import Utils from "@/utils/helper";
 import rocket from "../../img/rocket.png";
 import { ITopComment } from "../InterfaceEnumsMeta/InterFace";
 import { IUserPoint } from "../InterfaceEnumsMeta/InterFace";
 
-export default function TopComments(): JSX.Element {
-  const [lastComments, setLastComments] = useState<ITopComment[]>([]);
-  const [topConterbuter, setTopConterbuter] = useState<IUserPoint[]>([]);
-
-  useEffect(() => {
-    axios
-      .get(`${Utils.API_URL}/latestcomments`)
-      .then((res) => {
-        setLastComments(res.data.result);
-      })
-      .catch((err) => console.log(err));
-
-    axios
-      .get(`${Utils.API_URL}/users/topusers`)
-      .then((res) => {
-        setTopConterbuter(res.data.result);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
+export default function TopComments({
+  lastComments,
+  topConterbuter,
+}: {
+  lastComments: ITopComment[];
+  topConterbuter: IUserPoint[];
+}): JSX.Element {
   return (
-    <div className="bg-black text-gray-100 p-5">
-      <div className="flex">
+    <div className="text-gray-100">
+      <div className="flex items-center">
         <div className="hidden md:block basis-1/5 border border-gray-900 bg-gray-950 rounded p-5">
           <div className="coke">
             <div className="card2">
@@ -63,7 +48,7 @@ export default function TopComments(): JSX.Element {
           </div>
         </div>
         <div className="basis-1 md:basis-3/5">
-          <div className="text-center text-3xl">Recent Comments</div>
+          <div className="text-center text-3xl py-3">Recent Comments</div>
           <div className="m-0 md:mx-20 h-[600px] overflow-scroll">
             {lastComments?.map((item, ind) => {
               return (

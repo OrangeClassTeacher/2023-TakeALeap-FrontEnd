@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Dispatch } from "react";
 import { SetStateAction } from "react";
 import { GrClose } from "react-icons/gr";
@@ -7,10 +7,11 @@ import cat from "../img/logo.jpg";
 import Link from "next/link";
 import axios from "axios";
 import { UserContext } from "@/context/ContextConfig";
-import { useContext } from "react";
 import { AiFillEyeInvisible } from "react-icons/ai";
 import { AiFillEye } from "react-icons/ai";
 import Utils from "@/utils/helper";
+import { Loading } from "./Loading";
+import { LoadingContext } from "@/context/ContextConfig";
 
 export default function SignIn({
   signIn,
@@ -26,12 +27,15 @@ export default function SignIn({
 
   const [login, setLogin] = useState(init);
   const { userSign, setUserSign }: any = useContext(UserContext);
+  const { loading, setLoading }: any = useContext(LoadingContext);
   const [passwordType, setPasswordType] = useState("password");
 
   const signin = () => {
+    // setLoading(true);
     axios
       .post(`${Utils.API_URL}/login`, login)
       .then((res) => {
+        // setLoading(false);
         if (res.data.status) {
           localStorage.setItem("name", res.data.data.userName);
           localStorage.setItem("id", res.data.data._id);

@@ -10,6 +10,9 @@ import { MdTableRows } from "react-icons/md";
 import { FaRegComment } from "react-icons/fa";
 import { IUser } from "@/components/InterfaceEnumsMeta/InterFace";
 import Utils from "@/utils/helper";
+import { useContext } from "react";
+import { LoadingContext } from "@/context/ContextConfig";
+import { Loading } from "@/components/Loading";
 
 export default function Userprofile() {
   const token =
@@ -31,6 +34,7 @@ export default function Userprofile() {
   const [constData, setConstData] = useState(init);
   const [active, setActive] = useState(1);
   const [comment, setComment] = useState();
+  const { loading, setLoading }: any = useContext(LoadingContext);
 
   useEffect(() => {
     const id = typeof window !== "undefined" ? localStorage.getItem("id") : "";
@@ -38,6 +42,7 @@ export default function Userprofile() {
       typeof window !== "undefined" ? localStorage.getItem("token") : "";
 
     if (id && token) {
+      setLoading(true);
       axios
         .post(`${Utils.API_URL}/getbyuserid?id=${id}`, {
           token: token,
@@ -53,10 +58,14 @@ export default function Userprofile() {
         .then((res) => {
           setComment(res.data.result);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err))
+        .finally(() => setLoading(false));
     }
   }, []);
 
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <div className="bg-black text-white">
       <NavbarCustom />

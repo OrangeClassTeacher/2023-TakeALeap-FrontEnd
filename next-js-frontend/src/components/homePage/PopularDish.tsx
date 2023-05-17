@@ -6,8 +6,8 @@ import Stars from "../commentsRates/Stars";
 
 export const PopularDish = ({ data }: { data: ITopFoods[] }) => {
   return (
-    <div className="md:px-20 bg-black text-white">
-      <h1 className="text-3xl py-5 uppercase text-center">Most popular </h1>
+    <div className="md:px-20">
+      <h1 className="text-3xl uppercase text-center pt-10">Most popular </h1>
       <Link href={`/findfoods`}>
         <p className="text-end hover:text-[#9395d3]">See all</p>
       </Link>
@@ -25,9 +25,9 @@ export const PopularDish = ({ data }: { data: ITopFoods[] }) => {
                     <Image
                       src={item?.food?.img[0]}
                       alt="img"
-                      className="w-full h-[300px] object-cover -z-3"
+                      className="w-full h-[150px] object-cover -z-3"
                       width={200}
-                      height={200}
+                      height={150}
                     />
                   </div>
 
