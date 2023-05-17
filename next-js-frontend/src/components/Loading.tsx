@@ -1,19 +1,11 @@
 import React from "react";
+import styles from "../styles/loading.module.css";
 
-export const Loading = ({ loading }: any) => {
-  const tsas: number[] = [
-    11, 12, 14, 18, 16, 19, 20, 19, 10, 16, 14, 18, 11, 13, 15, 12, 17, 13, 15,
-    12,
-  ];
+export const Loading = (): JSX.Element => {
   return (
-    <div className="flex items-center justify-around h-screen w-full bg-black">
-      <div className="">
-        <div className="rain">
-          {tsas?.map((i, ind) => (
-            <span key={ind} style={{ "--i": i }}></span>
-          ))}
-        </div>
-      </div>
+    <div className={styles.center}>
+      <div className={styles.ring}></div>
+      <span className={styles.span}>loading...</span>
     </div>
   );
 };

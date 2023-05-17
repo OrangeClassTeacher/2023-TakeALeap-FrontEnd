@@ -1,5 +1,7 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Loading } from "./Loading";
+import { LoadingContext } from "@/context/ContextConfig";
 
 export const ImgChangeModal = ({
   modal,

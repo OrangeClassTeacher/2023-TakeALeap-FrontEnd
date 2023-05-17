@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { BiArrowBack } from "react-icons/bi";
 import Link from "next/link";
 import axios from "axios";
 import { BiLoader } from "react-icons/bi";
 import Utils from "@/utils/helper";
+import { LoadingContext } from "@/context/ContextConfig";
+import { Loading } from "@/components/Loading";
 
 export default function Register() {
   const init = {
@@ -19,7 +21,7 @@ export default function Register() {
 
   const [addUser, setAddUser] = useState(init);
   const [confirm, setConfirm] = useState("");
-  const [loading, setLoading] = useState(false);
+  const { loading, setLoading }: any = useContext(LoadingContext);
 
   const register = () => {
     addUser.userName.length < 2 && addUser.name.length < 2
@@ -38,7 +40,6 @@ export default function Register() {
     axios
       .post(`${Utils.API_URL}/register`, addUser)
       .then((res) => {
-        setLoading(false);
         if (!res.data.status) {
           if (res.data.message == "Email and Phone  duplicated") {
             alert("Email and Phone number are already registered");
@@ -52,10 +53,14 @@ export default function Register() {
           setConfirm("");
           alert("Register succeed, Please sign in ");
         }
+        setLoading(false);
       })
       .catch((err) => console.log(err));
   };
 
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <div className="text-center pt-20 relative">
       <Link href={"/"}>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import { IFood, IBeverage } from "../InterfaceEnumsMeta/InterFace";
@@ -9,17 +9,24 @@ import Utils from "@/utils/helper";
 import { FoodCard } from "./FoodCard";
 import { meal } from "../InterfaceEnumsMeta/enumValues";
 import { GiCookingPot } from "react-icons/gi";
+import { LoadingContext } from "@/context/ContextConfig";
+import { Loading } from "../Loading";
 
 export const Menu = () => {
   const route = useRouter();
   const { id } = route.query;
   const [food, setFood] = useState<IFood[]>([]);
   const [beverage, setBeverage] = useState<IBeverage[]>([]);
+  const { loading, setLoading }: any = useContext(LoadingContext);
 
   useEffect(() => {
+    // setLoading(true);
     axios
       .get(`${Utils.API_URL}/restaurantfoods?id=${id}`)
-      .then((res) => setFood(res.data.result))
+      .then((res) => {
+        setFood(res.data.result);
+        // setLoading(false);
+      })
       .catch((err) => console.log(err));
   });
 
