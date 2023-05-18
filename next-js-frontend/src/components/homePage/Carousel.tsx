@@ -28,12 +28,12 @@ export default function Carousel({ items }: { items: ITopRestaurant[] }) {
                       src={items[itemIndex]?.restaurant[0]?.img[0]}
                       width={1000}
                       height={700}
-                      className={`h-[700px] w-screen object-cover transition-opacity duration-500  `}
+                      className={`h-[700px] w-screen object-cover transition-opacity duration-500 orgiluun `}
                       alt="testt"
                     />
-                    <div className="absolute  top-0 h-full flex justify-around items-center text-white">
-                      <div className="flex flex-col gap-2 bg-black/75 w-[50%] rounded-lg h-[50%] p-5 text-center ">
-                        <div className=" flex justify-around">
+                    <div className="absolute  top-0 h-full flex justify-around items-center text-white w-full">
+                      <div className="flex flex-col bg-black/50 text-center text-xs/[10px] gap-1 justify-center">
+                        <div className=" flex justify-around mt-2">
                           <h1>
                             {items[itemIndex]?.restaurant[0].restaurantName}
                           </h1>
@@ -45,7 +45,7 @@ export default function Carousel({ items }: { items: ITopRestaurant[] }) {
                         </div>
                         <div>
                           {" "}
-                          <p>
+                          <p className="mb-2">
                             Mon-Fri :{" "}
                             {
                               items[itemIndex]?.restaurant[0].schedule.weekday
@@ -77,7 +77,7 @@ export default function Carousel({ items }: { items: ITopRestaurant[] }) {
                         <p className="flex items-center justify-center gap-2">
                           {items[itemIndex]?.restaurant[0].cuisineType}
                         </p>
-                        <p className="flex items-center justify-center gap-2">
+                        <p className="flex items-center justify-center gap-2 mb-2">
                           <AiTwotonePhone />
                           {items[itemIndex]?.restaurant[0].contact.phone}
                         </p>

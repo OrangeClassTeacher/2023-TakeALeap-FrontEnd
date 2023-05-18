@@ -45,7 +45,7 @@ export const NavSearch = () => {
 
   return (
     <div>
-      <div className="py-2 px-4 justify-between items-center hidden md:flex">
+      <div className="py-2 px-4 justify-between items-center hidden md:flex mt-5">
         <div className="basis-1/6">
           <h1 className="flex justify-between items-center text-4xl font-light">
             <Link href={"/"}>
