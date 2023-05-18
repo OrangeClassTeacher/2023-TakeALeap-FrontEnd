@@ -50,7 +50,7 @@ export default function Food() {
                   width={1200}
                   height={100}
                   alt="img"
-                  className="giphy"
+                  className="giphy max-h-[200px]"
                 />
                 <div className="gipsl">
                   <h1 className="text-2xl md:text-4xl uppercase justify-center flex">

@@ -22,12 +22,12 @@ export const Menu = () => {
   useEffect(() => {
     // setLoading(true);
     axios
-      .get(`${Utils.API_URL}/restaurantfoods?id=${id}`)
+      .get(`${Utils.API_URL}/foodbyrestaurantid?id=${id}`)
       .then((res) => {
         setFood(res.data.result);
-        // setLoading(false);
       })
       .catch((err) => console.log(err));
+    // .finally(() => setLoading(false));
   });
 
   return (

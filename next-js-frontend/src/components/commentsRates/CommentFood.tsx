@@ -60,6 +60,15 @@ export default function CommentFood() {
   };
 
   const sendComment = () => {
+    console.log(commentSend);
+    const userId =
+      typeof window !== "undefined" ? localStorage.getItem("id") : "";
+    const token =
+      typeof window !== "undefined" ? localStorage.getItem("token") : "";
+
+    // if(userId && token){
+
+    // }
     axios
       .post(`${Utils.API_URL}/comment`, commentSend)
       .then((res) => (res.data.status ? getData() : ""))
