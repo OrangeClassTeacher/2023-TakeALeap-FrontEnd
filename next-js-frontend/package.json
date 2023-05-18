@@ -20,6 +20,7 @@
     "dotenv": "^16.0.3",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
+    "google-map-react": "^2.2.1",
     "gsap": "^3.11.5",
     "next": "13.3.0",
     "next-fonts": "^1.5.1",

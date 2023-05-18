@@ -793,3 +793,10 @@
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
+.pic {
+  width: 45rem;
+  height: 32rem;
+}
+.picsl {
+  text-align: center;
+}
