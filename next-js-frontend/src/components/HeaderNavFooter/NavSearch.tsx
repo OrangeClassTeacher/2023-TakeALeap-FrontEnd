@@ -15,6 +15,8 @@ import Image from "next/image";
 import cat from "../../img/cat.jpeg";
 import { useContext } from "react";
 import { UserContext } from "@/context/ContextConfig";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const NavSearch = () => {
   const { userSign, setUserSign }: any = useContext(UserContext);
@@ -43,6 +45,56 @@ export const NavSearch = () => {
       .catch((err) => console.log(err));
   }, [searchInput]);
 
+  const handleLogout = () => {
+    toast.warn(
+      <div>
+        <p>Are you sure you want to log out?</p>
+        <div className="flex justify-center mt-4 gap-1">
+          <button
+            className="px-4 py-2 bg-blue-500 text-white rounded mr-2"
+            onClick={() => {
+              logout();
+              toast.dismiss();
+            }}
+          >
+            Ok
+          </button>
+          <button
+            className="px-4 py-2 bg-gray-300 text-gray-700 rounded"
+            onClick={() => toast.dismiss()}
+          >
+            Cancel
+          </button>
+        </div>
+      </div>,
+      {
+        position: "top-center",
+        autoClose: false,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }
+    );
+  };
+
+  const logout = () => {
+    localStorage.clear();
+    setLocalToken("");
+    setUserSign();
+    toast.success("Logged out", {
+      position: "bottom-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
+
   return (
     <div>
       <div className="py-2 px-4 justify-between items-center hidden md:flex mt-5">
@@ -54,11 +106,6 @@ export const NavSearch = () => {
               </div>
             </Link>
           </h1>
-          {/* <div className="nox">
-            <div className="nightbar"></div>
-            <div className="nopLayer"></div>
-            <p className=" 2x1:px-16 py-0 text-xs underline">Find, Eat, Rate</p>
-          </div> */}
         </div>
         <div className="basis-4/6 relative">
           <div className="flex gap-2 h-9 ">
@@ -98,19 +145,15 @@ export const NavSearch = () => {
               <div className="mr-10">
                 <p
                   className="hover:text-[#9395d3] cursor-pointer uppercase"
-                  onClick={() => route.push("/userprofile")}>
+                  onClick={() => route.push("/userprofile")}
+                >
                   {localStorage.getItem("name")}
                 </p>
                 <Link href={"/"}>
                   <p
                     className="cursor-pointer hover:text-[#9395d3]"
-                    onClick={() => {
-                      if (confirm("Log out")) {
-                        localStorage.clear();
-                        setLocalToken("");
-                        setUserSign();
-                      }
-                    }}>
+                    onClick={handleLogout}
+                  >
                     LOG OUT
                   </p>
                 </Link>
@@ -126,7 +169,8 @@ export const NavSearch = () => {
                   className="hover:text-[#9395d3] cursor-pointer"
                   onClick={() => {
                     setSignIn(!signIn);
-                  }}>
+                  }}
+                >
                   sign in
                 </p>
                 <Link href={"/register"}>

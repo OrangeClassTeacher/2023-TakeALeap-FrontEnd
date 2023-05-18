@@ -8,6 +8,7 @@ import { IUser } from "@/components/InterfaceEnumsMeta/InterFace";
 import axios from "axios";
 import Utils from "@/utils/helper";
 import { LoadingContext } from "@/context/ContextConfig";
+import { ToastContainer } from "react-toastify";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [userSign, setUserSign] = useState<IUser>();
@@ -38,6 +39,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <LoadingContext.Provider value={{ loading, setLoading }}>
           <Layout className="font-sans">
             <Component {...pageProps} />
+            <ToastContainer />
           </Layout>
         </LoadingContext.Provider>
       </UserContext.Provider>

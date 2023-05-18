@@ -203,11 +203,13 @@ export default function Register() {
         <div className="flex justify-end mb-5 lg:mb-8 ml-11">
           <div className="w-full md:w-1/2 text-start">
             <p
-              style={{ color: addUser.password === confirm ? "green" : "red" }}>
+              style={{ color: addUser.password === confirm ? "green" : "red" }}
+            >
               Confirm
             </p>
             <p
-              style={{ color: addUser.password.length >= 8 ? "green" : "red" }}>
+              style={{ color: addUser.password.length >= 8 ? "green" : "red" }}
+            >
               Must be 8 or more characters
             </p>
           </div>
@@ -222,7 +224,8 @@ export default function Register() {
             } else {
               alert("Confirm password");
             }
-          }}>
+          }}
+        >
           CREATE AN ACCOUNT
         </button>
       </div>
@@ -231,7 +234,8 @@ export default function Register() {
           loading
             ? "absolute w-full h-screen bg-black/50 flex justify-center top-0 items-center"
             : "hidden"
-        }>
+        }
+      >
         <div className="border bg-white rounded w-[220px] h-[40px] flex justify-around items-center">
           <div className="  flex justify-around items-center gap-1">
             {" "}

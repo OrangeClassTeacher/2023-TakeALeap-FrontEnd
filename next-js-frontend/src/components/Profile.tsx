@@ -7,6 +7,8 @@ import Utils from "@/utils/helper";
 import { Loading } from "./Loading";
 import Cat from "../img/cat.jpeg";
 import { LoadingContext } from "@/context/ContextConfig";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Profile = ({
   data,
@@ -30,7 +32,9 @@ export const Profile = ({
     // setLoading(true);
     await axios
       .put(`${Utils.API_URL}/user?id=${id}`, data)
-      .then((res) => (res.data.status ? alert("amjilttai") : alert("aldaatai")))
+      .then((res) =>
+        res.data.status ? toast.success("Save successful") : alert("Error")
+      )
       .catch((err) => console.log(err));
 
     localStorage.setItem("name", data.userName);
@@ -167,6 +171,7 @@ export const Profile = ({
               onClick={() => {
                 setData(constData);
                 setIsEdit(false);
+                toast.warning("Cancelled", { autoClose: 1000 });
               }}
               className="sda hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded"
             >
@@ -175,7 +180,10 @@ export const Profile = ({
               </div>
             </button>
             <button
-              onClick={() => editUser()}
+              onClick={() => {
+                editUser();
+                toast.info("Saving...", { autoClose: 1000 }); // Show info toast while saving
+              }}
               className="sda hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded"
             >
               <div className="">
