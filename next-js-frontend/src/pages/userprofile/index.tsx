@@ -12,6 +12,7 @@ import Utils from "@/utils/helper";
 import { useContext } from "react";
 import { LoadingContext } from "@/context/ContextConfig";
 import { Loading } from "@/components/Loading";
+import Cat from "../../img/cat.jpeg";
 
 export default function Userprofile() {
   const token =
@@ -73,7 +74,7 @@ export default function Userprofile() {
           <div className="flex items-center py-5">
             <div className="basis-1/3">
               <Image
-                src={data.img[0]}
+                src={data.img[0] ? data.img[0] : Cat}
                 alt="img"
                 width={120}
                 height={120}

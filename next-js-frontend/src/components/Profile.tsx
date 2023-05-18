@@ -5,6 +5,7 @@ import axios from "axios";
 import { ImgChangeModal } from "./ImgChangeModal";
 import Utils from "@/utils/helper";
 import { Loading } from "./Loading";
+import Cat from "../img/cat.jpeg";
 import { LoadingContext } from "@/context/ContextConfig";
 
 export const Profile = ({
@@ -58,7 +59,7 @@ export const Profile = ({
       <div className="flex gap-5 items-center">
         <div className="basis-1/6 flex justify-end">
           <Image
-            src={data.img[0]}
+            src={data.img[0] ? data.img[0] : Cat}
             width={50}
             height={50}
             alt="img"
