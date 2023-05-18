@@ -17,6 +17,7 @@ import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { Loading } from "@/components/Loading";
 import { LoadingContext } from "@/context/ContextConfig";
+import AllMap from "@/components/homePage/AllMap";
 
 export default function Index() {
   const [restaurants, setRestaurant] = useState<IRestaurant[]>([]);
@@ -46,6 +47,7 @@ export default function Index() {
       .get(`${Utils.API_URL}/restaurants`)
       .then((res) => {
         setRestaurant(res.data.result);
+        console.log(res.data.result);
       })
       .catch((err) => console.log(err));
 
@@ -97,8 +99,13 @@ export default function Index() {
             />
           )}
         </section>
+        <section className="h-full">
+          {restaurants && <AllMap restaurants={restaurants} />}
+        </section>
+        <section className="flex items-center">
+          <Footer />
+        </section>
       </div>
-      <Footer />
     </>
   );
 }

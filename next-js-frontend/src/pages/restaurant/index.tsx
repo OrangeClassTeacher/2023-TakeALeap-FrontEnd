@@ -29,6 +29,7 @@ export default function Restaurant() {
         .get(`${Utils.API_URL}/restaurant?id=${id}`)
         .then((res) => {
           setRestaurant(res.data.result[0]);
+          console.log(res.data.result);
         })
         .catch((err) => console.log(err))
         .finally(() => setLoading(false));

@@ -9,6 +9,8 @@ export const RestaurantStart = ({
 }: {
   restaurant?: IDetailRest;
 }) => {
+  console.log(restaurant);
+
   const { restaurantName, description, schedule, img }: any =
     restaurant?.restaurant[0];
 

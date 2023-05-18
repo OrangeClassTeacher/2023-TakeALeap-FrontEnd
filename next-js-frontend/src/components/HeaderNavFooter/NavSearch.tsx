@@ -98,8 +98,7 @@ export const NavSearch = () => {
               <div className="mr-10">
                 <p
                   className="hover:text-[#9395d3] cursor-pointer uppercase"
-                  onClick={() => route.push("/userprofile")}
-                >
+                  onClick={() => route.push("/userprofile")}>
                   {localStorage.getItem("name")}
                 </p>
                 <Link href={"/"}>
@@ -111,8 +110,7 @@ export const NavSearch = () => {
                         setLocalToken("");
                         setUserSign();
                       }
-                    }}
-                  >
+                    }}>
                     LOG OUT
                   </p>
                 </Link>
@@ -128,8 +126,7 @@ export const NavSearch = () => {
                   className="hover:text-[#9395d3] cursor-pointer"
                   onClick={() => {
                     setSignIn(!signIn);
-                  }}
-                >
+                  }}>
                   sign in
                 </p>
                 <Link href={"/register"}>
