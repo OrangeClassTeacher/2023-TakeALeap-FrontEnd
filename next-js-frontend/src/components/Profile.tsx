@@ -67,7 +67,7 @@ export const Profile = ({
           />
         </div>
         <p
-          className="basis-4/6 text-blue-500/50 hover:text-blue-500"
+          className="basis-4/6 text-blue-500/50 hover:text-blue-500 cursor-pointer"
           onClick={() => setModal(true)}
         >
           Change profile photo

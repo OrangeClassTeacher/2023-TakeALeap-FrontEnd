@@ -99,8 +99,8 @@ export default function Userprofile() {
               <p
                 className={
                   active == 1
-                    ? "flex items-center gap-2"
-                    : "flex items-center gap-2 text-white/50"
+                    ? "flex items-center gap-2 cursor-pointer"
+                    : "flex items-center gap-2 text-white/50 cursor-pointer"
                 }
                 onClick={() => setActive(1)}
               >
@@ -110,8 +110,8 @@ export default function Userprofile() {
               <p
                 className={
                   active == 2
-                    ? "flex items-center gap-2"
-                    : "flex items-center gap-2 text-white/50"
+                    ? "flex items-center gap-2 cursor-pointer"
+                    : "flex items-center gap-2 text-white/50 cursor-pointer"
                 }
                 onClick={() => setActive(2)}
               >
