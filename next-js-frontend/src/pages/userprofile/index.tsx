@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Footer from "@/components/HeaderNavFooter/Footer";
 import { NavSearch } from "@/components/HeaderNavFooter/NavSearch";
-import { NavbarCustom } from "@/components/HeaderNavFooter/NavbarCustom";
 import axios from "axios";
 import Image from "next/image";
 import { MyComments } from "@/components/commentsRates/MyComments";
@@ -68,7 +67,6 @@ export default function Userprofile() {
   }
   return (
     <div className="bg-black text-white">
-      <NavbarCustom />
       <NavSearch />
       <div className="h-full flex  justify-center ">
         <div className="w-[700px]">
@@ -103,7 +101,8 @@ export default function Userprofile() {
                     ? "flex items-center gap-2"
                     : "flex items-center gap-2 text-white/50"
                 }
-                onClick={() => setActive(1)}>
+                onClick={() => setActive(1)}
+              >
                 <MdTableRows />
                 Profile
               </p>
@@ -113,7 +112,8 @@ export default function Userprofile() {
                     ? "flex items-center gap-2"
                     : "flex items-center gap-2 text-white/50"
                 }
-                onClick={() => setActive(2)}>
+                onClick={() => setActive(2)}
+              >
                 <FaRegComment />
                 My Comments
               </p>
