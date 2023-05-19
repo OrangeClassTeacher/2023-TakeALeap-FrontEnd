@@ -6,12 +6,12 @@ import Image from "next/image";
 import cat from "../img/logo.jpg";
 import Link from "next/link";
 import axios from "axios";
-import { UserContext } from "@/context/ContextConfig";
+import { UserContext } from "@/utils/ContextConfig";
 import { AiFillEyeInvisible } from "react-icons/ai";
 import { AiFillEye } from "react-icons/ai";
 import Utils from "@/utils/helper";
 import { Loading } from "./Loading";
-import { LoadingContext } from "@/context/ContextConfig";
+import { LoadingContext } from "@/utils/ContextConfig";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -28,16 +28,14 @@ export default function SignIn({
   };
 
   const [login, setLogin] = useState(init);
-  const { userSign, setUserSign }: any = useContext(UserContext);
-  const { loading, setLoading }: any = useContext(LoadingContext);
+  const { setUserSign }: any = useContext(UserContext);
   const [passwordType, setPasswordType] = useState("password");
 
-  const signin = useCallback(() => {
+  const signin = useCallback((): void => {
     // setLoading(true);
     axios
       .post(`${Utils.API_URL}/login`, login)
       .then((res) => {
-        // setLoading(false);
         if (res.data.status) {
           localStorage.setItem("name", res.data.data.userName);
           localStorage.setItem("id", res.data.data._id);
@@ -70,7 +68,7 @@ export default function SignIn({
       .catch((err) => console.log("", err));
   }, [login, setUserSign, setSignIn, signIn]);
 
-  const togglePassword = (e: any) => {
+  const togglePassword = (e: any): void => {
     e.preventDefault();
 
     if (passwordType === "password") {
@@ -95,7 +93,7 @@ export default function SignIn({
   return (
     <div
       className="h-screen w-screen fixed inset-0 overflow-y-auto flex items-center justify-center bg-gray-400/50 z-50"
-      onClick={() => setSignIn(!signIn)}
+      onClick={(): void => setSignIn(!signIn)}
       style={{ display: signIn ? "flex" : "none" }}
     >
       <div
@@ -105,7 +103,7 @@ export default function SignIn({
         <div>
           <div className="flex justify-end">
             {" "}
-            <GrClose onClick={() => setSignIn(!signIn)} />
+            <GrClose onClick={(): void => setSignIn(!signIn)} />
           </div>
           <div className="flex justify-around">
             <Image
@@ -125,7 +123,9 @@ export default function SignIn({
               value={login.email}
               placeholder="E-Mail"
               style={{ outline: "none", width: "100%" }}
-              onChange={(e) => setLogin({ ...login, email: e.target.value })}
+              onChange={(e): void =>
+                setLogin({ ...login, email: e.target.value })
+              }
             />
           </div>
           <div className="rounded border p-3 mb-6 flex">
@@ -134,7 +134,9 @@ export default function SignIn({
               value={login.password}
               placeholder="Password"
               style={{ outline: "none", width: "100%" }}
-              onChange={(e) => setLogin({ ...login, password: e.target.value })}
+              onChange={(e): void =>
+                setLogin({ ...login, password: e.target.value })
+              }
             />
             <button onClick={togglePassword}>
               {passwordType === "password" ? (

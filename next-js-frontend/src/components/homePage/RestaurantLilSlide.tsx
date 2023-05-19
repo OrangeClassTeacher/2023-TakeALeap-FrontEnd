@@ -1,23 +1,19 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { IRestaurant } from "../InterfaceEnumsMeta/InterFace";
 import { IoIosArrowBack } from "react-icons/io";
 import Image from "next/image";
 import Link from "next/link";
-import VanillaTilt from "vanilla-tilt";
+// import VanillaTilt from "vanilla-tilt";
 
-export default function RestaurantLilSlide({ data }: { data: IRestaurant[] }) {
+export default function RestaurantLilSlide({
+  data,
+}: {
+  data: IRestaurant[];
+}): JSX.Element {
   const [activeIndex, setActiveIndex] = useState(0);
   const cardRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    return VanillaTilt.init(cardRef.current, {
-      scale: 1.1,
-      glare: true,
-      "max-glare": 0.5,
-    });
-  }, []);
-
-  function handleNextItemBtn() {
+  function handleNextItemBtn(): void {
     if (data.length === activeIndex + 1) {
       setActiveIndex(0);
     } else {
@@ -25,7 +21,7 @@ export default function RestaurantLilSlide({ data }: { data: IRestaurant[] }) {
     }
   }
 
-  function handlePrevItemBtn() {
+  function handlePrevItemBtn(): void {
     if (0 === activeIndex) {
       setActiveIndex(data.length - 1);
     } else {
@@ -69,13 +65,13 @@ export default function RestaurantLilSlide({ data }: { data: IRestaurant[] }) {
                         </p>
 
                         <p>
-                          Mon-Fri: {item?.schedule?.weekday?.open}~
-                          {item?.schedule?.weekday?.close} clock
+                          Mon-Fri: {item.schedule.weekday.open}~
+                          {item.schedule.weekday.close} clock
                         </p>
 
                         <p>
-                          Weekend: {item?.schedule?.weekday?.open}~
-                          {item?.schedule?.weekday?.close} clock
+                          Weekend: {item.schedule.weekday.open}~
+                          {item.schedule.weekday.close} clock
                         </p>
                       </div>
                     </div>

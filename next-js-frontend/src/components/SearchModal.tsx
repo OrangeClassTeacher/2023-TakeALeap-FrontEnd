@@ -12,7 +12,7 @@ export const SearchModal = ({
   search: boolean;
   setSearch: any;
   data?: ISearch;
-}) => {
+}): JSX.Element => {
   return (
     <div
       className="absolute bg-slate-200 top-12 w-[950px] h-[500px] rounded text-black p-10 overflow-scroll z-50"
@@ -21,7 +21,7 @@ export const SearchModal = ({
         {" "}
         <IoMdClose
           className="text-2xl hover:text-sky-600"
-          onClick={() => setSearch(false)}
+          onClick={(): void => setSearch(false)}
         />
       </div>
       <div>
@@ -110,7 +110,7 @@ export const SearchModal = ({
           </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 p-10 gap-5">
-          {data?.beverage?.beverage.map((item, ind) => {
+          {data?.beverage.beverage.map((item, ind) => {
             if (ind < 8) {
               return (
                 <Link href={`/restaurant?id=${item._id}`} key={ind}>

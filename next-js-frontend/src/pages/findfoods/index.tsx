@@ -9,7 +9,7 @@ import { IAllSearchFood } from "@/components/InterfaceEnumsMeta/InterFace";
 import Utils from "@/utils/helper";
 import { meal } from "@/components/InterfaceEnumsMeta/enumValues";
 import { Loading } from "@/components/Loading";
-import { LoadingContext } from "@/context/ContextConfig";
+import { LoadingContext } from "@/utils/ContextConfig";
 
 const init = {
   text: "",
@@ -18,12 +18,12 @@ const init = {
   meal: "all",
 };
 
-const Search = () => {
+const Search = (): JSX.Element => {
   const [all, setAll] = useState(init);
   const [data, setData] = useState<IAllSearchFood>();
   const { loading, setLoading }: any = useContext(LoadingContext);
 
-  const getData = () => {
+  const getData = (): void => {
     setLoading(true);
     axios
       .post(`${Utils.API_URL}/foodallsearch`, all)
@@ -34,7 +34,7 @@ const Search = () => {
       .finally(() => setLoading(false));
   };
 
-  useEffect(() => {
+  useEffect((): void => {
     getData();
   }, []);
 
@@ -44,7 +44,6 @@ const Search = () => {
 
   return (
     <div className="bg-black text-white">
-      {/* <NavbarCustom /> */}
       <NavCateg />
       <div className="flex flex-col md:flex-row  p-10">
         <div className="md:basis-1/5">
@@ -54,17 +53,14 @@ const Search = () => {
               <select
                 id="meal"
                 value={all.meal}
-                onChange={(e) => setAll({ ...all, meal: e.target.value })}
-                className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-white text-black"
-              >
+                onChange={(e): void => setAll({ ...all, meal: e.target.value })}
+                className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-white text-black">
                 <option value="all">All</option>
-                {meal.map((item, ind) => {
-                  return (
-                    <option key={ind} value={item}>
-                      {item}
-                    </option>
-                  );
-                })}
+                {meal.map((item, ind) => (
+                  <option key={ind} value={item}>
+                    {item}
+                  </option>
+                ))}
               </select>
             </div>
 
@@ -75,9 +71,8 @@ const Search = () => {
               <select
                 id="rating"
                 value={all.rate}
-                onChange={(e) => setAll({ ...all, rate: e.target.value })}
-                className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-white text-black"
-              >
+                onChange={(e): void => setAll({ ...all, rate: e.target.value })}
+                className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-white text-black">
                 <option value="all">All</option>
                 <option value="one">over 1</option>
                 <option value="two">over2</option>
@@ -96,7 +91,9 @@ const Search = () => {
                     name="price"
                     value="lowToHigh"
                     checked={all.price === "lowToHigh"}
-                    onChange={(e) => setAll({ ...all, price: e.target.value })}
+                    onChange={(e): void =>
+                      setAll({ ...all, price: e.target.value })
+                    }
                     className="mr-1"
                   />
                   Low to High
@@ -110,7 +107,9 @@ const Search = () => {
                   name="price"
                   value="highToLow"
                   checked={all.price === "highToLow"}
-                  onChange={(e) => setAll({ ...all, price: e.target.value })}
+                  onChange={(e): void =>
+                    setAll({ ...all, price: e.target.value })
+                  }
                   className="mr-1 "
                 />
                 High to Low
@@ -121,8 +120,7 @@ const Search = () => {
               <button
                 type="submit"
                 className="bg-gray-400 hover:bg-gray-600  rounded-md text-black focus:outline-none mt-4 mf"
-                onClick={() => getData()}
-              >
+                onClick={(): void => getData()}>
                 Filter
               </button>
             </div>
@@ -137,14 +135,15 @@ const Search = () => {
                     type="text"
                     placeholder="Search here"
                     value={all.text}
-                    onChange={(e) => setAll({ ...all, text: e.target.value })}
+                    onChange={(e): void =>
+                      setAll({ ...all, text: e.target.value })
+                    }
                     className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none  flex-grow w-3/4 text-black"
                   />
                   <button
                     type="submit"
                     className="bg-gray-400 hover:bg-gray-600 py-2 px-5 rounded-md text-black focus:outline-none"
-                    onClick={() => getData()}
-                  >
+                    onClick={(): void => getData()}>
                     Search
                   </button>
                 </div>
@@ -158,29 +157,27 @@ const Search = () => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3">
-              {data?.result?.map((item, ind) => {
-                return (
-                  <Link href={`/food?id=${item._id}`} key={ind}>
-                    <div className="m-2 rounded bg-white text-black pard">
-                      <div className="w-full h-[460px] overflow-hidden object-cover">
-                        <Image
-                          src={item?.foods?.img[0]}
-                          width={400}
-                          height={400}
-                          alt="img"
-                          className="rounded object-cover poggo"
-                        />
-                      </div>
-                      <div className="text-center pntro">
-                        <h1 className=" text-md uppercase m-1 chef">
-                          {item?.foods.foodName}
-                        </h1>
-                        <p className="pb-2 chef">Price : {item?.foods.price}</p>
-                      </div>
+              {data?.result?.map((item, ind) => (
+                <Link href={`/food?id=${item._id}`} key={ind}>
+                  <div className="m-2 rounded bg-white text-black pard">
+                    <div className="w-full h-[460px] overflow-hidden object-cover">
+                      <Image
+                        src={item.foods.img[0]}
+                        width={400}
+                        height={400}
+                        alt="img"
+                        className="rounded object-cover poggo"
+                      />
                     </div>
-                  </Link>
-                );
-              })}
+                    <div className="text-center pntro">
+                      <h1 className=" text-md uppercase m-1 chef">
+                        {item?.foods.foodName}
+                      </h1>
+                      <p className="pb-2 chef">Price : {item?.foods.price}</p>
+                    </div>
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
         </div>

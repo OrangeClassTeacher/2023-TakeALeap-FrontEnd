@@ -4,10 +4,10 @@ import Link from "next/link";
 import axios from "axios";
 import { BiLoader } from "react-icons/bi";
 import Utils from "@/utils/helper";
-import { LoadingContext } from "@/context/ContextConfig";
+import { LoadingContext } from "@/utils/ContextConfig";
 import { Loading } from "@/components/Loading";
 
-export default function Register() {
+export default function Register(): JSX.Element {
   const init = {
     name: "",
     userName: "",
@@ -23,7 +23,7 @@ export default function Register() {
   const [confirm, setConfirm] = useState("");
   const { loading, setLoading }: any = useContext(LoadingContext);
 
-  const register = () => {
+  const register = (): void => {
     addUser.userName.length < 2 && addUser.name.length < 2
       ? alert("User Name and Name must be longer than 2 character")
       : !addUser.email.includes("@gmail.com")
@@ -35,7 +35,7 @@ export default function Register() {
       : send();
   };
 
-  const send = () => {
+  const send = (): void => {
     setLoading(true);
     axios
       .post(`${Utils.API_URL}/register`, addUser)
@@ -65,7 +65,6 @@ export default function Register() {
     <div className="text-center pt-20 relative">
       <Link href={"/"}>
         <div className="flex items-center ml-10 hover:text-sky-500">
-          {" "}
           <BiArrowBack /> back
         </div>
       </Link>
@@ -89,7 +88,7 @@ export default function Register() {
                   value={addUser.name}
                   className="w-full outline-0"
                   placeholder="Name"
-                  onChange={(e) =>
+                  onChange={(e): void =>
                     setAddUser({ ...addUser, name: e.target.value })
                   }
                 />
@@ -108,7 +107,7 @@ export default function Register() {
                   className="w-full outline-0"
                   placeholder="User Name"
                   value={addUser.userName}
-                  onChange={(e) =>
+                  onChange={(e): void =>
                     setAddUser({ ...addUser, userName: e.target.value })
                   }
                 />
@@ -130,7 +129,7 @@ export default function Register() {
                     className="w-full outline-0"
                     placeholder="E-Mail"
                     value={addUser.email}
-                    onChange={(e) =>
+                    onChange={(e): void =>
                       setAddUser({ ...addUser, email: e.target.value })
                     }
                   />
@@ -152,7 +151,7 @@ export default function Register() {
                   placeholder="Phone"
                   min={1}
                   value={addUser.phone}
-                  onChange={(e) =>
+                  onChange={(e): void =>
                     setAddUser({ ...addUser, phone: Number(e.target.value) })
                   }
                 />
@@ -174,7 +173,7 @@ export default function Register() {
                   className="w-full outline-0"
                   placeholder="Password"
                   value={addUser.password}
-                  onChange={(e) =>
+                  onChange={(e): void =>
                     setAddUser({ ...addUser, password: e.target.value })
                   }
                 />
@@ -194,7 +193,7 @@ export default function Register() {
                   value={confirm}
                   className="w-full outline-0"
                   placeholder="Confirm Password"
-                  onChange={(e) => setConfirm(e.target.value)}
+                  onChange={(e): void => setConfirm(e.target.value)}
                 />
               </div>
             </div>
@@ -218,7 +217,7 @@ export default function Register() {
       <div>
         <button
           className="text-xs md:text-base lg:text-lg bg-black text-white font-thin p-3 hover:bg-black/75"
-          onClick={() => {
+          onClick={(): void => {
             if (addUser.password === confirm) {
               register();
             } else {

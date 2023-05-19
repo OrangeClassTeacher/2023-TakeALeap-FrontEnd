@@ -1,20 +1,30 @@
 import "@/styles/globals.css";
-
 import type { AppProps } from "next/app";
 import { Layout } from "@/components/Layout/Layout";
-import { UserContext } from "@/context/ContextConfig";
-import { useContext, useEffect, useState } from "react";
-import { IUser } from "@/components/InterfaceEnumsMeta/InterFace";
+import { UserContext } from "@/utils/ContextConfig";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Utils from "@/utils/helper";
-import { LoadingContext } from "@/context/ContextConfig";
+import { LoadingContext } from "@/utils/ContextConfig";
 import { ToastContainer } from "react-toastify";
 
-export default function App({ Component, pageProps }: AppProps) {
-  const [userSign, setUserSign] = useState<IUser>();
+export default function App({ Component, pageProps }: AppProps): JSX.Element {
+  const userInit = {
+    name: "",
+    userName: "",
+    email: "",
+    phone: 0,
+    password: "",
+    point: [],
+    userType: "",
+    img: [],
+    createdAt: "",
+    token: "",
+  };
+  const [userSign, setUserSign] = useState(userInit);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
+  useEffect((): void => {
     const id = typeof window !== "undefined" ? localStorage.getItem("id") : "";
     const token =
       typeof window !== "undefined" ? localStorage.getItem("token") : "";

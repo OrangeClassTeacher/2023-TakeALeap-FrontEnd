@@ -8,7 +8,7 @@ export const RestaurantInfo = ({
   restaurant,
 }: {
   restaurant?: IDetailRest;
-}) => {
+}): JSX.Element => {
   const { email, contact, address }: any = restaurant?.restaurant[0];
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 border-t mt-5 pt-5">
@@ -33,8 +33,7 @@ export const RestaurantInfo = ({
               contact?.facebook
                 ? "flex items-center gap-2 hover:text-[#9395d3]"
                 : "hidden"
-            }
-          >
+            }>
             <FaFacebookSquare />
             <a href={contact.facebook}>Facebook</a>
           </div>
@@ -43,8 +42,7 @@ export const RestaurantInfo = ({
               contact?.instagram
                 ? "flex items-center gap-2 hover:text-[#9395d3]"
                 : "hidden"
-            }
-          >
+            }>
             <FaFacebookSquare />
             <a href={contact.instagram}>Instagram</a>
           </div>
@@ -53,14 +51,13 @@ export const RestaurantInfo = ({
               contact?.link
                 ? "flex items-center gap-2 hover:text-[#9395d3]"
                 : "hidden"
-            }
-          >
+            }>
             <GiEarthAmerica />
             <a href={contact.link}>Link</a>
           </div>
         </div>
       </div>
-      <div className="border">
+      <div>
         <Map restaurant={restaurant?.restaurant[0]} />
       </div>
     </div>

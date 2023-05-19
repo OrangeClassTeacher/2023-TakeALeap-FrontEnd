@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { IoIosArrowBack } from "react-icons/io";
 import Image from "next/image";
 import { ITopRestaurant } from "../InterfaceEnumsMeta/InterFace";
 import Starts from "../commentsRates/Stars";
@@ -7,12 +6,15 @@ import { MdLocationPin } from "react-icons/md";
 import { AiTwotonePhone } from "react-icons/ai";
 import styles from "../../styles/slider.module.css";
 
-export default function Carousel({ items }: { items: ITopRestaurant[] }) {
-  const [activeIndex, setActiveIndex] = useState<number>(0);
-  const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
+export default function Carousel({
+  items,
+}: {
+  items: ITopRestaurant[];
+}): JSX.Element {
+  const [activeIndex] = useState<number>(0);
   const currentItem = items[activeIndex]?.restaurant[0];
   const { img, address, contact, restaurantName, cuisineType, schedule } =
-    currentItem || {};
+    currentItem;
 
   return (
     <div className="flex justify-around bg-black relative w3-animate-right">
@@ -25,7 +27,7 @@ export default function Carousel({ items }: { items: ITopRestaurant[] }) {
                 return (
                   <div className={styles.items} key={index}>
                     <Image
-                      src={items[itemIndex]?.restaurant[0]?.img[0]}
+                      src={img[0]}
                       width={1000}
                       height={700}
                       className={`h-[700px] w-screen object-cover transition-opacity duration-500 orgiluun `}
@@ -34,9 +36,7 @@ export default function Carousel({ items }: { items: ITopRestaurant[] }) {
                     <div className="absolute  top-0 h-full flex justify-around items-center text-white w-full">
                       <div className="flex flex-col bg-black/50 text-center text-xs/[10px] gap-1 justify-center">
                         <div className=" flex justify-around mt-2">
-                          <h1>
-                            {items[itemIndex]?.restaurant[0].restaurantName}
-                          </h1>
+                          <h1>{restaurantName}</h1>
                         </div>
                         <div className="flex items-center gap-5 justify-center">
                           <Starts stars={items[itemIndex]?.avg} />
@@ -46,40 +46,23 @@ export default function Carousel({ items }: { items: ITopRestaurant[] }) {
                         <div>
                           {" "}
                           <p className="mb-2">
-                            Mon-Fri :{" "}
-                            {
-                              items[itemIndex]?.restaurant[0].schedule.weekday
-                                .open
-                            }
-                            ~{" "}
-                            {
-                              items[itemIndex]?.restaurant[0].schedule.weekday
-                                .close
-                            }
+                            Mon-Fri : {schedule.weekday.open}~{" "}
+                            {schedule.weekday.close}
                           </p>
                           <p>
-                            Weekend :{" "}
-                            {
-                              items[itemIndex]?.restaurant[0].schedule.weekend
-                                .open
-                            }
-                            ~{" "}
-                            {
-                              items[itemIndex]?.restaurant[0].schedule.weekend
-                                .close
-                            }
+                            Weekend : {schedule.weekend.open}~{" "}
+                            {schedule.weekend.close}
                           </p>
                         </div>
                         <p className="flex items-center justify-center gap-2">
-                          <MdLocationPin />{" "}
-                          {items[itemIndex]?.restaurant[0].address.address}
+                          <MdLocationPin /> {address.address}
                         </p>
                         <p className="flex items-center justify-center gap-2">
-                          {items[itemIndex]?.restaurant[0].cuisineType}
+                          {cuisineType}
                         </p>
                         <p className="flex items-center justify-center gap-2 mb-2">
                           <AiTwotonePhone />
-                          {items[itemIndex]?.restaurant[0].contact.phone}
+                          {contact.phone}
                         </p>
                       </div>
                     </div>

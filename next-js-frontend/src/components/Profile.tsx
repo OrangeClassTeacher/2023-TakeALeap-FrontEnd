@@ -4,9 +4,8 @@ import Image from "next/image";
 import axios from "axios";
 import { ImgChangeModal } from "./ImgChangeModal";
 import Utils from "@/utils/helper";
-import { Loading } from "./Loading";
 import Cat from "../img/cat.jpeg";
-import { LoadingContext } from "@/context/ContextConfig";
+import { LoadingContext } from "@/utils/ContextConfig";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -20,7 +19,7 @@ export const Profile = ({
   constData: IUser;
   setData: any;
   setConstData: any;
-}) => {
+}): JSX.Element => {
   const [isEdit, setIsEdit] = useState(false);
   const [modal, setModal] = useState(false);
   const { loading, setLoading }: any = useContext(LoadingContext);
@@ -29,7 +28,6 @@ export const Profile = ({
     typeof window !== "undefined" ? localStorage.getItem("token") : "";
 
   const editUser = async () => {
-    // setLoading(true);
     await axios
       .put(`${Utils.API_URL}/user?id=${id}`, data)
       .then((res) =>
@@ -45,7 +43,6 @@ export const Profile = ({
       })
       .then((res) => {
         setConstData(res.data.result);
-        // setLoading(false);
       })
       .catch((err) => console.log(err));
 
@@ -154,7 +151,6 @@ export const Profile = ({
             id="password"
             type="password"
             value={data.password}
-            // onChange={(e) => setData({ ...data, password: e.target.value })}
             disabled={true}
             className={
               isEdit
@@ -180,10 +176,7 @@ export const Profile = ({
               </div>
             </button>
             <button
-              onClick={() => {
-                editUser();
-                toast.info("Saving...", { autoClose: 1000 }); // Show info toast while saving
-              }}
+              onClick={() => editUser()}
               className="sda hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded"
             >
               <div className="">

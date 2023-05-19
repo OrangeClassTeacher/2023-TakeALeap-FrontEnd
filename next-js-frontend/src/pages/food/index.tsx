@@ -12,15 +12,15 @@ import { IoMdRestaurant } from "react-icons/io";
 import { TbSoup } from "react-icons/tb";
 import gip from "../../img/gip.gif";
 import { Loading } from "@/components/Loading";
-import { LoadingContext } from "@/context/ContextConfig";
+import { LoadingContext } from "@/utils/ContextConfig";
 
-export default function Food() {
+export default function Food(): JSX.Element {
   const route = useRouter();
   const { id } = route.query;
   const [food, setFood] = useState<IDetailFood>();
   const { loading, setLoading }: any = useContext(LoadingContext);
 
-  useEffect(() => {
+  useEffect((): void => {
     if (id) {
       setLoading(true);
       axios
@@ -57,14 +57,14 @@ export default function Food() {
                     {food?.foodName}
                   </h1>
                   <div className="flex gap-2 items-center justify-around mt-10">
-                    <p className="flex justify-center">{food?.price}₮</p>
+                    <p className="flex justify-center">{food.price}₮</p>
                     <p>/</p>
                     <h1 className="justify-center text-xl md:text-2xl gap-2 flex items-center hover:text-[#9395d3]">
                       <IoMdRestaurant />
-                      <Link href={`/restaurant?id=${food?.restaurantId?._id}`}>
+                      <Link href={`/restaurant?id=${food.restaurantId._id}`}>
                         <p className="uppercase ">
                           {" "}
-                          {food?.restaurantId?.restaurantName}
+                          {food.restaurantId.restaurantName}
                         </p>
                       </Link>
                     </h1>
@@ -73,16 +73,16 @@ export default function Food() {
                       <p className="text-xl">
                         <TbSoup />
                       </p>
-                      {food?.foodType}
+                      {food.foodType}
                     </div>
                   </div>
-                  <p className="flex justify-center">{food?.description}</p>
+                  <p className="flex justify-center">{food.description}</p>
                 </div>
               </div>
             </div>
             <div>
               <Image
-                src={food?.img[0] || ""}
+                src={food.img[0] || ""}
                 width={1000}
                 height={1000}
                 alt="img"

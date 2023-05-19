@@ -1,7 +1,7 @@
 import React from "react";
 import { FaInstagram, FaTwitter, FaLinkedin, FaYoutube } from "react-icons/fa";
 import Link from "next/link";
-function Footer() {
+function Footer(): JSX.Element {
   const cate = [
     { name: "Home", path: "/" },
     { name: "Explore", path: "/explore" },
@@ -30,15 +30,13 @@ function Footer() {
         <div className="p-5 z-10">
           <ul className="font-light">
             <p className=" font-normal text-2xl pb-4">Pages</p>
-            {cate.map((item, ind) => {
-              return (
-                <li
-                  key={ind}
-                  className="text-md pb-2  hover:text-[#9395d3] cursor-pointer">
-                  <Link href={item.path}>{item.name}</Link>
-                </li>
-              );
-            })}
+            {cate.map((item, ind) => (
+              <li
+                key={ind}
+                className="text-md pb-2  hover:text-[#9395d3] cursor-pointer">
+                <Link href={item.path}>{item.name}</Link>
+              </li>
+            ))}
           </ul>
         </div>
         <div className="p-5">

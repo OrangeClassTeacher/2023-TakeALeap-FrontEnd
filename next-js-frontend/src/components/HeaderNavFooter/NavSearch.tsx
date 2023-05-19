@@ -14,11 +14,11 @@ import { SearchModal } from "../SearchModal";
 import Image from "next/image";
 import cat from "../../img/cat.jpeg";
 import { useContext } from "react";
-import { UserContext } from "@/context/ContextConfig";
+import { UserContext } from "@/utils/ContextConfig";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export const NavSearch = () => {
+export const NavSearch = (): JSX.Element => {
   const { userSign, setUserSign }: any = useContext(UserContext);
   const [signIn, setSignIn] = useState<boolean>(false);
   const [search, setSearch] = useState(false);

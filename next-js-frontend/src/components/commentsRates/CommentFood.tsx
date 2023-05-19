@@ -10,7 +10,7 @@ import Utils from "@/utils/helper";
 import { RateStar } from "./RateStar";
 import { ShowComment } from "./ShowComment";
 
-export default function CommentFood() {
+export default function CommentFood(): JSX.Element {
   const route = useRouter();
   const { id } = route.query;
   const userId =
@@ -33,7 +33,7 @@ export default function CommentFood() {
   const [signIn, SetSignIn] = useState<boolean>(false);
   const [rate, setRate] = useState<number>(0);
 
-  const getData = () => {
+  const getData = (): void => {
     axios
       .get(`${Utils.API_URL}/commentbyfoodid?id=${id}`)
       .then((res) => {
@@ -46,29 +46,20 @@ export default function CommentFood() {
       .catch((err) => console.log(err));
   };
 
-  useEffect(() => {
+  useEffect((): void => {
     if (route.isReady) {
       getData();
     }
   }, []);
 
-  const checkLogin = () => {
+  const checkLogin = (): void => {
     const login = localStorage.getItem("id");
     if (!login) {
       SetSignIn(true);
     }
   };
 
-  const sendComment = () => {
-    console.log(commentSend);
-    const userId =
-      typeof window !== "undefined" ? localStorage.getItem("id") : "";
-    const token =
-      typeof window !== "undefined" ? localStorage.getItem("token") : "";
-
-    // if(userId && token){
-
-    // }
+  const sendComment = (): void => {
     axios
       .post(`${Utils.API_URL}/comment`, commentSend)
       .then((res) => (res.data.status ? getData() : ""))
@@ -78,7 +69,7 @@ export default function CommentFood() {
     setComment(init);
   };
 
-  const rateHandle = (rate: number) => {
+  const rateHandle = (rate: number): void => {
     setRate(rate);
     setComment({ ...commentSend, rate: rate });
   };
@@ -92,9 +83,8 @@ export default function CommentFood() {
             <div>
               <div>
                 <div className="flex items-center gap-2 m-4 hover:text-sky-500 cursor-pointer">
-                  {" "}
                   <h1
-                    onClick={() => setShowAllCom(!showAllCom)}
+                    onClick={(): void => setShowAllCom(!showAllCom)}
                     className="text-3xl ">
                     All comments
                   </h1>
@@ -113,7 +103,7 @@ export default function CommentFood() {
                 <div className="flex items-center gap-2 ms-5">
                   <div
                     className="flex w-2/3 rounded bg-gray-700 p-1 h-[200px] items-center "
-                    onClick={() => checkLogin()}>
+                    onClick={(): void => checkLogin()}>
                     <input
                       type="text"
                       value={commentSend.comment}
@@ -128,7 +118,7 @@ export default function CommentFood() {
                     </div>
                   </div>
                   <div
-                    onClick={() => sendComment()}
+                    onClick={(): void => sendComment()}
                     className="bg-gray-700 rounded p-5 text-white/50 hover:text-white">
                     Submit review
                   </div>

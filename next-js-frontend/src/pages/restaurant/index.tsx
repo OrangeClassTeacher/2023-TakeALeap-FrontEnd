@@ -9,10 +9,10 @@ import { useRouter } from "next/router";
 import { IDetailRest } from "@/components/InterfaceEnumsMeta/InterFace";
 import axios from "axios";
 import Utils from "@/utils/helper";
-import { LoadingContext } from "@/context/ContextConfig";
+import { LoadingContext } from "@/utils/ContextConfig";
 import { Loading } from "@/components/Loading";
 
-export default function Restaurant() {
+export default function Restaurant(): JSX.Element {
   const [restaurant, setRestaurant] = useState<IDetailRest>();
   const { loading, setLoading }: any = useContext(LoadingContext);
   const route = useRouter();
@@ -22,7 +22,7 @@ export default function Restaurant() {
     getData();
   }, [id]);
 
-  const getData = () => {
+  const getData = (): void => {
     if (id) {
       setLoading(true);
       axios

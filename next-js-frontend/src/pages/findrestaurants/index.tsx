@@ -10,9 +10,9 @@ import Utils from "@/utils/helper";
 import { cuisines } from "@/components/InterfaceEnumsMeta/enumValues";
 import { location } from "@/components/InterfaceEnumsMeta/enumValues";
 import { Loading } from "@/components/Loading";
-import { LoadingContext } from "@/context/ContextConfig";
+import { LoadingContext } from "@/utils/ContextConfig";
 
-const Search = () => {
+const Search = (): JSX.Element => {
   const init = {
     text: "",
     category: "all",
@@ -24,22 +24,23 @@ const Search = () => {
   const [data, setData] = useState<IAllSearchRestaurant>();
   const { loading, setLoading }: any = useContext(LoadingContext);
 
-  const getData = () => {
+  const getData = (): void => {
     setLoading(true);
     axios
       .post(`${Utils.API_URL}/restaurantallsearch`, all)
       .then((res) => {
         setData(res.data.result);
+        console.log(res.data.result);
       })
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));
   };
 
-  useEffect(() => {
+  useEffect((): void => {
     getData();
   }, []);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
   };
   if (loading) {
@@ -48,7 +49,6 @@ const Search = () => {
 
   return (
     <div className="bg-black text-white">
-      {/* <NavbarCustom /> */}
       <NavCateg />
       <div className="flex p-10">
         <div className="basis-1/5">
@@ -60,17 +60,16 @@ const Search = () => {
               <select
                 id="category"
                 value={all.category}
-                onChange={(e) => setAll({ ...all, category: e.target.value })}
-                className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-white text-black"
-              >
+                onChange={(e): void =>
+                  setAll({ ...all, category: e.target.value })
+                }
+                className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-white text-black">
                 <option value="all">All</option>
-                {cuisines.map((cuis, ind) => {
-                  return (
-                    <option value={cuis} key={ind}>
-                      {cuis}
-                    </option>
-                  );
-                })}
+                {cuisines.map((cuis, ind) => (
+                  <option value={cuis} key={ind}>
+                    {cuis}
+                  </option>
+                ))}
               </select>
             </div>
 
@@ -81,9 +80,8 @@ const Search = () => {
               <select
                 id="rating"
                 value={all.rate}
-                onChange={(e) => setAll({ ...all, rate: e.target.value })}
-                className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-white text-black"
-              >
+                onChange={(e): void => setAll({ ...all, rate: e.target.value })}
+                className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-white text-black">
                 <option value="all">All</option>
                 <option value="one">over 1</option>
                 <option value="two">over 2</option>
@@ -99,25 +97,23 @@ const Search = () => {
               <select
                 id="rating"
                 value={all.location}
-                onChange={(e) => setAll({ ...all, location: e.target.value })}
-                className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-white text-black"
-              >
+                onChange={(e): void =>
+                  setAll({ ...all, location: e.target.value })
+                }
+                className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-white text-black">
                 <option value="all">All</option>
-                {location.map((item, ind) => {
-                  return (
-                    <option key={ind} value={item}>
-                      {item}
-                    </option>
-                  );
-                })}
+                {location.map((item, ind) => (
+                  <option key={ind} value={item}>
+                    {item}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="flex justify-center py-3">
               <button
                 type="submit"
                 className="bg-gray-400 hover:bg-gray-600 rounded-md text-black focus:outline-none mt-4 mf "
-                onClick={() => getData()}
-              >
+                onClick={(): void => getData()}>
                 Filter
               </button>
             </div>
@@ -132,14 +128,15 @@ const Search = () => {
                     type="text"
                     placeholder="Search here"
                     value={all.text}
-                    onChange={(e) => setAll({ ...all, text: e.target.value })}
+                    onChange={(e): void =>
+                      setAll({ ...all, text: e.target.value })
+                    }
                     className="py-2 px-3 rounded-md bg-gray-100 focus:outline-none focus:bg-gray-200 flex-grow w-3/4 text-black"
                   />
                   <button
                     type="submit"
                     className="bg-gray-400 hover:bg-gray-600 py-2 px-5 rounded-md text-black focus:outline-none"
-                    onClick={() => getData()}
-                  >
+                    onClick={(): void => getData()}>
                     Search
                   </button>
                 </div>
@@ -151,47 +148,45 @@ const Search = () => {
             All Restaurant : {data?.result.length}
           </div>
           <div className="grid grid-cols-2 gap-5 md:grid-cols-3">
-            {data?.result?.map((item, ind) => {
-              return (
-                <Link href={`/restaurant?id=${item._id}`} key={ind}>
-                  <div className="jard">
-                    <div className="  rounded bg-[#1e1f23] text-white h-[340px] border border-white/20">
-                      <Image
-                        src={item?.restaurant?.img[0]}
-                        width={400}
-                        height={400}
-                        alt="img"
-                        className="rounded doggo"
-                      />
-                      <div className="intro">
-                        <div className="m-3 ">
-                          <h1 className="rest">
-                            {item?.restaurant.restaurantName}
-                          </h1>
-                          <p className="cheetah">
-                            <span className="chef">
-                              {item.restaurant.address.address}
-                            </span>
-                          </p>
-                          <div className="flex text-sm font-light">
-                            <span className="chef">
-                              Mon-Fri: {item.restaurant.schedule.weekday.open}~
-                              {item.restaurant.schedule.weekday.close} clock
-                            </span>
-                          </div>
-                          <div className="flex text-sm font-light">
-                            <span className="chef">
-                              Weekend: {item.restaurant.schedule.weekday.open}~
-                              {item.restaurant.schedule.weekday.close} clock
-                            </span>
-                          </div>
+            {data?.result?.map((item, ind) => (
+              <Link href={`/restaurant?id=${item._id}`} key={ind}>
+                <div className="jard">
+                  <div className="  rounded bg-[#1e1f23] text-white h-[340px] border border-white/20">
+                    <Image
+                      src={item?.restaurant?.img[0]}
+                      width={400}
+                      height={400}
+                      alt="img"
+                      className="rounded doggo"
+                    />
+                    <div className="intro">
+                      <div className="m-3 ">
+                        <h1 className="rest">
+                          {item?.restaurant.restaurantName}
+                        </h1>
+                        <p className="cheetah">
+                          <span className="chef">
+                            {item.restaurant.address.address}
+                          </span>
+                        </p>
+                        <div className="flex text-sm font-light">
+                          <span className="chef">
+                            Mon-Fri: {item.restaurant.schedule.weekday.open}~
+                            {item.restaurant.schedule.weekday.close} clock
+                          </span>
+                        </div>
+                        <div className="flex text-sm font-light">
+                          <span className="chef">
+                            Weekend: {item.restaurant.schedule.weekday.open}~
+                            {item.restaurant.schedule.weekday.close} clock
+                          </span>
                         </div>
                       </div>
                     </div>
                   </div>
-                </Link>
-              );
-            })}
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React from "react";
 import Image from "next/image";
 import coca from "../../img/can-pepsi-zero-sugar.png";
 import cat from "../../img/cat.jpeg";
@@ -50,72 +50,64 @@ export default function TopComments({
         <div className="basis-1 md:basis-3/5">
           <div className="text-center text-3xl py-3">Recent Comments</div>
           <div className="m-0 md:mx-20 h-[600px] overflow-scroll">
-            {lastComments?.map((item, ind) => {
-              return (
-                <div key={ind} className="flex p-4 items-center">
-                  <div className="basis-1/12 mx-3">
-                    <Image
-                      src={cat}
-                      alt="img"
-                      width={40}
-                      height={40}
-                      className="rounded-full"
-                    />
-                  </div>
-                  <div className="basis-11/12">
-                    <div className=" bg-gray-900 rounded-lg p-3">
-                      <div className="flex items-center gap-3">
-                        <p className="font-semibold">{item.userId.userName}</p>
-                        <div className="text-end">
-                          <Starts stars={item.rate ? item.rate : 0} />
-                        </div>
+            {lastComments?.map((item, ind) => (
+              <div key={ind} className="flex p-4 items-center">
+                <div className="basis-1/12 mx-3">
+                  <Image
+                    src={cat}
+                    alt="img"
+                    width={40}
+                    height={40}
+                    className="rounded-full"
+                  />
+                </div>
+                <div className="basis-11/12">
+                  <div className=" bg-gray-900 rounded-lg p-3">
+                    <div className="flex items-center gap-3">
+                      <p className="font-semibold">{item.userId.userName}</p>
+                      <div className="text-end">
+                        <Starts stars={item.rate ? item.rate : 0} />
                       </div>
-                      <span className="font-light my-1">{item.comment}</span>
                     </div>
+                    <span className="font-light my-1">{item.comment}</span>
+                  </div>
 
-                    <span className="flex items-center gap-2">
-                      <span className="font-thin text-sm mx-2">
-                        {item.userId.createdAt.slice(0, 10)}
-                      </span>
-                      <p
-                        className={
-                          item?.restaurantId ? "font-thin text-sm" : "hidden"
-                        }>
-                        rated
-                      </p>
-                      <div className="hover:text-[#9395d3]">
-                        <Link
-                          href={
-                            item?.restaurantId
-                              ? `/restaurant?id=${item?.restaurantId?._id}`
-                              : `/`
-                          }>
-                          {" "}
-                          {item?.restaurantId?.restaurantName}
-                        </Link>
-                      </div>
-                      <span
-                        className={
-                          item?.restaurantId
-                            ? "font-thin text-sm mx-2"
-                            : "hidden"
-                        }>
-                        food
-                      </span>
+                  <span className="flex items-center gap-2">
+                    <span className="font-thin text-sm mx-2">
+                      {item.userId.createdAt.slice(0, 10)}
+                    </span>
+                    <p
+                      className={
+                        item.restaurantId ? "font-thin text-sm" : "hidden"
+                      }>
+                      rated
+                    </p>
+                    <div className="hover:text-[#9395d3]">
                       <Link
                         href={
-                          item?.foodId ? `/food?id=${item?.foodId?._id}` : `/`
+                          item?.restaurantId
+                            ? `/restaurant?id=${item.restaurantId._id}`
+                            : `/`
                         }>
-                        <span className="hover:text-[#9395d3]">
-                          {" "}
-                          {item?.foodId?.foodName}
-                        </span>
+                        {item?.restaurantId?.restaurantName}
                       </Link>
+                    </div>
+                    <span
+                      className={
+                        item?.restaurantId ? "font-thin text-sm mx-2" : "hidden"
+                      }>
+                      food
                     </span>
-                  </div>
+                    <Link
+                      href={item?.foodId ? `/food?id=${item.foodId._id}` : `/`}>
+                      <span className="hover:text-[#9395d3]">
+                        {item?.foodId?.foodName}
+                      </span>
+                    </Link>
+                  </span>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
         <div className="hidden md:block basis-1/5 border border-gray-900 bg-gray-950 rounded p-5 h-full">
@@ -134,26 +126,24 @@ export default function TopComments({
             </div>
           </div>
           <div>
-            {topConterbuter?.map((item, ind) => {
-              return (
-                <div key={ind} className="flex  items-center my-3">
-                  <p className="basis-1/12">{ind + 1}.</p>
-                  <div className="rounded-full basis-1/6 m-1">
-                    <Image
-                      src={cat}
-                      width={40}
-                      height={40}
-                      alt="profile"
-                      className="rounded-full object-cover"
-                    />
-                  </div>
-                  <div className="basis-3/6">{item?._id.username}</div>
-                  <div className="basis-1/6">
-                    <p className=" bg-sky-700  rounded p-1">{item?.points}</p>
-                  </div>
+            {topConterbuter?.map((item, ind) => (
+              <div key={ind} className="flex  items-center my-3">
+                <p className="basis-1/12">{ind + 1}.</p>
+                <div className="rounded-full basis-1/6 m-1">
+                  <Image
+                    src={cat}
+                    width={40}
+                    height={40}
+                    alt="profile"
+                    className="rounded-full object-cover"
+                  />
                 </div>
-              );
-            })}
+                <div className="basis-3/6">{item._id.username}</div>
+                <div className="basis-1/6">
+                  <p className=" bg-sky-700  rounded p-1">{item.points}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

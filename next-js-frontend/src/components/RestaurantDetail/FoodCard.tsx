@@ -4,9 +4,15 @@ import Image from "next/image";
 import { GiCookingPot } from "react-icons/gi";
 import { IFood } from "../InterfaceEnumsMeta/InterFace";
 
-export const FoodCard = ({ food, name }: { food: IFood[]; name: string }) => {
-  let type: string[] = [];
-  food.map((item, ind) => {
+export const FoodCard = ({
+  food,
+  name,
+}: {
+  food: IFood[];
+  name: string;
+}): JSX.Element => {
+  const type: string[] = [];
+  food.map((item) => {
     item.foodType.includes(name) ? type.push(name) : "";
   });
 
