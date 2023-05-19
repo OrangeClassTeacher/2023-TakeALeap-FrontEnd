@@ -14,7 +14,7 @@ import { LoadingContext } from "@/utils/ContextConfig";
 import { Loading } from "@/components/Loading";
 import Cat from "../../img/cat.jpeg";
 
-export default function Userprofile() {
+export default function Userprofile(): JSX.Element {
   const token =
     typeof window !== "undefined" ? localStorage.getItem("token") : "";
 
@@ -36,7 +36,7 @@ export default function Userprofile() {
   const [comment, setComment] = useState();
   const { loading, setLoading }: any = useContext(LoadingContext);
 
-  useEffect(() => {
+  useEffect((): void => {
     const id = typeof window !== "undefined" ? localStorage.getItem("id") : "";
     const token =
       typeof window !== "undefined" ? localStorage.getItem("token") : "";
@@ -83,7 +83,7 @@ export default function Userprofile() {
             </div>
             <div className="basis-2/3 flex flex-col gap-2">
               <div className="flex items-center gap-5">
-                <p className="text-xl">{data?.userName}</p>
+                <p className="text-xl">{data.userName}</p>
               </div>
               <div className="flex items-center gap-5">
                 <p>{data.point} points</p>
@@ -102,7 +102,7 @@ export default function Userprofile() {
                     ? "flex items-center gap-2 cursor-pointer"
                     : "flex items-center gap-2 text-white/50 cursor-pointer"
                 }
-                onClick={() => setActive(1)}>
+                onClick={(): void => setActive(1)}>
                 <MdTableRows />
                 Profile
               </p>
@@ -112,7 +112,7 @@ export default function Userprofile() {
                     ? "flex items-center gap-2 cursor-pointer"
                     : "flex items-center gap-2 text-white/50 cursor-pointer"
                 }
-                onClick={() => setActive(2)}>
+                onClick={(): void => setActive(2)}>
                 <FaRegComment />
                 My Comments
               </p>

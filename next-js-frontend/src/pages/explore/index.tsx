@@ -8,11 +8,11 @@ import axios from "axios";
 import Utils from "@/utils/helper";
 import { Loading } from "@/components/Loading";
 
-export default function ExploreMain() {
+export default function ExploreMain(): JSX.Element {
   const [data, setData] = useState<IExplore>();
   const { loading, setLoading }: any = useContext(LoadingContext);
 
-  useEffect(() => {
+  useEffect((): void => {
     setLoading(true);
     axios
       .get(`${Utils.API_URL}/comments`)

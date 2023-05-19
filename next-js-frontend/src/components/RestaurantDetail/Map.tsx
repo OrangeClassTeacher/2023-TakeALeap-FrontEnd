@@ -7,28 +7,7 @@ export default function SimpleMap({
   restaurant,
 }: {
   restaurant?: IRestaurant;
-}) {
-  // const { coordinates }: any = restaurant?.address.location;
-  // const defaultProps = {
-  //   center: {
-  //     lat: coordinates[0] ? coordinates[0] : 47.917229655098424,
-  //     lng: coordinates[1] ? coordinates[1] : 106.9163248383444,
-  //   },
-  //   zoom: 11,
-  //   extends: true,
-  // };
-  // // console.log(restaurant);
-
-  // return (
-  //   <div style={{ height: "60vh", width: "100%" }}>
-  //     <GoogleMapReact
-  //       bootstrapURLKeys={{ key: process.env.MAP ? process.env.MAP : "" }}
-  //       defaultCenter={defaultProps.center}
-  //       defaultZoom={defaultProps.zoom}>
-  //       <Marker coordinates={coordinates} restaurant={restaurant} />
-  //     </GoogleMapReact>
-  //   </div>
-  // );
+}): JSX.Element {
   const mapStyle = {
     borderRadius: "20px",
     height: "100%",
@@ -37,8 +16,6 @@ export default function SimpleMap({
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: "AIzaSyCFxLxHovmdaNac-fLDg0guhBdSO4o8cIg" as string,
   });
-
-  const clickHandle = () => {};
 
   if (!isLoaded) return <Loading />;
   return (
@@ -61,9 +38,7 @@ export default function SimpleMap({
                 ? restaurant?.address.location.coordinates[1]
                 : 106.90851741242646,
             }}
-            onClick={() => clickHandle()}
           />
-          <div></div>
         </div>
       </GoogleMap>
     </div>

@@ -16,7 +16,7 @@ import cat from "../../img/cat.jpeg";
 import { useContext } from "react";
 import { UserContext } from "@/utils/ContextConfig";
 
-export const NavSearch = () => {
+export const NavSearch = (): JSX.Element => {
   const { userSign, setUserSign }: any = useContext(UserContext);
   const [signIn, setSignIn] = useState<boolean>(false);
   const [search, setSearch] = useState(false);

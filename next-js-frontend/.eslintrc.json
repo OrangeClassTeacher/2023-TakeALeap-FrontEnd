@@ -15,7 +15,7 @@
   },
   "overrides": [
     {
-      "files": [".ts", "/.ts", ".tsx", "/.tsx"],
+      "files": ["*.ts", "**/*.ts", "*.tsx", "**/*.tsx"],
       "excludedFiles": "*.test.js",
       "rules": {
         "import/first": "error",

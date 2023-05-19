@@ -7,7 +7,7 @@ export default function AllMap({
   restaurants,
 }: {
   restaurants: IRestaurant[];
-}) {
+}): JSX.Element {
   const mapStyle = {
     borderRadius: "20px",
     height: "100%",
@@ -17,7 +17,7 @@ export default function AllMap({
     googleMapsApiKey: "AIzaSyAhjl1X_pQkIAeTUWlWv4cKKUDqgyxDCQE" as string,
   });
 
-  const clickHandle = () => {};
+  const clickHandle = (): void => {};
 
   if (!isLoaded) return <Loading />;
   return (
@@ -46,7 +46,6 @@ export default function AllMap({
                   }}
                   onClick={() => clickHandle()}
                 />
-                <div></div>
               </div>
             );
           })}

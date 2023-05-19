@@ -4,7 +4,6 @@ import Image from "next/image";
 import axios from "axios";
 import { ImgChangeModal } from "./ImgChangeModal";
 import Utils from "@/utils/helper";
-import { Loading } from "./Loading";
 import Cat from "../img/cat.jpeg";
 import { LoadingContext } from "@/utils/ContextConfig";
 
@@ -18,7 +17,7 @@ export const Profile = ({
   constData: IUser;
   setData: any;
   setConstData: any;
-}) => {
+}): JSX.Element => {
   const [isEdit, setIsEdit] = useState(false);
   const [modal, setModal] = useState(false);
   const { loading, setLoading }: any = useContext(LoadingContext);
@@ -27,7 +26,6 @@ export const Profile = ({
     typeof window !== "undefined" ? localStorage.getItem("token") : "";
 
   const editUser = async () => {
-    // setLoading(true);
     await axios
       .put(`${Utils.API_URL}/user?id=${id}`, data)
       .then((res) => (res.data.status ? alert("amjilttai") : alert("aldaatai")))
@@ -41,7 +39,6 @@ export const Profile = ({
       })
       .then((res) => {
         setConstData(res.data.result);
-        // setLoading(false);
       })
       .catch((err) => console.log(err));
 
@@ -149,7 +146,6 @@ export const Profile = ({
             id="password"
             type="password"
             value={data.password}
-            // onChange={(e) => setData({ ...data, password: e.target.value })}
             disabled={true}
             className={
               isEdit

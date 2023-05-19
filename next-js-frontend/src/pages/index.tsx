@@ -19,7 +19,7 @@ import { Loading } from "@/components/Loading";
 import { LoadingContext } from "@/utils/ContextConfig";
 import AllMap from "@/components/homePage/AllMap";
 
-export default function Index() {
+export default function Index(): JSX.Element {
   const [restaurants, setRestaurant] = useState<IRestaurant[]>([]);
   const [topFood, setTopFood] = useState<ITopFoods[]>([]);
   const [topRestaurant, setTopRestaurant] = useState<ITopRestaurant[]>([]);
@@ -67,7 +67,7 @@ export default function Index() {
       .finally(() => setLoading(false));
   };
 
-  useEffect(() => {
+  useEffect((): void => {
     getData();
   }, []);
 

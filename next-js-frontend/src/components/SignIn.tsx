@@ -10,8 +10,6 @@ import { UserContext } from "@/utils/ContextConfig";
 import { AiFillEyeInvisible } from "react-icons/ai";
 import { AiFillEye } from "react-icons/ai";
 import Utils from "@/utils/helper";
-import { Loading } from "./Loading";
-import { LoadingContext } from "@/utils/ContextConfig";
 
 export default function SignIn({
   signIn,
@@ -26,16 +24,13 @@ export default function SignIn({
   };
 
   const [login, setLogin] = useState(init);
-  const { userSign, setUserSign }: any = useContext(UserContext);
-  const { loading, setLoading }: any = useContext(LoadingContext);
+  const { setUserSign }: any = useContext(UserContext);
   const [passwordType, setPasswordType] = useState("password");
 
-  const signin = () => {
-    // setLoading(true);
+  const signin = (): void => {
     axios
       .post(`${Utils.API_URL}/login`, login)
       .then((res) => {
-        // setLoading(false);
         if (res.data.status) {
           localStorage.setItem("name", res.data.data.userName);
           localStorage.setItem("id", res.data.data._id);
@@ -49,7 +44,7 @@ export default function SignIn({
       .catch((err) => console.log("", err));
   };
 
-  const togglePassword = (e: any) => {
+  const togglePassword = (e: any): void => {
     e.preventDefault();
 
     if (passwordType === "password") {
@@ -62,15 +57,15 @@ export default function SignIn({
   return (
     <div
       className="h-screen w-screen fixed inset-0 overflow-y-auto flex items-center justify-center bg-gray-400/50 z-50"
-      onClick={() => setSignIn(!signIn)}
+      onClick={(): void => setSignIn(!signIn)}
       style={{ display: signIn ? "flex" : "none" }}>
       <div
         className="w-[400px] h-[500px] p-4 text-center bg-white rounded text-black"
-        onClick={(e) => e.stopPropagation()}>
+        onClick={(e): void => e.stopPropagation()}>
         <div>
           <div className="flex justify-end">
             {" "}
-            <GrClose onClick={() => setSignIn(!signIn)} />
+            <GrClose onClick={(): void => setSignIn(!signIn)} />
           </div>
           <div className="flex justify-around">
             <Image
@@ -90,7 +85,9 @@ export default function SignIn({
               value={login.email}
               placeholder="E-Mail"
               style={{ outline: "none", width: "100%" }}
-              onChange={(e) => setLogin({ ...login, email: e.target.value })}
+              onChange={(e): void =>
+                setLogin({ ...login, email: e.target.value })
+              }
             />
           </div>
           <div className="rounded border p-3 mb-6 flex">
@@ -99,7 +96,9 @@ export default function SignIn({
               value={login.password}
               placeholder="Password"
               style={{ outline: "none", width: "100%" }}
-              onChange={(e) => setLogin({ ...login, password: e.target.value })}
+              onChange={(e): void =>
+                setLogin({ ...login, password: e.target.value })
+              }
             />
             <button onClick={togglePassword}>
               {passwordType === "password" ? (

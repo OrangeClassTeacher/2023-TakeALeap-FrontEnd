@@ -1,7 +1,5 @@
 import axios from "axios";
-import React, { useState, useContext } from "react";
-import { Loading } from "./Loading";
-import { LoadingContext } from "@/utils/ContextConfig";
+import React, { useState } from "react";
 
 export const ImgChangeModal = ({
   modal,
@@ -20,16 +18,7 @@ export const ImgChangeModal = ({
   const token =
     typeof window !== "undefined" ? localStorage.getItem("token") : "";
 
-  //   const getData = () => {
-  //     setLoading(true);
-  //     axios
-  //       .get(`http://localhost:8080/api/restaurant?id=${resId}`)
-  //       .then((res) => {})
-  //       .catch((err) => console.log(err));
-  //     setLoading(false);
-  //   };
-
-  const editImg = () => {
+  const editImg = (): void => {
     const fileSend =
       typeImg == "img"
         ? { img: imgSave, token: token }
@@ -98,7 +87,6 @@ export const ImgChangeModal = ({
               type="file"
               className=" file:bg-gradient-to-b file:from-blue-500 file:to-blue-600 file:px-6 file:py-3 file:m-5 file:border-none file:rounded-full file:text-white file:cursor-pointer file:shadow-lg file:shadow-b bg-gradient-to-br from-gray-600 to-gray-700 text-white/80 rounded-full cursor-pointer shadow-xl shadow-gray-700/60"
               onChange={(e) => {
-                console.log(e.target.files);
                 const arr = [];
                 arr.push(e.target.files);
                 sendFile("img", arr);
@@ -122,9 +110,7 @@ export const ImgChangeModal = ({
               Save
             </button>
             <button
-              onClick={() => {
-                setModal(!modal);
-              }}
+              onClick={() => setModal(!modal)}
               data-modal-hide="defaultModal"
               type="button"
               className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">

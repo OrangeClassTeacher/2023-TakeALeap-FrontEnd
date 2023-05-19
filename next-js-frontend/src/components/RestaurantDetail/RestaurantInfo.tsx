@@ -8,7 +8,7 @@ export const RestaurantInfo = ({
   restaurant,
 }: {
   restaurant?: IDetailRest;
-}) => {
+}): JSX.Element => {
   const { email, contact, address }: any = restaurant?.restaurant[0];
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 border-t mt-5 pt-5">

@@ -1,4 +1,3 @@
-import { IUser } from "@/components/InterfaceEnumsMeta/InterFace";
 import { createContext } from "react";
 
 type UserContextType = {

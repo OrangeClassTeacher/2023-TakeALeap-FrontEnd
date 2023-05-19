@@ -9,9 +9,7 @@ export const RestaurantStart = ({
   restaurant,
 }: {
   restaurant?: IDetailRest;
-}) => {
-  console.log(restaurant);
-
+}): JSX.Element => {
   const { restaurantName, description, schedule, img }: any =
     restaurant?.restaurant[0];
 
@@ -36,7 +34,7 @@ export const RestaurantStart = ({
             className="pic"
           />
           <div className="con">
-            <div className="cloud"></div>
+            <div className="cloud" />
           </div>
           <div className="picsl absolute top-[20%] left-[25%]">
             <h1 className="m-5 text-3xl uppercase">{restaurantName} </h1>
