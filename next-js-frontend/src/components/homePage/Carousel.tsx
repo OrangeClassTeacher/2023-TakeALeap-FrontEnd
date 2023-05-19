@@ -11,7 +11,7 @@ export default function Carousel({
 }: {
   items: ITopRestaurant[];
 }): JSX.Element {
-  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [activeIndex] = useState<number>(0);
   const currentItem = items[activeIndex]?.restaurant[0];
   const { img, address, contact, restaurantName, cuisineType, schedule } =
     currentItem;
