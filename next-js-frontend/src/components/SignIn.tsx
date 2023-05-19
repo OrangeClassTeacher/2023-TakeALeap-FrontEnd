@@ -6,12 +6,12 @@ import Image from "next/image";
 import cat from "../img/logo.jpg";
 import Link from "next/link";
 import axios from "axios";
-import { UserContext } from "@/context/ContextConfig";
+import { UserContext } from "@/utils/ContextConfig";
 import { AiFillEyeInvisible } from "react-icons/ai";
 import { AiFillEye } from "react-icons/ai";
 import Utils from "@/utils/helper";
 import { Loading } from "./Loading";
-import { LoadingContext } from "@/context/ContextConfig";
+import { LoadingContext } from "@/utils/ContextConfig";
 
 export default function SignIn({
   signIn,

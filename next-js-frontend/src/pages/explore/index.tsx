@@ -3,7 +3,7 @@ import Header from "@/components/HeaderNavFooter/Header";
 import Footer from "@/components/HeaderNavFooter/Footer";
 import { Explore } from "@/components/Explore";
 import { IExplore } from "@/components/InterfaceEnumsMeta/InterFace";
-import { LoadingContext } from "@/context/ContextConfig";
+import { LoadingContext } from "@/utils/ContextConfig";
 import axios from "axios";
 import Utils from "@/utils/helper";
 import { Loading } from "@/components/Loading";

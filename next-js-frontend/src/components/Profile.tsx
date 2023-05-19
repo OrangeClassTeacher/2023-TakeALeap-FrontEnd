@@ -6,7 +6,7 @@ import { ImgChangeModal } from "./ImgChangeModal";
 import Utils from "@/utils/helper";
 import { Loading } from "./Loading";
 import Cat from "../img/cat.jpeg";
-import { LoadingContext } from "@/context/ContextConfig";
+import { LoadingContext } from "@/utils/ContextConfig";
 
 export const Profile = ({
   data,
@@ -68,8 +68,7 @@ export const Profile = ({
         </div>
         <p
           className="basis-4/6 text-blue-500/50 hover:text-blue-500 cursor-pointer"
-          onClick={() => setModal(true)}
-        >
+          onClick={() => setModal(true)}>
           Change profile photo
         </p>
       </div>
@@ -168,16 +167,14 @@ export const Profile = ({
                 setData(constData);
                 setIsEdit(false);
               }}
-              className="sda hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded"
-            >
+              className="sda hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded">
               <div className="">
                 <span className="spam text-sm text-red-300">Cancel</span>
               </div>
             </button>
             <button
               onClick={() => editUser()}
-              className="sda hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded"
-            >
+              className="sda hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded">
               <div className="">
                 <span className="spam text-sm text-green-300">Save</span>
               </div>
@@ -186,8 +183,7 @@ export const Profile = ({
         ) : (
           <button
             onClick={() => setIsEdit(!isEdit)}
-            className="mf hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded"
-          >
+            className="mf hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded">
             <div className="yma">
               <span className="spam">E</span>
               <span className="spam">dit</span>

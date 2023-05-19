@@ -14,7 +14,7 @@ import { SearchModal } from "../SearchModal";
 import Image from "next/image";
 import cat from "../../img/cat.jpeg";
 import { useContext } from "react";
-import { UserContext } from "@/context/ContextConfig";
+import { UserContext } from "@/utils/ContextConfig";
 
 export const NavSearch = () => {
   const { userSign, setUserSign }: any = useContext(UserContext);
@@ -54,11 +54,6 @@ export const NavSearch = () => {
               </div>
             </Link>
           </h1>
-          {/* <div className="nox">
-            <div className="nightbar"></div>
-            <div className="nopLayer"></div>
-            <p className=" 2x1:px-16 py-0 text-xs underline">Find, Eat, Rate</p>
-          </div> */}
         </div>
         <div className="basis-4/6 relative">
           <div className="flex gap-2 h-9 ">

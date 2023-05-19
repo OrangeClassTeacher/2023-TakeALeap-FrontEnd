@@ -12,7 +12,7 @@ import { IoMdRestaurant } from "react-icons/io";
 import { TbSoup } from "react-icons/tb";
 import gip from "../../img/gip.gif";
 import { Loading } from "@/components/Loading";
-import { LoadingContext } from "@/context/ContextConfig";
+import { LoadingContext } from "@/utils/ContextConfig";
 
 export default function Food() {
   const route = useRouter();

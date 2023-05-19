@@ -9,7 +9,7 @@ import Utils from "@/utils/helper";
 import { FoodCard } from "./FoodCard";
 import { meal } from "../InterfaceEnumsMeta/enumValues";
 import { GiCookingPot } from "react-icons/gi";
-import { LoadingContext } from "@/context/ContextConfig";
+import { LoadingContext } from "@/utils/ContextConfig";
 import { Loading } from "../Loading";
 
 export const Menu = () => {

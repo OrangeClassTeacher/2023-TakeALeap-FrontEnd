@@ -8,14 +8,14 @@ import VanillaTilt from "vanilla-tilt";
 export default function RestaurantLilSlide({ data }: { data: IRestaurant[] }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const cardRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    return VanillaTilt.init(cardRef.current, {
-      scale: 1.1,
-      glare: true,
-      "max-glare": 0.5,
-    });
-  }, []);
+  const tilt = cardRef.current ? cardRef.current : <div ref={cardRef}>p</div>;
+  // useEffect(() => {
+  //   return VanillaTilt.init(tilt, {
+  //     scale: 1.1,
+  //     glare: true,
+  //     "max-glare": 0.5,
+  //   });
+  // }, [tilt]);
 
   function handleNextItemBtn() {
     if (data.length === activeIndex + 1) {

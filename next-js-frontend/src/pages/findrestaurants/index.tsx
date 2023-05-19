@@ -10,7 +10,7 @@ import Utils from "@/utils/helper";
 import { cuisines } from "@/components/InterfaceEnumsMeta/enumValues";
 import { location } from "@/components/InterfaceEnumsMeta/enumValues";
 import { Loading } from "@/components/Loading";
-import { LoadingContext } from "@/context/ContextConfig";
+import { LoadingContext } from "@/utils/ContextConfig";
 
 const Search = () => {
   const init = {

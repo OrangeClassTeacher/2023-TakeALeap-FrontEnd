@@ -16,7 +16,7 @@ import Utils from "@/utils/helper";
 import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { Loading } from "@/components/Loading";
-import { LoadingContext } from "@/context/ContextConfig";
+import { LoadingContext } from "@/utils/ContextConfig";
 import AllMap from "@/components/homePage/AllMap";
 
 export default function Index() {
