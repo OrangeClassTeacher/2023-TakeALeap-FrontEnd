@@ -54,6 +54,7 @@ export default function Index(): JSX.Element {
       .get(`${Utils.API_URL}/latestcomments`)
       .then((res) => {
         setLastComments(res.data.result);
+        console.log(res.data.result);
       })
       .catch((err) => console.log(err));
 

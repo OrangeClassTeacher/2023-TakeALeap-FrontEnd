@@ -83,14 +83,6 @@ export default function TopComments({
                           {item.restaurantId.restaurantName}
                         </Link>
                       </div>
-                      <span className={"font-thin text-sm mx-2"}>food</span>
-                      {item.foodId._id && (
-                        <Link href={`/food?id=${item.foodId._id}`}>
-                          <span className="hover:text-[#9395d3]">
-                            {item.foodId.foodName}
-                          </span>
-                        </Link>
-                      )}
                     </span>
                   </div>
                 </div>
