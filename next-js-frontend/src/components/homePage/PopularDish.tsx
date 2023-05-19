@@ -4,15 +4,15 @@ import { ITopFoods } from "../InterfaceEnumsMeta/InterFace";
 import Link from "next/link";
 import Stars from "../commentsRates/Stars";
 
-export const PopularDish = ({ data }: { data: ITopFoods[] }): JSX.Element => {
-  return (
-    <div className="md:px-20">
-      <h1 className="text-3xl uppercase text-center pt-10">Most popular </h1>
-      <Link href={`/findfoods`}>
-        <p className="text-end hover:text-[#9395d3]">See all</p>
-      </Link>
-      <div className="grid grid-cols-2 sm:grid-cols-3 p-5 ">
-        {data.map((item, ind) => (
+export const PopularDish = ({ data }: { data: ITopFoods[] }): JSX.Element => (
+  <div className="md:px-20">
+    <h1 className="text-3xl uppercase text-center pt-10">Most popular </h1>
+    <Link href={`/findfoods`}>
+      <p className="text-end hover:text-[#9395d3]">See all</p>
+    </Link>
+    <div className="grid grid-cols-2 sm:grid-cols-3 p-5 ">
+      {data.length &&
+        data.map((item, ind) => (
           <Link key={ind} href={`/food?id=${item.food._id}`}>
             <div
               key={ind}
@@ -22,7 +22,7 @@ export const PopularDish = ({ data }: { data: ITopFoods[] }): JSX.Element => {
               <div className="vox">
                 <div className="vox-img">
                   <Image
-                    src={item?.food?.img[0]}
+                    src={item.food.img[0]}
                     alt="img"
                     className="w-full h-[150px] object-cover -z-3"
                     width={200}
@@ -53,7 +53,6 @@ export const PopularDish = ({ data }: { data: ITopFoods[] }): JSX.Element => {
             </div>
           </Link>
         ))}
-      </div>
     </div>
-  );
-};
+  </div>
+);

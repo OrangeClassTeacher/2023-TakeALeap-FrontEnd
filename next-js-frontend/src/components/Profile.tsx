@@ -6,7 +6,7 @@ import { ImgChangeModal } from "./ImgChangeModal";
 import Utils from "@/utils/helper";
 import Cat from "../img/cat.jpeg";
 import { LoadingContext } from "@/utils/ContextConfig";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export const Profile = ({
@@ -27,7 +27,7 @@ export const Profile = ({
   const token =
     typeof window !== "undefined" ? localStorage.getItem("token") : "";
 
-  const editUser = async () => {
+  const editUser = async (): Promise<void> => {
     await axios
       .put(`${Utils.API_URL}/user?id=${id}`, data)
       .then((res) =>
@@ -69,8 +69,7 @@ export const Profile = ({
         </div>
         <p
           className="basis-4/6 text-blue-500/50 hover:text-blue-500 cursor-pointer"
-          onClick={() => setModal(true)}
-        >
+          onClick={(): void => setModal(true)}>
           Change profile photo
         </p>
       </div>
@@ -81,7 +80,7 @@ export const Profile = ({
             id="name"
             type="text"
             value={data.name}
-            onChange={(e) => setData({ ...data, name: e.target.value })}
+            onChange={(e): void => setData({ ...data, name: e.target.value })}
             disabled={!isEdit}
             className={
               isEdit
@@ -100,7 +99,9 @@ export const Profile = ({
             id="userName"
             type="text"
             value={data.userName}
-            onChange={(e) => setData({ ...data, userName: e.target.value })}
+            onChange={(e): void =>
+              setData({ ...data, userName: e.target.value })
+            }
             disabled={!isEdit}
             className={
               isEdit
@@ -117,7 +118,7 @@ export const Profile = ({
             id="email"
             type="text"
             value={data.email}
-            onChange={(e) => setData({ ...data, email: e.target.value })}
+            onChange={(e): void => setData({ ...data, email: e.target.value })}
             disabled={!isEdit}
             className={
               isEdit
@@ -134,7 +135,7 @@ export const Profile = ({
             id="phone"
             type="text"
             value={data.phone}
-            onChange={(e) => setData({ ...data, phone: e.target.value })}
+            onChange={(e): void => setData({ ...data, phone: e.target.value })}
             disabled={!isEdit}
             className={
               isEdit
@@ -164,21 +165,19 @@ export const Profile = ({
         {isEdit ? (
           <div className="flex gap-10">
             <button
-              onClick={() => {
+              onClick={(): void => {
                 setData(constData);
                 setIsEdit(false);
                 toast.warning("Cancelled", { autoClose: 1000 });
               }}
-              className="sda hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded"
-            >
+              className="sda hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded">
               <div className="">
                 <span className="spam text-sm text-red-300">Cancel</span>
               </div>
             </button>
             <button
-              onClick={() => editUser()}
-              className="sda hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded"
-            >
+              onClick={(): any => editUser()}
+              className="sda hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded">
               <div className="">
                 <span className="spam text-sm text-green-300">Save</span>
               </div>
@@ -186,9 +185,8 @@ export const Profile = ({
           </div>
         ) : (
           <button
-            onClick={() => setIsEdit(!isEdit)}
-            className="mf hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded"
-          >
+            onClick={(): void => setIsEdit(!isEdit)}
+            className="mf hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded">
             <div className="yma">
               <span className="spam">E</span>
               <span className="spam">dit</span>

@@ -21,7 +21,7 @@ export default function Food(): JSX.Element {
   const { loading, setLoading }: any = useContext(LoadingContext);
 
   useEffect((): void => {
-    if (id) {
+    if (id?.length) {
       setLoading(true);
       axios
         .get(`${Utils.API_URL}/food?id=${id}`)
@@ -54,7 +54,7 @@ export default function Food(): JSX.Element {
                 />
                 <div className="gipsl">
                   <h1 className="text-2xl md:text-4xl uppercase justify-center flex">
-                    {food?.foodName}
+                    {food.foodName}
                   </h1>
                   <div className="flex gap-2 items-center justify-around mt-10">
                     <p className="flex justify-center">{food.price}₮</p>

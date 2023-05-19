@@ -20,27 +20,29 @@ export default function SimpleMap({
   if (!isLoaded) return <Loading />;
   return (
     <div className="w-[100%] h-[100%]">
-      <GoogleMap
-        zoom={13}
-        center={{
-          lat: 47.91491313549779,
-          lng: 106.90851741242646,
-        }}
-        mapContainerClassName="map-container"
-        mapContainerStyle={mapStyle}>
-        <div>
-          <MarkerF
-            position={{
-              lat: restaurant?.address.location.coordinates[0]
-                ? restaurant?.address.location.coordinates[0]
-                : 47.91491313549779,
-              lng: restaurant?.address.location.coordinates[1]
-                ? restaurant?.address.location.coordinates[1]
-                : 106.90851741242646,
-            }}
-          />
-        </div>
-      </GoogleMap>
+      {restaurant && (
+        <GoogleMap
+          zoom={13}
+          center={{
+            lat: 47.91491313549779,
+            lng: 106.90851741242646,
+          }}
+          mapContainerClassName="map-container"
+          mapContainerStyle={mapStyle}>
+          <div>
+            <MarkerF
+              position={{
+                lat: restaurant.address.location.coordinates[0]
+                  ? restaurant.address.location.coordinates[0]
+                  : 47.91491313549779,
+                lng: restaurant.address.location.coordinates[1]
+                  ? restaurant.address.location.coordinates[1]
+                  : 106.90851741242646,
+              }}
+            />
+          </div>
+        </GoogleMap>
+      )}
     </div>
   );
 }

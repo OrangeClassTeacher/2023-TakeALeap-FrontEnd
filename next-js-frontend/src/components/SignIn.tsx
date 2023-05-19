@@ -10,9 +10,7 @@ import { UserContext } from "@/utils/ContextConfig";
 import { AiFillEyeInvisible } from "react-icons/ai";
 import { AiFillEye } from "react-icons/ai";
 import Utils from "@/utils/helper";
-import { Loading } from "./Loading";
-import { LoadingContext } from "@/utils/ContextConfig";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function SignIn({
@@ -21,7 +19,7 @@ export default function SignIn({
 }: {
   signIn: boolean;
   setSignIn: Dispatch<SetStateAction<boolean>>;
-}) {
+}): JSX.Element {
   const init = {
     email: "",
     password: "",
@@ -32,7 +30,6 @@ export default function SignIn({
   const [passwordType, setPasswordType] = useState("password");
 
   const signin = useCallback((): void => {
-    // setLoading(true);
     axios
       .post(`${Utils.API_URL}/login`, login)
       .then((res) => {
@@ -77,29 +74,28 @@ export default function SignIn({
     }
     setPasswordType("password");
   };
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
+
+  useEffect((): void => {
+    const handleKeyDown = (event: KeyboardEvent): void => {
       if (event.key === "Enter") {
         signin();
       }
     };
 
     document.addEventListener("keydown", handleKeyDown);
-
-    return () => {
+    (): void => {
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [signin]);
+
   return (
     <div
       className="h-screen w-screen fixed inset-0 overflow-y-auto flex items-center justify-center bg-gray-400/50 z-50"
       onClick={(): void => setSignIn(!signIn)}
-      style={{ display: signIn ? "flex" : "none" }}
-    >
+      style={{ display: signIn ? "flex" : "none" }}>
       <div
         className="w-[400px] h-[500px] p-4 text-center bg-white rounded text-black"
-        onClick={(e) => e.stopPropagation()}
-      >
+        onClick={(e): void => e.stopPropagation()}>
         <div>
           <div className="flex justify-end">
             {" "}
@@ -148,8 +144,7 @@ export default function SignIn({
           </div>
           <div
             className="bg-black text-white p-3 cursor-pointer"
-            onClick={signin}
-          >
+            onClick={signin}>
             Sign In
           </div>
           <div className="flex gap-2 pt-5">

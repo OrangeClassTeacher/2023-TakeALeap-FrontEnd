@@ -1,6 +1,5 @@
 import { useEffect, useState, useContext } from "react";
 import { NavCateg } from "@/components/HeaderNavFooter/NavCateg";
-// import { NavbarCustom } from "@/components/HeaderNavFooter/NavbarCustom";
 import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
@@ -10,6 +9,7 @@ import Utils from "@/utils/helper";
 import { meal } from "@/components/InterfaceEnumsMeta/enumValues";
 import { Loading } from "@/components/Loading";
 import { LoadingContext } from "@/utils/ContextConfig";
+// import { IAllSearchFoodInit } from "@/components/InterfaceEnumsMeta/inits";
 
 const init = {
   text: "",
@@ -27,11 +27,11 @@ const Search = (): JSX.Element => {
     setLoading(true);
     axios
       .post(`${Utils.API_URL}/foodallsearch`, all)
-      .then((res) => {
+      .then((res): void => {
         setData(res.data.result);
       })
-      .catch((err) => console.log(err))
-      .finally(() => setLoading(false));
+      .catch((err): void => console.log(err))
+      .finally((): void => setLoading(false));
   };
 
   useEffect((): void => {
@@ -157,7 +157,7 @@ const Search = (): JSX.Element => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3">
-              {data?.result?.map((item, ind) => (
+              {data?.result.map((item, ind) => (
                 <Link href={`/food?id=${item._id}`} key={ind}>
                   <div className="m-2 rounded bg-white text-black pard">
                     <div className="w-full h-[460px] overflow-hidden object-cover">
@@ -171,9 +171,9 @@ const Search = (): JSX.Element => {
                     </div>
                     <div className="text-center pntro">
                       <h1 className=" text-md uppercase m-1 chef">
-                        {item?.foods.foodName}
+                        {item.foods.foodName}
                       </h1>
-                      <p className="pb-2 chef">Price : {item?.foods.price}</p>
+                      <p className="pb-2 chef">Price : {item.foods.price}</p>
                     </div>
                   </div>
                 </Link>

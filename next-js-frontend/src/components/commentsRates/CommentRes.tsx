@@ -101,7 +101,7 @@ const CommentRes = (): JSX.Element => {
                   type="text"
                   value={commentSend.comment}
                   placeholder="Review..."
-                  onChange={(e) =>
+                  onChange={(e): void =>
                     setComment({ ...commentSend, comment: e.target.value })
                   }
                   className=" bg-gray-700 outline-none  w-full px-3 h-[190px]"
