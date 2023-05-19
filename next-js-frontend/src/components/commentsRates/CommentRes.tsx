@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { AiOutlineSend } from "react-icons/ai";
 import { BsChevronDown } from "react-icons/bs";
 import { BsChevronUp } from "react-icons/bs";
 import { useRouter } from "next/router";
@@ -61,8 +60,9 @@ const CommentRes = (): JSX.Element => {
       .post(`${Utils.API_URL}/comment`, commentSend)
       .then((res) => (res.data.status ? getData() : ""))
       .catch((err) => console.log(err));
-    setComment(init);
+
     setRate(0);
+    setComment(init);
   };
 
   const rateHandle = (rate: number): void => {
@@ -106,9 +106,6 @@ const CommentRes = (): JSX.Element => {
                   }
                   className=" bg-gray-700 outline-none  w-full px-3 h-[190px]"
                 />
-                <div className="m-2 hover:text-sky-500">
-                  <AiOutlineSend />
-                </div>
               </div>
               <div
                 onClick={(): void => sendComment()}

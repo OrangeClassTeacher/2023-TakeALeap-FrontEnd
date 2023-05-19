@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { AiOutlineSend } from "react-icons/ai";
 import { BsChevronDown } from "react-icons/bs";
 import { BsChevronUp } from "react-icons/bs";
 import { useRouter } from "next/router";
@@ -38,10 +37,10 @@ export default function CommentFood(): JSX.Element {
       .get(`${Utils.API_URL}/commentbyfoodid?id=${id}`)
       .then((res) => {
         setAll(res.data.result);
-        setComment({
-          ...commentSend,
-          restaurantId: res.data.result[0].restaurantId,
-        });
+        // setComment({
+        //   ...commentSend,
+        //   restaurantId: res.data.result[0].restaurantId,
+        // });
       })
       .catch((err) => console.log(err));
   };
@@ -62,7 +61,7 @@ export default function CommentFood(): JSX.Element {
   const sendComment = (): void => {
     axios
       .post(`${Utils.API_URL}/comment`, commentSend)
-      .then((res) => (res.data.status ? getData() : ""))
+      .then((res) => (res.data.status ? getData() : alert("comment not sent")))
       .catch((err) => console.log(err));
 
     setRate(0);
@@ -113,9 +112,6 @@ export default function CommentFood(): JSX.Element {
                       }
                       className=" bg-gray-700 outline-none  w-full px-3 h-[190px]"
                     />
-                    <div className="m-2 hover:text-sky-500">
-                      <AiOutlineSend />
-                    </div>
                   </div>
                   <div
                     onClick={(): void => sendComment()}

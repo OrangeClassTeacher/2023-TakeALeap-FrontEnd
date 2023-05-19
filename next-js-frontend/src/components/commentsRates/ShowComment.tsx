@@ -9,10 +9,11 @@ export const ShowComment = ({
   all,
 }: {
   showAllCom: boolean;
-  all: IComment[];
+  all?: IComment[];
 }): JSX.Element => (
   <div className={showAllCom ? "h-[700px] overflow-scroll" : ""}>
-    {all.length &&
+    {all &&
+      all.length &&
       all.map((item, ind) => {
         if (showAllCom) {
           return (
@@ -21,7 +22,7 @@ export const ShowComment = ({
               className="flex p-4  m-4 items-center border-b border-slate-500 ">
               <div className="basis-1/12 mx-3">
                 <Image
-                  src={item.userId.img[0] ? item.userId.img[0] : img}
+                  src={item.userId ? item.userId.img[0] : img}
                   alt="img"
                   width={40}
                   height={40}
@@ -31,7 +32,9 @@ export const ShowComment = ({
               <div className="basis-11/12">
                 <div className="flex justify-between  items-center">
                   <div className="flex items-center">
-                    <p className="font-semibold">{item.userId.userName}</p>
+                    <p className="font-semibold">
+                      {item.userId && item.userId.userName}
+                    </p>
                     <span className="font-thin text-sm mx-2">
                       {item.createdAt.slice(0, 10)}
                     </span>
@@ -54,7 +57,7 @@ export const ShowComment = ({
                 className="flex p-4 m-4 items-center border-b border-slate-500">
                 <div className="mx-3 basis-1/12">
                   <Image
-                    src={item.userId.img[0] ? item.userId.img[0] : img}
+                    src={item.userId ? item.userId.img[0] : img}
                     alt="img"
                     width={40}
                     height={40}
@@ -64,7 +67,9 @@ export const ShowComment = ({
                 <div className="basis-11/12">
                   <div className="flex justify-between items-center">
                     <div className="flex items-center">
-                      <p className="font-semibold">{item.userId.userName}</p>
+                      <p className="font-semibold">
+                        {item.userId && item.userId.userName}
+                      </p>
                       <span className="font-thin text-sm mx-2">
                         {item.createdAt.slice(0, 10)}
                       </span>

@@ -91,11 +91,12 @@ export const NavSearch = (): JSX.Element => {
       progress: undefined,
       theme: "colored",
     });
+    route.push("/");
   };
 
   return (
     <div>
-      <div className="py-2 px-4 justify-between items-center hidden md:flex mt-5">
+      <div className="bg-black p-5 justify-between items-center hidden md:flex ">
         <div className="basis-1/6">
           <h1 className="flex justify-between items-center text-4xl font-light">
             <Link href={"/"}>

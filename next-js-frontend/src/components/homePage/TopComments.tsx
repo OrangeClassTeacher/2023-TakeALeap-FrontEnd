@@ -55,17 +55,19 @@ export default function TopComments({
                 <div key={ind} className="flex p-4 items-center">
                   <div className="basis-1/12 mx-3">
                     <Image
-                      src={cat}
+                      src={item.userId?.img[0] ? item.userId.img[0] : cat}
                       alt="img"
                       width={40}
                       height={40}
-                      className="rounded-full"
+                      className="rounded-full w-[50px] h-[50px] object-cover"
                     />
                   </div>
                   <div className="basis-11/12">
                     <div className=" bg-gray-900 rounded-lg p-3">
                       <div className="flex items-center gap-3">
-                        <p className="font-semibold">{item.userId.userName}</p>
+                        <p className="font-semibold">
+                          {item.userId && item.userId.userName}
+                        </p>
                         <div className="text-end">
                           <Starts stars={item.rate ? item.rate : 0} />
                         </div>
@@ -75,7 +77,7 @@ export default function TopComments({
 
                     <span className="flex items-center gap-2">
                       <span className="font-thin text-sm mx-2">
-                        {item.userId.createdAt.slice(0, 10)}
+                        {item.createdAt.slice(0, 10)}
                       </span>
                       <p className={"font-thin text-sm"}>rated</p>
                       <div className="hover:text-[#9395d3]">
@@ -89,7 +91,7 @@ export default function TopComments({
               ))}
           </div>
         </div>
-        <div className="hidden md:block basis-1/5 border border-gray-900 bg-gray-950 rounded p-5 h-full">
+        <div className="hidden md:block basis-1/5 border border-gray-900 bg-gray-950 rounded p-5 h-full h-[100%]">
           <div>
             <h1 className="text-xl text-center">Top Contritors</h1>
             <div className="scene">
@@ -115,7 +117,7 @@ export default function TopComments({
                       width={40}
                       height={40}
                       alt="profile"
-                      className="rounded-full object-cover"
+                      className="rounded-full  w-[50px] h-[50px] object-cover"
                     />
                   </div>
                   <div className="basis-3/6">{item._id.username}</div>

@@ -10,7 +10,7 @@ function Footer(): JSX.Element {
     { name: "About us", path: "/aboutus" },
   ];
   return (
-    <div>
+    <div className="w-full">
       <div className="bg-black text-gray-200 h-1/2 w-full flex md:flex-row flex-col justify-around items-start px-20 py-5">
         <div className="p-5 ">
           <ul className="">

@@ -372,8 +372,6 @@
   height: 300px;
 }
 .doggo {
-  height: 300px;
-  width: 400px;
   border-radius: 3px;
   transition: 0.5s;
 }
@@ -769,15 +767,6 @@
   background-position: -100%;
 }
 
-/* Food detail gif */
-/* .giphy {
-  width: 100%;
-  height: 200px;
-  z-index: -1;
-} */
-.gipsl {
-  margin-top: -31rem;
-}
 /*section*/
 
 .sav {
@@ -798,6 +787,13 @@
   width: 45rem;
   height: 32rem;
 }
-.picsl {
-  text-align: center;
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }

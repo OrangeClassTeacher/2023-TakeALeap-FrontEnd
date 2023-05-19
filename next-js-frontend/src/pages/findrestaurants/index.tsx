@@ -156,7 +156,7 @@ const Search = (): JSX.Element => {
                       width={400}
                       height={400}
                       alt="img"
-                      className="rounded doggo"
+                      className="rounded doggo object-cover"
                     />
                     <div className="intro">
                       <div className="m-3 ">
