@@ -11,7 +11,7 @@ export default function Carousel({
 }: {
   items: ITopRestaurant[];
 }): JSX.Element {
-  const [activeIndex] = useState<number>(0);
+  const [activeIndex, setActiveIndex] = useState<number>(0);
   const currentItem = items[activeIndex]?.restaurant[0];
   const { img, address, contact, restaurantName, cuisineType, schedule } =
     currentItem;
@@ -24,6 +24,7 @@ export default function Carousel({
             <div className={styles.rotator}>
               {[...Array(9)].map((_, index) => {
                 const itemIndex = (activeIndex + index) % items.length;
+
                 return (
                   <div className={styles.items} key={index}>
                     <Image
