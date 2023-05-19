@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Utils from "@/utils/helper";
 import { LoadingContext } from "@/utils/ContextConfig";
+import { ToastContainer } from "react-toastify";
 
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
   const userInit = {
@@ -48,6 +49,7 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
         <LoadingContext.Provider value={{ loading, setLoading }}>
           <Layout className="font-sans">
             <Component {...pageProps} />
+            <ToastContainer />
           </Layout>
         </LoadingContext.Provider>
       </UserContext.Provider>

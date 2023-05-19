@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect, useCallback } from "react";
 import { Dispatch } from "react";
 import { SetStateAction } from "react";
 import { GrClose } from "react-icons/gr";
@@ -10,6 +10,10 @@ import { UserContext } from "@/utils/ContextConfig";
 import { AiFillEyeInvisible } from "react-icons/ai";
 import { AiFillEye } from "react-icons/ai";
 import Utils from "@/utils/helper";
+import { Loading } from "./Loading";
+import { LoadingContext } from "@/utils/ContextConfig";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function SignIn({
   signIn,
@@ -27,7 +31,8 @@ export default function SignIn({
   const { setUserSign }: any = useContext(UserContext);
   const [passwordType, setPasswordType] = useState("password");
 
-  const signin = (): void => {
+  const signin = useCallback((): void => {
+    // setLoading(true);
     axios
       .post(`${Utils.API_URL}/login`, login)
       .then((res) => {
@@ -37,12 +42,31 @@ export default function SignIn({
           localStorage.setItem("token", res.data.token);
           setUserSign(res.data.data);
           setSignIn(!signIn);
+          toast.success("🦄 Login Successful", {
+            position: "bottom-center",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
         } else {
-          alert("error");
+          toast.error("Check your email or password!", {
+            position: "bottom-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
         }
       })
       .catch((err) => console.log("", err));
-  };
+  }, [login, setUserSign, setSignIn, signIn]);
 
   const togglePassword = (e: any): void => {
     e.preventDefault();
@@ -53,15 +77,29 @@ export default function SignIn({
     }
     setPasswordType("password");
   };
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Enter") {
+        signin();
+      }
+    };
 
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [signin]);
   return (
     <div
       className="h-screen w-screen fixed inset-0 overflow-y-auto flex items-center justify-center bg-gray-400/50 z-50"
       onClick={(): void => setSignIn(!signIn)}
-      style={{ display: signIn ? "flex" : "none" }}>
+      style={{ display: signIn ? "flex" : "none" }}
+    >
       <div
         className="w-[400px] h-[500px] p-4 text-center bg-white rounded text-black"
-        onClick={(e): void => e.stopPropagation()}>
+        onClick={(e) => e.stopPropagation()}
+      >
         <div>
           <div className="flex justify-end">
             {" "}
@@ -108,7 +146,10 @@ export default function SignIn({
               )}
             </button>
           </div>
-          <div className="bg-black text-white p-3" onClick={signin}>
+          <div
+            className="bg-black text-white p-3 cursor-pointer"
+            onClick={signin}
+          >
             Sign In
           </div>
           <div className="flex gap-2 pt-5">

@@ -15,6 +15,8 @@ import Image from "next/image";
 import cat from "../../img/cat.jpeg";
 import { useContext } from "react";
 import { UserContext } from "@/utils/ContextConfig";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const NavSearch = (): JSX.Element => {
   const { userSign, setUserSign }: any = useContext(UserContext);
@@ -42,6 +44,56 @@ export const NavSearch = (): JSX.Element => {
       })
       .catch((err) => console.log(err));
   }, [searchInput]);
+
+  const handleLogout = () => {
+    toast.warn(
+      <div>
+        <p>Are you sure you want to log out?</p>
+        <div className="flex justify-center mt-4 gap-1">
+          <button
+            className="px-4 py-2 bg-blue-500 text-white rounded mr-2"
+            onClick={() => {
+              logout();
+              toast.dismiss();
+            }}
+          >
+            Ok
+          </button>
+          <button
+            className="px-4 py-2 bg-gray-300 text-gray-700 rounded"
+            onClick={() => toast.dismiss()}
+          >
+            Cancel
+          </button>
+        </div>
+      </div>,
+      {
+        position: "top-center",
+        autoClose: false,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }
+    );
+  };
+
+  const logout = () => {
+    localStorage.clear();
+    setLocalToken("");
+    setUserSign();
+    toast.success("Logged out", {
+      position: "bottom-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
 
   return (
     <div>
@@ -93,19 +145,15 @@ export const NavSearch = (): JSX.Element => {
               <div className="mr-10">
                 <p
                   className="hover:text-[#9395d3] cursor-pointer uppercase"
-                  onClick={() => route.push("/userprofile")}>
+                  onClick={() => route.push("/userprofile")}
+                >
                   {localStorage.getItem("name")}
                 </p>
                 <Link href={"/"}>
                   <p
                     className="cursor-pointer hover:text-[#9395d3]"
-                    onClick={() => {
-                      if (confirm("Log out")) {
-                        localStorage.clear();
-                        setLocalToken("");
-                        setUserSign();
-                      }
-                    }}>
+                    onClick={handleLogout}
+                  >
                     LOG OUT
                   </p>
                 </Link>
@@ -121,7 +169,8 @@ export const NavSearch = (): JSX.Element => {
                   className="hover:text-[#9395d3] cursor-pointer"
                   onClick={() => {
                     setSignIn(!signIn);
-                  }}>
+                  }}
+                >
                   sign in
                 </p>
                 <Link href={"/register"}>

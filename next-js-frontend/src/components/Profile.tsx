@@ -6,6 +6,8 @@ import { ImgChangeModal } from "./ImgChangeModal";
 import Utils from "@/utils/helper";
 import Cat from "../img/cat.jpeg";
 import { LoadingContext } from "@/utils/ContextConfig";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Profile = ({
   data,
@@ -28,7 +30,9 @@ export const Profile = ({
   const editUser = async () => {
     await axios
       .put(`${Utils.API_URL}/user?id=${id}`, data)
-      .then((res) => (res.data.status ? alert("amjilttai") : alert("aldaatai")))
+      .then((res) =>
+        res.data.status ? toast.success("Save successful") : alert("Error")
+      )
       .catch((err) => console.log(err));
 
     localStorage.setItem("name", data.userName);
@@ -65,7 +69,8 @@ export const Profile = ({
         </div>
         <p
           className="basis-4/6 text-blue-500/50 hover:text-blue-500 cursor-pointer"
-          onClick={() => setModal(true)}>
+          onClick={() => setModal(true)}
+        >
           Change profile photo
         </p>
       </div>
@@ -162,15 +167,18 @@ export const Profile = ({
               onClick={() => {
                 setData(constData);
                 setIsEdit(false);
+                toast.warning("Cancelled", { autoClose: 1000 });
               }}
-              className="sda hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded">
+              className="sda hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded"
+            >
               <div className="">
                 <span className="spam text-sm text-red-300">Cancel</span>
               </div>
             </button>
             <button
               onClick={() => editUser()}
-              className="sda hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded">
+              className="sda hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded"
+            >
               <div className="">
                 <span className="spam text-sm text-green-300">Save</span>
               </div>
@@ -179,7 +187,8 @@ export const Profile = ({
         ) : (
           <button
             onClick={() => setIsEdit(!isEdit)}
-            className="mf hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded">
+            className="mf hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded"
+          >
             <div className="yma">
               <span className="spam">E</span>
               <span className="spam">dit</span>
