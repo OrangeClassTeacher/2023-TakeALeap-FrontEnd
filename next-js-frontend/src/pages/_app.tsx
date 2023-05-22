@@ -30,6 +30,8 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
       typeof window !== "undefined" ? localStorage.getItem("token") : "";
 
     if (id && token) {
+      console.log("id , token " + token, id);
+
       setLoading(true);
       axios
         .post(`${Utils.API_URL}/getbyuserid?id=${id}`, { token: token })

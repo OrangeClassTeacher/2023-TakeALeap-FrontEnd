@@ -143,7 +143,7 @@ export const NavSearch = (): JSX.Element => {
               </div>
               <div className="mr-10">
                 <p
-                  className="hover:text-[#9395d3] cursor-pointer uppercase"
+                  className="hover:text-[#9395d3] cursor-pointer uppercase w-[90px] truncate"
                   onClick={(): any => route.push("/userprofile")}>
                   {localStorage.getItem("name")}
                 </p>
