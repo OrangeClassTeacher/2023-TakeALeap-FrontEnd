@@ -55,7 +55,14 @@ export const ShowComment = ({
                   {" "}
                   <span className="font-light my-1">{item.comment}</span>
                   <div className="flex items-center gap-2">
-                    <p className={"font-thin text-sm"}>rated</p>
+                    <p
+                      className={
+                        item.restaurantId.restaurantName
+                          ? "font-thin text-sm"
+                          : "hidden"
+                      }>
+                      rated
+                    </p>
                     <div className="hover:text-[#9395d3]">
                       <Link href={`/restaurant?id=${item.restaurantId._id}`}>
                         {item.restaurantId.restaurantName}
@@ -106,14 +113,24 @@ export const ShowComment = ({
                   <div>
                     {" "}
                     <span className="font-light my-1">{item.comment}</span>
-                    <div className="flex items-center gap-2">
-                      <p className={"font-thin text-sm"}>rated</p>
-                      <div className="hover:text-[#9395d3]">
-                        <Link href={`/restaurant?id=${item.restaurantId._id}`}>
-                          {item.restaurantId.restaurantName}
-                        </Link>
+                    {item.restaurantId.restaurantName && (
+                      <div className="flex items-center gap-2">
+                        <p
+                          className={
+                            item.restaurantId.restaurantName
+                              ? "font-thin text-sm"
+                              : "hidden"
+                          }>
+                          rated
+                        </p>
+                        <div className="hover:text-[#9395d3]">
+                          <Link
+                            href={`/restaurant?id=${item.restaurantId._id}`}>
+                            {item.restaurantId.restaurantName}
+                          </Link>
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                 </div>
               </div>

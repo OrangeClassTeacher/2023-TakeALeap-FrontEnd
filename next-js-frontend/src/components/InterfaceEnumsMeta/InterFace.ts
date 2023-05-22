@@ -91,19 +91,14 @@ export interface IUser {
 }
 
 export interface ITopFoods {
-  foodId: string;
-  food: {
-    _id: string;
-    foodName: string;
-    restaurantId: string;
-    price: number;
-    foodType: string;
-    img: [string];
-    ingredients: [string];
+  _id: {
+    foodId: string;
+    restaurant: string;
   };
-  restaurantName: string;
-  avg_rate: number;
+  avg: number;
   count: number;
+  food: IFood;
+  restaurant: IRestaurant;
 }
 
 export interface ISearch {
