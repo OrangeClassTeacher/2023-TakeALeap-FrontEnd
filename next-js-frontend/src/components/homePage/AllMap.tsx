@@ -31,7 +31,8 @@ export default function AllMap({
             lng: 106.90851741242646,
           }}
           mapContainerClassName="map-container"
-          mapContainerStyle={mapStyle}>
+          mapContainerStyle={mapStyle}
+        >
           {restaurants.map((items, index) => {
             const { coordinates } = items.address.location;
 
