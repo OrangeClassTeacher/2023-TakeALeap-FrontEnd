@@ -7,7 +7,6 @@ const list = [
   { name: "explore", path: "/explore" },
   { name: "find restaurants", path: "/findrestaurants" },
   { name: "find foods", path: "/findfoods" },
-  { name: "about us", path: "/aboutus" },
 ];
 
 export const NavCateg = (): JSX.Element => {
