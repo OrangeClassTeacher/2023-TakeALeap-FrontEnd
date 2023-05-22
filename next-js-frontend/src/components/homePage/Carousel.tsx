@@ -12,19 +12,23 @@ export default function Carousel({
   items: ITopRestaurant[];
 }): JSX.Element {
   const [activeIndex] = useState<number>(0);
-  const currentItem = items[activeIndex]?.restaurant[0];
-  const { img, address, contact, restaurantName, cuisineType, schedule } =
-    currentItem;
 
   return (
-    <div className="flex justify-around bg-black relative w3-animate-right">
+    <div className="h-full flex items-center justify-around bg-black relative w3-animate-right">
       <div className="flex justify-around">
         <div className="h-full relative  delay-75">
           <div className={styles.slider}>
             <div className={styles.rotator}>
               {[...Array(9)].map((_, index) => {
                 const itemIndex = (activeIndex + index) % items.length;
-
+                const {
+                  img,
+                  address,
+                  contact,
+                  restaurantName,
+                  cuisineType,
+                  schedule,
+                } = items[itemIndex]?.restaurant[0];
                 return (
                   <div className={styles.items} key={index}>
                     <Image
@@ -34,12 +38,12 @@ export default function Carousel({
                       className={`h-[700px] w-screen object-cover transition-opacity duration-500 orgiluun `}
                       alt="testt"
                     />
-                    <div className="absolute  top-0 h-full flex justify-around items-center text-white w-full">
-                      <div className="flex flex-col bg-black/50 text-center text-xs/[10px] gap-1 justify-center">
+                    <div className="absolute   top-0 h-full flex justify-around items-center text-white w-full p-5">
+                      <div className="flex bg-black/75 rounded p-2 flex-col  text-center text-xs/[10px] gap-1 justify-center">
                         <div className=" flex justify-around mt-2">
                           <h1>{restaurantName}</h1>
                         </div>
-                        <div className="flex items-center gap-5 justify-center">
+                        <div className="flex items-center gap-2 justify-center">
                           <Starts stars={items[itemIndex]?.avg} />
                           <p>/</p>
                           <p> Reviewers: {items[itemIndex]?.count}</p>

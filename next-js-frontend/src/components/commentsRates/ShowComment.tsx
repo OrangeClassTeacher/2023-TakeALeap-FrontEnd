@@ -3,7 +3,7 @@ import Image from "next/image";
 import Stars from "./Stars";
 import { IComment } from "../InterfaceEnumsMeta/InterFace";
 import img from "../../img/cat.jpeg";
-
+import Link from "next/link";
 export const ShowComment = ({
   showAllCom,
   all,
@@ -22,7 +22,13 @@ export const ShowComment = ({
               className="flex p-4  m-4 items-center border-b border-slate-500 ">
               <div className="basis-1/12 mx-3">
                 <Image
-                  src={item.userId ? item.userId.img[0] : img}
+                  src={
+                    item.userId
+                      ? item.userId.img[0]
+                        ? item.userId.img[0]
+                        : img
+                      : img
+                  }
                   alt="img"
                   width={40}
                   height={40}
@@ -45,7 +51,25 @@ export const ShowComment = ({
                     </div>
                   </div>
                 </div>
-                <span className="font-light my-1">{item.comment}</span>
+                <div>
+                  {" "}
+                  <span className="font-light my-1">{item.comment}</span>
+                  <div className="flex items-center gap-2">
+                    <p
+                      className={
+                        item.restaurantId.restaurantName
+                          ? "font-thin text-sm"
+                          : "hidden"
+                      }>
+                      rated
+                    </p>
+                    <div className="hover:text-[#9395d3]">
+                      <Link href={`/restaurant?id=${item.restaurantId._id}`}>
+                        {item.restaurantId.restaurantName}
+                      </Link>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           );
@@ -57,7 +81,13 @@ export const ShowComment = ({
                 className="flex p-4 m-4 items-center border-b border-slate-500">
                 <div className="mx-3 basis-1/12">
                   <Image
-                    src={item.userId ? item.userId.img[0] : img}
+                    src={
+                      item.userId
+                        ? item.userId.img[0]
+                          ? item.userId.img[0]
+                          : img
+                        : img
+                    }
                     alt="img"
                     width={40}
                     height={40}
@@ -80,7 +110,28 @@ export const ShowComment = ({
                       </div>
                     </div>
                   </div>
-                  <span className="font-light my-1">{item.comment}</span>
+                  <div>
+                    {" "}
+                    <span className="font-light my-1">{item.comment}</span>
+                    {item.restaurantId.restaurantName && (
+                      <div className="flex items-center gap-2">
+                        <p
+                          className={
+                            item.restaurantId.restaurantName
+                              ? "font-thin text-sm"
+                              : "hidden"
+                          }>
+                          rated
+                        </p>
+                        <div className="hover:text-[#9395d3]">
+                          <Link
+                            href={`/restaurant?id=${item.restaurantId._id}`}>
+                            {item.restaurantId.restaurantName}
+                          </Link>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             );

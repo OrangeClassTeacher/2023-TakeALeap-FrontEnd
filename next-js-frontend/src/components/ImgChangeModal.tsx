@@ -1,44 +1,58 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { UserContext } from "@/utils/ContextConfig";
 
 export const ImgChangeModal = ({
   modal,
   setModal,
+  setData,
 }: {
   modal: any;
   setModal: any;
+  setData: any;
 }): JSX.Element => {
   const [imgSave, setImgSave] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [typeImg, setTypeImg] = useState("");
+  const { setUserSign } = useContext(UserContext);
   const id = typeof window !== "undefined" ? localStorage.getItem("id") : "";
   const token =
     typeof window !== "undefined" ? localStorage.getItem("token") : "";
 
-  const editImg = (): void => {
+  const editImg = async (): Promise<void> => {
     const fileSend =
       typeImg == "img"
         ? { img: imgSave, token: token }
         : { img: imgSave, token: token };
 
-    if (fileSend.img.length > 0) {
-      setLoading(true);
-      axios
-        .put(`http://localhost:8080/api/user?id=${id}`, fileSend)
+    if (fileSend.img.length > 0 && token) {
+      await axios
+        .put(`http://localhost:8080/api/updateuser?id=${id}`, fileSend)
         .then((res) => {
           res.data.status ? alert("succesed") : alert("failed");
         })
         .catch((err) => {
           console.log(err);
+        });
+
+      await axios
+        .post(`http://localhost:8080/api/getbyuserid?id=${id}`, {
+          token: token,
         })
-        .finally(() => setLoading(false));
+        .then((res) => {
+          setData({ ...res.data.result, token: token });
+          setUserSign({ ...res.data.result, token: token });
+        })
+        .catch((err) => console.log(err));
     } else {
       alert("zurgaa oruulna uu");
     }
+
     setImgSave([]);
   };
 
   const sendFile = async (fieldName: string, files: any): Promise<void> => {
+    setLoading(true);
     setTypeImg(fieldName);
     const url = `https://api.cloudinary.com/v1_1/dnpeugfk4/upload`;
     const newArr: File[] = [];
@@ -60,6 +74,7 @@ export const ImgChangeModal = ({
     promise.map((res) => {
       arr.push(res.data.secure_url);
     });
+    setLoading(false);
     setImgSave(arr);
   };
 

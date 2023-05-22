@@ -40,8 +40,8 @@ export default function AllMap({
               <div key={index}>
                 <MarkerF
                   position={{
-                    lat: coordinates[0],
-                    lng: coordinates[1],
+                    lat: Number(coordinates[0]),
+                    lng: Number(coordinates[1]),
                   }}
                 />
               </div>

@@ -60,8 +60,8 @@ export interface IBeverage {
 }
 export interface IComment {
   _id: string;
-  restaurantId: string;
-  foodId: string;
+  restaurantId: IRestaurant;
+  foodId: IFood;
   userId?: {
     _id: string;
     name: string;
@@ -91,19 +91,14 @@ export interface IUser {
 }
 
 export interface ITopFoods {
-  foodId: string;
-  food: {
-    _id: string;
-    foodName: string;
-    restaurantId: string;
-    price: number;
-    foodType: string;
-    img: [string];
-    ingredients: [string];
+  _id: {
+    foodId: string;
+    restaurant: string;
   };
-  restaurantName: string;
-  avg_rate: number;
+  avg: number;
   count: number;
+  food: IFood;
+  restaurant: IRestaurant;
 }
 
 export interface ISearch {
@@ -246,6 +241,7 @@ export interface ITopComment {
 
 export interface IUserPoint {
   _id: {
+    _id: string;
     username: string;
     img: [string];
   };

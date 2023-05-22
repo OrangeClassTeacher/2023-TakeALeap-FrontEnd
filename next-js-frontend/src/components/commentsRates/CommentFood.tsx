@@ -60,7 +60,10 @@ export default function CommentFood(): JSX.Element {
 
   const sendComment = (): void => {
     axios
-      .post(`${Utils.API_URL}/comment`, commentSend)
+      .post(`${Utils.API_URL}/comment`, {
+        ...commentSend,
+        restaurantId: all[0].restaurantId,
+      })
       .then((res) => (res.data.status ? getData() : alert("comment not sent")))
       .catch((err) => console.log(err));
 
@@ -75,55 +78,51 @@ export default function CommentFood(): JSX.Element {
 
   return (
     <div className="border-t md:px-20 py-10 text-white">
-      {all.length && (
-        <>
-          <SignIn signIn={signIn} setSignIn={SetSignIn} />
-          <div className="grid grid-cols-1 md:grid-cols-2">
-            <div>
-              <div>
-                <div className="flex items-center gap-2 m-4 hover:text-sky-500 cursor-pointer">
-                  <h1
-                    onClick={(): void => setShowAllCom(!showAllCom)}
-                    className="text-3xl ">
-                    All comments
-                  </h1>
-                  <div className="">
-                    {showAllCom ? <BsChevronUp /> : <BsChevronDown />}
-                  </div>
-                </div>
-                <ShowComment showAllCom={showAllCom} all={all} />
+      <SignIn signIn={signIn} setSignIn={SetSignIn} />
+      <div className="grid grid-cols-1 md:grid-cols-2">
+        <div>
+          <div>
+            <div className="flex items-center gap-2 m-4 hover:text-sky-500 cursor-pointer">
+              <h1
+                onClick={(): void => setShowAllCom(!showAllCom)}
+                className="text-3xl ">
+                All comments
+              </h1>
+              <div className="">
+                {showAllCom ? <BsChevronUp /> : <BsChevronDown />}
               </div>
             </div>
+            <ShowComment showAllCom={showAllCom} all={all} />
+          </div>
+        </div>
 
-            <div>
-              <h1 className="text-3xl m-4">Write a review</h1>
-              <div className="m-4">
-                <RateStar rate={rate} rateHandle={rateHandle} />
-                <div className="flex items-center gap-2 ms-5">
-                  <div
-                    className="flex w-2/3 rounded bg-gray-700 p-1 h-[200px] items-center "
-                    onClick={(): void => checkLogin()}>
-                    <input
-                      type="text"
-                      value={commentSend.comment}
-                      placeholder="Review..."
-                      onChange={(e): void =>
-                        setComment({ ...commentSend, comment: e.target.value })
-                      }
-                      className=" bg-gray-700 outline-none  w-full px-3 h-[190px]"
-                    />
-                  </div>
-                  <div
-                    onClick={(): void => sendComment()}
-                    className="bg-gray-700 rounded p-5 text-white/50 hover:text-white">
-                    Submit review
-                  </div>
-                </div>
+        <div>
+          <h1 className="text-3xl m-4">Write a review</h1>
+          <div className="m-4">
+            <RateStar rate={rate} rateHandle={rateHandle} />
+            <div className="flex items-center gap-2 ms-5">
+              <div
+                className="flex w-2/3 rounded bg-gray-700 p-1 h-[200px] items-center "
+                onClick={(): void => checkLogin()}>
+                <input
+                  type="text"
+                  value={commentSend.comment}
+                  placeholder="Review..."
+                  onChange={(e): void =>
+                    setComment({ ...commentSend, comment: e.target.value })
+                  }
+                  className=" bg-gray-700 outline-none  w-full px-3 h-[190px]"
+                />
+              </div>
+              <div
+                onClick={(): void => sendComment()}
+                className="bg-gray-700 rounded p-5 text-white/50 hover:text-white">
+                Submit review
               </div>
             </div>
           </div>
-        </>
-      )}
+        </div>
+      </div>
     </div>
   );
 }

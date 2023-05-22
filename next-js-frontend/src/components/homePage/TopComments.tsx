@@ -91,7 +91,7 @@ export default function TopComments({
               ))}
           </div>
         </div>
-        <div className="hidden md:block basis-1/5 border border-gray-900 bg-gray-950 rounded p-5 h-full h-[100%]">
+        <div className="hidden md:block basis-1/5 border border-gray-900 bg-gray-950 rounded p-5 h-full h-[100%] m-5">
           <div>
             <h1 className="text-xl text-center">Top Contritors</h1>
             <div className="scene">
@@ -109,22 +109,26 @@ export default function TopComments({
           <div>
             {topConterbuter.length &&
               topConterbuter.map((item, ind) => (
-                <div key={ind} className="flex  items-center my-3">
-                  <p className="basis-1/12">{ind + 1}.</p>
-                  <div className="rounded-full basis-1/6 m-1">
-                    <Image
-                      src={cat}
-                      width={40}
-                      height={40}
-                      alt="profile"
-                      className="rounded-full  w-[50px] h-[50px] object-cover"
-                    />
+                <Link href={`profile?id=${item._id._id}`} key={ind}>
+                  <div className="flex  items-center my-3">
+                    <p className="basis-1/12">{ind + 1}.</p>
+                    <div className="rounded-full basis-2/6 m-1">
+                      <Image
+                        src={item._id.img[0] ? item._id.img[0] : cat}
+                        width={40}
+                        height={40}
+                        alt="profile"
+                        className="rounded-full  w-[50px] h-[50px] object-cover"
+                      />
+                    </div>
+                    <div className="basis-3/6 cursor-pointer hover:text-[#9395d3] w-full overflow-hidden truncate px-1">
+                      {item._id.username}
+                    </div>
+                    <div className="basis-1/6">
+                      <p className=" bg-sky-700  rounded p-1">{item.points}</p>
+                    </div>
                   </div>
-                  <div className="basis-3/6">{item._id.username}</div>
-                  <div className="basis-1/6">
-                    <p className=" bg-sky-700  rounded p-1">{item.points}</p>
-                  </div>
-                </div>
+                </Link>
               ))}
           </div>
         </div>

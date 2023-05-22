@@ -6,25 +6,21 @@ import Stars from "../commentsRates/Stars";
 
 export const PopularDish = ({ data }: { data: ITopFoods[] }): JSX.Element => (
   <div className="md:px-20">
-    <h1 className="text-3xl uppercase text-center pt-10">Most popular </h1>
+    <h1 className="text-3xl uppercase text-center pt-10">Most popular food </h1>
     <Link href={`/findfoods`}>
       <p className="text-end hover:text-[#9395d3]">See all</p>
     </Link>
-    <div className="grid grid-cols-2 sm:grid-cols-3 p-5 ">
+    <div className="grid grid-cols-2 sm:grid-cols-3 gap-5 ">
       {data.length &&
         data.map((item, ind) => (
-          <Link key={ind} href={`/food?id=${item.food._id}`}>
-            <div
-              key={ind}
-              className={
-                ind == 1 || ind == 4 ? "m-2 mt-16 hidden sm:block " : "m-2"
-              }>
+          <Link key={ind} href={`/food?id=${item._id.foodId}`}>
+            <div key={ind} className="m-2 mt-8 hidden sm:block ">
               <div className="vox">
                 <div className="vox-img">
                   <Image
                     src={item.food.img[0]}
                     alt="img"
-                    className="w-full h-[150px] object-cover -z-3"
+                    className="w-full h-[250px] object-cover -z-3"
                     width={200}
                     height={150}
                   />
@@ -44,8 +40,8 @@ export const PopularDish = ({ data }: { data: ITopFoods[] }): JSX.Element => (
                     </div>
                     <div className="flex items-center">
                       <p>Review : {item.count}</p>
-                      <Stars stars={item.avg_rate} />
-                      <p>Rate : {Math.floor(item.avg_rate * 100) / 100}</p>
+                      <Stars stars={item.avg} />
+                      <p>Rate : {Math.floor(item.avg * 100) / 100}</p>
                     </div>
                   </div>
                 </div>
