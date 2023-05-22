@@ -38,8 +38,8 @@ export default function Carousel({
                       className={`h-[700px] w-screen object-cover transition-opacity duration-500 orgiluun `}
                       alt="testt"
                     />
-                    <div className="absolute  top-0 h-full flex justify-around items-center text-white w-full p-5">
-                      <div className="flex flex-col bg-black/50 text-center text-xs/[10px] gap-1 justify-center">
+                    <div className="absolute   top-0 h-full flex justify-around items-center text-white w-full p-5">
+                      <div className="flex bg-black/75 rounded p-2 flex-col  text-center text-xs/[10px] gap-1 justify-center">
                         <div className=" flex justify-around mt-2">
                           <h1>{restaurantName}</h1>
                         </div>

@@ -30,8 +30,6 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
       typeof window !== "undefined" ? localStorage.getItem("token") : "";
 
     if (id && token) {
-      console.log("id , token " + token, id);
-
       setLoading(true);
       axios
         .post(`${Utils.API_URL}/getbyuserid?id=${id}`, { token: token })
@@ -50,7 +48,7 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
       <UserContext.Provider value={{ userSign, setUserSign }}>
         <LoadingContext.Provider value={{ loading, setLoading }}>
           <Layout className="font-sans">
-            <Component {...pageProps} />
+            {userSign.name.length && <Component {...pageProps} />}
             <ToastContainer />
           </Layout>
         </LoadingContext.Provider>
