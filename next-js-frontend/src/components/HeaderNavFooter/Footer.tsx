@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaInstagram, FaTwitter, FaLinkedin, FaYoutube } from "react-icons/fa";
 import Link from "next/link";
 import QR from "../../img/sqr.jpg";
 import res from "../../img/logo.jpg";
 import Image from "next/image";
-// import panel from "../../styles/panelcard.module.css";
 
 function Footer(): JSX.Element {
   const cate = [
@@ -13,9 +12,19 @@ function Footer(): JSX.Element {
     { name: "Find restaurants", path: "/findrestaurants" },
     { name: "Find foods", path: "/findfoods" },
   ];
+  const [showRoundedImage, setShowRoundedImage] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowRoundedImage((prevValue) => !prevValue);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className="w-full bg-black text-gray-200 ">
-      <div className="w-full flex flex-col justify-around items-start md:grid md:grid-cols-3  px-20 py-5">
+    <div className="w-full bg-black text-gray-200">
+      <div className="w-full flex flex-col justify-around items-start md:grid md:grid-cols-3 px-20 py-5">
         <div className="p-5 relative">
           <div className="zox">
             <div className="lightbar" />
@@ -35,7 +44,8 @@ function Footer(): JSX.Element {
             {cate.map((item, ind) => (
               <li
                 key={ind}
-                className="text-md pb-2  hover:text-[#9395d3] cursor-pointer">
+                className="text-md pb-2  hover:text-[#9395d3] cursor-pointer"
+              >
                 <Link href={item.path}>{item.name}</Link>
               </li>
             ))}
@@ -44,29 +54,33 @@ function Footer(): JSX.Element {
         <div className="p-5">
           <div className="font-light w-full">
             <p className="font-normal text-2xl pb-4">Register Restaurant</p>
-            <div className="relative flex items-center justify-around rounded-lg border bg-white  w-[230px] h-[230px]">
+            <div className="relative flex items-center justify-around rounded-lg border bg-white w-[230px] h-[230px]">
               <Image
                 alt="panel"
                 src={QR}
                 width={200}
                 height={200}
-                className="overflow-hidden w-[200px] h-[200px] object-cover rounded-lg"
+                className={`overflow-hidden w-[200px] h-[200px] object-cover rounded-lg ${
+                  showRoundedImage ? "opacity-0" : "opacity-100"
+                }`}
               />
-              {/* <div className={panel.blurrysplash} /> */}
-              <div className="absolute  flex items-center justify-around">
-                <div className="w-[200px] h-[200px] object-cover ounded-lg opacity-0 hover:opacity-100 bg-white flex flex-col items-center justify-around">
+              <div
+                className={`absolute flex items-center justify-around ${
+                  showRoundedImage ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                <div className="w-[200px] h-[200px] object-cover rounded-lg bg-white flex flex-col items-center justify-around">
                   <Image
                     alt="panel"
                     src={res}
-                    width={200}
-                    height={200}
-                    className="w-[80px] h-[80px] object-cover rounded-full "
+                    width={80}
+                    height={80}
+                    className="w-[80px] h-[80px] object-cover rounded-full"
                   />
                   <Link
-                    href={
-                      "https://takealeapadmin-2wkx219rx-orange22erdenedarich-gmailcom.vercel.app/dashboard"
-                    }
-                    className="bg-black rounded-lg p-2 hover:text-[#9395d3]">
+                    href="https://takealeapadmin-2wkx219rx-orange22erdenedarich-gmailcom.vercel.app/dashboard"
+                    className="bg-black rounded-lg p-2 hover:text-[#9395d3]"
+                  >
                     <button className="text-xl">Visit</button>
                   </Link>
                 </div>
@@ -75,7 +89,7 @@ function Footer(): JSX.Element {
           </div>
         </div>
       </div>
-      <div className="flex flex-col bg-black text-white justify-center items-center text-center  p-5  font-light">
+      <div className="flex flex-col bg-black text-white justify-center items-center text-center p-5 font-light">
         <h1>
           © 2023 All rights reserved | Build with ❤ by{" "}
           <span className="hover:text-blue-600 cursor-pointer">lynx </span>
@@ -86,5 +100,3 @@ function Footer(): JSX.Element {
 }
 
 export default Footer;
-
-// https://takealeapadmin-2wkx219rx-orange22erdenedarich-gmailcom.vercel.app/dashboard
