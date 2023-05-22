@@ -4,15 +4,12 @@ import React, { useState } from "react";
 export const ImgChangeModal = ({
   modal,
   setModal,
-  loading,
-  setLoading,
 }: {
   modal: any;
   setModal: any;
-  loading: boolean;
-  setLoading: any;
 }): JSX.Element => {
   const [imgSave, setImgSave] = useState<string[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   const [typeImg, setTypeImg] = useState("");
   const id = typeof window !== "undefined" ? localStorage.getItem("id") : "";
   const token =
@@ -25,14 +22,16 @@ export const ImgChangeModal = ({
         : { img: imgSave, token: token };
 
     if (fileSend.img.length > 0) {
+      setLoading(true);
       axios
         .put(`http://localhost:8080/api/user?id=${id}`, fileSend)
         .then((res) => {
-          res.data.status ? alert("success") : alert("failed");
+          res.data.status ? alert("succesed") : alert("failed");
         })
         .catch((err) => {
           console.log(err);
-        });
+        })
+        .finally(() => setLoading(false));
     } else {
       alert("zurgaa oruulna uu");
     }
@@ -41,7 +40,6 @@ export const ImgChangeModal = ({
 
   const sendFile = async (fieldName: string, files: any): Promise<void> => {
     setTypeImg(fieldName);
-    setLoading(true);
     const url = `https://api.cloudinary.com/v1_1/dnpeugfk4/upload`;
     const newArr: File[] = [];
     for (let i = 0; i < files[0]?.length; i++) {
@@ -63,7 +61,6 @@ export const ImgChangeModal = ({
       arr.push(res.data.secure_url);
     });
     setImgSave(arr);
-    setLoading(false);
   };
 
   return (

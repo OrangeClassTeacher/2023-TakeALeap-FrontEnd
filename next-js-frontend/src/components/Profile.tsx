@@ -1,11 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { IUser } from "./InterfaceEnumsMeta/InterFace";
 import Image from "next/image";
 import axios from "axios";
 import { ImgChangeModal } from "./ImgChangeModal";
 import Utils from "@/utils/helper";
 import Cat from "../img/cat.jpeg";
-import { LoadingContext } from "@/utils/ContextConfig";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -22,7 +21,6 @@ export const Profile = ({
 }): JSX.Element => {
   const [isEdit, setIsEdit] = useState(false);
   const [modal, setModal] = useState(false);
-  const { loading, setLoading }: any = useContext(LoadingContext);
   const id = typeof window !== "undefined" ? localStorage.getItem("id") : "";
   const token =
     typeof window !== "undefined" ? localStorage.getItem("token") : "";
@@ -51,12 +49,7 @@ export const Profile = ({
 
   return (
     <div className="flex flex-col gap-8">
-      <ImgChangeModal
-        modal={modal}
-        setModal={setModal}
-        loading={loading}
-        setLoading={setLoading}
-      />
+      <ImgChangeModal modal={modal} setModal={setModal} />
       <div className="flex gap-5 items-center">
         <div className="basis-1/6 flex justify-end">
           <Image
