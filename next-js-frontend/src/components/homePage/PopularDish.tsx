@@ -6,7 +6,7 @@ import Stars from "../commentsRates/Stars";
 
 export const PopularDish = ({ data }: { data: ITopFoods[] }): JSX.Element => (
   <div className="md:px-20">
-    <h1 className="text-3xl uppercase text-center pt-10">Most popular </h1>
+    <h1 className="text-3xl uppercase text-center pt-10">Most popular food </h1>
     <Link href={`/findfoods`}>
       <p className="text-end hover:text-[#9395d3]">See all</p>
     </Link>

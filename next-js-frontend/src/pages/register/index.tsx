@@ -148,8 +148,9 @@ export default function Register(): JSX.Element {
                 <input
                   className="w-full outline-0"
                   type="number"
+                  defaultValue={""}
                   placeholder="........"
-                  value={addUser.phone}
+                  value={addUser.phone ? addUser.phone : "......."}
                   onChange={(e): void =>
                     setAddUser({ ...addUser, phone: Number(e.target.value) })
                   }
