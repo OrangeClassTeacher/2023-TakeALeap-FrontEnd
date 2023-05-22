@@ -1,6 +1,5 @@
 import { useEffect, useState, useContext } from "react";
 import { NavCateg } from "@/components/HeaderNavFooter/NavCateg";
-// import { NavbarCustom } from "@/components/HeaderNavFooter/NavbarCustom";
 import axios from "axios";
 import Footer from "@/components/HeaderNavFooter/Footer";
 import Link from "next/link";
@@ -28,12 +27,12 @@ const Search = (): JSX.Element => {
     setLoading(true);
     axios
       .post(`${Utils.API_URL}/restaurantallsearch`, all)
-      .then((res) => {
+      .then((res): void => {
         setData(res.data.result);
         console.log(res.data.result);
       })
-      .catch((err) => console.log(err))
-      .finally(() => setLoading(false));
+      .catch((err): void => console.log(err))
+      .finally((): void => setLoading(false));
   };
 
   useEffect((): void => {
@@ -148,21 +147,21 @@ const Search = (): JSX.Element => {
             All Restaurant : {data?.result.length}
           </div>
           <div className="grid grid-cols-2 gap-5 md:grid-cols-3">
-            {data?.result?.map((item, ind) => (
+            {data?.result.map((item, ind) => (
               <Link href={`/restaurant?id=${item._id}`} key={ind}>
                 <div className="jard">
                   <div className="  rounded bg-[#1e1f23] text-white h-[340px] border border-white/20">
                     <Image
-                      src={item?.restaurant?.img[0]}
+                      src={item.restaurant.img[0]}
                       width={400}
                       height={400}
                       alt="img"
-                      className="rounded doggo"
+                      className="rounded doggo object-cover"
                     />
                     <div className="intro">
                       <div className="m-3 ">
                         <h1 className="rest">
-                          {item?.restaurant.restaurantName}
+                          {item.restaurant.restaurantName}
                         </h1>
                         <p className="cheetah">
                           <span className="chef">

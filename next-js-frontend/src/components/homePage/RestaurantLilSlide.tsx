@@ -40,46 +40,47 @@ export default function RestaurantLilSlide({
           <IoIosArrowBack />
         </button>
         <div className="flex items-center justify-evenly mx-12 gap-10">
-          {data.map((item, ind) => {
-            if (
-              activeIndex === ind ||
-              activeIndex + 1 === ind ||
-              activeIndex + 2 === ind ||
-              activeIndex + 3 === ind
-            ) {
-              return (
-                <Link href={`/restaurant?id=${item._id}`} key={ind}>
-                  <div className="card rgb w-[300px]" ref={cardRef}>
-                    <div className="h-[300px] md:h-[450px]">
-                      <Image
-                        src={item?.img[0]}
-                        width={200}
-                        height={200}
-                        alt="img"
-                        className="card-image object-cover w-[100%] h-[50%]"
-                      />
-                      <div className="card-text overflow-hidden">
-                        <h1 className="">{item?.restaurantName}</h1>
-                        <p className="text-sm whitespace-wrap py-2 font-light">
-                          {item.address.address}
-                        </p>
+          {data.length &&
+            data.map((item, ind) => {
+              if (
+                activeIndex === ind ||
+                activeIndex + 1 === ind ||
+                activeIndex + 2 === ind ||
+                activeIndex + 3 === ind
+              ) {
+                return (
+                  <Link href={`/restaurant?id=${item._id}`} key={ind}>
+                    <div className="card rgb w-[300px]" ref={cardRef}>
+                      <div className="h-[300px] md:h-[450px]">
+                        <Image
+                          src={item.img[0]}
+                          width={200}
+                          height={200}
+                          alt="img"
+                          className="card-image object-cover w-[100%] h-[50%]"
+                        />
+                        <div className="card-text overflow-hidden">
+                          <h1 className="">{item.restaurantName}</h1>
+                          <p className="text-sm whitespace-wrap py-2 font-light">
+                            {item.address.address}
+                          </p>
 
-                        <p>
-                          Mon-Fri: {item.schedule.weekday.open}~
-                          {item.schedule.weekday.close} clock
-                        </p>
+                          <p>
+                            Mon-Fri: {item.schedule.weekday.open}~
+                            {item.schedule.weekday.close} clock
+                          </p>
 
-                        <p>
-                          Weekend: {item.schedule.weekday.open}~
-                          {item.schedule.weekday.close} clock
-                        </p>
+                          <p>
+                            Weekend: {item.schedule.weekday.open}~
+                            {item.schedule.weekday.close} clock
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Link>
-              );
-            }
-          })}
+                  </Link>
+                );
+              }
+            })}
         </div>
         <button
           className="bg-white/50 z-10 right-0 absolute text-2xl rounded-full p-2 top-[50%] m-5"

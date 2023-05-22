@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { AiOutlineSend } from "react-icons/ai";
-import { BsChevronDown } from "react-icons/Bs";
-import { BsChevronUp } from "react-icons/Bs";
+import { BsChevronDown } from "react-icons/bs";
+import { BsChevronUp } from "react-icons/bs";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { IComment } from "../InterfaceEnumsMeta/InterFace";
@@ -38,10 +37,10 @@ export default function CommentFood(): JSX.Element {
       .get(`${Utils.API_URL}/commentbyfoodid?id=${id}`)
       .then((res) => {
         setAll(res.data.result);
-        setComment({
-          ...commentSend,
-          restaurantId: res.data.result[0].restaurantId,
-        });
+        // setComment({
+        //   ...commentSend,
+        //   restaurantId: res.data.result[0].restaurantId,
+        // });
       })
       .catch((err) => console.log(err));
   };
@@ -62,7 +61,7 @@ export default function CommentFood(): JSX.Element {
   const sendComment = (): void => {
     axios
       .post(`${Utils.API_URL}/comment`, commentSend)
-      .then((res) => (res.data.status ? getData() : ""))
+      .then((res) => (res.data.status ? getData() : alert("comment not sent")))
       .catch((err) => console.log(err));
 
     setRate(0);
@@ -76,7 +75,7 @@ export default function CommentFood(): JSX.Element {
 
   return (
     <div className="border-t md:px-20 py-10 text-white">
-      {all.length > 0 && (
+      {all.length && (
         <>
           <SignIn signIn={signIn} setSignIn={SetSignIn} />
           <div className="grid grid-cols-1 md:grid-cols-2">
@@ -110,14 +109,11 @@ export default function CommentFood(): JSX.Element {
                       type="text"
                       value={commentSend.comment}
                       placeholder="Review..."
-                      onChange={(e) =>
+                      onChange={(e): void =>
                         setComment({ ...commentSend, comment: e.target.value })
                       }
                       className=" bg-gray-700 outline-none  w-full px-3 h-[190px]"
                     />
-                    <div className="m-2 hover:text-sky-500">
-                      <AiOutlineSend />
-                    </div>
                   </div>
                   <div
                     onClick={(): void => sendComment()}

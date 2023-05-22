@@ -27,7 +27,7 @@ export default function Index(): JSX.Element {
   const [topConterbuter, setTopConterbuter] = useState<IUserPoint[]>([]);
   const { loading, setLoading }: any = useContext(LoadingContext);
 
-  const getData = async () => {
+  const getData = async (): Promise<void> => {
     setLoading(true);
     await axios
       .get(`${Utils.API_URL}/toprestaurant`)
@@ -47,7 +47,6 @@ export default function Index(): JSX.Element {
       .get(`${Utils.API_URL}/restaurants`)
       .then((res) => {
         setRestaurant(res.data.result);
-        console.log(res.data.result);
       })
       .catch((err) => console.log(err));
 
@@ -55,6 +54,7 @@ export default function Index(): JSX.Element {
       .get(`${Utils.API_URL}/latestcomments`)
       .then((res) => {
         setLastComments(res.data.result);
+        console.log(res.data.result);
       })
       .catch((err) => console.log(err));
 
@@ -100,7 +100,7 @@ export default function Index(): JSX.Element {
           )}
         </section>
         <section className="h-full">
-          {restaurants && <AllMap restaurants={restaurants} />}
+          {restaurants.length && <AllMap restaurants={restaurants} />}
         </section>
         <section className="flex items-center">
           <Footer />

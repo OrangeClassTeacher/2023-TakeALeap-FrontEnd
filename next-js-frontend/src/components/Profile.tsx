@@ -1,11 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { IUser } from "./InterfaceEnumsMeta/InterFace";
 import Image from "next/image";
 import axios from "axios";
 import { ImgChangeModal } from "./ImgChangeModal";
 import Utils from "@/utils/helper";
 import Cat from "../img/cat.jpeg";
-import { LoadingContext } from "@/utils/ContextConfig";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -22,12 +21,11 @@ export const Profile = ({
 }): JSX.Element => {
   const [isEdit, setIsEdit] = useState(false);
   const [modal, setModal] = useState(false);
-  const { loading, setLoading }: any = useContext(LoadingContext);
   const id = typeof window !== "undefined" ? localStorage.getItem("id") : "";
   const token =
     typeof window !== "undefined" ? localStorage.getItem("token") : "";
 
-  const editUser = async (): void => {
+  const editUser = async (): Promise<void> => {
     await axios
       .put(`${Utils.API_URL}/user?id=${id}`, data)
       .then((res) =>
@@ -51,12 +49,7 @@ export const Profile = ({
 
   return (
     <div className="flex flex-col gap-8">
-      <ImgChangeModal
-        modal={modal}
-        setModal={setModal}
-        loading={loading}
-        setLoading={setLoading}
-      />
+      <ImgChangeModal modal={modal} setModal={setModal} />
       <div className="flex gap-5 items-center">
         <div className="basis-1/6 flex justify-end">
           <Image
@@ -69,7 +62,7 @@ export const Profile = ({
         </div>
         <p
           className="basis-4/6 text-blue-500/50 hover:text-blue-500 cursor-pointer"
-          onClick={() => setModal(true)}
+          onClick={(): void => setModal(true)}
         >
           Change profile photo
         </p>
@@ -81,7 +74,7 @@ export const Profile = ({
             id="name"
             type="text"
             value={data.name}
-            onChange={(e) => setData({ ...data, name: e.target.value })}
+            onChange={(e): void => setData({ ...data, name: e.target.value })}
             disabled={!isEdit}
             className={
               isEdit
@@ -119,7 +112,7 @@ export const Profile = ({
             id="email"
             type="text"
             value={data.email}
-            onChange={(e) => setData({ ...data, email: e.target.value })}
+            onChange={(e): void => setData({ ...data, email: e.target.value })}
             disabled={!isEdit}
             className={
               isEdit
@@ -136,7 +129,7 @@ export const Profile = ({
             id="phone"
             type="text"
             value={data.phone}
-            onChange={(e) => setData({ ...data, phone: e.target.value })}
+            onChange={(e): void => setData({ ...data, phone: e.target.value })}
             disabled={!isEdit}
             className={
               isEdit
@@ -166,7 +159,7 @@ export const Profile = ({
         {isEdit ? (
           <div className="flex gap-10">
             <button
-              onClick={() => {
+              onClick={(): void => {
                 setData(constData);
                 setIsEdit(false);
                 toast.warning("Cancelled", { autoClose: 1000 });
@@ -178,7 +171,7 @@ export const Profile = ({
               </div>
             </button>
             <button
-              onClick={() => editUser()}
+              onClick={(): any => editUser()}
               className="sda hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded"
             >
               <div className="">
@@ -188,7 +181,7 @@ export const Profile = ({
           </div>
         ) : (
           <button
-            onClick={() => setIsEdit(!isEdit)}
+            onClick={(): void => setIsEdit(!isEdit)}
             className="mf hover:bg-gray-700 hover:border-gray-700 hover:text-gray-500 py-2 px-4 rounded"
           >
             <div className="yma">

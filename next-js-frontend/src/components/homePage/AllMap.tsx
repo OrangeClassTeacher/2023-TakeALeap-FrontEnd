@@ -17,8 +17,6 @@ export default function AllMap({
     googleMapsApiKey: "AIzaSyAhjl1X_pQkIAeTUWlWv4cKKUDqgyxDCQE" as string,
   });
 
-  const clickHandle = (): void => {};
-
   if (!isLoaded) return <Loading />;
   return (
     <div className="w-[100%] h-[100%]">
@@ -44,7 +42,6 @@ export default function AllMap({
                     lat: coordinates[0],
                     lng: coordinates[1],
                   }}
-                  onClick={() => clickHandle()}
                 />
               </div>
             );

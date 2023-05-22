@@ -12,27 +12,28 @@ export const SearchModal = ({
   search: boolean;
   setSearch: any;
   data?: ISearch;
-}): JSX.Element => {
-  return (
-    <div
-      className="absolute bg-slate-200 top-12 w-[950px] h-[500px] rounded text-black p-10 overflow-scroll z-50"
-      style={{ display: search ? "block" : "none" }}>
-      <div className="absolute right-5 top-5">
-        {" "}
-        <IoMdClose
-          className="text-2xl hover:text-sky-600"
-          onClick={(): void => setSearch(false)}
-        />
+}): JSX.Element => (
+  <div
+    className="absolute bg-slate-200 top-12 w-[950px] h-[500px] rounded text-black p-10 overflow-scroll z-50"
+    style={{ display: search ? "block" : "none" }}>
+    <div className="absolute right-5 top-5">
+      {" "}
+      <IoMdClose
+        className="text-2xl hover:text-sky-600"
+        onClick={(): void => setSearch(false)}
+      />
+    </div>
+    <div>
+      <div className="flex justify-between border-b border-black">
+        <h1>Foods</h1>
+        <p>
+          All :{" "}
+          {data && data.food.rowCountOfFood ? data.food.rowCountOfFood : 0}
+        </p>
       </div>
-      <div>
-        <div className="flex justify-between border-b border-black">
-          <h1>Foods</h1>
-          <p>
-            All : {data?.food.rowCountOfFood ? data?.food.rowCountOfFood : 0}
-          </p>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 p-10 gap-5">
-          {data?.food?.food.map((item, ind) => {
+      <div className="grid grid-cols-2 md:grid-cols-4 p-10 gap-5">
+        {data &&
+          data.food.food.map((item, ind) => {
             if (ind < 8) {
               return (
                 <Link href={`/food?id=${item._id}`} key={ind}>
@@ -58,20 +59,16 @@ export const SearchModal = ({
               );
             }
           })}
-        </div>
       </div>
-      <div>
-        <div className="flex justify-between border-b border-black ">
-          <h1>Restaurants</h1>
-          <p>
-            All :{" "}
-            {data?.restaurant.rowCountOfRes
-              ? data?.restaurant.rowCountOfRes
-              : 0}
-          </p>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 p-10 gap-5">
-          {data?.restaurant?.restaurant.map((item, ind) => {
+    </div>
+    <div>
+      <div className="flex justify-between border-b border-black ">
+        <h1>Restaurants</h1>
+        <p>All :{data ? data.restaurant.rowCountOfRes : 0}</p>
+      </div>
+      <div className="grid grid-cols-2 md:grid-cols-4 p-10 gap-5">
+        {data &&
+          data.restaurant.restaurant.map((item, ind) => {
             if (ind < 8) {
               return (
                 <Link href={`/restaurant?id=${item._id}`} key={ind}>
@@ -99,18 +96,21 @@ export const SearchModal = ({
               );
             }
           })}
-        </div>
       </div>
-      <div>
-        <div className="flex justify-between border-b border-black">
-          <h1>Beverages</h1>
-          <p>
-            All :{" "}
-            {data?.beverage.rowCountOfBev ? data?.beverage.rowCountOfBev : 0}
-          </p>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 p-10 gap-5">
-          {data?.beverage.beverage.map((item, ind) => {
+    </div>
+    <div>
+      <div className="flex justify-between border-b border-black">
+        <h1>Beverages</h1>
+        <p>
+          All :{" "}
+          {data && data.beverage.rowCountOfBev
+            ? data.beverage.rowCountOfBev
+            : 0}
+        </p>
+      </div>
+      <div className="grid grid-cols-2 md:grid-cols-4 p-10 gap-5">
+        {data &&
+          data.beverage.beverage.map((item, ind) => {
             if (ind < 8) {
               return (
                 <Link href={`/restaurant?id=${item._id}`} key={ind}>
@@ -136,8 +136,7 @@ export const SearchModal = ({
               );
             }
           })}
-        </div>
       </div>
     </div>
-  );
-};
+  </div>
+);

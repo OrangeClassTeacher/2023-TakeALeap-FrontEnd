@@ -8,18 +8,18 @@ export const Explore = ({
   data,
 }: {
   data: IExplore | undefined;
-}): JSX.Element => {
-  return (
-    <div className="flex justify-center">
-      <div>
-        <div className="grid grid-cols-1 md:grid-cols-3 max-w-[1200px]">
-          {data?.restaurant?.map((item, ind) => (
+}): JSX.Element => (
+  <div className="flex justify-center">
+    <div>
+      <div className="grid grid-cols-1 md:grid-cols-3 max-w-[1200px]">
+        {data &&
+          data.restaurant.map((item, ind) => (
             <Link key={ind} href={`restaurant?id=${item._id}`}>
               <div className="p-1 relative">
                 <Image
                   width={400}
                   height={400}
-                  src={item.restaurantDetail[0]?.img[0] || ""}
+                  src={item.restaurantDetail[0].img[0]}
                   alt="img"
                   className="w-[400px] h-[400px] object-cover overflow-hidden"
                 />
@@ -34,15 +34,16 @@ export const Explore = ({
               </div>
             </Link>
           ))}
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 max-w-[1200px]">
-          {data?.food?.map((item, ind) => (
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 max-w-[1200px]">
+        {data &&
+          data.food.map((item, ind) => (
             <Link key={ind} href={`/food?id=${item._id}`}>
               <div className="p-1 relative">
                 <Image
                   width={400}
                   height={400}
-                  src={item.foodDetail[0]?.img[0] || ""}
+                  src={item.foodDetail[0].img[0]}
                   alt="img"
                   className="w-[400px] h-[400px] object-cover overflow-hidden"
                 />
@@ -57,8 +58,7 @@ export const Explore = ({
               </div>
             </Link>
           ))}
-        </div>
       </div>
     </div>
-  );
-};
+  </div>
+);

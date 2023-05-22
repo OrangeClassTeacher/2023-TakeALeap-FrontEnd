@@ -27,14 +27,14 @@ export const NavSearch = (): JSX.Element => {
   const [localToken, setLocalToken] = useState<string>("");
   const route = useRouter();
 
-  useEffect(() => {
+  useEffect((): void => {
     if (typeof window !== "undefined") {
       const value = localStorage.getItem("token") || "";
       setLocalToken(value);
     }
   }, [userSign]);
 
-  useEffect(() => {
+  useEffect((): void => {
     axios
       .post(`${Utils.API_URL}/restaurantsearch`, {
         searchTxt: searchInput,
@@ -52,17 +52,15 @@ export const NavSearch = (): JSX.Element => {
         <div className="flex justify-center mt-4 gap-1">
           <button
             className="px-4 py-2 bg-blue-500 text-white rounded mr-2"
-            onClick={() => {
+            onClick={(): void => {
               logout();
               toast.dismiss();
-            }}
-          >
+            }}>
             Ok
           </button>
           <button
             className="px-4 py-2 bg-gray-300 text-gray-700 rounded"
-            onClick={() => toast.dismiss()}
-          >
+            onClick={(): void => toast.dismiss()}>
             Cancel
           </button>
         </div>
@@ -93,11 +91,12 @@ export const NavSearch = (): JSX.Element => {
       progress: undefined,
       theme: "colored",
     });
+    route.push("/");
   };
 
   return (
     <div>
-      <div className="py-2 px-4 justify-between items-center hidden md:flex mt-5">
+      <div className="bg-black p-5 justify-between items-center hidden md:flex ">
         <div className="basis-1/6">
           <h1 className="flex justify-between items-center text-4xl font-light">
             <Link href={"/"}>
@@ -116,11 +115,11 @@ export const NavSearch = (): JSX.Element => {
                 className="bg-slate-200"
                 value={searchInput}
                 style={{ outline: "none", color: "black", width: "100%" }}
-                onChange={(e) => setSearchInput(e.target.value)}
-                onClick={() => setSearch(true)}
+                onChange={(e): void => setSearchInput(e.target.value)}
+                onClick={(): void => setSearch(true)}
               />
               <GrFormClose
-                onClick={() => {
+                onClick={(): void => {
                   setSearch(false);
                   setSearchInput("");
                 }}
@@ -131,11 +130,11 @@ export const NavSearch = (): JSX.Element => {
         </div>
 
         <div className="basis-1/6 flex items-center gap-2 mx-2 justify-end font-light text-sm ">
-          {localToken?.length > 1 ? (
+          {localToken.length > 1 ? (
             <div className="flex items-center gap-3 ">
               <div className="w-[50px] h-[50px]">
                 <Image
-                  src={userSign?.img[0] ? userSign?.img[0] : cat}
+                  src={userSign.img[0] ? userSign.img[0] : cat}
                   alt="profile"
                   width={50}
                   height={50}
@@ -145,15 +144,13 @@ export const NavSearch = (): JSX.Element => {
               <div className="mr-10">
                 <p
                   className="hover:text-[#9395d3] cursor-pointer uppercase"
-                  onClick={() => route.push("/userprofile")}
-                >
+                  onClick={(): any => route.push("/userprofile")}>
                   {localStorage.getItem("name")}
                 </p>
                 <Link href={"/"}>
                   <p
                     className="cursor-pointer hover:text-[#9395d3]"
-                    onClick={handleLogout}
-                  >
+                    onClick={handleLogout}>
                     LOG OUT
                   </p>
                 </Link>
@@ -167,14 +164,12 @@ export const NavSearch = (): JSX.Element => {
               <div className="uppercase">
                 <p
                   className="hover:text-[#9395d3] cursor-pointer"
-                  onClick={() => {
+                  onClick={(): void => {
                     setSignIn(!signIn);
-                  }}
-                >
+                  }}>
                   sign in
                 </p>
                 <Link href={"/register"}>
-                  {" "}
                   <p className="hover:text-[#9395d3]">create account</p>
                 </Link>
               </div>
@@ -185,7 +180,6 @@ export const NavSearch = (): JSX.Element => {
 
       <div className="flex px-4 justify-between items-center  md:hidden">
         <div className="flex gap-2">
-          {" "}
           <FiMenu />
           <BiSearch />
         </div>

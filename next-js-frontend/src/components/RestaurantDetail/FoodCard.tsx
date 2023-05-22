@@ -23,30 +23,31 @@ export const FoodCard = ({
         {name}
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
-        {food?.map((item, ind) => {
-          if (item.foodType == name) {
-            return (
-              <Link href={`/food?id=${item._id}`} key={ind}>
-                <div>
-                  <Image
-                    src={item?.img[0] || ""}
-                    alt="img"
-                    className="rounded-xl w-full h-[200px] object-cover"
-                    width={1000}
-                    height={1000}
-                  />
-                </div>
-                <div>
-                  <p className="text-xl font-normal">{item.foodName}</p>
-                  <div className="flex justify-between font-light">
-                    <p>Price: {item.price}</p>
-                    <p>Type: {item.foodType}</p>
+        {food.length &&
+          food.map((item, ind) => {
+            if (item.foodType == name) {
+              return (
+                <Link href={`/food?id=${item._id}`} key={ind}>
+                  <div>
+                    <Image
+                      src={item.img[0] || ""}
+                      alt="img"
+                      className="rounded-xl w-full h-[200px] object-cover"
+                      width={1000}
+                      height={1000}
+                    />
                   </div>
-                </div>
-              </Link>
-            );
-          }
-        })}
+                  <div>
+                    <p className="text-xl font-normal">{item.foodName}</p>
+                    <div className="flex justify-between font-light">
+                      <p>Price: {item.price}</p>
+                      <p>Type: {item.foodType}</p>
+                    </div>
+                  </div>
+                </Link>
+              );
+            }
+          })}
       </div>
     </div>
   );

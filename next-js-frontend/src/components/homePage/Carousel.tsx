@@ -24,6 +24,7 @@ export default function Carousel({
             <div className={styles.rotator}>
               {[...Array(9)].map((_, index) => {
                 const itemIndex = (activeIndex + index) % items.length;
+
                 return (
                   <div className={styles.items} key={index}>
                     <Image

@@ -62,7 +62,7 @@ export interface IComment {
   _id: string;
   restaurantId: string;
   foodId: string;
-  userId: {
+  userId?: {
     _id: string;
     name: string;
     userName: string;
@@ -238,9 +238,10 @@ export interface ITopComment {
   _id: string;
   restaurantId: IRestaurant;
   foodId: IFood;
-  userId: IUser;
+  userId?: IUser | undefined;
   comment: string;
   rate: number;
+  createdAt: string;
 }
 
 export interface IUserPoint {

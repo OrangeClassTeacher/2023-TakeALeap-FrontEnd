@@ -21,7 +21,7 @@ export default function Food(): JSX.Element {
   const { loading, setLoading }: any = useContext(LoadingContext);
 
   useEffect((): void => {
-    if (id) {
+    if (id?.length) {
       setLoading(true);
       axios
         .get(`${Utils.API_URL}/food?id=${id}`)
@@ -44,39 +44,41 @@ export default function Food(): JSX.Element {
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 bg-black ">
             <div className="text-white blk glow">
-              <div className="gif">
+              <div className="h-[100%] relative">
                 <Image
                   src={gip}
                   width={1200}
                   height={100}
                   alt="img"
-                  className="giphy max-h-[200px]"
+                  className="giphy h-[100%]"
                 />
-                <div className="gipsl">
-                  <h1 className="text-2xl md:text-4xl uppercase justify-center flex">
-                    {food?.foodName}
-                  </h1>
-                  <div className="flex gap-2 items-center justify-around mt-10">
-                    <p className="flex justify-center">{food.price}₮</p>
-                    <p>/</p>
-                    <h1 className="justify-center text-xl md:text-2xl gap-2 flex items-center hover:text-[#9395d3]">
-                      <IoMdRestaurant />
-                      <Link href={`/restaurant?id=${food.restaurantId._id}`}>
-                        <p className="uppercase ">
-                          {" "}
-                          {food.restaurantId.restaurantName}
-                        </p>
-                      </Link>
+                <div className="flex justify-center items-center absolute top-0 w-[100%] h-[100%]">
+                  <div>
+                    <h1 className="text-2xl md:text-4xl uppercase justify-center flex">
+                      {food.foodName}
                     </h1>
-                    <p>/</p>
-                    <div className="flex justify-center gap-2">
-                      <p className="text-xl">
-                        <TbSoup />
-                      </p>
-                      {food.foodType}
+                    <div className="flex gap-2 items-center justify-around mt-10">
+                      <p className="flex justify-center">{food.price}₮</p>
+                      <p>/</p>
+                      <h1 className="justify-center text-xl md:text-2xl gap-2 flex items-center hover:text-[#9395d3]">
+                        <IoMdRestaurant />
+                        <Link href={`/restaurant?id=${food.restaurantId._id}`}>
+                          <p className="uppercase ">
+                            {" "}
+                            {food.restaurantId.restaurantName}
+                          </p>
+                        </Link>
+                      </h1>
+                      <p>/</p>
+                      <div className="flex justify-center gap-2">
+                        <p className="text-xl">
+                          <TbSoup />
+                        </p>
+                        {food.foodType}
+                      </div>
                     </div>
+                    <p className="flex justify-center">{food.description}</p>
                   </div>
-                  <p className="flex justify-center">{food.description}</p>
                 </div>
               </div>
             </div>

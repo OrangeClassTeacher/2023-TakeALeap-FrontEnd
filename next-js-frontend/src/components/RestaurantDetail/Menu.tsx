@@ -38,11 +38,11 @@ export const Menu = (): JSX.Element => {
         Beverages
       </p>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10">
-        {beverage?.map((item, ind) => (
+        {beverage.map((item, ind) => (
           <Link href={`/`} key={ind}>
             <div>
               <Image
-                src={item?.img[0] || ""}
+                src={item.img[0] || ""}
                 alt="img"
                 className="rounded-xl w-full h-[200px] object-cover"
                 width={1000}
