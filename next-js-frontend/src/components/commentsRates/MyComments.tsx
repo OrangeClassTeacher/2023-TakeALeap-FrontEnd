@@ -6,7 +6,7 @@ export const MyComments = ({ comment }: any): JSX.Element => {
 
   return (
     <div>
-      {comment ? (
+      {comment.length ? (
         <ShowComment all={comment} showAllCom={showAllCom} />
       ) : (
         <div>No Comment</div>

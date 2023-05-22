@@ -60,8 +60,8 @@ export interface IBeverage {
 }
 export interface IComment {
   _id: string;
-  restaurantId: string;
-  foodId: string;
+  restaurantId: IRestaurant;
+  foodId: IFood;
   userId?: {
     _id: string;
     name: string;
@@ -246,6 +246,7 @@ export interface ITopComment {
 
 export interface IUserPoint {
   _id: {
+    _id: string;
     username: string;
     img: [string];
   };

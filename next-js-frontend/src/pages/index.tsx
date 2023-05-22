@@ -54,7 +54,6 @@ export default function Index(): JSX.Element {
       .get(`${Utils.API_URL}/latestcomments`)
       .then((res) => {
         setLastComments(res.data.result);
-        console.log(res.data.result);
       })
       .catch((err) => console.log(err));
 
@@ -77,21 +76,21 @@ export default function Index(): JSX.Element {
   return (
     <>
       <div className="sav bg-black text-white">
-        <section className="overflow-hidden">
+        <section className="overflow-hidden h-full">
           <Header />
           {topRestaurant.length > 0 ? <Carousel items={topRestaurant} /> : ""}
         </section>
-        <section className="flex items-center justify-evenly">
+        <section className="flex items-center justify-evenly h-full">
           {restaurants.length > 0 ? (
             <RestaurantLilSlide data={restaurants} />
           ) : (
             ""
           )}
         </section>
-        <section>
+        <section className="h-full">
           {topFood.length > 0 ? <PopularDish data={topFood} /> : ""}
         </section>
-        <section>
+        <section className="h-full">
           {lastComments.length > 0 && topConterbuter.length > 0 && (
             <TopComments
               lastComments={lastComments}
@@ -102,7 +101,7 @@ export default function Index(): JSX.Element {
         <section className="h-full">
           {restaurants.length && <AllMap restaurants={restaurants} />}
         </section>
-        <section className="flex items-center">
+        <section className="h-full flex items-center">
           <Footer />
         </section>
       </div>
