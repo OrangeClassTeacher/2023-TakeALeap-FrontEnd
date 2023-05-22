@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { IRestaurant } from "../InterfaceEnumsMeta/InterFace";
-import { GoogleMap, MarkerF, useLoadScript } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  InfoWindowF,
+  MarkerF,
+  useLoadScript,
+} from "@react-google-maps/api";
 import { Loading } from "../Loading";
 
 export default function AllMap({
@@ -16,6 +21,12 @@ export default function AllMap({
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: "AIzaSyAhjl1X_pQkIAeTUWlWv4cKKUDqgyxDCQE" as string,
   });
+  const [selected, setSelected] = useState<any>({});
+  const onSelect = (item: any): void => {
+    setSelected(item);
+  };
+
+  console.log(selected);
 
   if (!isLoaded) return <Loading />;
   return (
@@ -31,7 +42,8 @@ export default function AllMap({
             lng: 106.90851741242646,
           }}
           mapContainerClassName="map-container"
-          mapContainerStyle={mapStyle}>
+          mapContainerStyle={mapStyle}
+        >
           {restaurants.map((items, index) => {
             const { coordinates } = items.address.location;
 
@@ -39,10 +51,23 @@ export default function AllMap({
               <div key={index}>
                 <MarkerF
                   position={{
-                    lat: Number(coordinates[0]),
-                    lng: Number(coordinates[1]),
+                    lat: coordinates[0],
+                    lng: coordinates[1],
                   }}
+                  onClick={(): void => onSelect(items)}
                 />
+                {selected?.address && (
+                  <InfoWindowF
+                    position={{
+                      lat: selected?.address?.location?.coordinates[0],
+                      lng: selected?.address?.location?.coordinates[1],
+                    }}
+                    // clickable={true}
+                    onCloseClick={(): void => setSelected({})}
+                  >
+                    <div className="w=[300px] text-black">Hello motherf</div>
+                  </InfoWindowF>
+                )}
               </div>
             );
           })}
