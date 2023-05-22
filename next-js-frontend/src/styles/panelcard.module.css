@@ -1,0 +1,17 @@
+/* .blurrysplash {
+  position: absolute;
+  inset: 0;
+  width: 230px;
+  height: 230px;
+  margin: 0 auto;
+  border-radius: 1rem;
+  z-index: 1;
+  opacity: 70%;
+  filter: blur(15px);
+  background: linear-gradient(
+    120deg,
+    rgb(119, 0, 255),
+    rgb(22, 94, 250),
+    rgb(44, 226, 250)
+  );
+} */

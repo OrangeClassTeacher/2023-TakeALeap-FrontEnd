@@ -10,15 +10,11 @@ export const PopularDish = ({ data }: { data: ITopFoods[] }): JSX.Element => (
     <Link href={`/findfoods`}>
       <p className="text-end hover:text-[#9395d3]">See all</p>
     </Link>
-    <div className="grid grid-cols-2 sm:grid-cols-3 p-5 ">
+    <div className="grid grid-cols-2 sm:grid-cols-3 gap-10 ">
       {data.length &&
         data.map((item, ind) => (
           <Link key={ind} href={`/food?id=${item.food._id}`}>
-            <div
-              key={ind}
-              className={
-                ind == 1 || ind == 4 ? "m-2 mt-16 hidden sm:block " : "m-2"
-              }>
+            <div key={ind} className="m-2 mt-16 hidden sm:block ">
               <div className="vox">
                 <div className="vox-img">
                   <Image

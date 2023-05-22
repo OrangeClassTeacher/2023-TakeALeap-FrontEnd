@@ -1,8 +1,10 @@
 import React from "react";
 import { FaInstagram, FaTwitter, FaLinkedin, FaYoutube } from "react-icons/fa";
 import Link from "next/link";
-import Panel from "../../img/adminPanel.png";
+import QR from "../../img/sqr.jpg";
+import res from "../../img/logo.jpg";
 import Image from "next/image";
+import panel from "../../styles/panelcard.module.css";
 
 function Footer(): JSX.Element {
   const cate = [
@@ -40,15 +42,36 @@ function Footer(): JSX.Element {
           </ul>
         </div>
         <div className="p-5">
-          <div className="font-light w-full rounded border p-5">
+          <div className="font-light w-full">
             <p className="font-normal text-2xl pb-4">Register Restaurant</p>
-            <Image
-              src={Panel}
-              width={200}
-              height={200}
-              alt="admin panel"
-              className=""
-            />
+            <div className="relative flex items-center justify-around rounded-lg border bg-white  w-[230px] h-[230px]">
+              <Image
+                alt="panel"
+                src={QR}
+                width={200}
+                height={200}
+                className="overflow-hidden w-[200px] h-[200px] object-cover rounded-lg"
+              />
+              {/* <div className={panel.blurrysplash} /> */}
+              <div className="absolute  flex items-center justify-around">
+                <div className="w-[200px] h-[200px] object-cover ounded-lg opacity-0 hover:opacity-100 bg-white flex flex-col items-center justify-around">
+                  <Image
+                    alt="panel"
+                    src={res}
+                    width={200}
+                    height={200}
+                    className="w-[80px] h-[80px] object-cover rounded-full "
+                  />
+                  <Link
+                    href={
+                      "https://takealeapadmin-2wkx219rx-orange22erdenedarich-gmailcom.vercel.app/dashboard"
+                    }
+                    className="bg-black rounded-lg p-2 hover:text-[#9395d3]">
+                    <button className="text-xl">Visit</button>
+                  </Link>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
