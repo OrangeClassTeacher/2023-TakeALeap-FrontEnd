@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { IUser } from "./InterfaceEnumsMeta/InterFace";
 import Image from "next/image";
 import axios from "axios";
@@ -7,27 +7,25 @@ import Utils from "@/utils/helper";
 import Cat from "../img/cat.jpeg";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { UserContext } from "@/utils/ContextConfig";
 
 export const Profile = ({
   data,
-  constData,
   setData,
-  setConstData,
 }: {
   data: IUser;
-  constData: IUser;
   setData: any;
-  setConstData: any;
 }): JSX.Element => {
   const [isEdit, setIsEdit] = useState(false);
   const [modal, setModal] = useState(false);
+  const { userSign, setUserSign } = useContext(UserContext);
   const id = typeof window !== "undefined" ? localStorage.getItem("id") : "";
   const token =
     typeof window !== "undefined" ? localStorage.getItem("token") : "";
 
   const editUser = async (): Promise<void> => {
     await axios
-      .put(`${Utils.API_URL}/user?id=${id}`, data)
+      .put(`${Utils.API_URL}/updateuser?id=${id}`, data)
       .then((res) =>
         res.data.status ? toast.success("Save successful") : alert("Error")
       )
@@ -36,11 +34,11 @@ export const Profile = ({
     localStorage.setItem("name", data.userName);
 
     axios
-      .post(`http://localhost:8080/api/user?id=${id}`, {
+      .post(`http://localhost:8080/api/getbyuserid?id=${id}`, {
         token: token,
       })
       .then((res) => {
-        setConstData(res.data.result);
+        setUserSign({ ...res.data.result });
       })
       .catch((err) => console.log(err));
 
@@ -49,7 +47,7 @@ export const Profile = ({
 
   return (
     <div className="flex flex-col gap-8">
-      <ImgChangeModal modal={modal} setModal={setModal} />
+      <ImgChangeModal modal={modal} setModal={setModal} setData={setData} />
       <div className="flex gap-5 items-center">
         <div className="basis-1/6 flex justify-end">
           <Image
@@ -57,7 +55,7 @@ export const Profile = ({
             width={50}
             height={50}
             alt="img"
-            className="rounded-full w-[60px] h-[60px]"
+            className="rounded-full w-[60px] h-[60px] object-cover"
           />
         </div>
         <p
@@ -159,7 +157,7 @@ export const Profile = ({
           <div className="flex gap-10">
             <button
               onClick={(): void => {
-                setData(constData);
+                setData(userSign);
                 setIsEdit(false);
                 toast.warning("Cancelled", { autoClose: 1000 });
               }}

@@ -13,6 +13,7 @@ import { useContext } from "react";
 import { LoadingContext } from "@/utils/ContextConfig";
 import { Loading } from "@/components/Loading";
 import Cat from "../../img/cat.jpeg";
+import { UserContext } from "@/utils/ContextConfig";
 
 export default function Userprofile(): JSX.Element {
   const token =
@@ -31,10 +32,10 @@ export default function Userprofile(): JSX.Element {
     token: token,
   };
   const [data, setData] = useState(init);
-  const [constData, setConstData] = useState(init);
   const [active, setActive] = useState(1);
   const [comment, setComment] = useState();
   const { loading, setLoading }: any = useContext(LoadingContext);
+  const { setUserSign }: any = useContext(UserContext);
 
   useEffect((): void => {
     const id = typeof window !== "undefined" ? localStorage.getItem("id") : "";
@@ -49,7 +50,7 @@ export default function Userprofile(): JSX.Element {
         })
         .then((res) => {
           setData({ ...res.data.result, token: token });
-          setConstData({ ...res.data.result, token: token });
+          setUserSign({ ...res.data.result, token: token });
         })
         .catch((err) => console.log(err));
 
@@ -118,12 +119,7 @@ export default function Userprofile(): JSX.Element {
               </p>
             </div>
             {active == 1 ? (
-              <Profile
-                data={data}
-                constData={constData}
-                setData={setData}
-                setConstData={setConstData}
-              />
+              <Profile data={data} setData={setData} />
             ) : (
               <MyComments comment={comment} setComment={setComment} />
             )}
