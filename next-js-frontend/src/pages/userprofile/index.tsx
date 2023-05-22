@@ -6,7 +6,7 @@ import Image from "next/image";
 import { MyComments } from "@/components/commentsRates/MyComments";
 import { Profile } from "@/components/Profile";
 import { MdTableRows } from "react-icons/md";
-import { FaRegComment } from "react-icons/fa";
+import { FaRegComment } from "react-icons/Fa";
 import { IUser } from "@/components/InterfaceEnumsMeta/InterFace";
 import Utils from "@/utils/helper";
 import { useContext } from "react";
@@ -102,7 +102,8 @@ export default function Userprofile(): JSX.Element {
                     ? "flex items-center gap-2 cursor-pointer"
                     : "flex items-center gap-2 text-white/50 cursor-pointer"
                 }
-                onClick={(): void => setActive(1)}>
+                onClick={(): void => setActive(1)}
+              >
                 <MdTableRows />
                 Profile
               </p>
@@ -112,7 +113,8 @@ export default function Userprofile(): JSX.Element {
                     ? "flex items-center gap-2 cursor-pointer"
                     : "flex items-center gap-2 text-white/50 cursor-pointer"
                 }
-                onClick={(): void => setActive(2)}>
+                onClick={(): void => setActive(2)}
+              >
                 <FaRegComment />
                 My Comments
               </p>

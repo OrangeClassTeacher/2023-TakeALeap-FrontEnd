@@ -6,7 +6,7 @@ import { ImgChangeModal } from "./ImgChangeModal";
 import Utils from "@/utils/helper";
 import Cat from "../img/cat.jpeg";
 import { LoadingContext } from "@/utils/ContextConfig";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export const Profile = ({
@@ -27,7 +27,7 @@ export const Profile = ({
   const token =
     typeof window !== "undefined" ? localStorage.getItem("token") : "";
 
-  const editUser = async () => {
+  const editUser = async (): void => {
     await axios
       .put(`${Utils.API_URL}/user?id=${id}`, data)
       .then((res) =>
@@ -41,7 +41,7 @@ export const Profile = ({
       .post(`http://localhost:8080/api/user?id=${id}`, {
         token: token,
       })
-      .then((res) => {
+      .then((res): void => {
         setConstData(res.data.result);
       })
       .catch((err) => console.log(err));
@@ -100,7 +100,9 @@ export const Profile = ({
             id="userName"
             type="text"
             value={data.userName}
-            onChange={(e) => setData({ ...data, userName: e.target.value })}
+            onChange={(e): void =>
+              setData({ ...data, userName: e.target.value })
+            }
             disabled={!isEdit}
             className={
               isEdit

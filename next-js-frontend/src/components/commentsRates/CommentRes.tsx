@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineSend } from "react-icons/ai";
-import { BsChevronDown } from "react-icons/bs";
-import { BsChevronUp } from "react-icons/bs";
+import { BsChevronDown } from "react-icons/Bs";
+import { BsChevronUp } from "react-icons/Bs";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { IComment } from "../InterfaceEnumsMeta/InterFace";
@@ -79,7 +79,8 @@ const CommentRes = (): JSX.Element => {
             <div className="flex items-center gap-2  hover:text-sky-500 cursor-pointer">
               <h1
                 onClick={(): void => setShowAllCom(!showAllCom)}
-                className="text-3xl ">
+                className="text-3xl "
+              >
                 All comments
               </h1>
               <div className="">
@@ -96,7 +97,8 @@ const CommentRes = (): JSX.Element => {
             <div className="flex items-center gap-2 ms-5">
               <div
                 className="flex w-2/3 rounded bg-gray-700 p-1 h-[200px] items-center "
-                onClick={(): void => checkLogin()}>
+                onClick={(): void => checkLogin()}
+              >
                 <input
                   type="text"
                   value={commentSend.comment}
@@ -112,7 +114,8 @@ const CommentRes = (): JSX.Element => {
               </div>
               <div
                 onClick={(): void => sendComment()}
-                className="bg-gray-700 rounded p-5 text-white/50 hover:text-white">
+                className="bg-gray-700 rounded p-5 text-white/50 hover:text-white"
+              >
                 Submit review
               </div>
             </div>

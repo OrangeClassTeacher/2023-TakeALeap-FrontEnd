@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { GrFormClose } from "react-icons/gr";
-import { TfiWorld } from "react-icons/tfi";
-import { VscAccount } from "react-icons/vsc";
+import { GrFormClose } from "react-icons/Gr";
+import { TfiWorld } from "react-icons/Tfi";
+import { VscAccount } from "react-icons/Vsc";
 import Link from "next/link";
-import { BiSearch } from "react-icons/bi";
-import { FiMenu } from "react-icons/fi";
+import { BiSearch } from "react-icons/Bi";
+import { FiMenu } from "react-icons/Fi";
 import SignIn from "../SignIn";
 import axios from "axios";
 import { ISearch } from "../InterfaceEnumsMeta/InterFace";
@@ -15,7 +15,7 @@ import Image from "next/image";
 import cat from "../../img/cat.jpeg";
 import { useContext } from "react";
 import { UserContext } from "@/utils/ContextConfig";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export const NavSearch = (): JSX.Element => {
@@ -45,7 +45,7 @@ export const NavSearch = (): JSX.Element => {
       .catch((err) => console.log(err));
   }, [searchInput]);
 
-  const handleLogout = () => {
+  const handleLogout = (): void => {
     toast.warn(
       <div>
         <p>Are you sure you want to log out?</p>
@@ -79,7 +79,7 @@ export const NavSearch = (): JSX.Element => {
     );
   };
 
-  const logout = () => {
+  const logout = (): void => {
     localStorage.clear();
     setLocalToken("");
     setUserSign();
