@@ -1,0 +1,138 @@
+/* body {
+  padding: 0;
+  margin: 0;
+  background-color: #111;
+} */
+.box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+.card {
+  height: 450px;
+  width: 310px;
+  background-color: #fff;
+  transform: scale(0.7);
+  border-radius: 8px;
+  box-shadow: 0 0 80px 1px #4169b0;
+}
+.info {
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+  justify-content: center;
+}
+.name {
+  font-size: 35px;
+  font-weight: 600;
+  color: gray;
+  position: absolute;
+  top: 100px;
+  letter-spacing: 2px;
+}
+.prof {
+  font-size: 25px;
+  color: #555555;
+  position: absolute;
+  top: 140px;
+}
+.divider {
+  background-color: #949594;
+  height: 1.5px;
+  width: 50px;
+  position: absolute;
+  top: 190px;
+}
+.bio {
+  position: absolute;
+  top: 220px;
+  color: black;
+  line-height: 28px;
+  font-size: 18px;
+  text-align: center;
+}
+.button {
+  position: absolute;
+  bottom: 20px;
+  background-color: gray;
+  border: none;
+  font-size: 20px;
+  padding: 13px 25px;
+  cursor: pointer;
+  color: #fff;
+}
+.photo {
+  height: 100%;
+  width: 100%;
+  background-image: url("../img/moog.jpg");
+  background-repeat: no-repeat;
+  position: absolute;
+  bottom: 0;
+  background-size: 100% 100%;
+  border-radius: 8px;
+  transition: 1s;
+  object-fit: cover;
+}
+.card:hover .photo {
+  transform: scale(0.5, 0.35) translateY(-650px);
+  border-radius: 50%;
+  background-size: 100% 150%;
+  background-position: 0 -25px;
+  object-fit: cover;
+}
+.asmash {
+  position: absolute;
+  box-shadow: -70px;
+  font-size: 25px;
+  color: white;
+  background-color: black;
+  width: 100%;
+  padding: 12px 0;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+}
+.photo2 {
+  height: 100%;
+  width: 100%;
+  background-image: url("../img/Daria.jpg");
+  object-fit: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  bottom: 0;
+  background-size: 100% 100%;
+  border-radius: 8px;
+  transition: 1s;
+  object-fit: cover;
+}
+.card:hover .photo2 {
+  transform: scale(0.5, 0.35) translateY(-650px);
+  border-radius: 50%;
+  background-size: 100% 150%;
+  background-position: 0 -25px;
+  object-fit: cover;
+}
+.photo3 {
+  height: 100%;
+  width: 100%;
+  background-image: url("../img/papa.jpg");
+  background-repeat: no-repeat;
+  object-fit: cover;
+  position: absolute;
+  bottom: 0;
+  background-size: 100% 100%;
+  border-radius: 8px;
+  transition: 1s;
+  object-fit: cover;
+}
+.card:hover .photo3 {
+  transform: scale(0.5, 0.35) translateY(-650px);
+  border-radius: 50%;
+  background-size: 100% 150%;
+  background-position: 0 -25px;
+  object-fit: cover;
+}

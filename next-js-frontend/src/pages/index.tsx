@@ -5,6 +5,7 @@ import TopComments from "@/components/homePage/TopComments";
 import { PopularDish } from "@/components/homePage/PopularDish";
 import axios from "axios";
 import RestaurantLilSlide from "@/components/homePage/RestaurantLilSlide";
+import Portfolio from "@/components/homePage/Portfolio";
 import {
   IRestaurant,
   ITopRestaurant,
@@ -100,6 +101,9 @@ export default function Index(): JSX.Element {
         </section>
         <section className="h-full">
           {restaurants.length && <AllMap restaurants={restaurants} />}
+        </section>
+        <section className="h-full">
+          <Portfolio />
         </section>
         <section className="h-full flex items-center">
           <Footer />

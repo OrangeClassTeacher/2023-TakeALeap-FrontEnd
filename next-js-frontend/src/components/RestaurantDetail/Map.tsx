@@ -28,7 +28,8 @@ export default function SimpleMap({
             lng: 106.90851741242646,
           }}
           mapContainerClassName="map-container"
-          mapContainerStyle={mapStyle}>
+          mapContainerStyle={mapStyle}
+        >
           <div>
             <MarkerF
               position={{
