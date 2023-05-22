@@ -35,7 +35,8 @@ function Footer(): JSX.Element {
             {cate.map((item, ind) => (
               <li
                 key={ind}
-                className="text-md pb-2  hover:text-[#9395d3] cursor-pointer">
+                className="text-md pb-2  hover:text-[#9395d3] cursor-pointer"
+              >
                 <Link href={item.path}>{item.name}</Link>
               </li>
             ))}
@@ -44,13 +45,13 @@ function Footer(): JSX.Element {
         <div className="p-5">
           <div className="font-light w-full">
             <p className="font-normal text-2xl pb-4">Register Restaurant</p>
-            <div className="relative flex items-center justify-around rounded-lg border bg-white  w-[230px] h-[230px]">
+            <div className="relative flex items-center justify-around rounded-lg border bg-white  w-[230px] h-[230px] transition-all">
               <Image
                 alt="panel"
                 src={QR}
                 width={200}
                 height={200}
-                className="overflow-hidden w-[200px] h-[200px] object-cover rounded-lg"
+                className="overflow-hidden w-[200px] h-[200px] object-cover rounded-lg "
               />
               {/* <div className={panel.blurrysplash} /> */}
               <div className="absolute  flex items-center justify-around">
@@ -66,7 +67,8 @@ function Footer(): JSX.Element {
                     href={
                       "https://takealeapadmin-2wkx219rx-orange22erdenedarich-gmailcom.vercel.app/dashboard"
                     }
-                    className="bg-black rounded-lg p-2 hover:text-[#9395d3]">
+                    className="bg-black rounded-lg p-2 hover:text-[#9395d3]"
+                  >
                     <button className="text-xl">Visit</button>
                   </Link>
                 </div>

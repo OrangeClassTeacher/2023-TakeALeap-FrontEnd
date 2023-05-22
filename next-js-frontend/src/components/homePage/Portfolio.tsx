@@ -14,17 +14,17 @@ const box: Box = {
   cards: [
     {
       name: "Baatraa",
-      prof: "Developer",
+      prof: "Back-End Developer",
+      bio: "Tiim ym bnaa iim ym bnaa",
+    },
+    {
+      name: "Daria",
+      prof: "Full-Stack Developer",
       bio: "Tiim ym bnaa iim ym bnaa",
     },
     {
       name: "Baatraa",
-      prof: "Developer",
-      bio: "Tiim ym bnaa iim ym bnaa",
-    },
-    {
-      name: "Baatraa",
-      prof: "Developer",
+      prof: "Front-End Developer",
       bio: "Tiim ym bnaa iim ym bnaa",
     },
   ],
@@ -43,7 +43,7 @@ export default function Portfolio() {
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="">
-        <h1 className="pt-12 about font-black text-[40px]">About Us</h1>
+        <h1 className="pt-12 about font-black text-[35px]">About Us</h1>
       </div>
       <div className={styles.box}>
         <div className={styles.card}>
@@ -51,7 +51,11 @@ export default function Portfolio() {
             <div className={styles.name}>Baatraa</div>
             <div className={styles.prof}> Back-End Developer</div>
             <div className={styles.divider}></div>
-            <div className={styles.bio}>Tiim ym bnaa iim ym bnaa</div>
+            <div className={styles.bio}>
+              Me personally specializes in server-side programming and is
+              responsible for building and maintaining the core functionality of
+              web applications.{" "}
+            </div>
             <button className={styles.button}>Contact me</button>
           </div>
           <div className={styles.photo}></div>
@@ -64,7 +68,12 @@ export default function Portfolio() {
             <div className={styles.name}>Daria</div>
             <div className={styles.prof}>Full-Stack Developer</div>
             <div className={styles.divider}></div>
-            <div className={styles.bio}>Tiim ym bnaa iim ym bnaa</div>
+            <div className={styles.bio}>
+              {" "}
+              My hard-skill is proficient in both front-end and back-end
+              technologies, capable of working on all layers of a web
+              application including databases, frameworks.
+            </div>
             <button className={styles.button}>Contact me</button>
           </div>
           <div className={styles.photo2}></div>
@@ -77,7 +86,11 @@ export default function Portfolio() {
             <div className={styles.name}>Moonlight</div>
             <div className={styles.prof}> Front-End Developer</div>
             <div className={styles.divider}></div>
-            <div className={styles.bio}>Tiim ym bnaa iim ym bnaa</div>
+            <div className={styles.bio}>
+              Well my skill focuses on creating the user-facing aspects of a
+              website or application. I'm skilled in more front-end frameworks,
+              to design and implement intuitive user interfaces.{" "}
+            </div>
             <button className={styles.button}>Contact me</button>
           </div>
           <div className={styles.photo3}></div>
