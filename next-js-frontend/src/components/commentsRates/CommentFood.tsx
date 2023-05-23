@@ -12,18 +12,14 @@ import { ShowComment } from "./ShowComment";
 export default function CommentFood(): JSX.Element {
   const route = useRouter();
   const { id } = route.query;
-  const userId =
-    typeof window !== "undefined" ? localStorage.getItem("id") : "";
-  const token =
-    typeof window !== "undefined" ? localStorage.getItem("token") : "";
 
   const init = {
     restaurantId: null,
     foodId: id,
-    userId: userId,
+    userId: "",
     comment: "",
     rate: 0,
-    token: token,
+    token: "",
   };
 
   const [commentSend, setComment] = useState(init);
@@ -37,10 +33,6 @@ export default function CommentFood(): JSX.Element {
       .get(`${Utils.API_URL}/commentbyfoodid?id=${id}`)
       .then((res) => {
         setAll(res.data.result);
-        // setComment({
-        //   ...commentSend,
-        //   restaurantId: res.data.result[0].restaurantId,
-        // });
       })
       .catch((err) => console.log(err));
   };
@@ -59,16 +51,25 @@ export default function CommentFood(): JSX.Element {
   };
 
   const sendComment = (): void => {
-    axios
-      .post(`${Utils.API_URL}/comment`, {
-        ...commentSend,
-        restaurantId: all[0].restaurantId,
-      })
-      .then((res) => (res.data.status ? getData() : alert("comment not sent")))
-      .catch((err) => console.log(err));
-
-    setRate(0);
-    setComment(init);
+    const userId =
+      typeof window !== "undefined" ? localStorage.getItem("id") : "";
+    const token =
+      typeof window !== "undefined" ? localStorage.getItem("token") : "";
+    if (userId && token) {
+      axios
+        .post(`${Utils.API_URL}/comment`, {
+          ...commentSend,
+          restaurantId: all[0].restaurantId,
+          userId: userId,
+          token: token,
+        })
+        .then((res) =>
+          res.data.status ? getData() : alert("comment not sent")
+        )
+        .catch((err) => console.log(err));
+      setRate(0);
+      setComment(init);
+    }
   };
 
   const rateHandle = (rate: number): void => {

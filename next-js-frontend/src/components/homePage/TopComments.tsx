@@ -8,6 +8,8 @@ import pep2 from "../../img/pep2.png";
 import rocket from "../../img/rocket.png";
 import { ITopComment } from "../InterfaceEnumsMeta/InterFace";
 import { IUserPoint } from "../InterfaceEnumsMeta/InterFace";
+import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 export default function TopComments({
   lastComments,
@@ -16,6 +18,9 @@ export default function TopComments({
   lastComments: ITopComment[];
   topConterbuter: IUserPoint[];
 }): JSX.Element {
+  const route = useRouter();
+  // const id = typeof window !== "undefined" ? localStorage.getItem("id") : "";
+
   return (
     <div className="text-gray-100">
       <div className="flex items-center">
@@ -109,26 +114,42 @@ export default function TopComments({
           <div>
             {topConterbuter.length &&
               topConterbuter.map((item, ind) => (
-                <Link href={`profile?id=${item._id._id}`} key={ind}>
-                  <div className="flex  items-center my-3">
-                    <p className="basis-1/12">{ind + 1}.</p>
-                    <div className="rounded-full basis-2/6 m-1">
-                      <Image
-                        src={item._id.img[0] ? item._id.img[0] : cat}
-                        width={40}
-                        height={40}
-                        alt="profile"
-                        className="rounded-full  w-[50px] h-[50px] object-cover"
-                      />
-                    </div>
-                    <div className="basis-3/6 cursor-pointer hover:text-[#9395d3] w-full overflow-hidden truncate px-1">
-                      {item._id.username}
-                    </div>
-                    <div className="basis-1/6">
-                      <p className=" bg-sky-700  rounded p-1">{item.points}</p>
-                    </div>
+                <div
+                  key={ind}
+                  className="flex  items-center my-3"
+                  onClick={(): void => {
+                    const id =
+                      typeof window !== "undefined"
+                        ? localStorage.getItem("id")
+                        : "";
+                    id?.length
+                      ? route.push(`profile?id=${item._id._id}`)
+                      : toast.error("Login first!", {
+                          position: "bottom-center",
+                          autoClose: 2000,
+                          hideProgressBar: false,
+                          pauseOnHover: true,
+                          progress: undefined,
+                          theme: "colored",
+                        });
+                  }}>
+                  <p className="basis-1/12">{ind + 1}.</p>
+                  <div className="rounded-full basis-2/6 m-1">
+                    <Image
+                      src={item._id.img[0] ? item._id.img[0] : cat}
+                      width={40}
+                      height={40}
+                      alt="profile"
+                      className="rounded-full  w-[50px] h-[50px] object-cover"
+                    />
                   </div>
-                </Link>
+                  <div className="basis-3/6 cursor-pointer hover:text-[#9395d3] w-full overflow-hidden truncate px-1">
+                    {item._id.username}
+                  </div>
+                  <div className="basis-1/6">
+                    <p className=" bg-sky-700  rounded p-1">{item.points}</p>
+                  </div>
+                </div>
               ))}
           </div>
         </div>

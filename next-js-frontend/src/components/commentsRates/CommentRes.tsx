@@ -12,19 +12,14 @@ import Utils from "@/utils/helper";
 const CommentRes = (): JSX.Element => {
   const route = useRouter();
   const { id } = route.query;
-  const userId =
-    typeof window !== "undefined" ? localStorage.getItem("id") : "";
-
-  const token =
-    typeof window !== "undefined" ? localStorage.getItem("token") : "";
 
   const init = {
     restaurantId: id,
     foodId: null,
-    userId: userId,
+    userId: "",
     comment: "",
     rate: 0,
-    token: token,
+    token: "",
   };
 
   const [commentSend, setComment] = useState(init);
@@ -56,8 +51,17 @@ const CommentRes = (): JSX.Element => {
   };
 
   const sendComment = (): void => {
+    const userId =
+      typeof window !== "undefined" ? localStorage.getItem("id") : "";
+    const token =
+      typeof window !== "undefined" ? localStorage.getItem("token") : "";
+
     axios
-      .post(`${Utils.API_URL}/comment`, commentSend)
+      .post(`${Utils.API_URL}/comment`, {
+        ...commentSend,
+        token: token,
+        userId: userId,
+      })
       .then((res) => (res.data.status ? getData() : ""))
       .catch((err) => console.log(err));
 
