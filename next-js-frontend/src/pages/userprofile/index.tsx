@@ -14,6 +14,7 @@ import { LoadingContext } from "@/utils/ContextConfig";
 import { Loading } from "@/components/Loading";
 import Cat from "../../img/cat.jpeg";
 import { UserContext } from "@/utils/ContextConfig";
+import { NavCateg } from "@/components/HeaderNavFooter/NavCateg";
 
 export default function Userprofile(): JSX.Element {
   const token =
@@ -70,6 +71,7 @@ export default function Userprofile(): JSX.Element {
   return (
     <div className="bg-black text-white">
       <NavSearch />
+      <NavCateg />
       <div className="h-full flex  justify-center ">
         <div className="w-[700px]">
           <div className="flex items-center py-5">

@@ -78,9 +78,6 @@ export const NavSearch = (): JSX.Element => {
   };
 
   const logout = (): void => {
-    localStorage.clear();
-    setLocalToken("");
-    setUserSign();
     toast.success("Logged out", {
       position: "bottom-center",
       autoClose: 2000,
@@ -92,6 +89,9 @@ export const NavSearch = (): JSX.Element => {
       theme: "colored",
     });
     route.push("/");
+    setLocalToken("");
+    setUserSign();
+    localStorage.clear();
   };
 
   return (
@@ -147,13 +147,11 @@ export const NavSearch = (): JSX.Element => {
                   onClick={(): any => route.push("/userprofile")}>
                   {localStorage.getItem("name")}
                 </p>
-                <Link href={"/"}>
-                  <p
-                    className="cursor-pointer hover:text-[#9395d3]"
-                    onClick={handleLogout}>
-                    LOG OUT
-                  </p>
-                </Link>
+                <p
+                  className="cursor-pointer hover:text-[#9395d3]"
+                  onClick={handleLogout}>
+                  LOG OUT
+                </p>
               </div>
             </div>
           ) : (
