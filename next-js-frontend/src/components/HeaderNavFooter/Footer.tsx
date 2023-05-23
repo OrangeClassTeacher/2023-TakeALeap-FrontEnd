@@ -63,9 +63,7 @@ function Footer(): JSX.Element {
                     className="w-[80px] h-[80px] object-cover rounded-full "
                   />
                   <Link
-                    href={
-                      "https://takealeapadmin-2wkx219rx-orange22erdenedarich-gmailcom.vercel.app/dashboard"
-                    }
+                    href={"https://lynkadmin.vercel.app/"}
                     className="bg-black rounded-lg p-2 hover:text-[#9395d3]">
                     <button className="text-xl">Visit</button>
                   </Link>

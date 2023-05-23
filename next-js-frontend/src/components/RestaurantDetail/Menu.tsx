@@ -14,13 +14,19 @@ export const Menu = (): JSX.Element => {
   const route = useRouter();
   const { id } = route.query;
   const [food, setFood] = useState<IFood[]>([]);
-  const [beverage] = useState<IBeverage[]>([]);
+  const [beverage, setBeverage] = useState<IBeverage[]>([]);
 
   useEffect(() => {
     axios
       .get(`${Utils.API_URL}/foodbyrestaurantid?id=${id}`)
       .then((res) => {
         setFood(res.data.result);
+      })
+      .catch((err) => console.log(err));
+    axios
+      .get(`${Utils.API_URL}/beveragesbyrestaurantid?id=${id}`)
+      .then((res) => {
+        setBeverage(res.data.result);
       })
       .catch((err) => console.log(err));
   });
@@ -44,7 +50,7 @@ export const Menu = (): JSX.Element => {
               <Image
                 src={item.img[0] || ""}
                 alt="img"
-                className="rounded-xl w-full h-[200px] object-cover"
+                className="rounded-xl w-full h-[300px] object-cover"
                 width={1000}
                 height={1000}
               />
