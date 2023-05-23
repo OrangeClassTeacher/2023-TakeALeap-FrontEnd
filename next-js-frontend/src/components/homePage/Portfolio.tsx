@@ -39,26 +39,26 @@ box.cards.forEach((card, index) => {
   console.log("-----------------");
 });
 
-export default function Portfolio() {
+export default function Portfolio(): JSX.Element {
   return (
-    <div className="flex flex-col justify-center items-center">
-      <div className="">
-        <h1 className="pt-12 about font-black text-[35px]">About Us</h1>
+    <div >
+      <div className="flex items-center justify-around">
+        <h1 className="text-center uppercase text-3xl p-16">About Us</h1>
       </div>
       <div className={styles.box}>
         <div className={styles.card}>
           <div className={styles.info}>
-            <div className={styles.name}>Baatraa</div>
-            <div className={styles.prof}> Back-End Developer</div>
-            <div className={styles.divider}></div>
-            <div className={styles.bio}>
+            <p className={styles.name}>Baatraa</p>
+            <p className={styles.prof}> Back-End Developer</p>
+            <p className={styles.divider}>{""}</p>
+            <p className={styles.bio}>
               Me personally specializes in server-side programming and is
               responsible for building and maintaining the core functionality of
               web applications.{" "}
-            </div>
+            </p>
             <button className={styles.button}>Contact me</button>
           </div>
-          <div className={styles.photo}></div>
+          <div className={styles.photo}>{""}</div>
           <Link href="#">
             <p className={styles.asmash}>My portfolio</p>
           </Link>
@@ -67,7 +67,7 @@ export default function Portfolio() {
           <div className={styles.info}>
             <div className={styles.name}>Daria</div>
             <div className={styles.prof}>Full-Stack Developer</div>
-            <div className={styles.divider}></div>
+            <div className={styles.divider}>{""}</div>
             <div className={styles.bio}>
               {" "}
               My hard-skill is proficient in both front-end and back-end
@@ -76,7 +76,7 @@ export default function Portfolio() {
             </div>
             <button className={styles.button}>Contact me</button>
           </div>
-          <div className={styles.photo2}></div>
+          <div className={styles.photo2}>{""}</div>
           <Link href="#">
             <p className={styles.asmash}>My portfolio</p>
           </Link>
@@ -85,15 +85,15 @@ export default function Portfolio() {
           <div className={styles.info}>
             <div className={styles.name}>Moonlight</div>
             <div className={styles.prof}> Front-End Developer</div>
-            <div className={styles.divider}></div>
+            <div className={styles.divider}>{""}</div>
             <div className={styles.bio}>
               Well my skill focuses on creating the user-facing aspects of a
-              website or application. I'm skilled in more front-end frameworks,
+              website or application. I am skilled in more front-end frameworks,
               to design and implement intuitive user interfaces.{" "}
             </div>
             <button className={styles.button}>Contact me</button>
           </div>
-          <div className={styles.photo3}></div>
+          <div className={styles.photo3}>{""}</div>
           <Link href="#">
             <p className={styles.asmash}>My portfolio</p>
           </Link>

@@ -9,23 +9,25 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100vh;
 }
+
 .card {
-  height: 450px;
-  width: 310px;
+  top: 0;
+  height: 650px;
+  width: 30%;
   background-color: #fff;
   transform: scale(0.7);
   border-radius: 8px;
   box-shadow: 0 0 80px 1px #4169b0;
 }
+
 .info {
   width: 100%;
   height: 100%;
   display: flex;
-
   justify-content: center;
 }
+
 .name {
   font-size: 35px;
   font-weight: 600;
@@ -34,12 +36,14 @@
   top: 100px;
   letter-spacing: 2px;
 }
+
 .prof {
   font-size: 25px;
   color: #555555;
   position: absolute;
   top: 140px;
 }
+
 .divider {
   background-color: #949594;
   height: 1.5px;
@@ -47,6 +51,7 @@
   position: absolute;
   top: 190px;
 }
+
 .bio {
   position: absolute;
   top: 220px;
@@ -55,6 +60,7 @@
   font-size: 18px;
   text-align: center;
 }
+
 .button {
   position: absolute;
   bottom: 20px;
@@ -65,6 +71,7 @@
   cursor: pointer;
   color: #fff;
 }
+
 .photo {
   height: 100%;
   width: 100%;
@@ -77,6 +84,7 @@
   transition: 1s;
   object-fit: cover;
 }
+
 .card:hover .photo {
   transform: scale(0.5, 0.35) translateY(-650px);
   border-radius: 50%;
@@ -84,6 +92,7 @@
   background-position: 0 -25px;
   object-fit: cover;
 }
+
 .asmash {
   position: absolute;
   box-shadow: -70px;
@@ -96,6 +105,7 @@
   text-decoration: none;
   text-align: center;
 }
+
 .photo2 {
   height: 100%;
   width: 100%;
@@ -109,6 +119,7 @@
   transition: 1s;
   object-fit: cover;
 }
+
 .card:hover .photo2 {
   transform: scale(0.5, 0.35) translateY(-650px);
   border-radius: 50%;
@@ -116,6 +127,7 @@
   background-position: 0 -25px;
   object-fit: cover;
 }
+
 .photo3 {
   height: 100%;
   width: 100%;
@@ -129,6 +141,7 @@
   transition: 1s;
   object-fit: cover;
 }
+
 .card:hover .photo3 {
   transform: scale(0.5, 0.35) translateY(-650px);
   border-radius: 50%;
