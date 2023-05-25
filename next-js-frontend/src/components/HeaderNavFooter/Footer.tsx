@@ -1,7 +1,6 @@
 import React from "react";
 import { FaInstagram, FaTwitter, FaLinkedin, FaYoutube } from "react-icons/fa";
 import Link from "next/link";
-import QR from "../../img/sqr.jpg";
 import res from "../../img/logo.jpg";
 import Image from "next/image";
 // import panel from "../../styles/panelcard.module.css";
@@ -47,7 +46,7 @@ function Footer(): JSX.Element {
             <div className="relative flex items-center justify-around rounded-lg border bg-white  w-[230px] h-[230px]">
               <Image
                 alt="panel"
-                src={QR}
+                src={res}
                 width={200}
                 height={200}
                 className="overflow-hidden w-[200px] h-[200px] object-cover rounded-lg"
