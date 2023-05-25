@@ -18,6 +18,7 @@ import { useContext } from "react";
 import { Loading } from "@/components/Loading";
 import { LoadingContext } from "@/utils/ContextConfig";
 import AllMap from "@/components/homePage/AllMap";
+import Portfolio from "@/components/homePage/Portfolio";
 
 export default function Index(): JSX.Element {
   const [restaurants, setRestaurant] = useState<IRestaurant[]>([]);
@@ -100,6 +101,9 @@ export default function Index(): JSX.Element {
         </section>
         <section className="h-full">
           {restaurants.length && <AllMap restaurants={restaurants} />}
+        </section>
+        <section className="h-full">
+          <Portfolio />
         </section>
         <section className="h-full flex items-center">
           <Footer />

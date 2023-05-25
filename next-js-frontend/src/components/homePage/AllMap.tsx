@@ -30,6 +30,7 @@ export default function AllMap({
             lat: 47.91491313549779,
             lng: 106.90851741242646,
           }}
+          options={{ scrollwheel: false }}
           mapContainerClassName="map-container"
           mapContainerStyle={mapStyle}>
           {restaurants.map((items, index) => {
