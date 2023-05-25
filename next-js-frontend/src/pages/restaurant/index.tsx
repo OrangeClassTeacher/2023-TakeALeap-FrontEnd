@@ -11,12 +11,23 @@ import axios from "axios";
 import Utils from "@/utils/helper";
 import { LoadingContext } from "@/utils/ContextConfig";
 import { Loading } from "@/components/Loading";
+import { toast, ToastOptions } from "react-toastify";
 
 export default function Restaurant(): JSX.Element {
   const [restaurant, setRestaurant] = useState<IDetailRest>();
   const { loading, setLoading }: any = useContext(LoadingContext);
   const route = useRouter();
   const { id } = route.query;
+  const toastStyle: ToastOptions<any> = {
+    position: "bottom-center",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  };
 
   useEffect(() => {
     getData();
@@ -28,10 +39,13 @@ export default function Restaurant(): JSX.Element {
       axios
         .get(`${Utils.API_URL}/restaurant?id=${id}`)
         .then((res) => {
-          setRestaurant(res.data.result[0]);
-          console.log(res.data.result);
+          if (!res.data.status) {
+            toast.error("Please try again!", toastStyle);
+          } else {
+            setRestaurant(res.data.result[0]);
+          }
         })
-        .catch((err) => console.log(err))
+        .catch(() => toast.error("Please try again", toastStyle))
         .finally(() => setLoading(false));
     }
   };

@@ -10,6 +10,7 @@ import { meal } from "@/components/InterfaceEnumsMeta/enumValues";
 import { Loading } from "@/components/Loading";
 import { LoadingContext } from "@/utils/ContextConfig";
 // import { IAllSearchFoodInit } from "@/components/InterfaceEnumsMeta/inits";
+import { toast } from "react-toastify";
 
 const init = {
   text: "",
@@ -28,7 +29,20 @@ const Search = (): JSX.Element => {
     axios
       .post(`${Utils.API_URL}/foodallsearch`, all)
       .then((res): void => {
-        setData(res.data.result);
+        if (!res.data.status) {
+          toast.error("Please try again!", {
+            position: "bottom-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        } else {
+          setData(res.data.result);
+        }
       })
       .catch((err): void => console.log(err))
       .finally((): void => setLoading(false));

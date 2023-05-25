@@ -13,6 +13,7 @@ import { TbSoup } from "react-icons/tb";
 import gip from "../../img/gip.gif";
 import { Loading } from "@/components/Loading";
 import { LoadingContext } from "@/utils/ContextConfig";
+import { toast } from "react-toastify";
 
 export default function Food(): JSX.Element {
   const route = useRouter();
@@ -26,9 +27,33 @@ export default function Food(): JSX.Element {
       axios
         .get(`${Utils.API_URL}/food?id=${id}`)
         .then((res) => {
-          setFood(res.data.result);
+          if (!res.data.status) {
+            toast.error("Please try again!", {
+              position: "bottom-center",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
+          } else {
+            setFood(res.data.result);
+          }
         })
-        .catch((err) => console.log(err))
+        .catch(() =>
+          toast.error("Please try again", {
+            position: "bottom-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          })
+        )
         .finally(() => setLoading(false));
     }
   }, [id]);

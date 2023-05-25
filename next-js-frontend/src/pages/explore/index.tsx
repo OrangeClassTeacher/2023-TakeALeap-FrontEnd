@@ -7,6 +7,8 @@ import { LoadingContext } from "@/utils/ContextConfig";
 import axios from "axios";
 import Utils from "@/utils/helper";
 import { Loading } from "@/components/Loading";
+import { toast } from "react-toastify";
+import Link from "next/link";
 
 export default function ExploreMain(): JSX.Element {
   const [data, setData] = useState<IExplore>();
@@ -17,9 +19,34 @@ export default function ExploreMain(): JSX.Element {
     axios
       .get(`${Utils.API_URL}/comments`)
       .then((res) => {
-        setData(res.data);
+        if (!res.data.status) {
+          toast.error("Please try again!", {
+            position: "bottom-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        } else {
+          setData(res.data);
+          console.log(res.data);
+        }
       })
-      .catch((err) => console.log(err))
+      .catch(() =>
+        toast.error("Please try again", {
+          position: "bottom-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+      )
       .finally(() => setLoading(false));
   }, []);
 
@@ -29,7 +56,12 @@ export default function ExploreMain(): JSX.Element {
   return (
     <div>
       <Header />
-      <div className="bg-black text-white">
+      <div className="bg-black text-white relative">
+        <div className="fixed w-screen h-screen top-0 bg-black/50 z-10 flex items-center justify-center text-4xl">
+          <Link href={"/"} className="hover:text-white/50">
+            Coming Soon
+          </Link>
+        </div>
         <Explore data={data} />
       </div>
       <Footer />

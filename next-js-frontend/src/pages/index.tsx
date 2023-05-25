@@ -19,6 +19,7 @@ import { Loading } from "@/components/Loading";
 import { LoadingContext } from "@/utils/ContextConfig";
 import AllMap from "@/components/homePage/AllMap";
 import Portfolio from "@/components/homePage/Portfolio";
+import { ToastOptions, toast } from "react-toastify";
 
 export default function Index(): JSX.Element {
   const [restaurants, setRestaurant] = useState<IRestaurant[]>([]);
@@ -28,42 +29,73 @@ export default function Index(): JSX.Element {
   const [topConterbuter, setTopConterbuter] = useState<IUserPoint[]>([]);
   const { loading, setLoading }: any = useContext(LoadingContext);
 
+  const toastStyle: ToastOptions<any> = {
+    position: "bottom-center",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  };
+
   const getData = async (): Promise<void> => {
     setLoading(true);
     await axios
       .get(`${Utils.API_URL}/toprestaurant`)
       .then((res) => {
-        setTopRestaurant(res.data.result);
+        if (!res.data.status) {
+          toast.error("Please try again!", toastStyle);
+        } else {
+          setTopRestaurant(res.data.result);
+        }
       })
-      .catch((err) => console.log(err));
+      .catch(() => toast.error("Please try again", toastStyle));
 
     await axios
       .get(`${Utils.API_URL}/gettopfoods`)
       .then((res) => {
-        setTopFood(res.data.result);
+        if (!res.data.status) {
+          toast.error("Please try again!", toastStyle);
+        } else {
+          setTopFood(res.data.result);
+        }
       })
-      .catch((err) => console.log(err));
+      .catch(() => toast.error("Please try again", toastStyle));
 
     await axios
       .get(`${Utils.API_URL}/restaurants`)
       .then((res) => {
-        setRestaurant(res.data.result);
+        if (!res.data.status) {
+          toast.error("Please try again!", toastStyle);
+        } else {
+          setRestaurant(res.data.result);
+        }
       })
-      .catch((err) => console.log(err));
+      .catch(() => toast.error("Please try again", toastStyle));
 
     axios
       .get(`${Utils.API_URL}/latestcomments`)
       .then((res) => {
-        setLastComments(res.data.result);
+        if (!res.data.status) {
+          toast.error("Please try again!", toastStyle);
+        } else {
+          setLastComments(res.data.result);
+        }
       })
-      .catch((err) => console.log(err));
+      .catch(() => toast.error("Please try again", toastStyle));
 
     axios
       .get(`${Utils.API_URL}/users/topusers`)
       .then((res) => {
-        setTopConterbuter(res.data.result);
+        if (!res.data.status) {
+          toast.error("Please try again!", toastStyle);
+        } else {
+          setTopConterbuter(res.data.result);
+        }
       })
-      .catch((err) => console.log(err))
+      .catch(() => toast.error("Please try again", toastStyle))
       .finally(() => setLoading(false));
   };
 

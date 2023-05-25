@@ -42,7 +42,7 @@ export const NavSearch = (): JSX.Element => {
       .then((res) => {
         setData(res.data.result);
       })
-      .catch((err) => console.log(err));
+      .catch(() => toast.error("please try again"));
   }, [searchInput]);
 
   const handleLogout = (): void => {

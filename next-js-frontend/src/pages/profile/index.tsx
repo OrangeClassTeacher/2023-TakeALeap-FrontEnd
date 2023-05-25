@@ -13,6 +13,7 @@ import { LoadingContext } from "@/utils/ContextConfig";
 import { Loading } from "@/components/Loading";
 import Cat from "../../img/cat.jpeg";
 import { useRouter } from "next/router";
+import { ToastOptions, toast } from "react-toastify";
 
 export default function Profile(): JSX.Element {
   const route = useRouter();
@@ -21,6 +22,16 @@ export default function Profile(): JSX.Element {
   const [comment, setComment] = useState<IComment[]>([]);
   const [showAllCom] = useState<boolean>(true);
   const { loading, setLoading }: any = useContext(LoadingContext);
+  const toastStyle: ToastOptions<any> = {
+    position: "bottom-center",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  };
 
   useEffect((): void => {
     const token =
@@ -33,17 +44,24 @@ export default function Profile(): JSX.Element {
           token: token,
         })
         .then((res) => {
-          setData(res.data.result);
+          if (!res.data.status) {
+            toast.error("Please try again!", toastStyle);
+          } else {
+            setData(res.data.result);
+          }
         })
-        .catch((err) => console.log(err));
+        .catch(() => toast.error("Please try again", toastStyle));
 
       axios
         .get(`${Utils.API_URL}/commentbyuserid?id=${id}`)
         .then((res) => {
-          setComment(res.data.result);
-          console.log(res.data.result);
+          if (!res.data.status) {
+            toast.error("Please try again!", toastStyle);
+          } else {
+            setComment(res.data.result);
+          }
         })
-        .catch((err) => console.log(err))
+        .catch(() => toast.error("Please try again", toastStyle))
         .finally(() => setLoading(false));
     }
   }, [id]);

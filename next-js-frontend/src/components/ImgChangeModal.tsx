@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useContext } from "react";
 import { UserContext } from "@/utils/ContextConfig";
+import { toast } from "react-toastify";
 
 export const ImgChangeModal = ({
   modal,
@@ -40,8 +41,21 @@ export const ImgChangeModal = ({
           token: token,
         })
         .then((res) => {
-          setData({ ...res.data.result, token: token });
-          setUserSign({ ...res.data.result, token: token });
+          if (!res.data.status) {
+            toast.error("Please try again!", {
+              position: "bottom-center",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
+          } else {
+            setData({ ...res.data.result, token: token });
+            setUserSign({ ...res.data.result, token: token });
+          }
         })
         .catch((err) => console.log(err));
     } else {
