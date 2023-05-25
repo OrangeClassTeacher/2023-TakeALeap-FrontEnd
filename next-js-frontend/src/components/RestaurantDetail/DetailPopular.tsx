@@ -4,6 +4,7 @@ import Image from "next/image";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Utils from "@/utils/helper";
+import { toast } from "react-toastify";
 
 export const DetailPopular = (): JSX.Element => {
   const [foods, setFoods] = useState<[IFood]>();
@@ -13,8 +14,12 @@ export const DetailPopular = (): JSX.Element => {
   useEffect((): void => {
     axios
       .get(`${Utils.API_URL}/restaurantfoods?id=${id}`)
-      .then((res) => setFoods(res.data.result))
-      .catch((err) => console.log(err));
+      .then((res) =>
+        res.data.result
+          ? setFoods(res.data.result)
+          : toast.error("Please try again")
+      )
+      .catch(() => toast.error("please try again"));
   });
 
   return (

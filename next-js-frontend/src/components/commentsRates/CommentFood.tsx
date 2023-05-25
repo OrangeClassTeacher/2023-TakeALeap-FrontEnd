@@ -8,6 +8,7 @@ import SignIn from "../SignIn";
 import Utils from "@/utils/helper";
 import { RateStar } from "./RateStar";
 import { ShowComment } from "./ShowComment";
+import { toast } from "react-toastify";
 
 export default function CommentFood(): JSX.Element {
   const route = useRouter();
@@ -32,9 +33,22 @@ export default function CommentFood(): JSX.Element {
     axios
       .get(`${Utils.API_URL}/commentbyfoodid?id=${id}`)
       .then((res) => {
-        setAll(res.data.result);
+        if (!res.data.status) {
+          toast.error("Please try again!", {
+            position: "bottom-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        } else {
+          setAll(res.data.result);
+        }
       })
-      .catch((err) => console.log(err));
+      .catch(() => toast.error("please try again"));
   };
 
   useEffect((): void => {

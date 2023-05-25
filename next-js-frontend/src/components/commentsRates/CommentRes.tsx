@@ -8,6 +8,7 @@ import SignIn from "../SignIn";
 import { RateStar } from "./RateStar";
 import { ShowComment } from "./ShowComment";
 import Utils from "@/utils/helper";
+import { toast } from "react-toastify";
 
 const CommentRes = (): JSX.Element => {
   const route = useRouter();
@@ -32,9 +33,22 @@ const CommentRes = (): JSX.Element => {
     axios
       .get(`${Utils.API_URL}/byrestaurantid?id=${id}`)
       .then((res) => {
-        setAll(res.data.result);
+        if (!res.data.status) {
+          toast.error("Please try again!", {
+            position: "bottom-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        } else {
+          setAll(res.data.result);
+        }
       })
-      .catch((err) => console.log(err));
+      .catch(() => toast.error("please try again"));
   };
 
   useEffect((): void => {

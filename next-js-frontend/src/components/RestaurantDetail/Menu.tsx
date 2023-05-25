@@ -4,11 +4,11 @@ import axios from "axios";
 import { IFood, IBeverage } from "../InterfaceEnumsMeta/InterFace";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import Link from "next/link";
 import Utils from "@/utils/helper";
 import { FoodCard } from "./FoodCard";
 import { meal } from "../InterfaceEnumsMeta/enumValues";
 import { GiCookingPot } from "react-icons/gi";
+import { toast } from "react-toastify";
 
 export const Menu = (): JSX.Element => {
   const route = useRouter();
@@ -20,15 +20,19 @@ export const Menu = (): JSX.Element => {
     axios
       .get(`${Utils.API_URL}/foodbyrestaurantid?id=${id}`)
       .then((res) => {
-        setFood(res.data.result);
+        res.data.result
+          ? setFood(res.data.result)
+          : toast.error("please try again");
       })
-      .catch((err) => console.log(err));
+      .catch(() => toast.error("please try again"));
     axios
       .get(`${Utils.API_URL}/beveragesbyrestaurantid?id=${id}`)
       .then((res) => {
-        setBeverage(res.data.result);
+        res.data.result
+          ? setBeverage(res.data.result)
+          : toast.error("please try again");
       })
-      .catch((err) => console.log(err));
+      .catch(() => toast.error("please try again"));
   });
 
   return (
@@ -45,7 +49,7 @@ export const Menu = (): JSX.Element => {
       </p>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10">
         {beverage.map((item, ind) => (
-          <Link href={`/`} key={ind}>
+          <div key={ind}>
             <div>
               <Image
                 src={item.img[0] || ""}
@@ -63,7 +67,7 @@ export const Menu = (): JSX.Element => {
               </div>
               <div>rate here</div>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
     </div>

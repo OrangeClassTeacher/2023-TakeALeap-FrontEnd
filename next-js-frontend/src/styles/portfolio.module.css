@@ -72,7 +72,7 @@
 .photo {
   height: 100%;
   width: 100%;
-  background-image: url("../img/moog.jpeg");
+  background-image: url("../img/moog.jpg");
   background-repeat: no-repeat;
   position: absolute;
   bottom: 0;
@@ -106,7 +106,7 @@
 .photo2 {
   height: 100%;
   width: 100%;
-  background-image: url("../img/daria.png");
+  background-image: url("../img/daria.jpg");
   object-fit: contain;
   background-repeat: no-repeat;
   position: absolute;
@@ -128,7 +128,7 @@
 .photo3 {
   height: 100%;
   width: 100%;
-  background-image: url("../img/manlai.jpeg");
+  background-image: url("../img/manlai.jpg");
   background-repeat: no-repeat;
   object-fit: cover;
   position: absolute;
