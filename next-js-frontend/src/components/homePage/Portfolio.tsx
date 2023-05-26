@@ -45,7 +45,7 @@ export default function Portfolio(): JSX.Element {
       <div className="flex  justify-around">
         <h1 className="text-center uppercase text-3xl p-16">About Us</h1>
       </div>
-      <div className={styles.box}>
+      <div className="grid grid-cols-1 md:grid-cols-3 w-full justify-center">
         <div className={styles.card}>
           <div className={styles.info}>
             <p className={styles.name}>Baatraa</p>
