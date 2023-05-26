@@ -10,7 +10,7 @@ export const PopularDish = ({ data }: { data: ITopFoods[] }): JSX.Element => (
     <Link href={`/findfoods`}>
       <p className="text-end hover:text-[#9395d3]">See all</p>
     </Link>
-    <div className="grid grid-cols-2 sm:grid-cols-3 gap-5 ">
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 ">
       {data.length &&
         data.map((item, ind) => (
           <Link key={ind} href={`/food?id=${item._id.foodId}`}>
@@ -20,7 +20,7 @@ export const PopularDish = ({ data }: { data: ITopFoods[] }): JSX.Element => (
                   <Image
                     src={item.food.img[0]}
                     alt="img"
-                    className="w-full h-[250px] object-cover -z-3"
+                    className="w-full h-[100px] md:h-[250px]  object-cover -z-3"
                     width={200}
                     height={150}
                   />

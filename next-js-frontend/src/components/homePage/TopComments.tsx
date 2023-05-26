@@ -23,8 +23,8 @@ export default function TopComments({
 
   return (
     <div className="text-gray-100">
-      <div className="flex items-center">
-        <div className="hidden md:block basis-1/5 border border-gray-900 bg-gray-950 rounded p-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 items-center ">
+        <div className="hidden md:block w-full border border-gray-900 bg-gray-950 rounded p-5">
           <div className="coke">
             <div className="card2">
               <div className="circle" />
@@ -52,9 +52,9 @@ export default function TopComments({
             </div>
           </div>
         </div>
-        <div className="basis-1 md:basis-3/5">
+        <div className="basis-1 md:w-full">
           <div className="text-center text-3xl py-3">Recent Comments</div>
-          <div className="m-0 md:mx-20 h-[600px] overflow-scroll">
+          <div className="m-0 md:mx-20 h-[600px] overflow-scroll ">
             {lastComments.length &&
               lastComments.map((item, ind) => (
                 <div key={ind} className="flex p-4 items-center">
@@ -96,7 +96,7 @@ export default function TopComments({
               ))}
           </div>
         </div>
-        <div className="hidden md:block basis-1/5 border border-gray-900 bg-gray-950 rounded p-5 h-full h-[100%] m-5">
+        <div className="hidden md:block w-full border border-gray-900 bg-gray-950 rounded p-5 h-full h-[100%] m-5">
           <div>
             <h1 className="text-xl text-center">Top Contritors</h1>
             <div className="scene">
